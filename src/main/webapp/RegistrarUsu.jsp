@@ -4,10 +4,28 @@
     Author     : Benja
 --%>
 
+<%@page import="model.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.trabajadores"%>
+<%
+    //  Recuperar la sesión (false significa: no crees una nueva si no existe)
+    HttpSession sessionActual = request.getSession(false);
 
+    //  Recuperar el usuario
+    Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
+
+    //  VALIDACIÓN DE SEGURIDAD
+    if (usuarioLogeado == null) {
+        //  No se ha logueado -> Patada al login
+        response.sendRedirect("login.jsp");
+        return; // Importante para detener la ejecución del resto de la página
+    } else if (!usuarioLogeado.getRol().equals("Administrador")) {
+        //  Sí está logueado, pero es empleado intentando entrar a zona admin
+        response.sendRedirect("AccDen.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
