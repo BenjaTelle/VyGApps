@@ -1,0 +1,260 @@
+/* =========================
+   RESET + BASE
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #f7f9fb; /* Fondo gris claro */
+    overflow: hidden; /* Evita scroll doble en la página entera */
+}
+
+/* =========================
+   LAYOUT PRINCIPAL
+========================= */
+.admin-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* =========================
+   SIDEBAR (Barra Lateral)
+========================= */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    padding: 25px 20px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+/* CAMBIO: Estilos para la nueva imagen */
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px; /* Mantiene la misma forma redondeada */
+    object-fit: contain; /* Asegura que el SVG se vea completo sin estirarse */
+}
+
+/* NOTA: Se eliminó .logo-box ya que se reemplazó por la imagen.
+   Si tu SVG no tiene fondo y quieres mantener el cuadro naranja detrás,
+   avísame para ajustar el HTML.
+*/
+
+.sidebar-header h2 {
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    transition: all 0.3s;
+}
+
+.menu-item:hover, .menu-item.active {
+    background-color: #fff3e0; /* Naranja muy suave al hover */
+    color: #f57c00;
+    font-weight: 600;
+}
+
+.menu-icon {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+/* =========================
+   CONTENIDO PRINCIPAL
+========================= */
+.main-content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Scroll solo aquí si el contenido es largo */
+}
+
+/* HEADER SUPERIOR */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-title h1 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
+.header-title span {
+    color: #777;
+    font-size: 14px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.user-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f57c00;
+}
+
+.user-info-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.btn-logout {
+    font-size: 12px;
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+/* =========================
+   DASHBOARD GRID (Tarjetas)
+========================= */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Sombra suave */
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.card-header h3 {
+    font-size: 16px;
+    color: #f57c00;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* 1. INFO PERFIL */
+.info-row {
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: #444;
+    display: flex;
+    justify-content: space-between;
+}
+.info-label { font-weight: 600; color: #777; }
+
+/* 2. ASISTENCIA */
+.attendance-box {
+    text-align: center;
+}
+.time-display {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: monospace;
+}
+.btn-check-in {
+    background-color: #f57c00;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(245, 124, 0, 0.3);
+    transition: background 0.3s;
+    width: 100%;
+}
+.btn-check-in:hover {
+    background-color: #e66f00;
+}
+
+/* 3. TABLA PAGOS */
+.table-container {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-container th {
+    text-align: left;
+    font-size: 12px;
+    color: #777;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+.table-container td {
+    font-size: 14px;
+    padding: 12px 0;
+    color: #444;
+    border-bottom: 1px solid #f9f9f9;
+}
+.status-paid {
+    color: #27ae60;
+    font-weight: bold;
+    font-size: 12px;
+    background: #e8f8f5;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+.status-pending {
+    color: #f39c12;
+    font-weight: bold;
+    font-size: 12px;
+    background: #fef9e7;
+    padding: 4px 8px;
+    border-radius: 4px;
+}

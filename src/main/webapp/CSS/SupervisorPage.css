@@ -1,0 +1,141 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 4 feb 2026, 6:29:15 p.m.
+    Author     : Benja
+*/
+
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    background-color: #f7f9fb;
+    height: 100vh;
+}
+
+/* =========================
+   CONTENEDOR
+========================= */
+.panel-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 240px;
+    background-color: #ffffff;
+    padding: 25px 20px;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.sidebar-logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.sidebar-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    padding: 11px 10px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #f57c00;
+    color: #ffffff;
+}
+
+/* =========================
+   MAIN
+========================= */
+.main-content {
+    flex: 1;
+    padding: 25px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   HEADER
+========================= */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.header h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* PERFIL */
+.profile-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f57c00;
+}
+
+.profile-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* =========================
+   CONTENIDO
+========================= */
+.content-box {
+    flex: 1;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+}
+
+.content-box p {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}

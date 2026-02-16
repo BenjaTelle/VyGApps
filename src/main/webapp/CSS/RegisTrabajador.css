@@ -1,0 +1,116 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 8 feb 2026, 5:19:44 p.m.
+    Author     : Benja
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== CONTENEDOR ===== */
+.form-container {
+    width: 100%;
+    padding: 30px 15px;
+}
+
+/* ===== CARD ===== */
+.form-card {
+    max-width: 520px;
+    margin: auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.form-card h2 {
+    font-size: 18px;
+    color: #f57c00;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 25px;
+}
+
+/* ===== FORM ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+/* INPUTS */
+input,
+select {
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+    border-color: #f57c00;
+    box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.15);
+}
+
+/* ===== BOTÓN ===== */
+.btn-submit {
+    margin-top: 10px;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    background: #f2f2f2;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, font-weight 0.2s, transform 0.2s;
+}
+
+/* 🔥 HOVER UNIFICADO */
+.btn-submit:hover {
+    background-color: #fff3e0;
+    color: #f57c00;
+    font-weight: 600;
+    transform: translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+    .form-card {
+        padding: 25px 20px;
+    }
+}

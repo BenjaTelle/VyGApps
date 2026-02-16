@@ -1,0 +1,154 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 11 feb 2026, 5:52:28 p.m.
+    Author     : Benja
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+body {
+    background: #f4f6f8;
+    color: #2e2e2e;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONTENEDOR */
+.dev-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* TARJETA PRINCIPAL */
+.dev-card {
+    background: #ffffff;
+    width: 500px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    text-align: center;
+    position: relative;
+}
+
+/* BARRA SUPERIOR */
+.dev-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 6px;
+    width: 100%;
+    background: #f57c00;
+    border-radius: 12px 12px 0 0;
+}
+
+/* ICONO */
+.dev-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    color: #f57c00;
+}
+
+/* TITULO */
+h2 {
+    color: #f57c00;
+    margin-bottom: 10px;
+    font-size: 22px;
+}
+
+/* SUBTITULO */
+.subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* PREVIEW DE FUNCIONES */
+.feature-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.feature-item {
+    background: #f2f2f2;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.feature-item:hover {
+    background: #fff3e0;
+    color: #f57c00;
+    transform: translateY(-2px);
+}
+
+/* PROGRESS */
+.progress-section {
+    margin-bottom: 25px;
+}
+
+.progress-text {
+    font-size: 13px;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: #e3e3e3;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 65%;
+    height: 100%;
+    background: #f57c00;
+    border-radius: 20px;
+    animation: progressAnim 2s ease-in-out infinite alternate;
+}
+
+@keyframes progressAnim {
+    from { width: 60%; }
+    to { width: 75%; }
+}
+
+/* BOTON */
+.btn-back {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    background: #f57c00;
+    color: #ffffff;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+    background: #e36f00;
+    transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .dev-card {
+        width: 100%;
+        padding: 25px;
+    }
+}
