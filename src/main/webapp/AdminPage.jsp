@@ -67,7 +67,7 @@
             <p>Administración de accesos y perfiles</p>
             <div class="actions">
                 <a href="CrearUsuario">Crear</a> <!-- cambiar por el serverlet cuando tengamos los metodos -->
-                <a href="usuarios_listar.jsp">Actualizar</a>
+                <a href="ActualizarUsuario">Actualizar</a>
                 <a href="usuarios_eliminar.jsp" class="danger">Eliminar</a>
             </div>
         </div>
