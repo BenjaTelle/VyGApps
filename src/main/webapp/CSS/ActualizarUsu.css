@@ -1,0 +1,102 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 16 feb 2026, 5:26:59 p.m.
+    Author     : Benja
+*/
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: rgb(242,222,150);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.form-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.form-card {
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin: 10px 0;
+    color: rgb(152,72,7);
+}
+
+.subtitle {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #666;
+}
+
+.form-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: rgb(152,72,7);
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: rgb(152,72,7);
+    box-shadow: 0 0 5px rgba(152,72,7,0.4);
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(152,72,7);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-submit:hover {
+    background-color: rgb(120,55,5);
+}
+
+.admin-color {
+    border-color: #8e44ad;
+}
+
+.supervisor-color {
+    border-color: #2980b9;
+}
+
+.trabajador-color {
+    border-color: #27ae60;
+}
