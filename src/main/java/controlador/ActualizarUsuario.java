@@ -4,13 +4,19 @@
  */
 package controlador;
 
+import Repository.TrabajadoresDAO;
+import Repository.UsuarioDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Usuarios;
 
 /**
  *
@@ -47,6 +53,15 @@ public class ActualizarUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             
+        try{
+                UsuarioDAO usu = new UsuarioDAO();
+                TrabajadoresDAO t = new TrabajadoresDAO();
+                request.setAttribute("ListaT", t.ListarTrabajadores());
+                request.setAttribute("ListaUsuarios", usu.ListarUsuarios());
+        }catch(SQLException e)
+        {
+            e.printStackTrace();
+        }
         
         request.getRequestDispatcher("ActualizarUsu.jsp").forward(request, response);
         
@@ -64,6 +79,29 @@ public class ActualizarUsuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
+        int id_user = Integer.parseInt(request.getParameter("id_usuario")); 
+        String NuevoUsuario = request.getParameter("user_name");
+        String NuevaContraseña = request.getParameter("pass");  
+        String NuevoRol = request.getParameter("rol");
+        int nuevoId_trabajador = Integer.parseInt(request.getParameter("id_trabajador"));
+        UsuarioDAO usuDAO = new UsuarioDAO();
+        Usuarios usu = new Usuarios();
+        
+        
+        usu.setId_user(id_user); //id usuario que le quiero mandar a modificar 
+        usu.setPass(NuevaContraseña);
+        usu.setRol(NuevoRol);
+        usu.setUser_name(NuevoUsuario);
+        usu.setId_trabajador(nuevoId_trabajador); //id trabajador que voy a asignar 
+        try {
+            int filas = usuDAO.modificarUsuario(usu);
+            System.out.println("filas afectadas: "+filas);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
         
         response.sendRedirect("AdminPage.jsp");
     }
