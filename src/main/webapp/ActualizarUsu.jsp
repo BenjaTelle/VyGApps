@@ -37,10 +37,14 @@
                     <%
                         List<Usuarios> listaUsuarios = (List<Usuarios>) request.getAttribute("ListaUsuarios");
                         if (listaUsuarios != null) {
+                        int i=1;
                             for (Usuarios u : listaUsuarios) {
+                            
+                            System.out.println("usuario "+i+ "usuario: "+u.getUser_name()+ "\n");
+                            i++;
                     %>
-                        <option value="<%=%>">
-                            <%= %>
+                        <option value="<%=u.getId_user()%>">
+                            <%=u.getUser_name() %>
                         </option>
                     <%
                             }
