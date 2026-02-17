@@ -77,10 +77,12 @@ public class UsuarioDAO {
                 usu.setPass(rs.getString("pass"));
                 usu.setRol(rs.getString("rol"));
                 usu.setId_user(Integer.parseInt(rs.getString("id_user")));
+                
+                
 
             }
 
-            LS.add(usu);
+          
 
             return LS; //retornamos la lista con los supervisores
             
@@ -117,6 +119,65 @@ public class UsuarioDAO {
         throw e;
     }
 
+    }
+     public List<Usuarios> ListarUsuarios() throws SQLException {
+        Usuarios usu = null;
+        String sql = "Select * from usuarios ";
+        List<Usuarios> LS = new ArrayList<>();
+        //conectamos a bd 
+        Connection con = ConectarBD.conectar();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        try {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                usu = new Usuarios();
+               
+
+                usu.setUser_name(rs.getString("user_name"));
+                usu.setPass(rs.getString("pass"));
+                usu.setRol(rs.getString("rol"));
+                usu.setId_user(Integer.parseInt(rs.getString("id_user")));
+
+                  LS.add(usu);
+            }
+
+         
+
+            return LS; //retornamos la lista con los supervisores
+            
+        } catch (SQLException e) {
+
+            return null; //retornamos un null si no hay supervisores
+        }
+
+    }
+
+    public int modificarUsuario(Usuarios usu) throws SQLException {
+            String sql="UPDATE usuarios SET user_name =?, pass=?, rol=?, id_trabajador=? WHERE id_user=?";
+            
+             Connection con = ConectarBD.conectar();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, usu.getUser_name());
+            ps.setString(2, usu.getPass());
+            ps.setString(3, usu.getRol());
+            ps.setInt(4, usu.getId_trabajador());
+            ps.setInt(5, usu.getId_user());
+            
+            int filas=ps.executeUpdate();
+            
+            if(filas>0)
+            {
+                return filas;
+            }
+            else
+            {
+                return 0;
+            }
+            
     }
 
 }
