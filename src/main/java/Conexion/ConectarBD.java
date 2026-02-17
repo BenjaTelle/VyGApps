@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class ConectarBD {
 
 
-    private static final String URL = "jdbc:mysql://localhost:3306/vygapps";
+    private static final String URL = "jdbc:mysql://localhost:3306/vygapps?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
