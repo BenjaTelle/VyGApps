@@ -1,0 +1,89 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 16 feb 2026, 9:17:46 p.m.
+    Author     : Benja
+*/
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.delete-container {
+    background-color: #ffffff;
+    padding: 40px;
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border-top: 6px solid #c0392b;
+    text-align: center;
+}
+
+.delete-container h2 {
+    color: #c0392b;
+    margin-bottom: 10px;
+}
+
+.warning-text {
+    font-size: 14px;
+    color: #7f0000;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Label */
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Select */
+select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #c0392b;
+    border-radius: 6px;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 20px;
+    transition: 0.3s ease;
+}
+
+select:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+}
+
+/* Botón eliminar */
+.btn-delete {
+    width: 100%;
+    padding: 12px;
+    background-color: #c0392b;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #e74c3c;
+    transform: scale(1.03);
+}
+
+.btn-delete:active {
+    transform: scale(0.98);
+}
