@@ -68,7 +68,7 @@
             <div class="actions">
                 <a href="CrearUsuario">Crear</a> <!-- cambiar por el serverlet cuando tengamos los metodos -->
                 <a href="ActualizarUsuario">Actualizar</a>
-                <a href="usuarios_eliminar.jsp" class="danger">Eliminar</a>
+                <a href="EliminarUsu" class="danger">Eliminar</a>
             </div>
         </div>
 
