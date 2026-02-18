@@ -21,7 +21,7 @@
         <img src="images/vyg_logo.jpg" alt="Logo">
     </div>
 
-    <h2>SISTEMA DE GESTIÓN INDUSTRIAL</h2>
+    <h2>SISTEMA DE GESTIÓN DE PROYECTOS</h2>
 
     <form method="POST" action="loginSv">
 
