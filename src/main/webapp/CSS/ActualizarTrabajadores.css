@@ -1,0 +1,109 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 18 feb 2026, 5:05:37 p.m.
+    Author     : Benja
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+   background: linear-gradient(135deg, #f2de96, #f7e8b5);
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.form-container {
+   max-width: 650px;
+    margin: 0 auto;
+}
+
+.form-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-top: 6px solid #984807;
+}
+
+h2 {
+    text-align: center;
+    color: #984807;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+/* Grupo */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #444;
+}
+
+input,
+select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #984807;
+    outline: none;
+    box-shadow: 0 0 6px rgba(152, 72, 7, 0.3);
+}
+
+/* Select superior destacado */
+.form-group:first-of-type select {
+    background-color: #fff8e1;
+    border: 2px solid #984807;
+    font-weight: 600;
+}
+
+/* Botón */
+.btn-submit {
+    margin-top: 20px;
+    background-color: #984807;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #b55d0c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-card {
+        padding: 25px;
+    }
+}
