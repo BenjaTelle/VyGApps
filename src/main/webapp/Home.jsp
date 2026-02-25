@@ -4,6 +4,7 @@
     Author     : Benja
 --%>
 
+<%@page import="DTO.UsuarioDetalle"%>
 <%@page import="java.util.List"%>
 <%@page import="model.trabajadores"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +16,7 @@
     // --- LÓGICA DE SEGURIDAD ---
     HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
-
+    
     if (user == null) {
         response.sendRedirect("login.jsp");
         return;
@@ -67,13 +68,9 @@
             <header class="header">
                 <div class="header-title">
                     <%
-                           
-                            List<trabajadores> ListaT = (List<trabajadores> ) request.getAttribute("ListaT");
-                                
-                            for(trabajadores t: ListaT)
-                            {
+                            UsuarioDetalle ud = (UsuarioDetalle) request.getAttribute("usuarioLogueadoDetalle");
                     %>
-                    <h1>Hola, <%= t.getFull_name()%></h1>
+                    <h1>Hola, <%= ud.getTrabajadorAsign()%></h1>
                     
                  
                     <span>Bienvenido a tu panel de control</span>
@@ -100,7 +97,7 @@
                         </div>
                         <div class="info-row">
                             <span class="info-label">Nombre:</span>
-                            <span><%= t.getFull_name() %></span>
+                            <span><%= ud.getTrabajadorAsign() %></span>
                         </div>
                         <div class="info-row">
                             <span class="info-label">Rol:</span>
@@ -112,7 +109,7 @@
                         </div>
                     </div>
                 </div>
-                     <%}%><!--termina el foreach de listaT-->
+                     
                 <div class="card">
                     <div class="card-header">
                         <h3>Registrar Asistencia</h3>
