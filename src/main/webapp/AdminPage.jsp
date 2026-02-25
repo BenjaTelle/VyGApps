@@ -68,7 +68,9 @@
             <div class="actions">
                 <a href="CrearUsuario">Crear</a> <!-- cambiar por el serverlet cuando tengamos los metodos -->
                 <a href="ActualizarUsuario">Actualizar</a>
+                 <a href="VerUsuarios">Ver Usuarios</a>
                 <a href="EliminarUsu" class="danger">Eliminar</a>
+                
             </div>
         </div>
 
@@ -78,8 +80,8 @@
             <p>Control de personal y asignaciones</p>
             <div class="actions">
                 <a href="RegistrarUsu">Registrar</a>
-                <a href="AsignProyecto">Asignar proyecto</a>
-                <a href="AsignSup">Supervisor</a>
+                <a href="ActualizarTrabajadores">Actualizar Trabajador</a>
+                <a href="EliminarTrabajadores">Eliminar Trabajador</a>
                 <a href="HistorialT.jsp">Historial</a> <!-- cambiar de jsp a serverlet cuando tengamos las funcionalidad-->
             </div>
         </div>
@@ -89,10 +91,10 @@
             <h3>Gestión de Proyectos</h3>
             <p>Creación y seguimiento de proyectos</p>
             <div class="actions">
-                <a href="proyecto_crear.jsp">Crear</a>
-                <a href="proyectos_listar.jsp">Listar</a>
-                <a href="proyecto_asignar_supervisor.jsp">Supervisor</a>
-                <a href="proyecto_trabajadores.jsp">Trabajadores</a>
+                <a href="CrearProyecto">Crear</a>
+                <a href="ListarProyectos">Listar</a>
+                <a href="AsignSup"> Asignar Supervisor</a>
+                    <a href="AsignProyecto">Asignar Proyecto</a>
             </div>
         </div>
 
