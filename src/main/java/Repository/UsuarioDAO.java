@@ -37,18 +37,18 @@ public class UsuarioDAO {
         //prepara los parametros 
         ps.setString(1, user_name);
         ps.setString(2, pass);
-
+        
         //Ejecutar select
         ResultSet rs = ps.executeQuery();
         //vemos  si hay resultados 
         if (rs.next()) {
             usu = new Usuarios();
-
             usu.setUser_name(rs.getString("user_name"));
             usu.setPass(rs.getString("pass"));
             usu.setRol(rs.getString("rol"));
             usu.setId_user(Integer.parseInt(rs.getString("id_user")));
-
+            usu.setId_trabajador(rs.getInt("id_trabajador"));
+            
             System.out.println("usuario encontrado:  " + usu.getUser_name() + "" + usu.getPass());
 
         }
@@ -178,6 +178,18 @@ public class UsuarioDAO {
                 return 0;
             }
             
+    }
+
+    public int EliminarUsuario(int idUsu) throws SQLException {
+        String sql = "DELETE FROM usuarios WHERE id_user=?";
+        Connection con = ConectarBD.conectar();
+        
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idUsu);
+        
+        int filas =ps.executeUpdate();
+        
+        return filas;
     }
 
 }
