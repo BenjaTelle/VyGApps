@@ -4,6 +4,7 @@
  */
 package controlador;
 
+import DTO.UsuarioDetalle;
 import Repository.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Usuarios;
 import model.trabajadores;
 
 /**
@@ -37,7 +40,7 @@ public class Home extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -52,20 +55,20 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        TrabajadoresDAO t = new TrabajadoresDAO();
-        List<trabajadores> ListaT;
+
+        HttpSession sessionActual = request.getSession(false);
+        Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
+        int idT = user.getId_trabajador();
+
         try {
-            ListaT = t.ListarTrabajadores();
+            UsuarioDetalleDAO udDAO = new UsuarioDetalleDAO();
+            request.setAttribute("usuarioLogueadoDetalle", udDAO.BuscarUsuDetalle(idT));
             
-             request.setAttribute("ListaT",ListaT);
-             
-             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-       request.getRequestDispatcher("Home.jsp").forward(request, response);
-        
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
+
     }
 
     /**
