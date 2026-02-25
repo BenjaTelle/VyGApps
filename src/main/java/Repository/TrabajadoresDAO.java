@@ -160,4 +160,32 @@ public class TrabajadoresDAO {
         
         
     }
+
+    public void ActualizarTrabajador(trabajadores t) throws SQLException {
+        String sql = "UPDATE trabajadores SET  cedula=?, full_name= ?, edad =?, puesto=?, salario_quincenal=?, origen=?, id_supervisor=?, id_proyect=? WHERE id_trabajador=?";
+        Connection con = ConectarBD.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setString(1, t.getCedula());
+        ps.setString(2, t.getFull_name());
+        ps.setInt(3, t.getEdad());
+        ps.setString(4, t.getPuesto());
+        ps.setDouble(5, t.getSalario_quincenal());
+        ps.setString(6, t.getOrigen());
+        ps.setInt(7, t.getId_supervisor());
+        ps.setInt(8, t.getId_proyect());
+        ps.setInt(9, t.getId_trabajador());
+        
+        ps.executeLargeUpdate();
+        
+    }
+
+    public void EliminarTrabajador(int id) throws SQLException {
+       String sql="DELETE FROM trabajadores WHERE id_trabajador=?";
+       Connection con = ConectarBD.conectar();
+       
+       PreparedStatement ps = con.prepareStatement(sql);
+       ps.setInt(1, id);
+       ps.executeUpdate();
+       
+    }
 }
