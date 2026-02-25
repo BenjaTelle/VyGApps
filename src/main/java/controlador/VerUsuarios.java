@@ -48,12 +48,11 @@ public class VerUsuarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+            
         try
         {
                    UsuarioDetalleDAO udDAO = new UsuarioDetalleDAO();
                    request.setAttribute("ListaUsuariosDetalle", udDAO.ListarUsuDetalle());
-                   
             
         }catch(SQLException e )
         {
