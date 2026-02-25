@@ -43,8 +43,25 @@ public class UsuarioDetalleDAO {
         
       return ListaUD;
     }
-    
-    
-    
-    
+
+  
+
+    public UsuarioDetalle BuscarUsuDetalle(int idT) throws SQLException {
+       String sql ="SELECT u.user_name, t.full_name, u.rol FROM usuarios as u  INNER JOIN trabajadores as t on t.id_trabajador = u.id_trabajador WHERE t.id_trabajador=?";
+       Connection con = ConectarBD.conectar();
+       
+       PreparedStatement ps = con.prepareStatement(sql);
+       ps.setInt(1, idT);
+       ResultSet rs =  ps.executeQuery();
+       UsuarioDetalle ud = new UsuarioDetalle();
+      if(rs.next())
+      {
+           
+       
+       ud.setRol(rs.getString("rol"));
+       ud.setTrabajadorAsign(rs.getString("full_name"));
+       ud.setUsern_name(rs.getString("user_name"));
+      }
+        return ud;
+    }
 }
