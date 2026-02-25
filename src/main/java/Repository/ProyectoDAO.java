@@ -49,5 +49,36 @@ public class ProyectoDAO {
         
         
     }
+
+    public void CrearProyecto(String NombreProyecto) throws SQLException {
+      String sql=" INSERT INTO proyectos(name_proyect) VALUES (?)";
+        
+      Connection con = ConectarBD.conectar();
+      PreparedStatement ps = con.prepareStatement(sql);
+      ps.setString(1, NombreProyecto);
+      
+      ps.executeUpdate();
+      
+      
+    }
+    
+    public int BuscarPorNombre(String nombre) throws SQLException{
+        String sql = " SELECT p.id_proyecto from proyectos as p where p.name_proyect =?";
+        
+        Connection con = ConectarBD.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, nombre);
+        
+        ResultSet rs = ps.executeQuery();
+      if(rs.next())
+      {
+            int id_t = rs.getInt("id_proyecto");
+        return id_t;
+      }
+        
+        
+        return 0;
+    }
     
 }
