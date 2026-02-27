@@ -1,89 +1,113 @@
-    <%-- 
-    Document   : SupervisorPage
-    Created on : 3 feb 2026, 7:06:55â€¯p.m.
-    Author     : Benja
---%>
+<%@page import="DTO.UsuarioDetalle"%>
+<%@page import="model.Usuarios"%>
+<%
+    HttpSession sessionActual = request.getSession(false);
+    Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+    if (user == null || !user.getRol().equalsIgnoreCase("Supervisor")) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+
+    
+%>
+
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Panel Supervisor</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
 </head>
 <body>
 
-<div class="panel-container">
+<div class="container">
 
     <!-- SIDEBAR -->
-    <div class="sidebar">
-
+    <aside class="sidebar">
         <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
-            <h2>Supervisor</h2>
+            <h2>VyGApps</h2>
         </div>
+        <p class="panel-label">Panel Supervisor</p>
+    </aside>
 
-        <a href="SupervisorSv?accion=proyectos">Ver proyectos</a>
-        <a href="SupervisorSv?accion=pagos">Autorizar pagos</a>
-        <a href="SupervisorSv?accion=asistencias">Monitorear asistencias</a>
-        <a href="SupervisorSv?accion=maquinaria">Uso de maquinaria</a>
-        <a href="SupervisorSv?accion=camiones">Registros de camiones</a>
-    </div>
+    <!-- MAIN -->
+    <main class="main-content">
 
-    <!-- CONTENIDO -->
-    <div class="main-content">
-
-        <!-- HEADER -->
-        <div class="header">
-            <h3>Panel de Supervisor</h3>
-
-            <div class="profile-box">
-                <img src="images/usuario.png" class="profile-img" alt="Perfil">
-                <span class="profile-name">Supervisor</span>
+        <!-- TOP BAR -->
+        <header class="topbar">
+            <div class="welcome">
+                <% UsuarioDetalle ud = (UsuarioDetalle) request.getAttribute("usuarioLogueadoDetalle");%>
+                <h1>Bienvenido, <%= ud.getTrabajadorAsign() %></h1>
+                <span>Gestión general de supervisión</span>
             </div>
-        </div>
 
-        <!-- CONTENIDO DINÃMICO -->
-        <div class="content-box">
-            <%
-                String accion = (String) request.getAttribute("accion");
+            <div class="profile">
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+                <span><%= user.getUser_name() %></span>
+                <a href="LogoutSv" class="btn-logout">Salir</a>
+            </div>
+        </header>
 
-                if (accion == null) {
-            %>
-                <p>Bienvenido al panel de supervisor.</p>
+        <!-- DASHBOARD CARDS -->
+        <section class="dashboard">
 
-            <%
-                } else if ("proyectos".equals(accion)) {
-            %>
-                <p>AquÃ­ puedes ver los proyectos asignados.</p>
+            <!-- PROYECTOS -->
+            <div class="card">
+                <h3>Proyectos</h3>
+                <p>Gestión y seguimiento de obras asignadas.</p>
+                <div class="actions">
+                    <a href="VerProyectos">Ver proyectos</a>
+                    <a href="DetalleProyecto">Detalle proyecto</a>
+                </div>
+            </div>
 
-            <%
-                } else if ("pagos".equals(accion)) {
-            %>
-                <p>AquÃ­ puedes autorizar pagos.</p>
+            <!-- PAGOS -->
+            <div class="card">
+                <h3>Pagos</h3>
+                <p>Revisión y autorización de pagos del personal.</p>
+                <div class="actions">
+                    <a href="AutorizarPagos">Autorizar pagos</a>
+                    <a href="HistorialPagos">Historial de pagos</a>
+                </div>
+            </div>
 
-            <%
-                } else if ("asistencias".equals(accion)) {
-            %>
-                <p>AquÃ­ puedes monitorear las asistencias.</p>
+            <!-- ASISTENCIAS -->
+            <div class="card">
+                <h3>Asistencias</h3>
+                <p>Monitoreo y control de asistencia del equipo.</p>
+                <div class="actions">
+                    <a href="MonitorearAsistencia">Ver asistencias</a>
+                    <a href="DetalleAsistencia">Detalle por trabajador</a>
+                </div>
+            </div>
 
-            <%
-                } else if ("maquinaria".equals(accion)) {
-            %>
-                <p>AquÃ­ puedes revisar el uso de maquinaria.</p>
+            <!-- MAQUINARIA -->
+            <div class="card">
+                <h3>Uso de Maquinaria</h3>
+                <p>Registro y control de maquinaria en obra.</p>
+                <div class="actions">
+                    <a href="RegistrarUsoMaquinaria">Registrar uso</a>
+                    <a href="HistorialMaquinaria">Historial</a>
+                </div>
+            </div>
 
-            <%
-                } else if ("camiones".equals(accion)) {
-            %>
-                <p>AquÃ­ puedes consultar los registros de camiones.</p>
-            <%
-                }
-            %>
-        </div>
+            <!-- CAMIONES -->
+            <div class="card">
+                <h3>Registro de Camiones</h3>
+                <p>Control de ingreso y salida de camiones.</p>
+                <div class="actions">
+                    <a href="RegistrarCamion">Registrar</a>
+                    <a href="HistorialCamiones">Historial</a>
+                </div>
+            </div>
 
-    </div>
+        </section>
+
+    </main>
+
 </div>
 
 </body>
 </html>
-
