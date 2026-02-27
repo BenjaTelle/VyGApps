@@ -8,8 +8,6 @@
         response.sendRedirect("login.jsp");
         return;
     }
-
-    
 %>
 
 <!DOCTYPE html>
@@ -23,19 +21,18 @@
 
 <div class="container">
 
-    <!-- SIDEBAR -->
     <aside class="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
-            <h2>VyGApps</h2>
+            <div class="brand-title">
+                <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+                <h2>VyGApps</h2>
+            </div>
+            <p class="panel-label">Panel Supervisor</p>
         </div>
-        <p class="panel-label">Panel Supervisor</p>
     </aside>
 
-    <!-- MAIN -->
     <main class="main-content">
 
-        <!-- TOP BAR -->
         <header class="topbar">
             <div class="welcome">
                 <% UsuarioDetalle ud = (UsuarioDetalle) request.getAttribute("usuarioLogueadoDetalle");%>
@@ -50,10 +47,8 @@
             </div>
         </header>
 
-        <!-- DASHBOARD CARDS -->
         <section class="dashboard">
 
-            <!-- PROYECTOS -->
             <div class="card">
                 <h3>Proyectos</h3>
                 <p>Gestión y seguimiento de obras asignadas.</p>
@@ -63,7 +58,6 @@
                 </div>
             </div>
 
-            <!-- PAGOS -->
             <div class="card">
                 <h3>Pagos</h3>
                 <p>Revisión y autorización de pagos del personal.</p>
@@ -73,7 +67,6 @@
                 </div>
             </div>
 
-            <!-- ASISTENCIAS -->
             <div class="card">
                 <h3>Asistencias</h3>
                 <p>Monitoreo y control de asistencia del equipo.</p>
@@ -83,7 +76,6 @@
                 </div>
             </div>
 
-            <!-- MAQUINARIA -->
             <div class="card">
                 <h3>Uso de Maquinaria</h3>
                 <p>Registro y control de maquinaria en obra.</p>
@@ -93,7 +85,6 @@
                 </div>
             </div>
 
-            <!-- CAMIONES -->
             <div class="card">
                 <h3>Registro de Camiones</h3>
                 <p>Control de ingreso y salida de camiones.</p>
