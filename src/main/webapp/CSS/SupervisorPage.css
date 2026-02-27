@@ -10,132 +10,134 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 /* =========================
    RESET
 ========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-}
-
 body {
-    background-color: #f7f9fb;
-    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2de96;
 }
 
-/* =========================
-   CONTENEDOR
-========================= */
-.panel-container {
+.container {
     display: flex;
     height: 100vh;
 }
 
-/* =========================
-   SIDEBAR
-========================= */
+/* SIDEBAR */
 .sidebar {
-    width: 240px;
-    background-color: #ffffff;
-    padding: 25px 20px;
-    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    width: 230px;
+    background-color: #984807;
+    color: white;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-}
-
-.sidebar-header {
-    display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
 }
 
 .sidebar-logo {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
+    width: 60px;
+    margin-bottom: 10px;
 }
 
-.sidebar-header h2 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #333;
+.sidebar h2 {
+    margin: 0;
 }
 
-.sidebar a {
-    text-decoration: none;
-    color: #333;
-    font-size: 14px;
-    padding: 11px 10px;
-    border-radius: 4px;
-    margin-bottom: 8px;
-    transition: background 0.3s, color 0.3s;
+.panel-label {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: center;
 }
 
-.sidebar a:hover {
-    background-color: #f57c00;
-    color: #ffffff;
-}
-
-/* =========================
-   MAIN
-========================= */
+/* MAIN */
 .main-content {
     flex: 1;
-    padding: 25px 30px;
-    display: flex;
-    flex-direction: column;
+    padding: 30px;
+    overflow-y: auto;
 }
 
-/* =========================
-   HEADER
-========================= */
-.header {
+/* TOPBAR */
+.topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
-.header h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
+.welcome h1 {
+    margin: 0;
+    color: #984807;
 }
 
-/* PERFIL */
-.profile-box {
+.welcome span {
+    font-size: 14px;
+    color: #555;
+}
+
+.profile {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .profile-img {
-    width: 36px;
-    height: 36px;
+    width: 40px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #f57c00;
 }
 
-.profile-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: #333;
-}
-
-/* =========================
-   CONTENIDO
-========================= */
-.content-box {
-    flex: 1;
-    background-color: #ffffff;
-    padding: 25px;
+.btn-logout {
+    background-color: #c0392b;
+    color: white;
+    padding: 6px 12px;
     border-radius: 6px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    text-decoration: none;
+    font-size: 13px;
 }
 
-.content-box p {
+.btn-logout:hover {
+    background-color: #a93226;
+}
+
+/* DASHBOARD */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: #984807;
+}
+
+.card p {
     font-size: 14px;
-    color: #444;
-    line-height: 1.6;
+    color: #666;
+}
+
+.actions {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.actions a {
+    background-color: #f2de96;
+    color: #984807;
+    padding: 8px;
+    border-radius: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.actions a:hover {
+    background-color: #e6c873;
 }
