@@ -1,11 +1,17 @@
 <%@page import="DTO.UsuarioDetalle"%>
 <%@page import="model.Usuarios"%>
 <%
-    HttpSession sessionActual = request.getSession(false);
+ HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
-
-    if (user == null || !user.getRol().equalsIgnoreCase("Supervisor")) {
+    
+    if (user == null) {
         response.sendRedirect("login.jsp");
+        return;
+    }
+    
+    // Validar Rol (Asegúrate que coincida con tu BD)
+    if (!user.getRol().equalsIgnoreCase("Supervisor")) {
+        response.sendRedirect("AccDen.jsp");
         return;
     }
 %>
