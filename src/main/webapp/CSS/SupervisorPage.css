@@ -1,12 +1,3 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 4 feb 2026, 6:29:15 p.m.
-    Author     : Benja
-*/
-
 /* =========================
    RESET
 ========================= */
@@ -23,28 +14,51 @@ body {
 
 /* SIDEBAR */
 .sidebar {
-    width: 230px;
-    background-color: #984807;
-    color: white;
+    width: 250px; 
+    background-color: #f1e1a7ed; /* NUEVO: Fondo claro transparente */
+    color: #984807; /* NUEVO: Texto principal en marrón */
     padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* Opcional: Le agregamos una sombrita sutil a la derecha para separarlo un poco del fondo principal ya que son colores muy similares */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.05); 
+}
+
+.sidebar-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.brand-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; 
+    margin-bottom: 5px; 
 }
 
 .sidebar-logo {
-    width: 60px;
-    margin-bottom: 10px;
+    width: 45px;
+    height: auto;
+    /* Esto sigue quitando el fondo blanco de tu SVG mágicamente */
+    mix-blend-mode: multiply; 
 }
 
 .sidebar h2 {
     margin: 0;
+    font-size: 24px;
+    color: #984807; /* NUEVO: Aseguramos que el título sea marrón */
 }
 
 .panel-label {
-    margin-top: 20px;
+    margin: 0;
+    font-size: 14px;
     font-weight: bold;
     text-align: center;
+    color: #984807; /* NUEVO: Cambiado a marrón para que contraste bien con el fondo claro */
 }
 
 /* MAIN */
