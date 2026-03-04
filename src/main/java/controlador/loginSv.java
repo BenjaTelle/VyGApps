@@ -104,7 +104,7 @@ public class loginSv extends HttpServlet {
                      break;
                     
                  case "Supervisor":
-                      response.sendRedirect("SupervisorPage.jsp");
+                      response.sendRedirect("SupervisorPage");
                      break;
                      
                      
