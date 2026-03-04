@@ -1,4 +1,4 @@
-<%-- 
+    <%-- 
     Document   : RegisTrabajador
     Created on : 8 feb 2026, 5:23:37 p.m.
     Author     : Benja
