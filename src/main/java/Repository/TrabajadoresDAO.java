@@ -140,6 +140,37 @@ public class TrabajadoresDAO {
         return ListaT;
     }
     
+         public List<trabajadores> ListarTecnicoOperadorativo() throws SQLException {
+        String sql = "SELECT * FROM trabajadores where puesto = 'Tecnico operativo' ";
+        Connection con = ConectarBD.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+        List<trabajadores> ListaT = new ArrayList<>();
+        try {
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                trabajadores t = new trabajadores();
+                t.setId_trabajador(rs.getInt("id_trabajador"));
+                t.setCedula(rs.getString("cedula"));
+                t.setFull_name(rs.getString("full_name"));
+                t.setEdad(rs.getInt("edad"));
+                t.setPuesto(rs.getString("puesto"));
+                t.setSalario_quincenal(rs.getDouble("salario_quincenal"));
+                t.setOrigen(rs.getString("origen"));
+                t.setId_supervisor(rs.getInt("id_supervisor"));
+                t.setId_proyect(rs.getInt("id_proyect"));
+
+                ListaT.add(t);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ListaT;
+    }
+    
     
     public boolean AsignarProyecto(int  id_proyect, int id_trabajador) throws SQLException
         {
