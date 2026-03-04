@@ -86,7 +86,7 @@
                 <h3>Uso de Maquinaria</h3>
                 <p>Registro y control de maquinaria en obra.</p>
                 <div class="actions">
-                    <a href="RegistrarUsoMaquinaria">Registrar uso</a>
+                    <a href="RegistrarUso">Registrar uso</a>
                     <a href="HistorialMaquinaria">Historial</a>
                 </div>
             </div>
@@ -95,7 +95,7 @@
                 <h3>Registro de Camiones</h3>
                 <p>Control de ingreso y salida de camiones.</p>
                 <div class="actions">
-                    <a href="RegistrarCamion">Registrar</a>
+                    <a href="RegistrarCamionesSv">Registrar</a>
                     <a href="HistorialCamiones">Historial</a>
                 </div>
             </div>
