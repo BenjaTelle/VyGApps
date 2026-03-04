@@ -103,7 +103,7 @@
             <h3>Reportes</h3>
             <p>Consultas y reportes generales</p>
             <div class="actions">
-                <a href="reporte_proyectos.jsp">Proyectos</a>
+                <a href="ReporteProyecto">Proyectos</a>
                 <a href="reporte_trabajadores.jsp">Trabajadores</a>
                 <a href="reporte_asistencias.jsp">Asistencias</a>
                 <a href="reporte_pagos.jsp">Pagos</a>
