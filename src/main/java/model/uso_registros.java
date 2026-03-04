@@ -4,9 +4,11 @@
  */
 package model;
 
+import java.sql.Date;
+import java.sql.Time;
 
-import java.time.LocalTime;
-import java.util.Date;
+
+
 
 /**
  *
@@ -14,20 +16,22 @@ import java.util.Date;
  */
 public class uso_registros {
 
-   
+  
+     
     private int id_uso;
     private Date fecha;
-    private LocalTime hora_inicio;
-    private LocalTime hora_fin;
-    private int combustible;
+    private Time hora_inicio;
+    private Time hora_fin;
+    private double combustible;
     private int id_maquina;
     private int id_proyect;
     private int id_trabajador;
+    private double costoT_combustible;
     
      public uso_registros() {
     }
 
-    public uso_registros(int id_uso, Date fecha, LocalTime hora_inicio, LocalTime hora_fin, int combustible, int id_maquina, int id_proyect, int id_trabajador) {
+    public uso_registros(int id_uso, Date fecha, Time hora_inicio, Time hora_fin, double combustible, int id_maquina, int id_proyect, int id_trabajador, double costoT_combustible) {
         this.id_uso = id_uso;
         this.fecha = fecha;
         this.hora_inicio = hora_inicio;
@@ -36,7 +40,17 @@ public class uso_registros {
         this.id_maquina = id_maquina;
         this.id_proyect = id_proyect;
         this.id_trabajador = id_trabajador;
+        this.costoT_combustible = costoT_combustible;
     }
+
+    public double getCostoT_combustible() {
+        return costoT_combustible;
+    }
+
+    public void setCostoT_combustible(double costoT_combustible) {
+        this.costoT_combustible = costoT_combustible;
+    }
+
 
     public int getId_uso() {
         return id_uso;
@@ -54,27 +68,29 @@ public class uso_registros {
         this.fecha = fecha;
     }
 
-    public LocalTime getHora_inicio() {
+    public Time getHora_inicio() {
         return hora_inicio;
     }
 
-    public void setHora_inicio(LocalTime hora_inicio) {
+    public void setHora_inicio(Time hora_inicio) {
         this.hora_inicio = hora_inicio;
     }
 
-    public LocalTime getHora_fin() {
+    public Time getHora_fin() {
         return hora_fin;
     }
 
-    public void setHora_fin(LocalTime hora_fin) {
+    public void setHora_fin(Time hora_fin) {
         this.hora_fin = hora_fin;
     }
 
-    public int getCombustible() {
+  
+
+    public double getCombustible() {
         return combustible;
     }
 
-    public void setCombustible(int combustible) {
+    public void setCombustible(double combustible) {
         this.combustible = combustible;
     }
 
