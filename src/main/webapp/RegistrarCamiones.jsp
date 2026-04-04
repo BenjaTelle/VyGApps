@@ -5,8 +5,7 @@
 --%>
 
 <%@page import="model.material"%>
-<%@page import="model.uso_registros"%>
-<%@page import="java.util.List"%>
+<%@page import="DTO.HistorialUsoDTO"%> <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%@page import="model.Usuarios"%>
@@ -35,13 +34,14 @@
     <meta charset="UTF-8">
     <title>Registrar Viaje de Camión</title>
     <link rel="stylesheet" href="CSS/RegistrarCamiones.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
     <div class="form-wrapper">
         <div class="card form-card">
             <div class="form-header">
-                <h2>&#128666; Registrar Viaje de Camión</h2>
+                <h2>🚛 Registrar Viaje de Camión</h2>
                 <p>Controla el ingreso, salida y los costos de flete de los materiales en obra.</p>
             </div>
 
@@ -52,13 +52,19 @@
                         <label for="id_uso">Registro de Maquinaria Asociado:</label>
                         <select name="id_uso" id="id_uso" required>
                             <option value="" disabled selected>Seleccione el registro de maquinaria asociado...</option>
-                            <%List<uso_registros> ListaR = (List<uso_registros>) request.getAttribute("ListaUso");
-                             for(uso_registros uso:ListaR )
-                             {
-                             %>
-                            <option value="<%= uso.getId_uso() %>" > Registro #<%= uso.getId_uso() %> | Fecha: <%= uso.getFecha() %> | Máquina: <%= uso.getId_maquina() %> (<%= uso.getHora_inicio() %> a <%= uso.getHora_fin() %></option>
-                            <%}%>
-                            </select>
+                            <%
+                                // AQUI USAMOS EL DTO EN LUGAR DE LA ENTIDAD BASE
+                                List<HistorialUsoDTO> ListaR = (List<HistorialUsoDTO>) request.getAttribute("ListaUso");
+                                if(ListaR != null) {
+                                    for(HistorialUsoDTO uso : ListaR) {
+                            %>
+                            <option value="<%= uso.getIdUso() %>" > 
+                                Registro #<%= uso.getIdUso() %> | Fecha: <%= uso.getFecha() %> | Máquina: <%= uso.getNombreMaquina() %> (<%= uso.getHoraInicio() %> a <%= uso.getHoraFin() %>)
+                            </option>
+                            <%      }
+                                } 
+                            %>
+                        </select>
                     </div>
                 </div>
 
@@ -67,18 +73,21 @@
                         <label for="id_material">Material Cargado:</label>
                         <select name="id_material" id="id_material" required>
                             <option value="" disabled selected>Seleccione el material...</option>
-                            <%List<material> ListaM = (List<material>) request.getAttribute("ListaM");
-                                for(material m: ListaM) 
-                                {
+                            <%
+                                List<material> ListaM = (List<material>) request.getAttribute("ListaM");
+                                if(ListaM != null) {
+                                    for(material m: ListaM) {
                             %>
                             <option value="<%=m.getId_material()%>" ><%=m.getNombre_material()%></option>
-                             <%}%>
-                            </select>
+                            <%      }
+                                }
+                            %>
+                        </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="cantidad_cargada">Cantidad Cargada (m3):</label>
-                        <input type="number" step="0.1" name="cantidad_cargada" id="cantidad_cargada" placeholder="Ej. 12.5 m3" required>
+                        <input type="number" step="0.1" name="cantidad_cargada" id="cantidad_cargada" placeholder="Ej. 12.5" required>
                     </div>
                 </div>
 
@@ -108,7 +117,7 @@
 
                 <div class="form-row">
                     <div class="form-group highlight-financial">
-                        <label for="costo_flete">&#128176; Costo del Flete / Transporte (C$):</label>
+                        <label for="costo_flete">💰 Costo del Flete / Transporte (C$):</label>
                         <input type="number" step="0.01" name="costo_flete" id="costo_flete" placeholder="Ej. 850.00" required>
                         <small>Costo del viaje para sumarlo a los gastos del proyecto.</small>
                     </div>
