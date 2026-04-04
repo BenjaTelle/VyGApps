@@ -5,6 +5,7 @@
 package Repository;
 
 import Conexion.ConectarBD;
+import DTO.ReporteTrabajadorDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -218,5 +219,59 @@ public class TrabajadoresDAO {
        ps.setInt(1, id);
        ps.executeUpdate();
        
+    }
+    
+    
+    public List<ReporteTrabajadorDTO> reporteDinamicoTrabajadores(int idProyecto, String estadoFiltro) {
+        List<ReporteTrabajadorDTO> lista = new ArrayList<>();
+        
+        // Iniciamos la consulta base (1=1 es un truco para poder concatenar los AND fácilmente)
+        StringBuilder sql = new StringBuilder(
+            "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario, t.estado " +
+            "FROM trabajadores t " +
+            "INNER JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
+            "WHERE 1=1 "
+        );
+
+        // Agregamos filtros a la consulta solo si es necesario
+        if (idProyecto > 0) {
+            sql.append("AND t.id_proyect = ? ");
+        }
+        if (!estadoFiltro.equalsIgnoreCase("Todos")) {
+            sql.append("AND t.estado = ? ");
+        }
+        
+        sql.append("ORDER BY t.estado ASC, p.name_proyect ASC, t.full_name ASC");
+
+        try (Connection con = ConectarBD.conectar();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+            
+            // Asignar los parámetros dinámicamente
+            int paramIndex = 1;
+            
+            if (idProyecto > 0) {
+                ps.setInt(paramIndex++, idProyecto);
+            }
+            if (!estadoFiltro.equalsIgnoreCase("Todos")) {
+                ps.setString(paramIndex++, estadoFiltro);
+            }
+
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                ReporteTrabajadorDTO dto = new ReporteTrabajadorDTO();
+                dto.setIdTrabajador(rs.getInt("id_trabajador"));
+                dto.setNombreCompleto(rs.getString("full_name"));
+                dto.setNombreProyecto(rs.getString("name_proyect"));
+                dto.setSalarioBase(rs.getDouble("salario")); 
+                dto.setEstado(rs.getString("estado"));
+                
+                lista.add(dto);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return lista;
     }
 }
