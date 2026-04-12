@@ -16,6 +16,7 @@
     <meta charset="UTF-8">
     <title>Actualizar Usuario</title>
     <link rel="stylesheet" href="CSS/ActualizarUsu.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
