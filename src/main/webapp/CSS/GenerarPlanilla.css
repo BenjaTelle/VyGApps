@@ -7,9 +7,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Author     : Benja
 */
 
+
+/* =========================================
+   AJUSTE DE CABECERA (Sobrescribe heredados)
+   ========================================= */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #34495e; /* Fondo oscuro por si lo pierde */
+    color: white;
+}
+
+.profile-info {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-info h2 {
+    margin: 0 0 8px 0;
+    color: white !important;
+}
+
+.profile-info p {
+    margin: 0;
+    color: #ecf0f1 !important;
+}
 /* =========================================
    ESTILOS: FORMULARIO GENERAR PLANILLA
    ========================================= */
+
 
 .form-card {
     background-color: white;
