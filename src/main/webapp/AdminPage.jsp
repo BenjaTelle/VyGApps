@@ -35,6 +35,7 @@
     <meta charset="UTF-8">
     <title>Panel Administrador</title>
     <link rel="stylesheet" href="CSS/AdminPage.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
@@ -104,9 +105,9 @@
             <p>Consultas y reportes generales</p>
             <div class="actions">
                 <a href="ReporteProyecto">Proyectos</a>
-                <a href="reporte_trabajadores.jsp">Trabajadores</a>
-                <a href="reporte_asistencias.jsp">Asistencias</a>
-                <a href="reporte_pagos.jsp">Pagos</a>
+                <a href="ReporteTrabajadoresSv">Trabajadores</a>
+                <a href="ReporteAsistenciaSv">Asistencias</a>
+                <a href="AdminFinanzas">Pagos</a>
             </div>
         </div>
 
