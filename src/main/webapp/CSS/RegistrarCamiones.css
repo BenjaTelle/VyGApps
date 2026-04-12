@@ -1,0 +1,189 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 2 mar 2026, 6:09:42 p.m.
+    Author     : Benja
+*/
+/* =========================
+   1. ESTRUCTURA BASE
+========================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2de96; /* Fondo principal cálido de VyGApps */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Contenedor que centra el formulario */
+.form-wrapper {
+    width: 100%;
+    max-width: 800px;
+}
+
+/* =========================
+   2. TARJETA DEL FORMULARIO
+========================= */
+.form-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra suave para darle profundidad */
+}
+
+.form-header {
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f1e1a7; /* Línea divisoria con tu paleta */
+    padding-bottom: 15px;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: #984807; /* Marrón principal */
+    font-size: 26px;
+}
+
+.form-header p {
+    margin: 8px 0 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* =========================
+   3. CAMPOS Y GRILLA
+========================= */
+.vyg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; /* Se adapta a pantallas de celular si es necesario */
+}
+
+.form-group {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #984807;
+}
+
+/* Inputs y Selects */
+.form-group input, 
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+}
+
+/* Efectos Hover y Focus (cuando haces clic en el campo) */
+.form-group input:hover, 
+.form-group select:hover {
+    border-color: #984807;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    outline: none;
+    border-color: #984807;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.2); /* Resplandor marrón */
+}
+
+/* Separador horizontal entre secciones del formulario */
+.form-divider {
+    border: 0;
+    height: 1px;
+    background: #e0e0e0;
+    margin: 10px 0;
+}
+
+/* =========================
+   4. CAMPO FINANCIERO (Resaltado)
+========================= */
+.highlight-financial {
+    background-color: #fcfbf7; /* Amarillo extremadamente pálido */
+    padding: 15px;
+    border-left: 4px solid #984807;
+    border-radius: 6px;
+}
+
+.highlight-financial label {
+    color: #27ae60; /* Verde para indicar que se trata de dinero/costos */
+    font-size: 15px;
+}
+
+.highlight-financial small {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 4px;
+}
+
+/* =========================
+   5. BOTONES DE ACCIÓN
+========================= */
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.btn-submit {
+    background-color: #984807;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #7a3a05; /* Marrón más oscuro al pasar el mouse */
+}
+
+.btn-submit:active {
+    transform: scale(0.98); /* Pequeño efecto de hundimiento al hacer clic */
+}
+
+.btn-cancel {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+}
+
+.btn-cancel:hover {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+}
+
+
