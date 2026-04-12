@@ -9,25 +9,38 @@ package DTO;
  * @author Benja
  */
 public class PagoDTO {
-    private String fecha;
-    private String concepto;
+
+    private int idPago;
+    private String periodoInicio;
+    private String periodoFin;
     private double monto;
     private String estado;
 
-    public String getFecha() {
-        return fecha;
+    public PagoDTO() {
     }
 
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
+    public int getIdPago() {
+        return idPago;
     }
 
-    public String getConcepto() {
-        return concepto;
+    public void setIdPago(int idPago) {
+        this.idPago = idPago;
     }
 
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
+    public String getPeriodoInicio() {
+        return periodoInicio;
+    }
+
+    public void setPeriodoInicio(String periodoInicio) {
+        this.periodoInicio = periodoInicio;
+    }
+
+    public String getPeriodoFin() {
+        return periodoFin;
+    }
+
+    public void setPeriodoFin(String periodoFin) {
+        this.periodoFin = periodoFin;
     }
 
     public double getMonto() {
@@ -45,10 +58,4 @@ public class PagoDTO {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-    public PagoDTO() {
-    }
-    
-    
-    
 }
