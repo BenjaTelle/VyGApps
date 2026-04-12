@@ -1,0 +1,228 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 30 mar 2026, 4:56:29 p.m.
+    Author     : Benja
+*/
+
+/* =========================================
+   ESTILOS PARA LA FICHA TÉCNICA (DOCUMENTO)
+   ========================================= */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f7;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 850px; /* Ancho estándar de un documento A4 */
+}
+
+/* --- DISEÑO DEL DOCUMENTO (TARJETA) --- */
+.document-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    padding: 50px 60px;
+    margin-bottom: 30px;
+}
+
+/* --- ENCABEZADO --- */
+.doc-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-logo img {
+    width: 80px;
+    height: auto;
+    margin-right: 30px;
+}
+
+.header-titles h2 {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.header-titles h1 {
+    margin: 5px 0;
+    color: #984807; /* Color corporativo VyG */
+    font-size: 28px;
+}
+
+.doc-id {
+    display: inline-block;
+    background-color: #f1f2f6;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #576574;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.divider {
+    border: none;
+    border-top: 2px solid #f1e1a7;
+    margin: 30px 0;
+}
+
+/* --- CUERPO Y CUADRÍCULA DE DATOS --- */
+.data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.data-box {
+    background-color: #fcfbf7;
+    border: 1px solid #f0f0f0;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.data-label {
+    display: block;
+    color: #7f8c8d;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.data-value {
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.highlight-text {
+    font-weight: 600;
+}
+
+.number-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.unit {
+    font-size: 14px;
+    color: #95a5a6;
+    font-weight: normal;
+}
+
+/* --- COLORES Y ESTADOS --- */
+.text-blue { color: #2980b9; }
+.text-green { color: #27ae60; }
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.status-active {
+    background-color: #e8f8f5;
+    color: #27ae60;
+    border: 1px solid #2ecc71;
+}
+
+.status-inactive {
+    background-color: #f2f3f4;
+    color: #7f8c8d;
+    border: 1px solid #bdc3c7;
+}
+
+/* --- PIE DEL DOCUMENTO --- */
+.doc-footer {
+    text-align: center;
+    color: #bdc3c7;
+    font-size: 12px;
+    margin-top: 40px;
+}
+
+.doc-footer p {
+    margin: 3px 0;
+}
+
+/* --- BOTONES DE ACCIÓN --- */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: 0.2s;
+}
+
+.btn-back {
+    background-color: #ffffff;
+    color: #2c3e50;
+    border: 1px solid #cbd4c2;
+}
+
+.btn-back:hover { background-color: #f1f2f6; }
+
+.btn-print {
+    background-color: #984807;
+    color: white;
+    box-shadow: 0 4px 10px rgba(152, 72, 7, 0.3);
+}
+
+.btn-print:hover {
+    background-color: #7a3a05;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   REGLAS DE IMPRESIÓN (MAGIA CSS)
+   ========================================= */
+@media print {
+    body {
+        background-color: #ffffff;
+        padding: 0;
+    }
+    
+    .page-wrapper {
+        max-width: 100%;
+    }
+
+    .document-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .data-box {
+        background-color: transparent;
+        border: 1px solid #000;
+        break-inside: avoid; /* Evita que el cuadro se parta a la mitad de la hoja */
+    }
+
+    /* Ocultar botones para no gastar tinta inútil */
+    .action-buttons {
+        display: none !important;
+    }
+}
