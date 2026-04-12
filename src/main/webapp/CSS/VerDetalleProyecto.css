@@ -1,0 +1,216 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 6 mar 2026, 5:54:12 p.m.
+    Author     : Benja
+*/
+
+/* =========================
+   ESTRUCTURA BASE
+========================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2de96; /* Fondo VyGApps */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Para que las tarjetas no queden centradas verticalmente */
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 700px; /* Ancho cómodo para un formulario y su resultado */
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espacio entre el buscador y los resultados */
+}
+
+/* =========================
+   ESTILOS DE TARJETAS
+========================= */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-header h2 {
+    margin: 0;
+    color: #984807;
+    font-size: 24px;
+}
+
+.card-header p {
+    margin: 5px 0 20px 0;
+    color: #7f8c8d;
+    font-size: 14px;
+    border-bottom: 2px solid #f1e1a7;
+    padding-bottom: 15px;
+}
+
+/* =========================
+   FORMULARIO Y SELECT
+========================= */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #984807;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.input-group {
+    display: flex;
+    gap: 15px;
+}
+
+select {
+    flex: 1; /* El select toma todo el espacio disponible */
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #444;
+    outline: none;
+    transition: 0.3s;
+    background-color: #fcfbf7;
+}
+
+select:focus {
+    border-color: #984807;
+    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
+}
+
+.btn-search {
+    background-color: #984807;
+    color: white;
+    border: none;
+    padding: 0 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.btn-search:hover {
+    background-color: #7a3a05;
+}
+
+/* =========================
+   TARJETA DE RESULTADOS
+========================= */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.result-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.status-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background-color: #e8f8f5;
+    color: #1abc9c;
+    border: 1px solid #1abc9c;
+}
+
+.status-inactive {
+    background-color: #fdf2e9;
+    color: #e67e22;
+    border: 1px solid #e67e22;
+}
+
+.result-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-group {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.info-label {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    display: block;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.title-value {
+    font-size: 18px;
+    color: #984807;
+}
+
+.highlight-financial {
+    background-color: #f0fdf4;
+    border: 1px solid #27ae60;
+}
+
+.text-green {
+    color: #27ae60;
+    font-size: 20px;
+}
+
+/* =========================
+   PIE DE TARJETA
+========================= */
+.card-footer {
+    margin-top: 25px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn-cancel {
+    background-color: #ecf0f1;
+    color: #7f8c8d;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #bdc3c7;
+    color: #2c3e50;
+}
