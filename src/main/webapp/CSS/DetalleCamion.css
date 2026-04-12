@@ -1,0 +1,240 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 6 mar 2026, 4:33:51 p.m.
+    Author     : Benja
+*/
+
+/* =========================
+   ESTRUCTURA BASE
+========================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2de96; /* Paleta VyG */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.detail-wrapper {
+    width: 100%;
+    max-width: 850px; /* Ancho perfecto para leer detalles sin estirar mucho */
+}
+
+.detail-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* =========================
+   ENCABEZADO
+========================= */
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #f1e1a7;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.header-title h2 {
+    margin: 0;
+    color: #984807;
+    font-size: 28px;
+}
+
+.header-title p {
+    margin: 5px 0 0 0;
+    color: #7f8c8d;
+    font-size: 15px;
+}
+
+.header-date {
+    background-color: #fdfbf5;
+    border: 1px solid #e8d596;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: right;
+}
+
+.header-date span {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-date strong {
+    display: block;
+    font-size: 18px;
+    color: #984807;
+    margin-top: 3px;
+}
+
+/* =========================
+   CUERPO Y CUADRÍCULAS
+========================= */
+.section-title {
+    font-size: 16px;
+    color: #984807;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+}
+
+.detail-grid-full {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.detail-grid-half {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+/* Cajas de Información */
+.info-box {
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.border-brown {
+    border-left: 4px solid #984807;
+    background-color: #fdfbf5;
+}
+
+.highlight-box {
+    background-color: #eaf2f8; /* Un tono muy suave para resaltar la carga */
+    border-left: 4px solid #3498db;
+}
+
+.info-label {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-value {
+    display: block;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Estilo especial para la ruta (Origen -> Destino) */
+.route-box {
+    display: flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.route-point {
+    flex: 1;
+}
+
+.route-arrow {
+    font-size: 24px;
+    color: #984807;
+    padding: 0 20px;
+    font-weight: bold;
+}
+
+/* =========================
+   SECCIÓN FINANCIERA
+========================= */
+.financial-section {
+    margin-top: 30px;
+    background-color: #f0fdf4; /* Verde muy clarito */
+    border: 2px dashed #27ae60;
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+}
+
+.financial-label {
+    display: block;
+    font-size: 14px;
+    color: #27ae60;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.financial-value {
+    display: block;
+    font-size: 32px;
+    color: #1e8449;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* =========================
+   PIE Y BOTONES
+========================= */
+.detail-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-back {
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #bdc3c7;
+}
+
+.btn-print {
+    background-color: #984807;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-print:hover {
+    background-color: #7a3a05;
+}
+
+/* Ocultar botones al imprimir */
+@media print {
+    body { background-color: white; }
+    .detail-card { box-shadow: none; padding: 0; }
+    .detail-footer { display: none; }
+}
