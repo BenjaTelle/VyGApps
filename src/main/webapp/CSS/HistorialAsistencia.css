@@ -1,0 +1,128 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 15 mar 2026, 5:56:46 p.m.
+    Author     : Benja
+*/
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f7;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 900px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 25px 30px;
+    background-color: #fcfbf7;
+    border-bottom: 2px solid #f1e1a7;
+}
+
+.card-header h2 {
+    margin: 0;
+    color: #984807;
+}
+
+.card-header p {
+    margin: 5px 0 0 0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.table-responsive {
+    padding: 20px 30px;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    font-size: 14px;
+    border-bottom: 2px solid #eee;
+}
+
+.vyg-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+/* Colores de Entrada y Salida */
+.time-in {
+    color: #27ae60;
+    font-weight: bold;
+}
+
+.time-out {
+    color: #c0392b;
+    font-weight: bold;
+}
+
+/* Badges de advertencia */
+.badge-warning {
+    background-color: #fcf3cf;
+    color: #d35400;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    border: 1px solid #f5b041;
+}
+
+.badge-ok {
+    background-color: #e8f8f5;
+    color: #1abc9c;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.empty-message {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 40px !important;
+}
+
+.card-footer {
+    padding: 20px 30px;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-back:hover {
+    background-color: #f1f1f1;
+}
