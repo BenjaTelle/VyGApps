@@ -1,0 +1,164 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 31 mar 2026
+    Author     : Benja
+*/
+
+/* =========================================
+   ESTILOS BASE DE LA PÁGINA
+   ========================================= */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f7;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 900px;
+}
+
+/* =========================================
+   DISEÑO DE LA TARJETA PRINCIPAL
+   ========================================= */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 25px 30px;
+    background-color: #fcfbf7;
+    border-bottom: 2px solid #f1e1a7; /* Borde corporativo VyG */
+}
+
+.card-header h2 {
+    margin: 0;
+    color: #984807; /* Color principal corporativo */
+}
+
+.card-header p {
+    margin: 5px 0 0 0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* =========================================
+   BARRA DE BÚSQUEDA (El código que me pasaste)
+   ========================================= */
+.search-container {
+    padding: 20px 30px 0 30px;
+}
+
+#buscador {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced6e0;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #2c3e50;
+    background-color: #fcfbf7;
+    box-sizing: border-box; 
+    transition: all 0.3s ease;
+}
+
+#buscador:focus {
+    border-color: #984807; 
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 8px rgba(152, 72, 7, 0.2);
+}
+
+/* =========================================
+   ESTILOS DE LA TABLA (Directorio)
+   ========================================= */
+.table-responsive {
+    padding: 20px 30px;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    font-size: 14px;
+    border-bottom: 2px solid #eee;
+}
+
+.vyg-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+.vyg-table tbody tr:hover {
+    background-color: #fdfefe; /* Efecto sutil al pasar el mouse por la fila */
+}
+
+.empty-message {
+    text-align: center;
+    color: #7f8c8d;
+    padding: 40px !important;
+}
+
+/* =========================================
+   BOTONES DE ACCIÓN Y NAVEGACIÓN
+   ========================================= */
+/* Botón del Ojito (Ver Detalle) */
+.btn-view {
+    display: inline-block;
+    background-color: #f1f2f6;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    border: 1px solid #ced6e0;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-view:hover {
+    background-color: #f1e1a7; 
+    color: #984807; 
+    border-color: #f1e1a7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Pie de la tarjeta y Botón de Volver */
+.card-footer {
+    padding: 20px 30px;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #f1f1f1;
+}
