@@ -1,0 +1,95 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 11 abr 2026, 8:09:46 p.m.
+    Author     : Benja
+*/
+/* Contenedor del formulario */
+.form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.form-group select, .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #34495e;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #27ae60;
+}
+
+.btn-generar {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-generar:hover {
+    background-color: #2ecc71;
+}
+
+/* Tarjeta de Código Generado (Éxito) */
+.codigo-result-card {
+    background: #e8f8f5;
+    border: 2px dashed #27ae60;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.codigo-result-card h3 {
+    color: #27ae60;
+    margin-top: 0;
+}
+
+.codigo-gigante {
+    font-size: 45px;
+    font-weight: 900;
+    color: #2c3e50;
+    letter-spacing: 5px;
+    margin: 15px 0;
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.codigo-info {
+    color: #7f8c8d;
+    font-size: 14px;
+}
