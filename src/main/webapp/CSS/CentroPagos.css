@@ -1,0 +1,98 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 2 abr 2026, 4:56:57 p.m.
+    Author     : Benja
+*/
+/* =========================================
+   ESTILOS PARA EL CENTRO DE PAGOS
+   ========================================= */
+
+/* --- Títulos de Sección --- */
+.section-title {
+    color: #984807; /* Color corporativo */
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 40px;
+    font-size: 22px;
+}
+
+/* --- Cuadrícula de Botones de Acción --- */
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* --- Tarjetas de Acción (Botones grandes) --- */
+.action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border-top: 4px solid #f1e1a7; /* Borde superior base */
+    text-decoration: none;
+    color: #2c3e50;
+    display: block;
+}
+
+.action-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-top-color: #984807; /* Al pasar el mouse cambia al color corporativo */
+}
+
+/* --- Elementos internos de la Tarjeta --- */
+.action-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.action-card h3 { 
+    margin: 0 0 10px 0; 
+    font-size: 20px; 
+    color: #2c3e50;
+}
+
+.action-card p { 
+    margin: 0; 
+    color: #7f8c8d; 
+    font-size: 14px; 
+    line-height: 1.5;
+}
+
+/* --- Colores Especiales para Tarjetas de Autorización/Historial --- */
+.autorizacion-card {
+    border-top-color: #3498db; /* Azul para aprobación */
+}
+
+.autorizacion-card:hover {
+    border-top-color: #2980b9; 
+}
+
+.historial-card {
+    border-top-color: #2ecc71; /* Verde para historial */
+}
+
+.historial-card:hover {
+    border-top-color: #27ae60;
+}
+
+/* --- Ajuste Responsivo --- */
+@media (max-width: 768px) {
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* Pasa a 2 columnas en tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .action-grid {
+        grid-template-columns: 1fr !important; /* Pasa a 1 columna en celulares */
+    }
+}
