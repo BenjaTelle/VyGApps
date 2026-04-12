@@ -1,0 +1,168 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 31 mar 2026, 7:38:58 p.m.
+    Author     : Benja
+*/
+
+/* =========================================
+   ESTILOS PARA DETALLE DE TRABAJADOR Y KPIs
+   ========================================= */
+
+/* --- Cabecera del Perfil (Header) --- */
+.worker-profile-header {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid #984807; /* Borde grueso corporativo VyGApps */
+}
+
+.profile-info h2 {
+    margin: 0 0 10px 0;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 15px;
+}
+
+/* --- Cuadrícula de KPIs (Dashboard) --- */
+.kpi-grid {
+    display: grid;
+    /* Divide el espacio en 4 columnas iguales */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; /* Espacio entre cada tarjeta */
+    margin-bottom: 25px;
+}
+
+/* --- Diseño de cada Tarjeta KPI --- */
+.kpi-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Centra el icono y el texto verticalmente */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+.kpi-card:hover {
+    transform: translateY(-5px); /* Pequeño efecto de elevación al pasar el mouse */
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.kpi-icon {
+    font-size: 35px;
+    margin-right: 15px;
+    background-color: #f1f2f6; /* Fondo gris claro circular para el icono */
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 40px;
+    text-align: center;
+}
+
+.kpi-data h3 {
+    margin: 0;
+    font-size: 24px;
+    color: #2c3e50;
+}
+
+.kpi-data p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+/* --- Botón de Imprimir Reporte --- */
+.btn-print {
+    background-color: #984807;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s background-color;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre el emoji y el texto */
+}
+
+.btn-print:hover {
+    background-color: #7a3a05; /* Tono más oscuro al pasar el mouse */
+}
+
+/* --- Modo Impresión (Para cuando el usuario presiona Imprimir) --- */
+@media print {
+    body { 
+        background-color: white; 
+        padding: 0;
+    }
+    
+    .page-wrapper {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    /* Ocultamos cosas que no deben salir en papel */
+    .btn-print, 
+    .btn-back, 
+    .search-container { 
+        display: none !important; 
+    }
+    
+    /* Quitamos las sombras y ponemos bordes sólidos para ahorrar tinta */
+    .kpi-card, 
+    .worker-profile-header, 
+    .card { 
+        border: 1px solid #ccc; 
+        box-shadow: none; 
+    }
+    
+    /* Aseguramos que los KPIs se mantengan en fila y no se rompan */
+    .kpi-grid {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .kpi-card {
+        width: 22%;
+        padding: 10px;
+    }
+}
+
+/* --- Ajuste Responsivo para pantallas pequeñas --- */
+@media (max-width: 768px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
+    }
+    
+    .worker-profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .kpi-grid {
+        grid-template-columns: 1fr; /* 1 sola columna en celulares */
+    }
+}
