@@ -1,0 +1,144 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 20 mar 2026, 8:38:06 p.m.
+    Author     : Benja
+*/
+
+/* =========================================
+   ESTILOS PARA MIS PROYECTOS (TRABAJADOR)
+   ========================================= */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f7;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Un poco más ancho para que quepa bien el nombre del proyecto */
+}
+
+/* --- TARJETAS --- */
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 25px 30px;
+    background-color: #fcfbf7;
+    border-bottom: 2px solid #f1e1a7;
+}
+
+.card-header h2 {
+    margin: 0;
+    color: #984807; /* El color naranja corporativo que usas */
+    font-size: 24px;
+}
+
+.card-header p {
+    margin: 5px 0 0 0;
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+/* --- TABLA VYG --- */
+.table-responsive {
+    padding: 20px 30px;
+    overflow-x: auto;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    font-size: 14px;
+    border-bottom: 2px solid #eee;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.vyg-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+    vertical-align: middle;
+    color: #2c3e50;
+}
+
+.vyg-table tbody tr:hover {
+    background-color: #fdfefe;
+    transition: background-color 0.2s ease;
+}
+
+.project-icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* --- ETIQUETAS DE ESTADO (BADGES) --- */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    letter-spacing: 0.5px;
+}
+
+.status-active {
+    background-color: #e8f8f5;
+    color: #27ae60;
+    border: 1px solid #2ecc71;
+}
+
+.status-finished {
+    background-color: #f2f3f4;
+    color: #7f8c8d;
+    border: 1px solid #bdc3c7;
+}
+
+.status-paused {
+    background-color: #fcf3cf;
+    color: #d35400;
+    border: 1px solid #f39c12;
+}
+
+/* --- PIE DE PÁGINA Y BOTONES --- */
+.card-footer {
+    padding: 20px 30px;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #f1f1f1;
+    color: #222;
+}
