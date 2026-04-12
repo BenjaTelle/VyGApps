@@ -1,0 +1,167 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 3 abr 2026, 8:09:30 p.m.
+    Author     : Benja
+*/
+/* =========================================
+   ESTILOS: REPORTE DE TRABAJADORES (ADMIN)
+   ========================================= */
+
+/* Cabecera (Ajustada con Flexbox para centrar bien) */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    background-color: #34495e; 
+    color: white;
+}
+
+.profile-info {
+    text-align: center;
+    width: 100%;
+}
+
+.profile-info h2 { margin: 0 0 8px 0; color: white !important; font-size: 26px;}
+.profile-info p { margin: 0; color: #bdc3c7 !important; font-size: 15px;}
+
+/* Tarjetas KPI Superiores */
+.kpi-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.kpi-card {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    border-left: 4px solid #ecf0f1;
+}
+
+.kpi-card:hover { transform: translateY(-3px); transition: 0.3s; }
+
+.kpi-icon {
+    font-size: 35px;
+    margin-right: 20px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.blue-icon { background-color: #ebf5fb; color: #3498db; }
+.green-icon { background-color: #eafaf1; color: #2ecc71; }
+.orange-icon { background-color: #fef5e7; color: #f39c12; }
+
+.kpi-data p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.kpi-data h3 {
+    margin: 5px 0 0 0;
+    color: #2c3e50;
+    font-size: 24px;
+}
+
+/* Panel de Filtros */
+.filter-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.filter-form {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.filter-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-group label {
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.filter-group select {
+    padding: 12px;
+    border: 2px solid #ecf0f1;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #2c3e50;
+    background-color: #fdfefe;
+}
+
+.btn-filtrar {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    height: 45px;
+}
+
+.btn-filtrar:hover { background-color: #2980b9; }
+
+/* Tabla y Badges */
+.card-header h3 { margin: 0; color: #2c3e50; font-size: 20px; }
+
+.btn-pdf {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-pdf:hover { background-color: #c0392b; }
+
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.badge-activo { background-color: #eafaf1; color: #27ae60; border: 1px solid #2ecc71; }
+.badge-inactivo { background-color: #fdedec; color: #c0392b; border: 1px solid #e74c3c; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .kpi-container { flex-direction: column; }
+    .filter-form { flex-direction: column; align-items: stretch; }
+    .btn-filtrar { margin-top: 10px; }
+}
