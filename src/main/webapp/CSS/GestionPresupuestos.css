@@ -1,0 +1,141 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 2 abr 2026, 6:30:31 p.m.
+    Author     : Benja
+*/
+
+/* =========================================
+   AJUSTE DE CABECERA (Sobrescribe heredados)
+   ========================================= */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #34495e; /* Fondo oscuro por si lo pierde */
+    color: white;
+}
+
+.profile-info {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-info h2 {
+    margin: 0 0 8px 0;
+    color: white !important;
+}
+
+.profile-info p {
+    margin: 0;
+    color: #ecf0f1 !important;
+}
+/* =========================================
+   ESTILOS: GESTIÓN DE PRESUPUESTOS
+   ========================================= */
+
+/* Contenedor principal dividido */
+.budget-container {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* El formulario ocupa menos espacio que la tabla */
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* Tarjetas */
+.budget-form-card, .budget-table-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: #fdfefe;
+    border-bottom: 2px solid #eee;
+    padding: 20px;
+}
+
+.card-header h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.card-header p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 13px;
+}
+
+/* --- Formulario --- */
+.vyg-form {
+    padding: 20px;
+}
+
+.vyg-form .form-group {
+    margin-bottom: 20px;
+}
+
+.vyg-form label {
+    display: block;
+    font-weight: bold;
+    color: #34495e;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.vyg-form input[type="number"], 
+.vyg-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced6e0;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background-color: #fcfbf7;
+    transition: all 0.3s;
+}
+
+.vyg-form input:focus, 
+.vyg-form select:focus {
+    border-color: #27ae60; /* Verde de dinero */
+    outline: none;
+    box-shadow: 0 0 8px rgba(39, 174, 96, 0.2);
+    background-color: white;
+}
+
+/* Botón de Inyectar */
+.btn-submit-budget {
+    width: 100%;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 6px rgba(39, 174, 96, 0.2);
+}
+
+.btn-submit-budget:hover {
+    background-color: #219653;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .budget-container {
+        grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
+}
