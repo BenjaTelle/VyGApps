@@ -6,73 +6,220 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : 18 feb 2026, 4:09:06 p.m.
     Author     : Benja
 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
+/* =========================
+   ESTRUCTURA BASE
+========================= */
 body {
-    background: linear-gradient(135deg, #f2de96, #f7e8b5);
-    min-height: 100vh;
-    padding: 40px;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f2de96; /* Fondo VyGApps */
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
+.page-wrapper {
+    width: 100%;
+    max-width: 1200px; /* Ancho máximo para pantallas grandes */
 }
 
-h2 {
-    text-align: center;
+/* =========================
+   ENCABEZADO
+========================= */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.page-header h2 {
+    margin: 0;
     color: #984807;
-    margin-bottom: 5px;
+    font-size: 28px;
 }
 
 .subtitle {
-    text-align: center;
-    color: #555;
-    margin-bottom: 35px;
-    font-size: 14px;
+    margin: 5px 0 0 0;
+    color: #7f8c8d;
+    font-size: 15px;
 }
 
-/* Contenedor de tarjetas */
+.header-tools {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.search-input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+    min-width: 250px;
+}
+
+.search-input:focus {
+    border-color: #984807;
+    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
+}
+
+.btn-main {
+    background-color: #984807;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.btn-main:hover {
+    background-color: #7a3a05;
+}
+
+/* =========================
+   CUADRÍCULA DE TARJETAS (GRID)
+========================= */
 .cards-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* Las tarjetas se ajustan solas dependiendo del tamaño de la pantalla */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 25px;
 }
 
-/* Tarjeta */
+/* =========================
+   DISEÑO DE LA TARJETA
+========================= */
 .card {
-    background: white;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border-left: 6px solid #984807;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-top: 4px solid #984807; /* Borde superior corporativo */
 }
 
 .card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-.card h3 {
-    color: #984807;
+/* Cabecera de tarjeta */
+.card-header {
+    padding: 20px;
+    border-bottom: 1px solid #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.project-title {
+    margin: 0;
+    font-size: 19px;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-active {
+    background-color: #e8f8f5;
+    color: #1abc9c;
+}
+
+/* Cuerpo de la tarjeta */
+.card-body {
+    padding: 20px;
+    flex-grow: 1; /* Para que todas las tarjetas midan lo mismo */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.info-group {
+    display: flex;
+    flex-direction: column;
+    background-color: #fcfbf7;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #f1e1a7;
+}
+
+.financial-group {
+    background-color: #f0fdf4;
+    border-color: #a9dfbf;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #7f8c8d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.text-dark {
+    color: #34495e;
+}
+
+.money {
+    color: #27ae60;
     font-size: 18px;
-    word-break: break-word;
+}
+
+/* Pie de tarjeta */
+.card-footer {
+    background-color: #fafafa;
+    padding: 15px;
+    text-align: center;
+    border-top: 1px solid #f1f1f1;
+}
+
+.btn-detail {
+    color: #984807;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.btn-detail:hover {
+    color: #7a3a05;
+    text-decoration: underline;
 }
 
 /* Mensaje vacío */
 .empty-message {
+    grid-column: 1 / -1;
     text-align: center;
-    padding: 40px;
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    color: #777;
+    background-color: white;
+    padding: 50px;
+    border-radius: 12px;
+    color: #7f8c8d;
+    font-size: 16px;
 }
-
