@@ -1,0 +1,88 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 2 abr 2026, 7:12:51 p.m.
+    Author     : Benja
+*/
+/* =========================================
+   AJUSTE DE CABECERA (Sobrescribe heredados)
+   ========================================= */
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background-color: #34495e; /* Fondo oscuro por si lo pierde */
+    color: white;
+}
+
+.profile-info {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-info h2 {
+    margin: 0 0 8px 0;
+    color: white !important;
+}
+
+.profile-info p {
+    margin: 0;
+    color: #ecf0f1 !important;
+}
+/* =========================================
+   ESTILOS: MONITOR DE AUTORIZACIONES
+   ========================================= */
+
+.monitor-card {
+    background: white;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+/* Semáforo de Retrasos */
+.retraso-critico { background-color: #fdf2f2 !important; } /* Rojo muy suave */
+.retraso-medio { background-color: #fff9eb !important; }    /* Amarillo muy suave */
+
+.dias-badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 12px;
+    background: #eee;
+    color: #555;
+}
+
+/* Colores dinámicos para los badges según la fila */
+.retraso-critico .dias-badge { background: #e74c3c; color: white; }
+.retraso-medio .dias-badge { background: #f1c40f; color: #7d6608; }
+.al-dia .dias-badge { background: #2ecc71; color: white; }
+
+.monto {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: right;
+}
+
+.status-indicator {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #7f8c8d;
+    font-weight: bold;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 40px !important;
+    font-size: 16px;
+    color: #27ae60;
+}
