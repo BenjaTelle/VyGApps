@@ -30,6 +30,7 @@
     <meta charset="UTF-8">
     <title>Actualizar Trabajador</title>
     <link rel="stylesheet" href="CSS/ActualizarTrabajadores.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
