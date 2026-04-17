@@ -4,11 +4,14 @@
  */
 package controlador;
 
+import DTO.PagoDTO;
 import DTO.UsuarioDetalle;
 import Repository.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,19 +59,44 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+       // 1. Obtener la sesión
         HttpSession sessionActual = request.getSession(false);
         Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
+        
+        // 2. Seguridad en el Servlet (Evita el NullPointerException si la sesión caducó)
+        if (user == null || !user.getRol().equalsIgnoreCase("Trabajador")) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
         int idT = user.getId_trabajador();
 
         try {
+            // 3. Buscar Detalles del Usuario (Lo que ya tenías)
             UsuarioDetalleDAO udDAO = new UsuarioDetalleDAO();
             request.setAttribute("usuarioLogueadoDetalle", udDAO.BuscarUsuDetalle(idT));
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        request.getRequestDispatcher("Home.jsp").forward(request, response);
 
+            // 4. Buscar Últimos Pagos (NUEVO)
+            PagosDAO pagosDAO = new PagosDAO();
+            List<PagoDTO> listaPagos = pagosDAO.listarNominasPorTrabajador(idT);
+            
+            // 5. Enviar la lista a la vista
+            request.setAttribute("ListaPagos", listaPagos);
+
+        } catch (SQLException e) {
+            System.out.println("Error SQL en el Home (Servlet): " + e.getMessage());
+            e.printStackTrace();
+            // Si la BD falla, enviamos una lista vacía para que no se caiga la página
+            request.setAttribute("ListaPagos", new ArrayList<PagoDTO>());
+        }
+
+        // 6. Cabeceras Anti-Caché (Para evitar la tabla vacía o el error 304)
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1
+        response.setHeader("Pragma", "no-cache"); // HTTP 1.0
+        response.setDateHeader("Expires", 0); // Proxies
+
+        // 7. Despachar a la vista
+        request.getRequestDispatcher("Home.jsp").forward(request, response);
     }
 
     /**
