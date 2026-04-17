@@ -13,6 +13,7 @@
         <meta charset="UTF-8">
         <title>Reporte de Proyectos</title>
         <link rel="stylesheet" href="CSS/ReporteProyectos.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
