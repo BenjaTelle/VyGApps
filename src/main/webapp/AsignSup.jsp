@@ -35,6 +35,7 @@
         <meta charset="UTF-8">
         <title>Asignar Supervisor</title>
         <link rel="stylesheet" href="CSS/AsignSupervisor.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
