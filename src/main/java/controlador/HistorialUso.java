@@ -51,7 +51,7 @@ public class HistorialUso extends HttpServlet {
         
             
             UsoDAO uso  = new  UsoDAO();
-            request.setAttribute("ListaHistorial", uso.ListarRegistros());
+            request.setAttribute("ListaHistorial", uso.ListarRegistrosDetallados());
         
         request.getRequestDispatcher("HistorialUso.jsp").forward(request, response);
     }
