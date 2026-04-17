@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.proyectos;
 
 /**
  *
@@ -83,11 +84,19 @@ public class CrearProyecto extends HttpServlet {
         
         String NombreProyecto = request.getParameter("nombre_proyecto");
         int idtrabajador = Integer.parseInt(request.getParameter("id_supervisor"));
-        
+        double presupuesto_total= Double.parseDouble(request.getParameter("presupuesto_total"));
+        String estado = "activo";
        //primero mandamos a crear el proyecto
         ProyectoDAO pDAO = new ProyectoDAO();
+        
         try {
-            pDAO.CrearProyecto(NombreProyecto);
+              proyectos p = new proyectos();
+            p.setEstado(estado);
+            p.setNombre_proyecto(NombreProyecto);
+            p.setPresupuesto_total(presupuesto_total);
+            pDAO.CrearProyecto(p);
+          
+            
         } catch (SQLException ex) {
            ex.printStackTrace();
         }
