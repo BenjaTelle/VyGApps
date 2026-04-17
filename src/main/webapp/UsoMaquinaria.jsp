@@ -32,6 +32,7 @@
         <meta charset="UTF-8">
         <title>Registrar Uso de Maquinaria</title>
         <link rel="stylesheet" href="CSS/UsoMaquinaria.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
@@ -58,36 +59,25 @@
                         </div>
                     </div>
 
-
-
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="id_maquinaria">Máquina:</label>
                             <select name="id_maquinaria" id="id_maquinaria" required>
                                 <option value="" disabled selected>Seleccione maquinaria</option>
-
                                 <%List<maquinas> ListaM = (List<maquinas>) request.getAttribute("ListarM");
                                     for (maquinas m : ListaM) {
-
                                 %>
                                 <option value="<%=m.getId_maquina()%>" ><%=m.getMarca()%></option>
+                                <%}%>
                             </select>
-                            <%}%>
                         </div>
-
 
                         <div class="form-group">
                             <label for="id_trabajador">Operador (Trabajador):</label>
-
-
                             <select name="id_trabajador" id="id_trabajador" required>
                                 <option value="" disabled selected>Seleccione trabajador</option>
-
                                 <%List<trabajadores> ListaT = (List<trabajadores>) request.getAttribute("ListarT");
                                     for (trabajadores t : ListaT) {
-
-
                                 %>
                                 <option value="<%=t.getId_trabajador()%>" ><%=t.getFull_name()%>.</option>
                                 <%}%>
@@ -107,6 +97,14 @@
                         <div class="form-group">
                             <label for="hora_fin">Hora de Fin:</label>
                             <input type="time" name="hora_fin" id="hora_fin" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group highlight-financial" style="border-left: 4px solid #e67e22; background-color: #fdf2e9;">
+                            <label for="costo_por_hora" style="color: #d35400;">⏱️ Costo por Hora (C$):</label>
+                            <input type="number" step="0.01" min="0" name="costo_por_hora" id="costo_por_hora" placeholder="Ej. 500.00" required>
+                            <small style="color: #e67e22;">Tarifa operativa de la máquina por cada hora de uso.</small>
                         </div>
                     </div>
 
