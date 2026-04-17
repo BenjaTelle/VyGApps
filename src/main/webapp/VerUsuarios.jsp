@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <title>Lista de Usuarios</title>
     <link rel="stylesheet" href="CSS/VerUsuarios.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
