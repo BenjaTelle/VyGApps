@@ -12,6 +12,7 @@
     <title>Sistema de Gestión Industrial</title>
     
     <link rel="stylesheet" href="CSS/login.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
