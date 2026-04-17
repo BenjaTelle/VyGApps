@@ -33,6 +33,7 @@
         <meta charset="UTF-8">
         <title>Registrar Trabajador</title>
         <link rel="stylesheet" href="CSS/RegisTrabajador.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
