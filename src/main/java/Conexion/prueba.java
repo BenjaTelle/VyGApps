@@ -4,10 +4,19 @@
  */
 package Conexion;
 
+import DTO.PagoDTO;
+import DTO.ProyectoReporteDTO;
+import DTO.ReporteProyectoResumenDTO;
+import DTO.UsuarioDetalle;
+import Repository.PagosDAO;
 import Repository.ProyectoDAO;
+import Repository.ProyectoReporteDAO;
 import Repository.TrabajadoresDAO;
+import Repository.UsuarioDAO;
+import Repository.UsuarioDetalleDAO;
 import java.sql.SQLException;
 import java.util.List;
+import model.Usuarios;
 import model.proyectos;
 import model.trabajadores;
 
@@ -18,14 +27,6 @@ import model.trabajadores;
 public class prueba {
     public static void main(String args[]) throws SQLException
     {
-     TrabajadoresDAO tDAO = new TrabajadoresDAO();
-        
-        List<trabajadores> lista = tDAO.ListarTrabajadores();
-        
-        for(trabajadores list:  lista)
-        {
-            System.out.println("nombre trabajador"+ list.getFull_name());
-        }
         
         
     }
