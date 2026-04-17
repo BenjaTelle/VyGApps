@@ -26,72 +26,71 @@ import model.trabajadores;
  *
  * @author Benja
  */
-@WebServlet(urlPatterns = {"/AdminPageSv"})
+@WebServlet(urlPatterns = { "/AdminPageSv" })
 public class AdminPageSv extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
+
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the
+    // + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
-    String accion = request.getParameter("accion");
 
-    try {
-        UsuarioDAO usuDAO = new UsuarioDAO();
-        ProyectoDAO proyectoDAO = new ProyectoDAO();
+        String accion = request.getParameter("accion");
 
-        request.setAttribute("ListaSuperv", usuDAO.traerSupervisor());
-        request.setAttribute("ListarProy", proyectoDAO.ListarProyectos());
+        try {
+            UsuarioDAO usuDAO = new UsuarioDAO();
+            ProyectoDAO proyectoDAO = new ProyectoDAO();
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        request.setAttribute("error", "Error al cargar datos");
-    }
+            request.setAttribute("ListaSuperv", usuDAO.traerSupervisor());
+            request.setAttribute("ListarProy", proyectoDAO.ListarProyectos());
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Error al cargar datos");
+        }
 
-    request.getRequestDispatcher("RegisTrabajador.jsp").forward(request, response);
+        request.getRequestDispatcher("RegisTrabajador.jsp").forward(request, response);
     }
 
     /**
      * Handles the HTTP <code>POST</code> method.
      *
-     * @param request servlet request
+     * @param request  servlet request
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
+     * @throws IOException      if an I/O error occurs
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         String action = request.getParameter("accion");
         switch (action) {
             case "guardarTrabajador":
-//traigo los campos que requiero para  crear el trabajador
+                // traigo los campos que requiero para crear el trabajador
                 String cedula = request.getParameter("cedula");
                 String full_name = request.getParameter("full_name");
                 int edad = Integer.parseInt(request.getParameter("edad"));
@@ -101,17 +100,13 @@ public class AdminPageSv extends HttpServlet {
                 int id_supervisor = Integer.parseInt(request.getParameter("supervisor"));
                 int id_proyecto = Integer.parseInt(request.getParameter("proyecto"));
 
-              
-
-                
-                //guardamos la informacion en un objeto 
-                trabajadores trabajador = new trabajadores(cedula,full_name,edad,puesto,salario_quincenal,origen,id_supervisor,id_proyecto);
-                //mandamos a llamar el metodo que nos permite registrar el trabajador
+                // guardamos la informacion en un objeto
+                trabajadores trabajador = new trabajadores(cedula, full_name, edad, puesto, salario_quincenal, origen,
+                        id_supervisor, id_proyecto);
+                // mandamos a llamar el metodo que nos permite registrar el trabajador
                 TrabajadoresDAO trabajadorDAO = new TrabajadoresDAO();
-                
+
                 trabajadorDAO.registrarTrabajador(trabajador);
-                
-                
 
                 break;
 
