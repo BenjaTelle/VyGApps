@@ -126,7 +126,7 @@
                             <td>Del <strong><%= pago.getPeriodoInicio() %></strong> al <strong><%= pago.getPeriodoFin() %></strong></td>
                             <td style="font-weight: bold; color: #2c3e50;">C$ <%= String.format("%,.2f", pago.getMonto()) %></td>
                             <td>
-                                <% if (pago.getEstado().equalsIgnoreCase("Pagado")) { %>
+                                <% if (pago.getEstado().equalsIgnoreCase("Autorizado")) { %>
                                     <span class="badge-estado badge-pagado">✅ Pagado</span>
                                 <% } else { %>
                                     <span class="badge-estado badge-pendiente">⏳ Pendiente</span>
