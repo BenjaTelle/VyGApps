@@ -32,6 +32,7 @@
         <meta charset="UTF-8">
         <title>Crear Usuario</title>
         <link rel="stylesheet" href="CSS/RegistrarUsu.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
