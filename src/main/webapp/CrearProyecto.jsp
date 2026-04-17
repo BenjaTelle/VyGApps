@@ -12,51 +12,55 @@
 <%@page import="model.Usuarios"%>
 
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Crear Proyecto</title>
-    <link rel="stylesheet" href="CSS/CrearProyecto.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Crear Proyecto</title>
+        <link rel="stylesheet" href="CSS/CrearProyecto.css">
+        <link rel="icon" href="images/vyg.svg" type="image/png">
+    </head>
+    <body>
 
-<div class="container">
-    <div class="card">
-        <h2>Crear Nuevo Proyecto</h2>
-        <p class="subtitle">Complete la información del proyecto</p>
+        <div class="container">
+            <div class="card">
+                <h2>Crear Nuevo Proyecto</h2>
+                <p class="subtitle">Complete la información del proyecto</p>
 
-        
-        <form action="CrearProyecto" method="post">
+                <form action="CrearProyecto" method="post">
 
-            <label for="nombre">Nombre del Proyecto</label>
-            <input type="text" id="nombre" name="nombre_proyecto" 
-                   placeholder="Ingrese el nombre del proyecto" required>
+                    <label for="nombre">Nombre del Proyecto</label>
+                    <input type="text" id="nombre" name="nombre_proyecto" 
+                           placeholder="Ingrese el nombre del proyecto" required>
 
-            <label for="supervisor">Asignar Supervisor</label>
-            <select name="id_supervisor" id="supervisor" required>
-                <option value="">-- Seleccione un supervisor --</option>
+                    <label for="presupuesto">Presupuesto Total (C$)</label>
+                    <input type="number" step="0.01" id="presupuesto" name="presupuesto_total" 
+                           placeholder="Ej. 150000.50" required>
 
-                <%
-                    List<trabajadores> lista = (List<trabajadores>) request.getAttribute("ListaSupervisores");
+                    <label for="supervisor">Asignar Supervisor</label>
+                    <select name="id_supervisor" id="supervisor" required>
+                        <option value="">-- Seleccione un supervisor --</option>
 
-                    if (lista != null) {
-                        for (trabajadores t : lista) {
-                %>
-                    <option value="<%= t.getId_trabajador()%>">
-                        <%= t.getFull_name()    %>
-                    </option>
-                <% 
-                        }
-                    }
-                %>
-            </select>
+                        <%
+                            List<trabajadores> lista = (List<trabajadores>) request.getAttribute("ListaSupervisores");
 
-            <button type="submit" class="btn-submit">
-                Crear Proyecto
-            </button>
+                            if (lista != null) {
+                                for (trabajadores t : lista) {
+                        %>
+                        <option value="<%= t.getId_trabajador()%>">
+                            <%= t.getFull_name()%>
+                        </option>
+                        <%
+                                }
+                            }
+                        %>
+                    </select>
 
-        </form>
-    </div>
-</div>
+                    <button type="submit" class="btn-submit">
+                        Crear Proyecto
+                    </button>
 
-</body>
+                </form>
+            </div>
+        </div>
+
+    </body>
 </html>
