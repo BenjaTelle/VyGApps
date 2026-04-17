@@ -227,7 +227,7 @@ public class TrabajadoresDAO {
         
         // Iniciamos la consulta base (1=1 es un truco para poder concatenar los AND fácilmente)
         StringBuilder sql = new StringBuilder(
-            "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario, t.estado " +
+            "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario_quincenal, t.estado " +
             "FROM trabajadores t " +
             "INNER JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
             "WHERE 1=1 "
@@ -263,7 +263,7 @@ public class TrabajadoresDAO {
                 dto.setIdTrabajador(rs.getInt("id_trabajador"));
                 dto.setNombreCompleto(rs.getString("full_name"));
                 dto.setNombreProyecto(rs.getString("name_proyect"));
-                dto.setSalarioBase(rs.getDouble("salario")); 
+                dto.setSalarioBase(rs.getDouble("salario_quincenal")); 
                 dto.setEstado(rs.getString("estado"));
                 
                 lista.add(dto);
