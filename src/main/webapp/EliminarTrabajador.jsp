@@ -33,6 +33,7 @@
         <meta charset="UTF-8">
         <title>Eliminar Usuario</title>
         <link rel="stylesheet" href="CSS/EliminarTrabajadores.css">
+         <link rel="icon" href="images/vyg.svg" type="image/png">
     </head>
     <body>
 
