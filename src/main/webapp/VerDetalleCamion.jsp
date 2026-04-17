@@ -35,6 +35,7 @@
     <meta charset="UTF-8">
     <title>Detalle de Viaje #<%= detalle.getId_ruta() %></title>
     <link rel="stylesheet" href="CSS/DetalleCamion.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
