@@ -30,6 +30,7 @@
     <meta charset="UTF-8">
     <title>Gestión de Trabajadores</title>
     <link rel="stylesheet" href="CSS/HistorialT.css">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
