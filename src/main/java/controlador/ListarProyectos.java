@@ -4,10 +4,13 @@
  */
 package controlador;
 
+import DTO.FichaTecnicaDTO;
 import Repository.ProyectoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,17 +52,38 @@ public class ListarProyectos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
      
-        
-        try{
+      try{
             ProyectoDAO pDAO = new ProyectoDAO();
-            request.setAttribute("ListaP", pDAO.ListarProyectos());
+            request.setAttribute("ListaP", pDAO.VerProyectosActivos());
         }catch(SQLException e)
         {
             e.printStackTrace();
         }
-           
         
+        String idProyectoSTR = request.getParameter("id_proyecto");
+        
+        // Si el usuario quiere ver UNA ficha en específico
+        if(idProyectoSTR != null){
+            int idProyecto = Integer.parseInt(idProyectoSTR);
+            FichaTecnicaDTO ficha = new FichaTecnicaDTO();
+            try {
+              request.setAttribute("ficha",  ficha.traerFicha(idProyecto));
+                
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+            
+            // 1. Mandamos a la Ficha
+            request.getRequestDispatcher("FichaTecnicaProyecto.jsp").forward(request, response);
+            
+            // 2. ¡EL FRENO DE MANO! Detiene la ejecución del doGet
+            return; 
+        }
+       
+        // Si no pidió ninguna ficha (idProyectoSTR es null), el código llega hasta aquí sin problemas
         request.getRequestDispatcher("ListarProyectos.jsp").forward(request, response);
+         
+        
     }
 
     /**
