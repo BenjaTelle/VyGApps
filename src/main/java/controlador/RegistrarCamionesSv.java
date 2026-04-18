@@ -59,7 +59,7 @@ public class RegistrarCamionesSv extends HttpServlet {
         UsoDAO uDAO = new UsoDAO();
 
         request.setAttribute("ListaM", mDAO.ListarMateriales());
-        request.setAttribute("ListaUso", uDAO.ListarRegistros());
+        request.setAttribute("ListaUso", uDAO.ListarRegistrosDetallados());
 
         request.getRequestDispatcher("RegistrarCamiones.jsp").forward(request, response);
     }
