@@ -27,6 +27,7 @@ public class uso_registros {
     private int id_proyect;
     private int id_trabajador;
     private double costoT_combustible;
+    private double Costo_hora;
     
      public uso_registros() {
     }
@@ -41,6 +42,14 @@ public class uso_registros {
         this.id_proyect = id_proyect;
         this.id_trabajador = id_trabajador;
         this.costoT_combustible = costoT_combustible;
+    }
+
+    public double getCosto_hora() {
+        return Costo_hora;
+    }
+
+    public void setCosto_hora(double Costo_hora) {
+        this.Costo_hora = Costo_hora;
     }
 
     public double getCostoT_combustible() {
