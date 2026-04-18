@@ -88,7 +88,7 @@ public class RegistrarUso extends HttpServlet {
         int id_maquina = Integer.parseInt(request.getParameter("id_maquinaria"));
         int id_trabajador = Integer.parseInt(request.getParameter("id_trabajador"));
         Date fechaOp = Date.valueOf(request.getParameter("fecha"));
-        
+       double costoHora = Double.parseDouble(request.getParameter("costo_por_hora"));
         String hInicioStr = request.getParameter("hora_inicio");
 String hFinStr = request.getParameter("hora_fin");
 
@@ -117,7 +117,7 @@ if (hFinStr != null && hFinStr.length() == 5) {
         uso.setHora_fin(horaFin);
         uso.setCombustible(combustible);
         uso.setCostoT_combustible(costo_combustible);
-        
+        uso.setCosto_hora(costoHora);
         RegistroUsoDAO ru = new RegistroUsoDAO();
         try {
             ru.CrearRegistroUso(uso);
