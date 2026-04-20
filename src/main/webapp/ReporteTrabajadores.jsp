@@ -161,7 +161,7 @@
         </div>
 
         <div style="margin-top: 25px; text-align: left;">
-            <a href="AdminPage" class="btn-back">⬅️ Volver al Panel de Control</a>
+            <a href="AdminPage.jsp" class="btn-back">⬅️ Volver al Panel de Control</a>
         </div>
 
     </div>
