@@ -84,7 +84,7 @@
         </div>
 
         <div style="margin-top: 30px;">
-            <a href="SupervisorPage.jsp" class="btn-back">⬅️ Volver al Panel Principal</a>
+            <a href="SupervisorPage" class="btn-back">⬅️ Volver al Panel Principal</a>
         </div>
 
     </div>
