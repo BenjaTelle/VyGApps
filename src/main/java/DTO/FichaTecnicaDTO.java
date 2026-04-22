@@ -75,47 +75,50 @@ public class FichaTecnicaDTO {
     }
 
     public FichaTecnicaDTO traerFicha(int id) throws SQLException {
-        String sql = "SELECT p.id_proyecto, \n"
-                + "p.name_proyect, \n"
-                + "p.estado, \n"
-                + "p.presupuesto_total,\n"
-                + " -- Identificamos quién es el supervisor de esta obra \n"
-                + "MAX(CASE WHEN t.puesto = 'Supervisor de obra' THEN t.full_name ELSE NULL END) AS nombre_supervisor, \n"
-                + "-- Contamos cuántos trabajadores están asignados (incluyendo al supervisor) \n"
-                + "COUNT(t.id_trabajador) AS total_trabajadores \n"
-                + "FROM proyectos p LEFT JOIN trabajadores t ON p.id_proyecto = t.id_proyect WHERE p.id_proyecto = ?\n"
-                + "GROUP BY \n"
-                + "p.id_proyecto, \n"
-                + "p.name_proyect, \n"
-                + "p.estado, \n"
-                + "p.presupuesto_total;";
-        
+        // Usamos subconsultas limpias apoyándonos en la tabla intermedia proyecto_supervisor
+        String sql = "SELECT "
+                + "p.id_proyecto, "
+                + "p.name_proyect, "
+                + "p.estado, "
+                + "p.presupuesto_total, "
+                + "-- Subconsulta para traer TODOS los supervisores concatenados por coma \n"
+                + "(SELECT GROUP_CONCAT(t_sup.full_name SEPARATOR ', ') "
+                + " FROM proyecto_supervisor ps "
+                + " JOIN trabajadores t_sup ON ps.id_trabajador = t_sup.id_trabajador "
+                + " WHERE ps.id_proyecto = p.id_proyecto) AS nombre_supervisor, "
+                + "-- Subconsulta para contar a todos los trabajadores del proyecto \n"
+                + "(SELECT COUNT(id_trabajador) "
+                + " FROM trabajadores "
+                + " WHERE id_proyect = p.id_proyecto) AS total_trabajadores "
+                + "FROM proyectos p "
+                + "WHERE p.id_proyecto = ?;";
         
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
         
         ps.setInt(1,  id);
         FichaTecnicaDTO ficha = new FichaTecnicaDTO();
+        
         try{
             ResultSet  rs = ps.executeQuery();
             while(rs.next())
             {
-                
                 ficha.setNombre_proyecto(rs.getString("name_proyect"));
                 ficha.setEstado( rs.getString("estado"));
-                ficha.setNombre_supervisor(rs.getString("nombre_supervisor"));
+                
+                // Si no hay supervisor, la BD devuelve NULL, lo manejamos con una validación rápida
+                String supervisores = rs.getString("nombre_supervisor");
+                ficha.setNombre_supervisor(supervisores != null ? supervisores : "Sin asignar");
+                
                 ficha.setPresupuesto(rs.getDouble("presupuesto_total"));
                 ficha.setTotal_trabajadores(rs.getInt("total_trabajadores"));
                 ficha.setIdP(id);
             }
             
-            
         }catch(SQLException e)
         {
             e.printStackTrace();
-            
         }
-        
         
         return ficha;
     }

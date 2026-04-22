@@ -65,33 +65,77 @@ public class ProyectoReporteDAO {
 
     }
 
-        public List<ProyectoReporteDTO> listaReporteProyectos() throws SQLException {
+    public List<ProyectoReporteDTO> listaReporteProyectos() throws SQLException {
 
-            String sql = "SELECT p.name_proyect, MAX(CASE WHEN t.puesto = 'Supervisor de obra' THEN t.full_name END) AS full_name, COUNT(t.id_trabajador) AS total_trabajadores, p.estado FROM proyectos AS p "
-                    + "LEFT JOIN trabajadores AS t ON p.id_proyecto = t.id_proyect GROUP BY p.id_proyecto, p.name_proyect, p.estado "
-                    + "ORDER BY total_trabajadores DESC;";
-            List<ProyectoReporteDTO> ListaPReporte = new ArrayList<>();
-            try {
-                Connection con = ConectarBD.conectar();
-                PreparedStatement ps = con.prepareStatement(sql);
+        // Aquí metemos la consulta avanzada que suma las nóminas y la maquinaria
+        String sql = "SELECT "
+                + "p.id_proyecto, "
+                + "p.name_proyect AS nombre_proyecto, "
+                + "p.estado, "
+                + "p.presupuesto_total, "
+                + "(SELECT GROUP_CONCAT(t.full_name SEPARATOR ', ') "
+                + " FROM proyecto_supervisor ps "
+                + " JOIN trabajadores t ON ps.id_trabajador = t.id_trabajador "
+                + " WHERE ps.id_proyecto = p.id_proyecto) AS supervisor, "
+                + "(SELECT COUNT(id_trabajador) "
+                + " FROM trabajadores "
+                + " WHERE id_proyect = p.id_proyecto) AS cantidad_trabajadores, "
+                + "( "
+                + "    IFNULL(( "
+                + "        SELECT SUM(pn.monto_pagado) "
+                + "        FROM pago_nomina pn "
+                + "        JOIN trabajadores tr ON pn.id_trabajador = tr.id_trabajador "
+                + "        WHERE tr.id_proyect = p.id_proyecto AND pn.estado = 'Autorizado' "
+                + "    ), 0) "
+                + "    + "
+                + "    IFNULL(( "
+                + "        SELECT SUM(pm.total_pagado) "
+                + "        FROM pago_maquinaria pm "
+                + "        JOIN uso_registro ur ON pm.id_uso = ur.id_uso "
+                + "        WHERE ur.id_proyect = p.id_proyecto "
+                + "    ), 0) "
+                + ") AS total_pagado "
+                + "FROM proyectos p "
+                + "ORDER BY cantidad_trabajadores DESC;";
 
-                ResultSet rs = ps.executeQuery();
+        List<ProyectoReporteDTO> ListaPReporte = new ArrayList<>();
 
-                while (rs.next()) {
-                    ProyectoReporteDTO PR = new ProyectoReporteDTO();
+        try {
 
-                    PR.setNombreProyecto(rs.getString("name_proyect"));
-                    PR.setSupervisor(rs.getString("full_name"));
-                    PR.setEstado(rs.getString("estado"));
-                    PR.setCantidadTrabajadores(rs.getInt("total_trabajadores"));
-                    ListaPReporte.add(PR);
+            Connection con = ConectarBD.conectar();
 
-                }
+            PreparedStatement ps = con.prepareStatement(sql);
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                ProyectoReporteDTO PR = new ProyectoReporteDTO();
+
+                // Fíjate que aquí los nombres coinciden con los "AS" de la consulta SQL
+                PR.setNombreProyecto(rs.getString("nombre_proyecto"));
+
+                PR.setSupervisor(rs.getString("supervisor"));
+
+                PR.setEstado(rs.getString("estado"));
+
+                PR.setCantidadTrabajadores(rs.getInt("cantidad_trabajadores"));
+
+               
+                PR.setTotalPagado(rs.getDouble("total_pagado"));
+
+                ListaPReporte.add(PR);
+
             }
-            return ListaPReporte;
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+
         }
+
+        return ListaPReporte;
+
+    }
 
 }

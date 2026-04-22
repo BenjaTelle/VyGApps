@@ -76,7 +76,7 @@
         </div>
 
         <div style="text-align: right;">
-            <a href="HistorialUsoSv" class="btn-back">⬅️ Volver al Historial</a>
+            <a href="HistorialUso" class="btn-back">⬅️ Volver al Historial</a>
         </div>
     </div>
 </body>
