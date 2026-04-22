@@ -41,6 +41,7 @@ public class TrabajadoresDAO {
             e.printStackTrace();
         }
     }
+
     //todos los trabajadores 
     public List<trabajadores> ListarTrabajadores() throws SQLException {
         String sql = "Select * from trabajadores";
@@ -65,8 +66,6 @@ public class TrabajadoresDAO {
 
                 ListaT.add(t);
             }
-            
-            
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,9 +74,8 @@ public class TrabajadoresDAO {
         return ListaT;
     }
 
-    
     //trabajadores que no  tiene puesto supervisor
-        public List<trabajadores> ListarTrabajadoresSinSuperv() throws SQLException {
+    public List<trabajadores> ListarTrabajadoresSinSuperv() throws SQLException {
         String sql = "SELECT * FROM trabajadores where not puesto = 'Supervisor de obra'";
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -107,11 +105,12 @@ public class TrabajadoresDAO {
 
         return ListaT;
     }
-        
-        
+
     //trabajadores que no  tiene puesto supervisor
-        public List<trabajadores> ListarTrabajadoresSuperv() throws SQLException {
-        String sql = "SELECT * FROM trabajadores where puesto = 'Supervisor de obra' ";
+    public List<trabajadores> ListarTrabajadoresSuperv() throws SQLException {
+        String sql = "SELECT * FROM trabajadores \n"
+                + "WHERE puesto IN ('Supervisor de obra', 'Ingeniero residente', 'Arquitecto') \n"
+                + "AND estado = 'Activo'";
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
         List<trabajadores> ListaT = new ArrayList<>();
@@ -140,8 +139,8 @@ public class TrabajadoresDAO {
 
         return ListaT;
     }
-    
-         public List<trabajadores> ListarTecnicoOperadorativo() throws SQLException {
+
+    public List<trabajadores> ListarTecnicoOperadorativo() throws SQLException {
         String sql = "SELECT * FROM trabajadores where puesto = 'Tecnico operativo' ";
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
@@ -171,26 +170,20 @@ public class TrabajadoresDAO {
 
         return ListaT;
     }
-    
-    
-    public boolean AsignarProyecto(int  id_proyect, int id_trabajador) throws SQLException
-        {
-            String sql= "UPDATE trabajadores set id_proyect=?  WHERE  id_trabajador=?";
 
-            Connection con = ConectarBD.conectar();
+    public boolean AsignarProyecto(int id_proyect, int id_trabajador) throws SQLException {
+        String sql = "UPDATE trabajadores set id_proyect=?  WHERE  id_trabajador=?";
 
-            PreparedStatement ps = con.prepareStatement(sql);
-            
-            ps.setInt(1, id_proyect);
-            ps.setInt(2, id_trabajador);
+        Connection con = ConectarBD.conectar();
 
-             int filasActualizadas = ps.executeUpdate();
-            return filasActualizadas > 0;
-            
-            
-           
-        
-        
+        PreparedStatement ps = con.prepareStatement(sql);
+
+        ps.setInt(1, id_proyect);
+        ps.setInt(2, id_trabajador);
+
+        int filasActualizadas = ps.executeUpdate();
+        return filasActualizadas > 0;
+
     }
 
     public void ActualizarTrabajador(trabajadores t) throws SQLException {
@@ -206,31 +199,30 @@ public class TrabajadoresDAO {
         ps.setInt(7, t.getId_supervisor());
         ps.setInt(8, t.getId_proyect());
         ps.setInt(9, t.getId_trabajador());
-        
+
         ps.executeLargeUpdate();
-        
+
     }
 
     public void EliminarTrabajador(int id) throws SQLException {
-       String sql="DELETE FROM trabajadores WHERE id_trabajador=?";
-       Connection con = ConectarBD.conectar();
-       
-       PreparedStatement ps = con.prepareStatement(sql);
-       ps.setInt(1, id);
-       ps.executeUpdate();
-       
+        String sql = "DELETE FROM trabajadores WHERE id_trabajador=?";
+        Connection con = ConectarBD.conectar();
+
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.executeUpdate();
+
     }
-    
-    
+
     public List<ReporteTrabajadorDTO> reporteDinamicoTrabajadores(int idProyecto, String estadoFiltro) {
         List<ReporteTrabajadorDTO> lista = new ArrayList<>();
-        
+
         // Iniciamos la consulta base (1=1 es un truco para poder concatenar los AND fácilmente)
         StringBuilder sql = new StringBuilder(
-            "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario_quincenal, t.estado " +
-            "FROM trabajadores t " +
-            "INNER JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
-            "WHERE 1=1 "
+                "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario_quincenal, t.estado "
+                + "FROM trabajadores t "
+                + "INNER JOIN proyectos p ON t.id_proyect = p.id_proyecto "
+                + "WHERE 1=1 "
         );
 
         // Agregamos filtros a la consulta solo si es necesario
@@ -240,15 +232,14 @@ public class TrabajadoresDAO {
         if (!estadoFiltro.equalsIgnoreCase("Todos")) {
             sql.append("AND t.estado = ? ");
         }
-        
+
         sql.append("ORDER BY t.estado ASC, p.name_proyect ASC, t.full_name ASC");
 
-        try (Connection con = ConectarBD.conectar();
-             PreparedStatement ps = con.prepareStatement(sql.toString())) {
-            
+        try (Connection con = ConectarBD.conectar(); PreparedStatement ps = con.prepareStatement(sql.toString())) {
+
             // Asignar los parámetros dinámicamente
             int paramIndex = 1;
-            
+
             if (idProyecto > 0) {
                 ps.setInt(paramIndex++, idProyecto);
             }
@@ -257,21 +248,21 @@ public class TrabajadoresDAO {
             }
 
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 ReporteTrabajadorDTO dto = new ReporteTrabajadorDTO();
                 dto.setIdTrabajador(rs.getInt("id_trabajador"));
                 dto.setNombreCompleto(rs.getString("full_name"));
                 dto.setNombreProyecto(rs.getString("name_proyect"));
-                dto.setSalarioBase(rs.getDouble("salario_quincenal")); 
+                dto.setSalarioBase(rs.getDouble("salario_quincenal"));
                 dto.setEstado(rs.getString("estado"));
-                
+
                 lista.add(dto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return lista;
     }
 }
