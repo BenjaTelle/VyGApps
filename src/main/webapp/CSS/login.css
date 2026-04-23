@@ -1,9 +1,8 @@
-    /*
+/*
     Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
     Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
     */
-    /* 
-        Created on : 2 feb 2026, 7:49:01 p.m.
+    /* Created on : 2 feb 2026, 7:49:01 p.m.
         Author     : Benja
     */
     * {
@@ -108,3 +107,35 @@
         text-decoration: underline;
     }
 
+    /* =========================================
+       ESTILOS: CONTENEDOR DE CONTRASEÑA Y OJO SVG
+       ========================================= */
+    
+    .password-container {
+        position: relative;
+        width: 100%;
+    }
+
+    .password-container input {
+        width: 100%;
+        padding-right: 45px; /* Evita que el texto choque con el icono */
+    }
+
+    #btnMostrarPass {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #7f8c8d;
+        transition: color 0.3s ease;
+        user-select: none;
+    }
+
+    #btnMostrarPass:hover {
+        color: #f57c00; /* Combina con el color de tu tema */
+    }
