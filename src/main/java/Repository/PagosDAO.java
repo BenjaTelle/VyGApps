@@ -77,4 +77,50 @@ public class PagosDAO {
             return fechaSQL; // Si algo falla, devuelve la fecha original para no romper nada
         }
     }
+    
+    public PagoDTO obtenerDetallePago(int idPago) throws SQLException {
+    PagoDTO pago = null;
+    
+    // Hacemos INNER JOIN para traer los datos del pago, del trabajador y del proyecto 
+    String sql = "SELECT pn.id_pago_nomina, pn.periodo_inicio, pn.periodo_fin, "
+               + "pn.monto_pagado, pn.estado, pn.dias_trabajados, "
+               + "t.full_name AS nombre_trabajador, p.name_proyect AS nombre_proyecto "
+               + "FROM pago_nomina pn "
+               + "INNER JOIN trabajadores t ON pn.id_trabajador = t.id_trabajador "
+               + "INNER JOIN proyectos p ON t.id_proyect = p.id_proyecto "
+               + "WHERE pn.id_pago_nomina = ?";
+
+    Connection con = null;
+    PreparedStatement ps = null;
+    ResultSet rs = null;
+
+    try {
+        con = ConectarBD.conectar();
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, idPago);
+        rs = ps.executeQuery();
+
+        if (rs.next()) {
+            pago = new PagoDTO();
+            pago.setIdPago(rs.getInt("id_pago_nomina"));
+            pago.setPeriodoInicio(rs.getString("periodo_inicio"));
+            pago.setPeriodoFin(rs.getString("periodo_fin"));
+            pago.setMonto(rs.getDouble("monto_pagado"));
+            pago.setEstado(rs.getString("estado"));
+            // Dependiendo de cómo tengas tu DTO, asignas estos también:
+            pago.setNombreTrabajador(rs.getString("nombre_trabajador"));
+            pago.setNombreProyecto(rs.getString("nombre_proyecto"));
+            pago.setDiasTrabajados(rs.getInt("dias_trabajados"));
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Buena práctica: cerrar conexiones
+        if (rs != null) rs.close();
+        if (ps != null) ps.close();
+        if (con != null) con.close();
+    }
+
+    return pago;
+}
 }

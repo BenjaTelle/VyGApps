@@ -15,8 +15,35 @@ public class PagoDTO {
     private String periodoFin;
     private double monto;
     private String estado;
+    private String nombreTrabajador;
+    private String nombreProyecto;
+    private int diasTrabajados;
 
     public PagoDTO() {
+    }
+
+    public String getNombreTrabajador() {
+        return nombreTrabajador;
+    }
+
+    public void setNombreTrabajador(String nombreTrabajador) {
+        this.nombreTrabajador = nombreTrabajador;
+    }
+
+    public String getNombreProyecto() {
+        return nombreProyecto;
+    }
+
+    public void setNombreProyecto(String nombreProyecto) {
+        this.nombreProyecto = nombreProyecto;
+    }
+
+    public int getDiasTrabajados() {
+        return diasTrabajados;
+    }
+
+    public void setDiasTrabajados(int diasTrabajados) {
+        this.diasTrabajados = diasTrabajados;
     }
 
     public int getIdPago() {

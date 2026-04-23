@@ -104,3 +104,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 .btn-recibo:hover {
     background: #bdc3c7;
 }
+/* =========================================
+   ESTILOS: BOTÓN DE RECIBO PDF
+   ========================================= */
+
+.btn-recibo-pdf {
+    display: inline-flex;
+    align-items: center;
+    background-color: #f8f9fa;
+    color: #2c3e50;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid #dcdde1;
+    font-weight: bold;
+    font-size: 13px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-recibo-pdf:hover {
+    background-color: #eaf2f8; /* Un tono azul súper claro */
+    border-color: #3498db;
+    color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.15);
+}
+
+/* Ajuste perfecto para el logo dentro del botón */
+.pdf-icon-logo {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    filter: drop-shadow(0px 1px 1px rgba(0,0,0,0.1));
+}

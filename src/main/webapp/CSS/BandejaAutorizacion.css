@@ -1,106 +1,148 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 2 abr 2026, 7:36:22 p.m.
-    Author     : Benja
-*/
+    /*
+    Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+    Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+    */
+    /* 
+        Created on : 2 abr 2026, 7:36:22 p.m.
+        Author     : Benja
+    */
 
-/* =========================================
-   ESTILOS: BANDEJA DE AUTORIZACIÓN
-   ========================================= */
+    /* =========================================
+       ESTILOS: BANDEJA DE AUTORIZACIÓN
+       ========================================= */
 
-.supervisor-header {
-    background: linear-gradient(135deg, #2980b9, #3498db);
-    color: white;
-    border-left: 5px solid #2ecc71; 
-}
+        /* =========================================
+       ESTILOS: BANDEJA DE AUTORIZACIÓN
+       ========================================= */
 
-.supervisor-header h2, .supervisor-header p { 
-    color: white !important; 
-}
+    /* Contenedor principal del encabezado */
+    .supervisor-header {
+        background: linear-gradient(135deg, #1e3c72, #2a5298); /* Azul corporativo más elegante */
+        color: white;
+        border-radius: 12px; /* Bordes redondeados en todo el cuadro */
+        padding: 12px 20px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra suave para dar profundidad */
+        margin-bottom: 25px;
+        border: none; /* Quitamos el borde verde izquierdo para un look más limpio */
+    }
 
-.table-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    margin-top: 20px;
-}
+    /* La clase que centra y organiza el texto y emojis */
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centra horizontalmente */
+        justify-content: center; /* Centra verticalmente */
+        text-align: center;
+    }
 
-.card-header {
-    background-color: #fdfefe;
-    border-bottom: 2px solid #eee;
-    padding: 20px;
-}
+    /* Estilos específicos para el título y los emojis */
+    .profile-info h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+        color: #ffffff !important;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Sombra en el texto para que resalte */
+    }
 
-.card-header h3 {
-    margin: 0;
-    color: #2c3e50;
-    font-size: 18px;
-}
+    /* Estilos para el texto descriptivo */
+    .profile-info p {
+        font-size: 15px;
+        color: #ecf0f1 !important; /* Gris muy claro, más suave a la vista que el blanco puro */
+        max-width: 600px; /* Evita que el texto se estire demasiado en pantallas grandes */
+        line-height: 1.5;
+        margin: 0;
+    }
+    
+    
+    .supervisor-header {
+        background: linear-gradient(135deg, #2980b9, #3498db);
+        color: white;
+        border-left: 5px solid #2ecc71; 
+    }
 
-.badge-periodo {
-    background-color: #ecf0f1;
-    color: #7f8c8d;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    font-weight: bold;
-}
+    .supervisor-header h2, .supervisor-header p { 
+        color: white !important; 
+    }
 
-.monto-destacado {
-    color: #27ae60;
-    font-weight: bold;
-    font-family: 'Courier New', Courier, monospace;
-}
+    .table-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
 
-.btn-autorizar {
-    display: inline-block;
-    background-color: #2ecc71;
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 6px;
-    font-size: 13px;
-    font-weight: bold;
-    transition: all 0.2s ease-in-out;
-    border: none;
-    cursor: pointer;
-}
+    .card-header {
+        background-color: #fdfefe;
+        border-bottom: 2px solid #eee;
+        padding: 20px;
+    }
 
-.btn-autorizar:hover {
-    background-color: #27ae60;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
-}
+    .card-header h3 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 18px;
+    }
 
-.alert-box {
-    padding: 15px 20px;
-    margin: 20px 0;
-    border-radius: 6px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-}
+    .badge-periodo {
+        background-color: #ecf0f1;
+        color: #7f8c8d;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+    }
 
-.alert-box span { margin-right: 10px; font-size: 20px; }
+    .monto-destacado {
+        color: #27ae60;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+    }
 
-.alert-success {
-    background-color: #eafaf1;
-    border-left: 4px solid #2ecc71;
-    color: #27ae60;
-}
+    .btn-autorizar {
+        display: inline-block;
+        background-color: #2ecc71;
+        color: white;
+        text-decoration: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: bold;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        cursor: pointer;
+    }
 
-.alert-danger {
-    background-color: #fdedec;
-    border-left: 4px solid #e74c3c;
-    color: #c0392b;
-}
+    .btn-autorizar:hover {
+        background-color: #27ae60;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+    }
 
-.empty-message {
-    text-align: center;
-    padding: 30px !important;
-    font-size: 15px;
-    color: #7f8c8d;
-}
+    .alert-box {
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 6px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    .alert-box span { margin-right: 10px; font-size: 20px; }
+
+    .alert-success {
+        background-color: #eafaf1;
+        border-left: 4px solid #2ecc71;
+        color: #27ae60;
+    }
+
+    .alert-danger {
+        background-color: #fdedec;
+        border-left: 4px solid #e74c3c;
+        color: #c0392b;
+    }
+
+    .empty-message {
+        text-align: center;
+        padding: 30px !important;
+        font-size: 15px;
+        color: #7f8c8d;
+    }
