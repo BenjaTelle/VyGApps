@@ -102,7 +102,7 @@
             </div>
 
             <div class="card-footer">
-                <a href="Home.jsp" class="btn-back">&#11013; Volver a mi Panel</a>
+                <a href="Home" class="btn-back">&#11013; Volver a mi Panel</a>
             </div>
 
         </div>
