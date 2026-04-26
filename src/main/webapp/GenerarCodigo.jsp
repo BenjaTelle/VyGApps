@@ -39,7 +39,7 @@
             <p class="panel-label">Panel Supervisor</p>
         </div>
         <nav>
-            <a href="SupervisorPanel" class="menu-item" style="color:rgb(152, 72, 7); text-decoration:none; padding:15px; display:block;">⬅ Volver al Panel</a>
+            <a href="SupervisorPage" class="menu-item" style="color:rgb(152, 72, 7); text-decoration:none; padding:15px; display:block;">⬅ Volver al Panel</a>
         </nav>
     </aside>
 
