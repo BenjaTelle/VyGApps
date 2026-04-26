@@ -103,7 +103,7 @@ public class RegistrarCamionesSv extends HttpServlet {
         CamionesDAO  cDAO = new CamionesDAO();
         cDAO.registrarCamion(c);
         
-        response.sendRedirect("SupervisorPage.jsp");
+        response.sendRedirect("SupervisorPage");
 
     }
 
