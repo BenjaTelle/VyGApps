@@ -41,13 +41,16 @@
     <title>Panel de Usuario | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/Empleados.css">
+    <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
     <div class="admin-container">
         
-        <aside class="sidebar">
+        <div class="overlay" id="sidebarOverlay"></div>
+        
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
                 <h2>VyGApps</h2>
@@ -71,9 +74,13 @@
         <main class="main-content">
             
             <header class="header">
-                <div class="header-title">
-                    <h1>Hola, <%= nombreTrabajador %></h1>
-                    <span>Bienvenido a tu panel de control</span>
+                <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
+                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                    
+                    <div class="header-title">
+                        <h1>Hola, <%= nombreTrabajador %></h1>
+                        <span>Bienvenido a tu panel de control</span>
+                    </div>
                 </div>
 
                 <div class="user-profile">
@@ -203,4 +210,4 @@
     </div>
 
 </body>
-</html> 
+</html>
