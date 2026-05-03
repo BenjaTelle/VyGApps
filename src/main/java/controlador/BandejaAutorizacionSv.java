@@ -51,17 +51,34 @@ public class BandejaAutorizacionSv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+      // 1. Seguridad en el Backend
         HttpSession session = request.getSession(false);
         Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
-        if (user == null) { response.sendRedirect("login.jsp"); return; }
+        
+        if (user == null || (!user.getRol().equalsIgnoreCase("Supervisor") && !user.getRol().equalsIgnoreCase("Administrador"))) { 
+            response.sendRedirect("login.jsp"); 
+            return; 
+        }
 
         try {
             AutorizacionDAO dao = new AutorizacionDAO();
-            List<PlanillaPendienteDTO> lista = dao.listarPendientes();
-            request.setAttribute("ListaPlanillas", lista);
+            
+            // 2. Traer lista de nóminas (Humanos)
+            List<PlanillaPendienteDTO> listaNominas = dao.listarPendientes();
+            request.setAttribute("ListaPlanillas", listaNominas);
+            
+            // 3. Traer lista de maquinarias y fletes (¡NUEVO!)
+            List<PlanillaPendienteDTO> listaMaquinarias = dao.listarMaquinariaPendiente();
+            request.setAttribute("ListaMaquinarias", listaMaquinarias);
+            
+            // 4. Enviar todo al JSP
             request.getRequestDispatcher("BandejaAutorizacion.jsp").forward(request, response);
+            
         } catch (Exception e) {
+            System.out.println("Error al cargar la bandeja de autorizaciones: " + e.getMessage());
             e.printStackTrace();
+            // Si hay error, podrías redirigir con un mensaje
+            response.sendRedirect("BandejaAutorizacion.jsp?msg=error");
         }
     }
 
