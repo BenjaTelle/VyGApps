@@ -145,74 +145,83 @@ lista.add(a);
         return lista;
     }
     
-    public ResumenAsistenciaDTO obtenerResumenTrabajador(int idTrabajador) throws SQLException {
-   
+  public ResumenAsistenciaDTO obtenerResumenTrabajador(int idTrabajador) throws SQLException {
+        
+        // La Súper Consulta Maestra Blindada
+        String sql = "SELECT " +
+                     "t.full_name, t.cedula, t.puesto, p.name_proyect, " +
+                     "COUNT(a.id_asistencia) AS total_dias, " +
+                     "SUM(CASE WHEN a.hora_entrada > '08:00:00' THEN 1 ELSE 0 END) AS total_tardias, " +
+                     "IFNULL(ROUND(AVG( " +
+                     "    CASE " +
+                     "        WHEN a.hora_salida IS NULL THEN 0 " + // Protege contra nulos
+                     "        WHEN a.hora_salida < a.hora_entrada THEN (TIMESTAMPDIFF(MINUTE, a.hora_entrada, a.hora_salida) + 1440) / 60.0 " + // Arregla los turnos de madrugada
+                     "        ELSE TIMESTAMPDIFF(MINUTE, a.hora_entrada, a.hora_salida) / 60.0 " + // Turnos normales
+                     "    END " +
+                     "), 1), 0) AS promedio_horas " +
+                     "FROM trabajadores t " +
+                     "LEFT JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
+                     "LEFT JOIN asistencia a ON t.id_trabajador = a.id_trabajador " +
+                     "WHERE t.id_trabajador = ? " +
+                     "GROUP BY t.id_trabajador, t.full_name, t.cedula, t.puesto, p.name_proyect";
 
-    // La Súper Consulta Maestra
-    String sql = "SELECT " +
-                 "t.full_name, t.cedula, t.puesto, p.name_proyect, " +
-                 "COUNT(a.id_asistencia) AS total_dias, " +
-                 "SUM(CASE WHEN a.hora_entrada > '08:00:00' THEN 1 ELSE 0 END) AS total_tardias, " +
-                 "IFNULL(ROUND(AVG(TIMESTAMPDIFF(MINUTE, a.hora_entrada, a.hora_salida) / 60.0), 1), 0) AS promedio_horas " +
-                 "FROM trabajadores t " +
-                 "LEFT JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
-                 "LEFT JOIN asistencia a ON t.id_trabajador = a.id_trabajador " +
-                 "   AND MONTH(a.fecha) = MONTH(CURRENT_DATE()) " +
-                 "   AND YEAR(a.fecha) = YEAR(CURRENT_DATE()) " +
-                 "WHERE t.id_trabajador = ? " +
-                 "GROUP BY t.id_trabajador, t.full_name, t.cedula, t.puesto, p.name_proyect";
+        ResumenAsistenciaDTO resumen = null;
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
 
-     ResumenAsistenciaDTO resumen = null;
-    Connection con = ConectarBD.conectar();
-    PreparedStatement ps = con.prepareStatement(sql);
-    ps.setInt(1, idTrabajador);
-    
-
-    try {
-        ResultSet rs = ps.executeQuery();
-       
-
-        if (rs.next()) {
-            resumen = new ResumenAsistenciaDTO();
+        try {
+            con = ConectarBD.conectar();
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idTrabajador);
             
-            // 1. Llenamos los datos personales
-            resumen.setNombreCompleto(rs.getString("full_name"));
-            resumen.setCedula(rs.getString("cedula"));
-            resumen.setPuesto(rs.getString("puesto"));
+            rs = ps.executeQuery();
             
-            // Si no tiene proyecto asignado, evitamos que salga null
-            String proyecto = rs.getString("name_proyect");
-            resumen.setNombreProyecto(proyecto != null ? proyecto : "Sin proyecto asignado");
-            
-            // 2. Llenamos las métricas (KPIs)
-            int dias = rs.getInt("total_dias");
-            int tardias = rs.getInt("total_tardias");
-            double promHoras = rs.getDouble("promedio_horas");
-            
-            resumen.setTotalDiasTrabajados(dias);
-            resumen.setTotalLlegadasTardias(tardias);
-            resumen.setHorasPromedioPorDia(promHoras + " hrs");
-            
-            // 3. Calculamos la puntualidad en Java (Aritmética simple)
-            double puntualidad = 100.0; // Si no ha trabajado, tiene 100% por defecto
-            if (dias > 0) {
-                // Formula: ((dias - tardias) / dias) * 100
-                puntualidad = ((double)(dias - tardias) / dias) * 100.0;
-                // Redondeamos a 1 decimal para que se vea bonito (ej. 95.5%)
-                puntualidad = Math.round(puntualidad * 10.0) / 10.0; 
+            if (rs.next()) {
+                resumen = new ResumenAsistenciaDTO();
+                
+                // 1. Llenamos los datos personales
+                resumen.setNombreCompleto(rs.getString("full_name"));
+                resumen.setCedula(rs.getString("cedula"));
+                resumen.setPuesto(rs.getString("puesto"));
+                
+                // Si no tiene proyecto asignado, evitamos que salga null
+                String proyecto = rs.getString("name_proyect");
+                resumen.setNombreProyecto(proyecto != null ? proyecto : "Sin proyecto asignado");
+                
+                // 2. Llenamos las métricas (KPIs)
+                int dias = rs.getInt("total_dias");
+                int tardias = rs.getInt("total_tardias");
+                double promHoras = rs.getDouble("promedio_horas");
+                
+                resumen.setTotalDiasTrabajados(dias);
+                resumen.setTotalLlegadasTardias(tardias);
+                resumen.setHorasPromedioPorDia(promHoras + " hrs");
+                
+                // 3. Calculamos la puntualidad en Java
+                double puntualidad = 0.0; // Cambiado a 0% por defecto si no hay asistencias
+                
+                if (dias > 0) {
+                    // Formula: ((dias - tardias) / dias) * 100
+                    puntualidad = ((double)(dias - tardias) / dias) * 100.0;
+                    // Redondeamos a 1 decimal para la vista
+                    puntualidad = Math.round(puntualidad * 10.0) / 10.0; 
+                }
+                resumen.setPorcentajePuntualidad(puntualidad);
             }
-            resumen.setPorcentajePuntualidad(puntualidad);
+        } catch (Exception e) {
+            System.out.println("Error al obtener el resumen de asistencia: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            // Buenas prácticas: cerrar recursos para evitar fugas de memoria en el servidor
+            if (rs != null) try { rs.close(); } catch (SQLException e) {}
+            if (ps != null) try { ps.close(); } catch (SQLException e) {}
+            if (con != null) try { con.close(); } catch (SQLException e) {}
         }
-    } catch (Exception e) {
-        System.out.println("Error al obtener el resumen de asistencia: " + e.getMessage());
-        e.printStackTrace();
-    } finally {
-        // Cierra tus conexiones aquí según tu estándar
+
+        return resumen;
     }
-
-    return resumen;
-}
-
+  
       // Método para validar que el código sea correcto, vigente Y del proyecto del trabajador
     public boolean validarCodigoObra(String codigo, int idTrabajador) throws SQLException {
         // 1. Definir la consulta SQL con INNER JOIN

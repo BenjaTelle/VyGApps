@@ -48,24 +48,35 @@ public class AutorizarPagoSv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        HttpSession session = request.getSession(false);
+      HttpSession session = request.getSession(false);
         Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
         if (user == null) { response.sendRedirect("login.jsp"); return; }
 
         try {
+            // 1. Capturamos todos los parámetros de la URL
             int idPago = Integer.parseInt(request.getParameter("id_pago"));
             int idProyecto = Integer.parseInt(request.getParameter("id_proyecto"));
             double monto = Double.parseDouble(request.getParameter("monto"));
+            String tipo = request.getParameter("tipo"); // ¡El parámetro clave!
             int idUsuario = user.getId_user();
 
             AutorizacionDAO dao = new AutorizacionDAO();
-            String resultado = dao.autorizarPago(idPago, idProyecto, monto, idUsuario);
+            String resultado = "";
 
-            // Redirige de vuelta a la bandeja con el mensaje
+            // 2. El Enrutador de Pagos (La magia ocurre aquí)
+            if (tipo != null && tipo.equals("maquinaria")) {
+                // Si viene de la tabla naranja, descontamos el pago de la maquinaria
+                resultado = dao.autorizarPagoMaquinaria(idPago, idProyecto, monto, idUsuario);
+            } else {
+                // Si es "nomina" o cualquier otra cosa, descontamos el pago de los humanos
+                resultado = dao.autorizarPago(idPago, idProyecto, monto, idUsuario);
+            }
+
+            // 3. Redirigimos de vuelta a la bandeja con el mensaje de éxito o error
             response.sendRedirect("BandejaAutorizacionSv?msg=" + resultado);
             
         } catch (Exception e) {
+            System.out.println("Error al procesar la autorización: " + e.getMessage());
             e.printStackTrace();
             response.sendRedirect("BandejaAutorizacionSv?msg=error");
         }
