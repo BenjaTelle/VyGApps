@@ -3,111 +3,128 @@
     Created on : 2 feb 2026, 9:08:44 p.m.
     Author     : Benja
 --%>
-
-<%@page import="model.proyectos"%>
-<%@page import="controlador.AdminPageSv"%>
-<%@page import="Repository.UsuarioDAO"%>
-<%@page import="java.util.List"%>
 <%@page import="model.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    //  Recuperar la sesión (false significa: no crees una nueva si no existe)
+    // 1. Recuperar la sesión actual (sin crear una nueva si no existe)
     HttpSession sessionActual = request.getSession(false);
 
-    //  Recuperar el usuario
+    // 2. Obtener el usuario logueado
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACIÓN DE SEGURIDAD
+    // 3. VALIDACIÓN DE SEGURIDAD
     if (usuarioLogeado == null) {
-        //  No se ha logueado, vuelve al login 
+        // No está logueado, redirigir al login
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecución del resto de la página
-    } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  Sí está logueado, pero es empleado intentando entrar a zona admin
+        return; 
+    } else if (!usuarioLogeado.getRol().equalsIgnoreCase("Administrador")) {
+        // Está logueado pero no tiene permisos de administrador
         response.sendRedirect("AccDen.jsp");
-        return;
+        return; 
     }
 %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel Administrador</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo | VyGApps</title>
     <link rel="stylesheet" href="CSS/AdminPage.css">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
-<!-- TOP BAR -->
 <header class="topbar">
-
-    <!-- BRAND -->
     <div class="brand">
         <img src="images/vyg.svg" alt="VyG Logo">
-        <span>Panel Administrativo</span>
+        <div class="brand-text">
+            <h1>VyG Apps</h1>
+            <span>Panel Administrativo</span>
+        </div>
     </div>
 
-    <!-- USER PROFILE -->
     <div class="user-profile">
-        <img src="images/usuario.png" alt="Perfil" class="user-avatar">
-        <span class="user-info-text"><%= usuarioLogeado.getUser_name() %></span>
-        <a href="LogoutSv" class="btn-logout">Salir</a>
+        <div class="user-info">
+            <img src="images/usuario.png" alt="Perfil" class="user-avatar">
+            <span class="user-info-text"><%= usuarioLogeado.getUser_name() %></span>
+        </div>
+        <a href="LogoutSv" class="btn-logout">
+            <span class="logout-icon">🚪</span> Salir
+        </a>
     </div>
-
 </header>
 
-<!-- MAIN CONTENT -->
 <main class="dashboard-container">
+
+    <section class="welcome-banner">
+        <h2>¡Bienvenido al Panel de Control, <%= usuarioLogeado.getUser_name() %>!</h2>
+        <p>Gestiona los accesos, proyectos, personal y reportes desde un solo lugar.</p>
+    </section>
 
     <section class="dashboard-grid">
 
-        <!-- USUARIOS -->
         <div class="dashboard-card">
-            <h3>Gestión de Usuarios</h3>
-            <p>Administración de accesos y perfiles</p>
-            <div class="actions">
-                <a href="CrearUsuario">Crear</a> <!-- cambiar por el serverlet cuando tengamos los metodos -->
-                <a href="ActualizarUsuario">Actualizar</a>
-                 <a href="VerUsuarios">Ver Usuarios</a>
-                <a href="EliminarUsu" class="danger">Eliminar</a>
-                
+            <div class="card-header">
+                <span class="card-icon">👥</span>
+                <div class="card-title">
+                    <h3>Gestión de Usuarios</h3>
+                    <p>Accesos y perfiles del sistema</p>
+                </div>
+            </div>
+            <div class="actions-grid">
+                <a href="CrearUsuario" class="btn-action">Crear</a>
+                <a href="ActualizarUsuario" class="btn-action">Actualizar</a>
+                <a href="VerUsuarios" class="btn-action">Ver Usuarios</a>
+                <a href="EliminarUsu" class="btn-action danger">Eliminar</a>
             </div>
         </div>
 
-        <!-- TRABAJADORES -->
         <div class="dashboard-card">
-            <h3>Gestión de Trabajadores</h3>
-            <p>Control de personal y asignaciones</p>
-            <div class="actions">
-                <a href="RegistrarUsu">Registrar</a>
-                <a href="ActualizarTrabajadores">Actualizar Trabajador</a>
-                <a href="EliminarTrabajadores">Eliminar Trabajador</a>
-                <a href="HistorialT.jsp">Historial</a> <!-- cambiar de jsp a serverlet cuando tengamos las funcionalidad-->
+            <div class="card-header">
+                <span class="card-icon">👷</span>
+                <div class="card-title">
+                    <h3>Gestión de Personal</h3>
+                    <p>Control de personal y asignaciones</p>
+                </div>
+            </div>
+            <div class="actions-grid">
+                <a href="RegistrarUsu" class="btn-action">Registrar</a>
+                <a href="ActualizarTrabajadores" class="btn-action">Actualizar</a>
+                <a href="EliminarTrabajadores" class="btn-action">Eliminar</a>
+                <a href="HistorialT.jsp" class="btn-action">Historial</a>
             </div>
         </div>
 
-        <!-- PROYECTOS -->
         <div class="dashboard-card">
-            <h3>Gestión de Proyectos</h3>
-            <p>Creación y seguimiento de proyectos</p>
-            <div class="actions">
-                <a href="CrearProyecto">Crear</a>
-                <a href="ListarProyectos">Listar</a>
-                <a href="AsignSup"> Asignar Supervisor</a>
-                    <a href="AsignProyecto">Asignar Proyecto</a>
+            <div class="card-header">
+                <span class="card-icon">🏗️</span>
+                <div class="card-title">
+                    <h3>Gestión de Proyectos</h3>
+                    <p>Creación y seguimiento de obras</p>
+                </div>
+            </div>
+            <div class="actions-grid">
+                <a href="CrearProyecto" class="btn-action">Crear</a>
+                <a href="ListarProyectos" class="btn-action">Listar</a>
+                <a href="AsignSup" class="btn-action">Asignar Sup.</a>
+                <a href="AsignProyecto" class="btn-action">Asignar Proy.</a>
             </div>
         </div>
 
-        <!-- REPORTES -->
         <div class="dashboard-card">
-            <h3>Reportes</h3>
-            <p>Consultas y reportes generales</p>
-            <div class="actions">
-                <a href="ReporteProyecto">Proyectos</a>
-                <a href="ReporteTrabajadoresSv">Trabajadores</a>
-                <a href="ReporteAsistenciaSv">Asistencias</a>
-                <a href="AdminFinanzas">Pagos</a>
+            <div class="card-header">
+                <span class="card-icon">📈</span>
+                <div class="card-title">
+                    <h3>Reportes y Finanzas</h3>
+                    <p>Consultas y reportes generales</p>
+                </div>
+            </div>
+            <div class="actions-grid">
+                <a href="ReporteProyecto" class="btn-action">Proyectos</a>
+                <a href="ReporteTrabajadoresSv" class="btn-action">Trabajadores</a>
+                <a href="ReporteAsistenciaSv" class="btn-action">Asistencias</a>
+                <a href="AdminFinanzas" class="btn-action highlight">Pagos</a>
             </div>
         </div>
 
@@ -115,5 +132,6 @@
 
 </main>
 
+<script src="JS/AdminPage.js"></script>
 </body>
 </html>
