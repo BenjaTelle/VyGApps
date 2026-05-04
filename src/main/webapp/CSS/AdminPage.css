@@ -1,174 +1,283 @@
+/* VARIABLES GLOBALES */
+:root {
+    --bg-main: #f8fafc;
+    --card-bg: #ffffff;
+    --primary-color: #f57c00;
+    --primary-hover: #e65100;
+    --primary-light: #fff3e0;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    
+    --danger-color: #ef4444;
+    --danger-light: #fef2f2;
+}
+
+/* RESET */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
 body {
-    background: #f4f6f8;
-    color: #2e2e2e;
+    background: var(--bg-main);
+    color: var(--text-dark);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ===== TOP BAR ===== */
 .topbar {
-    background: #ffffff;
+    background: var(--card-bg);
     height: 70px;
-    padding: 0 30px;
+    padding: 0 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 }
 
 .brand {
     display: flex;
     align-items: center;
-    gap: 12px;
-    font-weight: 600;
-    color: #444;
+    gap: 14px;
 }
 
 .brand img {
-    width: 45px;
+    width: 42px;
+    height: auto;
 }
 
-/* ===== USER PROFILE ===== */
+.brand-text h1 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    line-height: 1.1;
+}
+
+.brand-text span {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* USER PROFILE */
 .user-profile {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 6px 14px;
-    border-radius: 30px;
-    background: #fafafa;
+    gap: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 12px;
+    border-radius: 25px;
+    background: #f1f5f9;
 }
 
 .user-avatar {
-    width: 34px;
-    height: 34px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     object-fit: cover;
 }
 
 .user-info-text {
-    font-size: 14px;
-    color: #444;
-    font-weight: 500;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
 .btn-logout {
     text-decoration: none;
-    font-size: 14px;
-    padding: 6px 12px;
+    font-size: 0.88rem;
+    color: var(--primary-color);
+    padding: 8px 16px;
     border-radius: 20px;
+    font-weight: 600;
     background: transparent;
-    color: #f57c00;
-    transition: background 0.2s, color 0.2s, font-weight 0.2s;
+    border: 1px solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
 }
 
 .btn-logout:hover {
-    background-color: #fff3e0;
-    color: #f57c00;
-    font-weight: 600;
+    background-color: var(--primary-light);
+    border-color: #ffe0b2;
 }
 
-/* ===== MAIN ===== */
+/* ===== MAIN CONTENT ===== */
 .dashboard-container {
-    padding: 40px 30px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 35px 40px;
+    flex-grow: 1;
 }
 
-/* ===== GRID ===== */
+/* BANNER DE BIENVENIDA */
+.welcome-banner {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 30px;
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+.welcome-banner h2 {
+    font-size: 1.3rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.welcome-banner p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+}
+
+/* ===== GRID DE TARJETAS ===== */
 .dashboard-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 25px;
 }
 
-/* ===== CARD ===== */
+/* ===== CARDS ===== */
 .dashboard-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 25px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.03);
     display: flex;
     flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
+    justify-content: space-between;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .dashboard-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.10);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
 }
 
-.dashboard-card h3 {
-    font-size: 16px;
-    color: #f57c00;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-}
-
-.dashboard-card p {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 18px;
-}
-
-/* ===== ACTIONS ===== */
-.actions {
+.card-header {
     display: flex;
-    flex-direction: column;
-    gap: 10px;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
 }
 
-.actions a {
+.card-icon {
+    font-size: 26px;
+    background: var(--primary-light);
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.card-title h3 {
+    font-size: 1.05rem;
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.card-title p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ===== ACCIONES EN GRID INTERNO ===== */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.btn-action {
     text-decoration: none;
-    padding: 10px;
-    border-radius: 6px;
-    background: #f2f2f2;
-    color: #333;
-    font-size: 14px;
+    padding: 12px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: var(--text-dark);
+    font-size: 0.88rem;
+    font-weight: 600;
     text-align: center;
-    transition: background 0.2s, transform 0.2s, color 0.2s, font-weight 0.2s;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
 }
 
-/* 🔥 HOVER UNIFICADO */
-.actions a:hover {
-    background-color: #fff3e0;
-    color: #f57c00;
-    font-weight: 600;
-    transform: translateY(-2px);
+/* HOVER UNIFICADO */
+.btn-action:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    border-color: #ffe0b2;
+    transform: translateY(-1px);
 }
 
-/* ===== DANGER ===== */
-.actions a.danger {
-    background: #f3d6d6;
-    color: #9b2c2c;
+/* VARIACIONES DE BOTÓN */
+.btn-action.danger {
+    background: var(--danger-light);
+    color: var(--danger-color);
 }
 
-/* mantiene el mismo hover elegante */
-.actions a.danger:hover {
-    background-color: #fff3e0;
-    color: #f57c00;
-    font-weight: 600;
+.btn-action.danger:hover {
+    background-color: #fee2e2;
+    border-color: #fecaca;
+    color: #dc2626;
+}
+
+.btn-action.highlight {
+    background-color: #fef08a;
+    color: #854d0e;
+}
+
+.btn-action.highlight:hover {
+    background-color: #fde047;
+    border-color: #facc15;
 }
 
 /* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .topbar {
+        padding: 0 20px;
+    }
+    
+    .dashboard-container {
+        padding: 20px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
     .topbar {
         flex-direction: column;
         height: auto;
         padding: 15px;
-        gap: 10px;
+        gap: 12px;
+    }
+    
+    .user-profile {
+        width: 100%;
+        justify-content: space-between;
     }
 
-    .dashboard-container {
-        padding: 25px 15px;
-    }
-
-    .user-info-text {
-        font-size: 13px;
+    .welcome-banner {
+        padding: 18px;
     }
 }
