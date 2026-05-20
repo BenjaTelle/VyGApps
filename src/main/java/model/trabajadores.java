@@ -19,6 +19,7 @@ public class trabajadores {
         this.origen = origen;
         this.id_supervisor = id_supervisor;
         this.id_proyect = id_proyect;
+        
     }
     private int id_trabajador;
     private String cedula;
@@ -29,7 +30,11 @@ public class trabajadores {
     private String origen;
     private int id_supervisor;
     private int id_proyect;
-
+    private String telefono;
+    private String numero_emergencia;
+    private String direccion;
+    
+    
     public trabajadores() {
     }
 
@@ -43,6 +48,30 @@ public class trabajadores {
         this.origen = origen;
         this.id_supervisor = id_supervisor;
         this.id_proyect = id_proyect;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNumero_emergencia() {
+        return numero_emergencia;
+    }
+
+    public void setNumero_emergencia(String numero_emergencia) {
+        this.numero_emergencia = numero_emergencia;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
 
