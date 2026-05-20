@@ -1,0 +1,217 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : 19 may 2026, 9:26:15 p.m.
+    Author     : Benja
+*/
+:root {
+    --text-dark: #1e293b;
+    --text-gray: #475569;
+    --border-color: #cbd5e1;
+}
+
+body {
+    background-color: #cbd5e1;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.action-bar {
+    width: 100%;
+    background-color: #1e293b;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
+
+.action-left span {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.action-right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-close { background-color: #64748b; color: white; }
+.btn-close:hover { background-color: #475569; }
+.btn-print { background-color: #0284c7; color: white; }
+.btn-print:hover { background-color: #0369a1; }
+.btn-pdf { background-color: #16a34a; color: white; }
+.btn-pdf:hover { background-color: #15803d; }
+
+.document-container {
+    background-color: white;
+    width: 280mm; /* Formato Landscape aproximado */
+    min-height: 210mm;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 15mm;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-sizing: border-box;
+}
+
+.doc-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px solid var(--text-dark);
+    padding-bottom: 15px;
+    margin-bottom: 25px;
+}
+
+.doc-brand {
+    display: flex;
+    align-items: center;
+}
+
+.doc-logo {
+    width: 70px;
+    margin-right: 15px;
+}
+
+.doc-company h1 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    color: var(--text-dark);
+    text-transform: uppercase;
+}
+
+.doc-company p {
+    margin: 2px 0;
+    font-size: 12px;
+    color: var(--text-gray);
+}
+
+.doc-meta {
+    text-align: right;
+    font-size: 11px;
+    color: var(--text-gray);
+}
+
+.doc-meta p {
+    margin: 4px 0;
+}
+
+.doc-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.doc-table th {
+    background-color: #f1f5f9;
+    color: var(--text-dark);
+    font-size: 11px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 12px 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.doc-table td {
+    padding: 10px;
+    font-size: 12px;
+    border-bottom: 1px solid #e2e8f0;
+    color: var(--text-dark);
+    vertical-align: middle;
+}
+
+.data-row {
+    /* Regla crítica para que la fila no se corte entre páginas */
+    page-break-inside: avoid;
+}
+
+.text-right { text-align: right !important; }
+.td-code { font-family: monospace; font-weight: bold; color: #64748b; }
+.td-money { font-family: 'Courier New', Courier, monospace; font-weight: bold; }
+
+.total-row td {
+    border-bottom: none;
+    padding-top: 20px;
+}
+
+.total-label {
+    font-weight: bold;
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.total-amount {
+    font-weight: bold;
+    color: var(--text-dark);
+    font-size: 18px;
+    border-top: 2px solid var(--text-dark);
+}
+
+.doc-footer {
+    margin-top: 50px;
+    /* Evita que las firmas queden huérfanas en otra página */
+    page-break-inside: avoid; 
+}
+
+.signatures {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.sign-box {
+    width: 220px;
+    text-align: center;
+}
+
+.sign-line {
+    border-top: 1px solid var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.sign-box p {
+    margin: 0 0 4px 0;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-gray);
+}
+
+.sign-box span {
+    font-size: 12px;
+    color: var(--text-dark);
+}
+
+.legal-text {
+    text-align: center;
+    font-size: 10px;
+    color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+}
+
+/* Reglas de Impresión Nativa */
+@media print {
+    @page { size: landscape; margin: 10mm; }
+    body { background-color: white; padding: 0; }
+    .action-bar { display: none; }
+    .document-container { margin: 0; padding: 0; box-shadow: none; width: 100%; }
+}
