@@ -1,245 +1,159 @@
 <%-- 
     Document   : BuscarDetalleAsisTrabajador
-    Created on : 31 mar 2026, 7:11:44 p.m.
+    Created on : 31 mar 2026
     Author     : Benja
 --%>
-
-
-
-
 <%@page import="model.trabajadores"%>
-<%@page import="Repository.TrabajadoresDAO"%>
 <%@page import="java.util.List"%>
-
-
-
 <%@page import="model.Usuarios"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-
-
 <%
-
-    // --- LÓGICA DE SEGURIDAD ---
     HttpSession sessionActual = request.getSession(false);
-
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    // Solo Supervisores y Administradores pueden ver este directorio
     if (user == null || (!user.getRol().equalsIgnoreCase("Supervisor") && !user.getRol().equalsIgnoreCase("Administrador"))) {
-
         response.sendRedirect("login.jsp");
-
         return;
-
     }
-
 %>
 
-
-
 <!DOCTYPE html>
-
 <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directorio de Trabajadores | VyGApps</title>
 
-    <head>
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
+    <link rel="stylesheet" href="CSS/BuscarDetalleAsisTrabajador.css"> 
+    <script src="JS/menu-movil.js" defer></script>
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+</head>
+<body>
 
-        <meta charset="UTF-8">
+<div class="admin-container">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <div class="overlay" id="sidebarOverlay"></div>
 
-        <title>Directorio de Trabajadores | VyGApps</title>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge"><%= user.getRol() %></span>
+            </div>
+        </div>
 
+        <nav class="sidebar-nav">
+            <a href="SupervisorPage" class="nav-item">
+                <span class="icon">&#128202;</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="AsistenciaGlobal" class="nav-item active">
+                <span class="icon">&#128197;</span>
+                <span>Asistencias</span>
+            </a>
+            <a href="LogoutSv" class="nav-item logout-link">
+                <span class="icon">&#128682;</span>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </aside>
 
+    <main class="main-content">
 
-        <!-- CSS Base de las tablas -->
-
-        <link rel="stylesheet" href="CSS/BuscarDetalleAsisTrabajador.css">
-
-        <!-- CSS Específico de esta vista (Buscador y Botones) -->
-
-        <link rel="stylesheet" href="CSS/Directorio.css"> 
-
-        <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
-
-    </head>
-
-    <body>
-
-
-
-        <div class="page-wrapper">
-
-            <div class="card attendance-card">
-
-
-
-                <div class="card-header">
-
-                    <h2>👥 Directorio del Personal</h2>
-
-                    <p>Selecciona un trabajador para ver su historial detallado de asistencia y rendimiento.</p>
-
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">&#9776;</button>
+                <div class="welcome">
+                    <h1>Directorio del Personal</h1>
+                    <span>Busca y selecciona un trabajador para ver su historial.</span>
                 </div>
+            </div>
 
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= user.getUser_name() %></span>
+                    <span class="profile-role"><%= user.getRol() %></span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
 
+        <section class="dashboard">
 
-                <!-- BARRA DE BÚSQUEDA INTEGRADA -->
-
+            <div class="directory-card">
+                
                 <div class="search-container">
-
-                    <input type="text" id="buscador" placeholder="🔍 Buscar por nombre o puesto...">
-
+                    <span class="search-icon">&#128269;</span>
+                    <input type="text" id="buscador" placeholder="Buscar por nombre o puesto...">
                 </div>
-
-
 
                 <div class="table-responsive">
-
-                    <!-- ID de tabla para que el JS la identifique -->
-
                     <table class="vyg-table" id="tablaTrabajadores">
-
                         <thead>
-
                             <tr>
-
                                 <th>Nombre Completo</th>
-
                                 <th>Puesto Asignado</th>
-
                                 <th style="text-align: center;">Acción</th>
-
                             </tr>
-
                         </thead>
-
                         <tbody>
-
-                            <%                            // Recibimos la lista de trabajadores enviada por el Servlet
+                            <%                            
                                 List<trabajadores> listaTrabajadores = (List<trabajadores>) request.getAttribute("ListaTrabajadores");
-
                                 if (listaTrabajadores != null && !listaTrabajadores.isEmpty()) {
-
                                     for (trabajadores t : listaTrabajadores) {
-
                             %>
-
                             <tr>
-
-                                <!-- Nombre -->
-
-                                <td><strong><%= t.getFull_name()%></strong></td>
-
-
-
-                                <!-- Puesto -->
-
-                                <td style="color: #555;"><%= t.getPuesto()%></td>
-
-
-
-                                <!-- Botón de Acción -->
-
-                                <td style="text-align: center;">
-
+                                <td data-label="Nombre"><strong><%= t.getFull_name()%></strong></td>
+                                <td data-label="Puesto" class="puesto-text"><%= t.getPuesto()%></td>
+                                <td data-label="Acción" style="text-align: center;">
                                     <a href="DetalleAsistenciaTrabajador?id_trabajador=<%= t.getId_trabajador()%>" class="btn-view" title="Ver Detalle de Asistencia">
-
-                                        👁️ Ver Detalle
-
+                                        &#128065; Ver Detalle
                                     </a>
-
                                 </td>
-
                             </tr>
-
                             <%
-
-                                }
-
-                            } else {
-
+                                    }
+                                } else {
                             %>
-
                             <tr>
-
-                                <td colspan="3" class="empty-message">No hay trabajadores registrados en el sistema.</td>
-
+                                <td colspan="3" class="empty-cell">No hay trabajadores registrados en el sistema.</td>
                             </tr>
-
-                            <%                            }
-
+                            <%                            
+                                }
                             %>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
-
 
                 <div class="card-footer">
-
-                    <a href="SupervisorPage" class="btn-back">⬅️ Volver al Panel de Supervisor</a>
-
+                    <a href="SupervisorPage" class="btn-back">&#11013; Volver al Panel</a>
                 </div>
-
-
 
             </div>
 
-        </div>
+        </section>
 
+    </main>
+</div>
 
+<script>
+    document.getElementById("buscador").addEventListener("keyup", function () {
+        let texto = this.value.toLowerCase();
+        let filas = document.querySelectorAll("#tablaTrabajadores tbody tr");
 
-        <!-- SCRIPT DE BÚSQUEDA EN TIEMPO REAL (Lógica moderna) -->
+        filas.forEach(function (fila) {
+            let contenido = fila.textContent.toLowerCase();
+            if (contenido.includes(texto)) {
+                fila.style.display = "";
+            } else {
+                fila.style.display = "none";
+            }
+        });
+    });
+</script>
 
-        <script>
-
-            document.getElementById("buscador").addEventListener("keyup", function () {
-
-                let texto = this.value.toLowerCase();
-
-
-
-                // Seleccionamos todas las filas SOLO dentro del <tbody> para no ocultar los encabezados (<th>)
-
-                let filas = document.querySelectorAll("#tablaTrabajadores tbody tr");
-
-
-
-                filas.forEach(function (fila) {
-
-                    // textContent atrapa todo el texto de esa fila (Nombre + Puesto)
-
-                    let contenido = fila.textContent.toLowerCase();
-
-
-
-                    if (contenido.includes(texto)) {
-
-                        // Mantiene el formato original de la fila en la tabla
-
-                        fila.style.display = "";
-
-                    } else {
-
-                        // Oculta la fila si no coincide
-
-                        fila.style.display = "none";
-
-                    }
-
-                });
-
-            });
-
-        </script>
-
-
-
-    </body>
-
+</body>
 </html>
