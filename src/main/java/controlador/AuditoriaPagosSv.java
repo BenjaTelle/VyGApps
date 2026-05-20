@@ -51,8 +51,9 @@ public class AuditoriaPagosSv extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
    
-        HttpSession session = request.getSession(false);
+      HttpSession session = request.getSession(false);
         Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
+        
         if (user == null || !user.getRol().equalsIgnoreCase("Administrador")) {
             response.sendRedirect("login.jsp");
             return;
@@ -60,7 +61,6 @@ public class AuditoriaPagosSv extends HttpServlet {
 
         String criterio = request.getParameter("criterio");
         
-        // Si no buscaron nada, mostramos la página vacía. Si buscaron, llamamos al DAO.
         if (criterio != null && !criterio.trim().isEmpty()) {
             try {
                 AuditoriaDAO dao = new AuditoriaDAO();
