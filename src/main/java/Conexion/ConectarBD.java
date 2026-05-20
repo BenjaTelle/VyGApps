@@ -16,8 +16,9 @@ public class ConectarBD {
 
 
     private static final String URL = "jdbc:mysql://localhost:3306/vygapps?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String USER = "benja_admin";
+    private static final String PASSWORD = "vygapps26$";
+
 
     public static Connection conectar() {
        Connection con = null;
