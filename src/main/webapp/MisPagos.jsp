@@ -1,9 +1,8 @@
 <%-- 
     Document   : MisPagos
-    Created on : 11 abr 2026, 6:49:35 p.m.
+    Created on : 11 abr 2026
     Author     : Benja
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="DTO.PagoDTO"%>
 <%@page import="java.util.List"%>
@@ -11,7 +10,6 @@
 
 <%
     // --- LÓGICA DE SEGURIDAD ---
-    // Verificamos que exista una sesión activa y que el usuario tenga el rol de Trabajador
     HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
     
@@ -21,17 +19,15 @@
     }
 
     // --- RECUPERACIÓN DE DATOS ---
-    // Obtenemos la lista enviada por el Servlet MisPagosSv
     List<PagoDTO> listaHistorialPagos = (List<PagoDTO>) request.getAttribute("ListaHistorialPagos");
     
-    // Variables para el resumen financiero (KPIs)
     double totalGanado = 0;
     double totalPendiente = 0;
     int nominasPagadas = 0;
 
     if (listaHistorialPagos != null) {
         for (PagoDTO p : listaHistorialPagos) {
-            if ( p.getEstado().equalsIgnoreCase("Autorizado")) {
+            if ( p.getEstado().equalsIgnoreCase("Autorizado") || p.getEstado().equalsIgnoreCase("Pagado")) {
                 totalGanado += p.getMonto();
                 nominasPagadas++;
             } else {
@@ -50,12 +46,16 @@
     
     <link rel="stylesheet" href="CSS/Empleados.css">
     <link rel="stylesheet" href="CSS/MisPagos.css"> 
+    <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
     <div class="admin-container">
-        <aside class="sidebar">
+        
+        <div class="overlay" id="sidebarOverlay"></div>
+
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
                 <h2>VyGApps</h2>
@@ -78,9 +78,12 @@
 
         <main class="main-content">
             <header class="header">
-                <div class="header-title">
-                    <h1>Historial de Nóminas</h1>
-                    <span>Detalle completo de tus ingresos y retribuciones quincenales.</span>
+                <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
+                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                    <div class="header-title">
+                        <h1>Historial de Nóminas</h1>
+                        <span>Detalle completo de tus ingresos y retribuciones.</span>
+                    </div>
                 </div>
             </header>
 
@@ -88,7 +91,7 @@
                 <div class="kpi-finance-card success">
                     <div class="finance-icon">💵</div>
                     <div class="finance-data">
-                        <p>Total Ingresado (Histórico)</p>
+                        <p>Total Ingresado</p>
                         <h3>C$ <%= String.format("%,.2f", totalGanado) %></h3>
                     </div>
                 </div>
@@ -110,8 +113,8 @@
                 </div>
             </div>
 
-            <div class="card" style="padding: 0; overflow: hidden; border-radius: 12px;">
-                <table class="table-finance">
+            <div class="card" style="padding: 0; border-radius: 12px; overflow-x: auto;">
+                <table class="table-finance" style="min-width: 600px;">
                     <thead>
                         <tr>
                             <th>ID Nómina</th>
@@ -138,7 +141,6 @@
                                 <% } %>
                             </td>
                             <td style="text-align: center;">
-                                <%-- Enlace dinámico al Servlet generador de PDF --%>
                                 <a href="GenerarReciboPDF?id_pago=<%= pago.getIdPago() %>" target="_blank" class="btn-recibo-pdf">
                                     <img src="images/vyg.svg" alt="Icono" class="pdf-icon-logo">
                                     <span>Ver Recibo</span>
@@ -152,7 +154,7 @@
                         <tr>
                             <td colspan="5" style="text-align: center; padding: 40px; color: #7f8c8d;">
                                 <div style="font-size: 40px; margin-bottom: 10px;">📂</div>
-                                No tienes historial de pagos registrado en el sistema actualmente.
+                                No tienes historial de pagos registrado actualmente.
                             </td>
                         </tr>
                         <% } %>

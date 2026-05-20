@@ -1,72 +1,95 @@
-    <%-- 
+<%-- 
     Document   : RegisTrabajador
     Created on : 8 feb 2026, 5:23:37 p.m.
     Author     : Benja
 --%>
-
 <%@page import="model.trabajadores"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Usuarios"%>
 <%@page import="model.proyectos"%>
 <%
-    //  Recuperar la sesión (false significa: no crees una nueva si no existe)
     HttpSession sessionActual = request.getSession(false);
-
-    //  Recuperar el usuario
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACIÓN DE SEGURIDAD
     if (usuarioLogeado == null) {
-        //  No se ha logueado -> Patada al login
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecución del resto de la página
+        return; 
     } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  Sí está logueado, pero es empleado intentando entrar a zona admin
         response.sendRedirect("AccDen.jsp");
         return;
     }
 %>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Registrar Trabajador</title>
-        <link rel="stylesheet" href="CSS/RegisTrabajador.css">
-         <link rel="icon" href="images/vyg.svg" type="image/png">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Trabajador | VyGApps</title>
+    <link rel="stylesheet" href="CSS/RegisTrabajador.css">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
+</head>
+<body>
 
-        <main class="form-container">
+    <main class="form-container">
+        <section class="form-card">
+            <h2>Gestión de Trabajadores</h2>
+            <p class="subtitle">Registro de nuevo empleado al sistema</p>
 
-            <section class="form-card">
-
-                <h2>Gestión de Trabajadores</h2>
-                <p class="subtitle">Registro de nuevo trabajador</p>
-
-                <form action="RegistrarUsu" method="POST">
-
-                    <!-- CÉDULA -->
-                    <div class="form-group">
-                        <label>Cédula</label>
-                        <input type="text" name="cedula" required>
+            <form action="RegistrarUsu" method="POST" id="formTrabajador">
+                
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Nombre Completo</label>
+                        <input type="text" name="full_name" required placeholder="Ej: Benjamin Tellería">
                     </div>
 
-                    <!-- NOMBRE -->
                     <div class="form-group">
-                        <label>Nombre completo</label>
-                        <input type="text" name="full_name" required>
+                        <label>Cédula de Identidad</label>
+                        <input type="text" id="cedula" name="cedula" required
+                               placeholder="Ej: 001-131105-1013R" 
+                               maxlength="16"
+                               title="Formato: 3 dígitos, guion, 6 dígitos, guion, 4 dígitos y una letra mayúscula">
+                        <small id="errorCedula" class="error-text">Formato inválido (Ej: 001-131105-1013R)</small>
                     </div>
 
-                    <!-- EDAD -->
                     <div class="form-group">
                         <label>Edad</label>
-                        <input type="number" name="edad" required min="18">
+                        <input type="number" name="edad" required min="18" placeholder="Ej: 20">
                     </div>
 
-                    <!-- PUESTO -->
                     <div class="form-group">
-                        <label>Puesto</label>
+                        <label>Teléfono Personal</label>
+                        <input type="text" name="telefono" required 
+                               placeholder="Ej: 88889999" maxlength="8" pattern="\d{8}"
+                               title="Debe contener exactamente 8 números">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Número de Emergencia</label>
+                        <input type="text" name="numero_emergencia" required 
+                               placeholder="Ej: 77775555" maxlength="8" pattern="\d{8}"
+                               title="Debe contener exactamente 8 números">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Dirección Domiciliar</label>
+                        <textarea name="direccion" required rows="2" 
+                                  placeholder="Ej: De los semáforos 2 cuadras al sur, casa color verde."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Lugar de Origen</label>
+                        <input type="text" name="origen" placeholder="Ej: Managua">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Salario Quincenal (C$)</label>
+                        <input type="number" name="salario_quincenal" required placeholder="Ej: 4500.00" step="0.01">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Puesto Asignado</label>
                         <select name="puesto" required>
                             <option value="">Seleccione un puesto</option>
                             <option value="Gerente de proyecto">Gerente de proyecto</option>
@@ -79,76 +102,44 @@
                         </select>
                     </div>
 
-                    <!-- SALARIO -->
                     <div class="form-group">
-                        <label>Salario quincenal</label>
-                        <input type="number" name="salario_quincenal" required>
-                    </div>
-
-                    <!-- ORIGEN -->
-                    <div class="form-group">
-                        <label>Origen</label>
-                        <input type="text" name="origen">
-                    </div>
-
-                    <!-- SUPERVISOR -->
-                    <div class="form-group">
-                        <label>Supervisor</label>
+                        <label>Supervisor a Cargo</label>
                         <select name="supervisor">
-                            <option value=""  >Seleccione un supervisor</option>
+                            <option value="">Seleccione un supervisor</option>
                             <%
                                 List<trabajadores> listaSuperv = (List<trabajadores>) request.getAttribute("ListaSuperv");
-                                  
                                 if (listaSuperv != null) {
                                     for (trabajadores sv : listaSuperv) {
-                                    
                             %>
-                            <option value="<%=sv.getId_trabajador()%>">
-                                <%=sv.getFull_name()%>
-                            </option>
+                            <option value="<%=sv.getId_trabajador()%>"><%=sv.getFull_name()%></option>
                             <%
                                     }
-
                                 }
-        if(listaSuperv ==null){
-            System.out.println("LISTA VACIAAAAAAAAAAAAA");
-                
-        }
                             %>
                         </select>
                     </div>
 
-                    <!-- PROYECTO -->
                     <div class="form-group">
-                        <label>Proyecto asociado</label>
+                        <label>Proyecto Asociado</label>
                         <select name="proyecto">
-                            <option value="" >Seleccione un proyecto</option>
+                            <option value="">Seleccione un proyecto</option>
                             <%
                                 List<proyectos> listaP = (List<proyectos>) request.getAttribute("ListarProy");
                                 if (listaP != null) {
                                     for (proyectos p : listaP) {
                             %>
-                            <option value="<%=p.getProyecto_id()%>">
-                                <%=p.getNombre_proyecto()%>
-                            </option>
+                            <option value="<%=p.getProyecto_id()%>"><%=p.getNombre_proyecto()%></option>
                             <%
                                     }
                                 }
                             %>
                         </select>
                     </div>
+                </div> <button type="submit" class="btn-submit">💾 Guardar Trabajador</button>
+            </form>
+        </section>
+    </main>
 
-                    <!-- BOTÓN -->
-                    <button type="submit" class="btn-submit">
-                        Guardar trabajador
-                    </button>
-
-                </form>
-
-            </section>
-
-        </main>
-
-    </body>
+    <script src="JS/ValidarTrabajador.js"></script>
+</body>
 </html>
-

@@ -1,87 +1,62 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 31 mar 2026
-    Author     : Benja
-*/
-
 /* =========================================
-   ESTILOS BASE DE LA PÁGINA
+   ESTILOS PARA EL DIRECTORIO DE TRABAJADORES
    ========================================= */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f4f6f7;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-}
 
-.page-wrapper {
-    width: 100%;
+.dashboard {
     max-width: 900px;
+    margin: 0 auto;
 }
 
-/* =========================================
-   DISEÑO DE LA TARJETA PRINCIPAL
-   ========================================= */
-.card {
-    background-color: white;
+.directory-card {
+    background-color: var(--white);
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    border: 1px solid #eaeaea;
     overflow: hidden;
 }
 
-.card-header {
-    padding: 25px 30px;
-    background-color: #fcfbf7;
-    border-bottom: 2px solid #f1e1a7; /* Borde corporativo VyG */
-}
-
-.card-header h2 {
-    margin: 0;
-    color: #984807; /* Color principal corporativo */
-}
-
-.card-header p {
-    margin: 5px 0 0 0;
-    color: #7f8c8d;
-    font-size: 14px;
-}
-
 /* =========================================
-   BARRA DE BÚSQUEDA (El código que me pasaste)
+   BARRA DE BÚSQUEDA
    ========================================= */
 .search-container {
-    padding: 20px 30px 0 30px;
+    padding: 25px 30px;
+    border-bottom: 1px solid #eaeaea;
+    position: relative;
+    background-color: #fafafa;
+}
+
+.search-icon {
+    position: absolute;
+    left: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
 }
 
 #buscador {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ced6e0;
+    padding: 14px 15px 14px 45px;
+    border: 1px solid #dcdde1;
     border-radius: 8px;
     font-size: 15px;
-    color: #2c3e50;
-    background-color: #fcfbf7;
+    color: var(--text-main);
+    background-color: var(--white);
     box-sizing: border-box; 
     transition: all 0.3s ease;
 }
 
 #buscador:focus {
-    border-color: #984807; 
+    border-color: var(--primary-color); 
     outline: none;
-    background-color: #ffffff;
-    box-shadow: 0 0 8px rgba(152, 72, 7, 0.2);
+    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
 }
 
 /* =========================================
-   ESTILOS DE LA TABLA (Directorio)
+   ESTILOS DE LA TABLA
    ========================================= */
 .table-responsive {
-    padding: 20px 30px;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 .vyg-table {
@@ -91,67 +66,72 @@ body {
 
 .vyg-table th {
     text-align: left;
-    padding: 12px 15px;
-    background-color: #f9f9f9;
-    color: #34495e;
-    font-size: 14px;
-    border-bottom: 2px solid #eee;
+    padding: 15px 30px;
+    background-color: #fdfdfd;
+    color: var(--text-main);
+    font-size: 13px;
+    border-bottom: 1px solid #eaeaea;
+    text-transform: uppercase;
 }
 
 .vyg-table td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
+    padding: 15px 30px;
+    border-bottom: 1px solid #eaeaea;
     font-size: 15px;
     vertical-align: middle;
+    color: var(--text-main);
 }
 
 .vyg-table tbody tr:hover {
-    background-color: #fdfefe; /* Efecto sutil al pasar el mouse por la fila */
+    background-color: #fcfcfc;
 }
 
-.empty-message {
+.puesto-text {
+    color: var(--text-muted);
+}
+
+.empty-cell {
     text-align: center;
-    color: #7f8c8d;
+    color: var(--text-muted);
     padding: 40px !important;
 }
 
 /* =========================================
-   BOTONES DE ACCIÓN Y NAVEGACIÓN
+   BOTONES DE ACCIÓN
    ========================================= */
-/* Botón del Ojito (Ver Detalle) */
 .btn-view {
     display: inline-block;
     background-color: #f1f2f6;
-    color: #2c3e50;
+    color: var(--text-main);
     text-decoration: none;
     padding: 8px 15px;
     border-radius: 6px;
     font-size: 13px;
     font-weight: bold;
-    border: 1px solid #ced6e0;
+    border: 1px solid #dcdde1;
     transition: all 0.2s ease-in-out;
 }
 
 .btn-view:hover {
-    background-color: #f1e1a7; 
-    color: #984807; 
-    border-color: #f1e1a7;
+    background-color: var(--primary-light); 
+    color: var(--primary-dark); 
+    border-color: var(--primary-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
-/* Pie de la tarjeta y Botón de Volver */
+/* Pie de la tarjeta */
 .card-footer {
     padding: 20px 30px;
     background-color: #fafafa;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #eaeaea;
 }
 
 .btn-back {
     text-decoration: none;
-    color: #444;
-    background-color: #fff;
-    border: 1px solid #ccc;
+    color: var(--text-main);
+    background-color: var(--white);
+    border: 1px solid #dcdde1;
     padding: 10px 20px;
     border-radius: 6px;
     font-weight: bold;
@@ -160,5 +140,45 @@ body {
 }
 
 .btn-back:hover {
-    background-color: #f1f1f1;
+    background-color: #f1f2f6;
+}
+
+/* =========================================
+   RESPONSIVO Y MÓVIL
+   ========================================= */
+@media (max-width: 768px) {
+    .vyg-table thead { display: none; }
+    
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .vyg-table tr {
+        margin-bottom: 15px;
+        border-bottom: 4px solid #eaeaea;
+    }
+    
+    .vyg-table td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 20px;
+    }
+    
+    .vyg-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--text-muted);
+        text-align: left;
+        font-size: 13px;
+    }
+    
+    .empty-cell { display: block !important; }
+}
+
+@media (max-width: 480px) {
+    .search-container { padding: 20px 15px; }
+    .search-icon { left: 30px; }
 }

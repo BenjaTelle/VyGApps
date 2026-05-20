@@ -1,141 +1,174 @@
 /*
     Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
     Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-    */
-    /* Created on : 2 feb 2026, 7:49:01 p.m.
-        Author     : Benja
-    */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Segoe UI", Tahoma, sans-serif;
-    }
+*/
+/* Created on : 2 feb 2026, 7:49:01 p.m.
+    Author     : Benja
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
 
-    body {
-        height: 100vh;
-        background-color: #f7f9fb;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+body {
+    height: 100vh;
+    background-color: #f7f9fb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    /* CONTENEDOR PRINCIPAL */
+/* CONTENEDOR PRINCIPAL */
+.login-container {
+    width: 420px;
+    max-width: 90%; /* Hace que el contenedor no se desborde en móviles */
+    padding: 35px 40px;
+    background: #ffffff;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* LOGO */
+.logo {
+    margin-bottom: 15px;
+}
+
+.logo img {
+    width: 90px;
+}
+
+/* TITULO */
+.login-container h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+}
+
+/* ALERTA DE ERROR PERSONALIZADA */
+.custom-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #fdf2e9;
+    color: #e74c3c;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border-left: 4px solid #e74c3c;
+    margin-bottom: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: left;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* FORMULARIO */
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* INPUTS */
+.login-container input {
+    height: 45px;
+    padding: 0 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+.login-container input:focus {
+    border-color: #f57c00;
+}
+
+/* BOTON */
+.login-container button {
+    margin-top: 10px;
+    height: 45px;
+    background-color: #f57c00;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.login-container button:hover {
+    background-color: #e66f00;
+    box-shadow: 0 4px 10px rgba(245, 124, 0, 0.4);
+}
+
+/* LINKS */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    font-size: 13px;
+}
+
+.links a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.links a:hover {
+    color: #f57c00;
+    text-decoration: underline;
+}
+
+/* CONTENEDOR DE CONTRASEÑA Y OJO SVG */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 45px;
+}
+
+#btnMostrarPass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7f8c8d;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+#btnMostrarPass:hover {
+    color: #f57c00;
+}
+
+/* =========================================
+   RESPONSIVE (MÓVILES)
+   ========================================= */
+@media (max-width: 480px) {
     .login-container {
-        width: 420px;
-        padding: 35px 40px;
-        background: #ffffff;
-        text-align: center;
-        border-radius: 6px;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        padding: 25px 20px;
     }
-
-    /* LOGO */
-    .logo {
-        margin-bottom: 15px;
-    }
-
-    .logo img {
-        width: 90px;
-    }
-
-    /* TITULO */
-    .login-container h2 {
-        font-size: 18px;
-        color: #333;
-        margin-bottom: 25px;
-        letter-spacing: 0.5px;
-    }
-
-    /* FORMULARIO */
-    .login-container form {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    /* INPUTS */
-    .login-container input {
-        height: 45px;
-        padding: 0 12px;
-        border: 1px solid #bdbdbd;
-        border-radius: 4px;
-        font-size: 14px;
-        outline: none;
-        transition: border 0.3s;
-    }
-
-    .login-container input:focus {
-        border-color: #f57c00;
-    }
-
-    /* BOTON */
-    .login-container button {
-        margin-top: 10px;
-        height: 45px;
-        background-color: #f57c00;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 600;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background 0.3s, box-shadow 0.3s;
-    }
-
-    .login-container button:hover {
-        background-color: #e66f00;
-        box-shadow: 0 4px 10px rgba(245, 124, 0, 0.4);
-    }
-
-    /* LINKS */
-    .links {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 18px;
-        font-size: 13px;
-    }
-
-    .links a {
-        color: #333;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-
-    .links a:hover {
-        color: #f57c00;
-        text-decoration: underline;
-    }
-
-    /* =========================================
-       ESTILOS: CONTENEDOR DE CONTRASEÑA Y OJO SVG
-       ========================================= */
     
-    .password-container {
-        position: relative;
-        width: 100%;
+    .login-container h2 {
+        font-size: 16px;
     }
-
-    .password-container input {
-        width: 100%;
-        padding-right: 45px; /* Evita que el texto choque con el icono */
-    }
-
-    #btnMostrarPass {
-        position: absolute;
-        right: 12px;
-        top: 50%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #7f8c8d;
-        transition: color 0.3s ease;
-        user-select: none;
-    }
-
-    #btnMostrarPass:hover {
-        color: #f57c00; /* Combina con el color de tu tema */
-    }
+}

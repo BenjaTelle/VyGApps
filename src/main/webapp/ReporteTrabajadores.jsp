@@ -1,18 +1,10 @@
-<%-- 
-    Document   : ReporteTrabajadores
-    Created on : 3 abr 2026, 8:08:43 p.m.
-    Author     : Benja
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.ReporteTrabajadorDTO"%> 
 <%@page import="model.Usuarios"%>
 <%@page import="model.proyectos"%>
 
-
 <%
-    // Seguridad: Solo Administradores
     HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
     
@@ -22,9 +14,8 @@
     }
 
     List<ReporteTrabajadorDTO> listaTrabajadores = (List<ReporteTrabajadorDTO>) request.getAttribute("ListaTrabajadores");
-    List<proyectos> listaProyectos = (List<proyectos>) request.getAttribute("ListaProyectos"); // Para el select del filtro
+    List<proyectos> listaProyectos = (List<proyectos>) request.getAttribute("ListaProyectos");
     
-    // Calcular KPIs rápidos
     int totalTrabajadores = 0;
     int totalActivos = 0;
     double nominaEstimada = 0;
@@ -34,7 +25,7 @@
         for(ReporteTrabajadorDTO t : listaTrabajadores) {
             if(t.getEstado().equalsIgnoreCase("Activo")) {
                 totalActivos++;
-                nominaEstimada += t.getSalarioBase(); // Suponiendo salario quincenal
+                nominaEstimada += t.getSalarioBase();
             }
         }
     }
@@ -44,145 +35,194 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporte de Trabajadores | VyGApps</title>
-    <link rel="stylesheet" href="CSS/HistorialAsistencia.css"> <link rel="stylesheet" href="CSS/ReporteTrabajadores.css">
+    
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
+    <link rel="stylesheet" href="CSS/ReporteTrabajadores.css">
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 </head>
 <body>
 
-    <div class="page-wrapper" style="max-width: 1100px;">
-        
-        <div class="admin-header">
-            <div class="profile-info">
-                <h2>👷‍♂️ Inteligencia Laboral: Reporte de Trabajadores</h2>
-                <p>Auditoría general del personal, asignación de proyectos y estimación de nómina.</p>
+<div class="admin-container">
+
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
             </div>
         </div>
 
-        <div class="kpi-container" id="kpi-section">
-            <div class="kpi-card">
-                <div class="kpi-icon blue-icon">👥</div>
-                <div class="kpi-data">
-                    <p>Total Registrados</p>
-                    <h3><%= totalTrabajadores %></h3>
+        <nav class="sidebar-nav">
+            <a href="AdminPage.jsp" class="nav-item">
+                <span class="icon">📊</span>
+                <span>Dashboard Maestro</span>
+            </a>
+            <a href="ReporteTrabajadoresSv" class="nav-item active" style="background-color: #2c3e50;">
+                <span class="icon">👷‍♂️</span>
+                <span>Reporte Trabajadores</span>
+            </a>
+            <a href="LogoutSv" class="nav-item logout-link">
+                <span class="icon">🚪</span>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= user.getUser_name() %></span>
+                    <span class="profile-role">Administrador</span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
+
+        <section class="dashboard">
+
+            <div class="admin-header-banner" style="background: linear-gradient(135deg, #34495e, #2c3e50);">
+                <div class="admin-header-info">
+                    <h2> Reporte de Trabajadores</h2>
+                    <p>Auditoría general del personal, asignación de proyectos y estimación de nómina.</p>
                 </div>
             </div>
-            <div class="kpi-card">
-                <div class="kpi-icon green-icon">✅</div>
-                <div class="kpi-data">
-                    <p>Fuerza Laboral Activa</p>
-                    <h3><%= totalActivos %></h3>
+
+            <div class="kpi-container" id="kpi-section">
+                <div class="kpi-card">
+                    <div class="kpi-icon blue-icon">👥</div>
+                    <div class="kpi-data">
+                        <p>Total Registrados</p>
+                        <h3><%= totalTrabajadores %></h3>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon green-icon">✅</div>
+                    <div class="kpi-data">
+                        <p>Fuerza Laboral Activa</p>
+                        <h3><%= totalActivos %></h3>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-icon orange-icon">💰</div>
+                    <div class="kpi-data">
+                        <p>Nómina Base (Activos)</p>
+                        <h3>C$ <%= String.format("%,.2f", nominaEstimada) %></h3>
+                    </div>
                 </div>
             </div>
-            <div class="kpi-card">
-                <div class="kpi-icon orange-icon">💰</div>
-                <div class="kpi-data">
-                    <p>Nómina Base (Activos)</p>
-                    <h3>C$ <%= String.format("%,.2f", nominaEstimada) %></h3>
+
+            <div class="filter-card">
+                <form action="ReporteTrabajadoresSv" method="GET" class="filter-form">
+                    <div class="filter-group">
+                        <label for="id_proyecto">Filtrar por Proyecto:</label>
+                        <select name="id_proyecto" id="id_proyecto">
+                            <option value="0">Todos los Proyectos</option>
+                            <% if(listaProyectos != null) { 
+                                for(proyectos p : listaProyectos) { %>
+                                    <option value="<%= p.getProyecto_id() %>"><%= p.getNombre_proyecto() %></option>
+                            <%  } } %>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="estado">Estado:</label>
+                        <select name="estado" id="estado">
+                            <option value="Todos">Todos</option>
+                            <option value="Activo">Solo Activos</option>
+                            <option value="Inactivo">Solo Inactivos</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-filtrar">🔍 Aplicar Filtro</button>
+                </form>
+            </div>
+
+            <div class="card result-card" id="area-impresion">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h3>Directorio del Personal</h3>
+                    </div>
+                    <% if(listaTrabajadores != null && !listaTrabajadores.isEmpty()) { %>
+                        <button onclick="descargarPDF()" class="btn-pdf">📄 Exportar a PDF</button>
+                    <% } %>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="vyg-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre Completo</th>
+                                <th>Proyecto Asignado</th>
+                                <th>Salario Base (Q)</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% 
+                                if(listaTrabajadores != null && !listaTrabajadores.isEmpty()) {
+                                    for(ReporteTrabajadorDTO t : listaTrabajadores) { 
+                            %>
+                            <tr>
+                                <td data-label="ID"><strong>#<%= t.getIdTrabajador() %></strong></td>
+                                <td data-label="Nombre Completo"><%= t.getNombreCompleto() %></td>
+                                <td data-label="Proyecto Asignado"><%= t.getNombreProyecto() %></td>
+                                <td data-label="Salario Base (Q)" style="color: #2c3e50; font-weight: bold;">C$ <%= String.format("%,.2f", t.getSalarioBase()) %></td>
+                                <td data-label="Estado">
+                                    <% if(t.getEstado().equalsIgnoreCase("Activo")) { %>
+                                        <span class="badge badge-activo">Activo</span>
+                                    <% } else { %>
+                                        <span class="badge badge-inactivo">Inactivo</span>
+                                    <% } %>
+                                </td>
+                            </tr>
+                            <% 
+                                    }
+                                } else { 
+                            %>
+                            <tr>
+                                <td colspan="5" class="empty-message">No se encontraron trabajadores con los filtros aplicados.</td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div>
 
-        <div class="filter-card">
-            <form action="ReporteTrabajadoresSv" method="GET" class="filter-form">
-                <div class="filter-group">
-                    <label for="id_proyecto">Filtrar por Proyecto:</label>
-                    <select name="id_proyecto" id="id_proyecto">
-                        <option value="0">Todos los Proyectos</option>
-                        <% if(listaProyectos != null) { 
-                            for(proyectos p : listaProyectos) { %>
-                                <option value="<%= p.getProyecto_id() %>"><%= p.getNombre_proyecto() %></option>
-                        <%  } } %>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="estado">Estado:</label>
-                    <select name="estado" id="estado">
-                        <option value="Todos">Todos</option>
-                        <option value="Activo">Solo Activos</option>
-                        <option value="Inactivo">Solo Inactivos</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn-filtrar">🔍 Aplicar Filtro</button>
-            </form>
-        </div>
-
-        <div class="card result-card" id="area-impresion">
-            <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <h3>Directorio del Personal</h3>
-                </div>
-                <% if(listaTrabajadores != null && !listaTrabajadores.isEmpty()) { %>
-                    <button onclick="descargarPDF()" class="btn-pdf">📄 Exportar a PDF</button>
-                <% } %>
+            <div style="margin-top: 25px; text-align: left; padding-bottom: 30px;">
+                <a href="AdminPage.jsp" class="btn-back">⬅️ Volver al Panel de Control</a>
             </div>
-            
-            <div class="table-responsive">
-                <table class="vyg-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre Completo</th>
-                            <th>Proyecto Asignado</th>
-                            <th>Salario Base (Q)</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% 
-                            if(listaTrabajadores != null && !listaTrabajadores.isEmpty()) {
-                                for(ReporteTrabajadorDTO t : listaTrabajadores) { 
-                        %>
-                        <tr>
-                            <td><strong>#<%= t.getIdTrabajador() %></strong></td>
-                            <td><%= t.getNombreCompleto() %></td>
-                            <td><%= t.getNombreProyecto() %></td>
-                            <td style="color: #2c3e50; font-weight: bold;">C$ <%= String.format("%,.2f", t.getSalarioBase()) %></td>
-                            <td>
-                                <% if(t.getEstado().equalsIgnoreCase("Activo")) { %>
-                                    <span class="badge badge-activo">Activo</span>
-                                <% } else { %>
-                                    <span class="badge badge-inactivo">Inactivo</span>
-                                <% } %>
-                            </td>
-                        </tr>
-                        <% 
-                                }
-                            } else { 
-                        %>
-                        <tr>
-                            <td colspan="5" class="empty-message">No se encontraron trabajadores con los filtros aplicados.</td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
-        <div style="margin-top: 25px; text-align: left;">
-            <a href="AdminPage.jsp" class="btn-back">⬅️ Volver al Panel de Control</a>
-        </div>
+        </section>
 
-    </div>
+    </main>
+</div>
 
-   <script>
+<script>
     function descargarPDF() {
         var elemento = document.getElementById('area-impresion');
         var btnPdf = document.querySelector('.btn-pdf');
         var contenedorTabla = document.querySelector('.table-responsive');
         
-        // 1. Ocultamos el botón
         btnPdf.style.display = 'none';
 
-        // 2. Quitamos el scroll de la tabla temporalmente (Vital para que no salga en blanco)
         var overflowOriginal = "";
         if(contenedorTabla) {
             overflowOriginal = contenedorTabla.style.overflow;
             contenedorTabla.style.overflow = 'visible';
         }
 
-        // 3. Forzamos un fondo blanco (si el fondo es transparente, a veces sale negro o en blanco)
         elemento.style.backgroundColor = '#ffffff';
 
         var opciones = {
@@ -191,18 +231,16 @@
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 
-                useCORS: true, // Ayuda si tienes fuentes o imágenes externas
-                scrollY: 0 // Evita errores si la página está scrolleada hacia abajo
+                useCORS: true,
+                scrollY: 0
             },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }
         };
 
-        // 4. Usamos setTimeout para darle al navegador 100 milisegundos para aplicar los cambios visuales antes de tomar la "foto"
         setTimeout(function() {
             html2pdf().set(opciones).from(elemento).save().then(function() {
-                // 5. Regresamos todo a la normalidad después de descargar
                 btnPdf.style.display = 'block';
-                elemento.style.backgroundColor = ''; // Limpiamos el fondo
+                elemento.style.backgroundColor = ''; 
                 if(contenedorTabla) {
                     contenedorTabla.style.overflow = overflowOriginal;
                 }

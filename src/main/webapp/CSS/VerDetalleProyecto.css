@@ -1,68 +1,32 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 6 mar 2026, 5:54:12 p.m.
-    Author     : Benja
-*/
+/* =========================================
+   ESTILOS PARA DETALLES DEL PROYECTO
+   ========================================= */
 
-/* =========================
-   ESTRUCTURA BASE
-========================= */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f2de96; /* Fondo VyGApps */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start; /* Para que las tarjetas no queden centradas verticalmente */
-    min-height: 100vh;
-    padding: 40px 20px;
-    box-sizing: border-box;
-}
-
-.page-wrapper {
-    width: 100%;
-    max-width: 700px; /* Ancho cómodo para un formulario y su resultado */
+.dashboard {
+    max-width: 800px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 25px; /* Espacio entre el buscador y los resultados */
+    gap: 30px;
 }
 
 /* =========================
-   ESTILOS DE TARJETAS
+   FORMULARIO DE BÚSQUEDA
 ========================= */
-.card {
-    background-color: white;
-    border-radius: 12px;
+.form-container {
+    background: var(--white);
     padding: 30px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-radius: 14px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
-.card-header h2 {
-    margin: 0;
-    color: #984807;
-    font-size: 24px;
-}
-
-.card-header p {
-    margin: 5px 0 20px 0;
-    color: #7f8c8d;
-    font-size: 14px;
-    border-bottom: 2px solid #f1e1a7;
-    padding-bottom: 15px;
-}
-
-/* =========================
-   FORMULARIO Y SELECT
-========================= */
 .form-group label {
     display: block;
     font-size: 14px;
-    color: #984807;
-    font-weight: bold;
-    margin-bottom: 8px;
+    color: var(--text-main);
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
 .input-group {
@@ -71,29 +35,30 @@ body {
 }
 
 select {
-    flex: 1; /* El select toma todo el espacio disponible */
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    flex: 1;
+    padding: 14px;
+    border: 1px solid #dcdde1;
+    border-radius: 8px;
     font-size: 15px;
-    color: #444;
+    color: var(--text-main);
     outline: none;
-    transition: 0.3s;
-    background-color: #fcfbf7;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
 }
 
 select:focus {
-    border-color: #984807;
+    border-color: var(--primary-color);
+    background-color: var(--white);
     box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
 }
 
 .btn-search {
-    background-color: #984807;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white);
     border: none;
-    padding: 0 20px;
-    border-radius: 6px;
-    font-size: 14px;
+    padding: 0 25px;
+    border-radius: 8px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
@@ -101,29 +66,44 @@ select:focus {
 }
 
 .btn-search:hover {
-    background-color: #7a3a05;
+    background-color: var(--primary-dark);
 }
 
 /* =========================
    TARJETA DE RESULTADOS
 ========================= */
+.result-card {
+    background-color: var(--white);
+    border-radius: 14px;
+    padding: 30px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border-top: 5px solid var(--primary-color);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .result-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px dashed #ccc;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+    border-bottom: 1px dashed #eaeaea;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .result-header h3 {
     margin: 0;
-    color: #2c3e50;
-    font-size: 18px;
+    color: var(--text-main);
+    font-size: 20px;
 }
 
 .status-badge {
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 20px;
     font-size: 12px;
     font-weight: bold;
@@ -142,6 +122,7 @@ select:focus {
     border: 1px solid #e67e22;
 }
 
+/* --- Cuerpo de la Tarjeta --- */
 .result-body {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -153,31 +134,32 @@ select:focus {
 }
 
 .info-group {
-    background-color: #f9f9f9;
-    padding: 15px;
+    background-color: #fafafa;
+    padding: 18px;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid #f1f1f1;
 }
 
 .info-label {
     display: block;
     font-size: 12px;
-    color: #7f8c8d;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
 }
 
 .info-value {
     display: block;
     font-size: 16px;
-    color: #2c3e50;
+    color: var(--text-main);
     font-weight: bold;
-    margin-top: 5px;
 }
 
 .title-value {
-    font-size: 18px;
-    color: #984807;
+    font-size: 20px;
+    color: var(--primary-color);
 }
 
 .highlight-financial {
@@ -187,30 +169,29 @@ select:focus {
 
 .text-green {
     color: #27ae60;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 /* =========================
-   PIE DE TARJETA
+   RESPONSIVE (MÓVILES)
 ========================= */
-.card-footer {
-    margin-top: 25px;
-    display: flex;
-    justify-content: flex-start;
-}
-
-.btn-cancel {
-    background-color: #ecf0f1;
-    color: #7f8c8d;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.btn-cancel:hover {
-    background-color: #bdc3c7;
-    color: #2c3e50;
+@media (max-width: 600px) {
+    .input-group {
+        flex-direction: column;
+    }
+    
+    .btn-search {
+        padding: 14px;
+        width: 100%;
+    }
+    
+    .result-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .result-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
 }

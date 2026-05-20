@@ -79,10 +79,13 @@ public class ActualizarTrabajadores extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        int id_trabajador = Integer.parseInt(request.getParameter("id_trabajador")); //id del trabajador que modificaremos
+      // request.setCharacterEncoding("UTF-8"); // Opcional: útil si tienes problemas con acentos en la dirección o nombre
+
+        int id_trabajador = Integer.parseInt(request.getParameter("id_trabajador"));
         
-        System.out.println("trabajador seleccionado "+ request.getParameter("id_trabajador"));
+        System.out.println("Trabajador seleccionado para actualizar: " + id_trabajador);
         
+        // 1. Capturamos los datos originales
         String NuevaCedula = request.getParameter("cedula");
         String NuevaNombre = request.getParameter("full_name");
         int NuevaEdad = Integer.parseInt(request.getParameter("edad"));
@@ -92,8 +95,13 @@ public class ActualizarTrabajadores extends HttpServlet {
         int id_supervisor = Integer.parseInt(request.getParameter("id_supervisor"));
         int id_NuevoProyecto = Integer.parseInt(request.getParameter("proyecto"));
         
-        trabajadores t = new trabajadores(); //creamos una instacia del trabajador
+        // 2. Capturamos los NUEVOS campos del formulario HTML
+        String telefono = request.getParameter("telefono");
+        String numero_emergencia = request.getParameter("numero_emergencia");
+        String direccion = request.getParameter("direccion");
         
+        // 3. Creamos la instancia del trabajador y le pasamos los datos
+        trabajadores t = new trabajadores(); 
         
         t.setId_trabajador(id_trabajador);
         t.setCedula(NuevaCedula);
@@ -105,14 +113,20 @@ public class ActualizarTrabajadores extends HttpServlet {
         t.setId_proyect(id_NuevoProyecto);
         t.setId_supervisor(id_supervisor);
         
+        // 4. Inyectamos los nuevos datos al objeto
+        t.setTelefono(telefono);
+        t.setNumero_emergencia(numero_emergencia);
+        t.setDireccion(direccion);
+        
+        // 5. Mandamos al DAO para ejecutar el UPDATE en MySQL
         TrabajadoresDAO tDAO = new TrabajadoresDAO();
         try {
-            tDAO.ActualizarTrabajador(t); //le mandamos el objeto que acabamos de setear con datos 
+            tDAO.ActualizarTrabajador(t); 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         
-        
+        // 6. Redirigimos al panel de control
         response.sendRedirect("AdminPage.jsp");
     }
 

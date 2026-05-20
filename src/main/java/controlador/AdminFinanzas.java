@@ -35,7 +35,7 @@ public class AdminFinanzas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,47 +50,28 @@ public class AdminFinanzas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      // ========================================================
-        // 1. BARRERA DE SEGURIDAD (Backend)
-        // ========================================================
-        // Nunca confíes solo en el JSP. Si alguien escribe la URL del Servlet 
-        // directamente, lo rebotamos aquí.
         HttpSession session = request.getSession(false);
         Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
-        
+
         if (user == null || !user.getRol().equalsIgnoreCase("Administrador")) {
-            // Si no tiene permisos, lo mandamos a volar al login
             response.sendRedirect("login.jsp");
             return;
         }
 
-        // ========================================================
-        // 2. CONEXIÓN AL DAO Y EXTRACCIÓN DE DATOS
-        // ========================================================
         try {
             DashboardDAO dao = new DashboardDAO();
-            
-            // Llamamos al método que armamos anteriormente
             DashboardAdminDTO datosDashboard = dao.obtenerDatosDashboardAdmin();
-            
-            // ========================================================
-            // 3. EMPAQUETAR Y ENVIAR A LA VISTA (JSP)
-            // ========================================================
-            // Metemos el DTO en el "request" con el nombre que espera el JSP
+
             request.setAttribute("DashboardData", datosDashboard);
-            
-            // Hacemos el reenvío interno (Forward) al JSP para que se dibuje
             request.getRequestDispatcher("AdminFinanzas.jsp").forward(request, response);
-            
+
         } catch (SQLException e) {
-            // Si la base de datos explota, lo registramos en la consola
-            System.out.println("Error SQL en AdminFinanzasServlet: " + e.getMessage());
+            System.out.println("Error SQL en AdminFinanzas: " + e.getMessage());
             e.printStackTrace();
-            
-            // Podrías enviar un mensaje de error genérico al JSP si quieres
-            request.setAttribute("error", "Error de conexión con la base de datos al cargar métricas.");
+            request.setAttribute("error", "Error al cargar métricas.");
             request.getRequestDispatcher("AdminFinanzas.jsp").forward(request, response);
-        }    }
+        }
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.

@@ -1,55 +1,98 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 2 abr 2026, 7:12:51 p.m.
-    Author     : Benja
-*/
 /* =========================================
-   AJUSTE DE CABECERA (Sobrescribe heredados)
+   ESTILOS: MONITOR DE AUTORIZACIONES
    ========================================= */
-.admin-header {
+
+/* --- AJUSTE DE CABECERA OSCURA ORIGINAL --- */
+.admin-header-banner {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 25px 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: #34495e; /* Fondo oscuro por si lo pierde */
     color: white;
 }
 
-.profile-info {
+.admin-header-info {
     text-align: center;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.profile-info h2 {
+.admin-header-info h2 {
     margin: 0 0 8px 0;
     color: white !important;
 }
 
-.profile-info p {
+.admin-header-info p {
     margin: 0;
     color: #ecf0f1 !important;
 }
-/* =========================================
-   ESTILOS: MONITOR DE AUTORIZACIONES
-   ========================================= */
 
+/* --- TARJETA PRINCIPAL --- */
 .monitor-card {
     background: white;
     border-radius: 12px;
     margin-top: 20px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    overflow: hidden;
+    border: 1px solid #eaeaea;
 }
 
-/* Semáforo de Retrasos */
+.card-header {
+    background-color: #fafafa;
+    border-bottom: 1px solid #eaeaea;
+    padding: 20px 25px;
+}
+
+.card-header h3 {
+    margin: 0 0 5px 0;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.card-header p {
+    margin: 0;
+    color: #7f8c8d;
+    font-size: 13px;
+}
+
+/* --- ESTILOS DE LA TABLA --- */
+.table-responsive {
+    padding: 0;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+.vyg-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* Semáforo de Retrasos (Colores Originales) */
 .retraso-critico { background-color: #fdf2f2 !important; } /* Rojo muy suave */
-.retraso-medio { background-color: #fff9eb !important; }    /* Amarillo muy suave */
+.retraso-medio { background-color: #fff9eb !important; }   /* Amarillo muy suave */
+.al-dia { background-color: #ffffff !important; }
+
+.vyg-table tbody tr:hover {
+    filter: brightness(0.97);
+}
 
 .dias-badge {
     padding: 5px 10px;
@@ -58,6 +101,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     font-size: 12px;
     background: #eee;
     color: #555;
+    display: inline-block;
 }
 
 /* Colores dinámicos para los badges según la fila */
@@ -85,4 +129,67 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     padding: 40px !important;
     font-size: 16px;
     color: #27ae60;
+}
+
+/* Botón de retroceso */
+.btn-back {
+    text-decoration: none;
+    color: #2c3e50;
+    background-color: #fff;
+    border: 1px solid #dcdde1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #f1f2f6;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVILES)
+   ========================================= */
+@media (max-width: 900px) {
+    .vyg-table thead { display: none; }
+    
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .vyg-table tr {
+        margin-bottom: 15px;
+        border-bottom: 4px solid #eaeaea;
+        /* Para que el color de fondo del semáforo se vea mejor en móvil */
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+    }
+    
+    .vyg-table td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .vyg-table td[data-label]:last-child {
+        border-bottom: none;
+    }
+    
+    .vyg-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #7f8c8d;
+        font-size: 13px;
+        text-transform: uppercase;
+        text-align: left;
+    }
+    
+    .monto {
+        text-align: right;
+    }
 }

@@ -1,14 +1,8 @@
 <%-- 
     Document   : DetalleAsistenciaTrabajador
-    Created on : 31 mar 2026, 6:19:21 p.m.
-    Author     : Benja
---%>
-<%-- 
-    Document   : DetalleAsistenciaTrabajador
     Created on : [Fecha Actual]
     Author     : Benja
 --%>
-
 <%@page import="java.util.List"%>
 <%@page import="DTO.AsistenciaDTO"%> 
 <%@page import="DTO.ResumenAsistenciaDTO"%> 
@@ -16,7 +10,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
-    // Lógica de seguridad (Solo Supervisores o Admins)
+    // Lógica de seguridad
     HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
     
@@ -25,7 +19,6 @@
         return;
     }
 
-    // Recibimos los dos paquetes de datos desde el Servlet
     ResumenAsistenciaDTO resumen = (ResumenAsistenciaDTO) request.getAttribute("DetalleAsistencia");
     List<AsistenciaDTO> historial = (List<AsistenciaDTO>) request.getAttribute("HistorialAsistencia");
     
@@ -39,18 +32,66 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalle de Asistencia | <%= resumen.getNombreCompleto() %></title>
-    <link rel="stylesheet" href="CSS/HistorialAsistencia.css">
-    <link rel="stylesheet" href="CSS/DetalleAsistencia.css"> <!-- CSS extra para los KPIs -->
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
+    <link rel="stylesheet" href="CSS/DetalleAsistencia.css">
+    <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 </head>
 <body>
 
-    <div class="page-wrapper">
-        
-        <!-- HEADER DEL TRABAJADOR -->
+<div class="admin-container">
+
+    <div class="overlay" id="sidebarOverlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge">Supervisor</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="SupervisorPage" class="nav-item">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="AsistenciaGlobal" class="nav-item active">
+                <span class="icon">📅</span>
+                <span>Asistencias</span>
+            </a>
+            <a href="LogoutSv" class="nav-item logout-link">
+                <span class="icon">🚪</span>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <div class="welcome">
+                    <h1>Detalle de Asistencia</h1>
+                    <span>Reporte individual del trabajador.</span>
+                </div>
+            </div>
+
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= user.getUser_name() %></span>
+                    <span class="profile-role"><%= user.getRol() %></span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
+
         <div class="worker-profile-header">
-            <div class="profile-info">
+            <div class="profile-info-text">
                 <h2>👤 <%= resumen.getNombreCompleto() %></h2>
                 <p><strong>Cédula:</strong> <%= resumen.getCedula() %> | <strong>Puesto:</strong> <%= resumen.getPuesto() %></p>
                 <p><strong>Proyecto Actual:</strong> 🏗️ <%= resumen.getNombreProyecto() %></p>
@@ -58,7 +99,6 @@
             <button onclick="window.print()" class="btn-print">🖨️ Imprimir Reporte</button>
         </div>
 
-        <!-- TARJETAS DE KPIs (Dashboard) -->
         <div class="kpi-grid">
             <div class="kpi-card">
                 <span class="kpi-icon">📅</span>
@@ -90,10 +130,9 @@
             </div>
         </div>
 
-        <!-- TABLA DE HISTORIAL (Reutilizada de tu diseño) -->
         <div class="card attendance-card">
-            <div class="card-header">
-                <h2>📑 Historial Detallado</h2>
+            <div class="card-header" style="padding: 20px 30px; border-bottom: 1px solid #eee;">
+                <h2 style="font-size: 18px; color: var(--primary-color);">📑 Historial Detallado</h2>
             </div>
 
             <div class="table-responsive">
@@ -112,10 +151,10 @@
                                 for (AsistenciaDTO a : historial) {
                         %>
                         <tr>
-                            <td><strong><%= a.getFecha() %></strong></td>
-                            <td class="time-in">🟢 <%= a.getHoraEntrada()%></td>
-                            <td class="time-out">🔴 <%= a.getHoraSalida()!= null ? a.getHoraSalida(): "En turno" %></td>
-                            <td>
+                            <td data-label="Fecha"><strong><%= a.getFecha() %></strong></td>
+                            <td data-label="Hora de Entrada" class="time-in">🟢 <%= a.getHoraEntrada()%></td>
+                            <td data-label="Hora de Salida" class="time-out">🔴 <%= a.getHoraSalida()!= null ? a.getHoraSalida(): "En turno" %></td>
+                            <td data-label="Estado del Turno">
                                 <% if(a.getEstado_turno()!= null && a.getEstado_turno().equals("Llegada Tardía")) { %>
                                     <span class="badge-warning">⚠️ Llegada Tardía</span>
                                 <% } else { %>
@@ -128,7 +167,9 @@
                             } else {
                         %>
                         <tr>
-                            <td colspan="4" class="empty-message">No hay registros para este trabajador.</td>
+                            <td colspan="4" class="empty-cell" style="text-align: center; padding: 30px; color: #7f8c8d;">
+                                No hay registros para este trabajador.
+                            </td>
                         </tr>
                         <%
                             }
@@ -141,7 +182,9 @@
                 <a href="BuscarDetalleAsis" class="btn-back">⬅️ Volver al listado </a>
             </div>
         </div>
-    </div>
+
+    </main>
+</div>
 
 </body>
 </html>

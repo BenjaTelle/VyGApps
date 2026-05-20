@@ -6,130 +6,97 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : 10 feb 2026, 5:05:54 p.m.
     Author     : Benja
 */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, rgb(242,222,150), #f7edd0);
+.dashboard {
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
+    padding: 40px 20px;
 }
 
-/* CONTENEDOR PRINCIPAL */
-/* Corregido: de .assign-container a .container */
-.container {
+.form-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px;
-}   
+}
 
-/* TARJETA */
-/* Corregido: de .assign-card a .card */
-.card {
+.form-card {
     background: #fff;
-    width: 430px;
-    padding: 36px;
-    border-radius: 16px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    position: relative;
-}
-
-/* BARRA SUPERIOR */
-/* Corregido: debe apuntar a .card */
-.card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 6px;
     width: 100%;
-    background: rgb(152,72,7);
-    border-radius: 16px 16px 0 0;
+    max-width: 460px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-top: 6px solid #984807;
 }
 
-/* TITULOS */
-h2 {
+.form-card h2 {
     text-align: center;
-    color: rgb(152,72,7);
-    margin-bottom: 6px;
+    color: #984807;
+    margin-bottom: 5px;
+    font-size: 24px;
 }
 
 .subtitle {
     text-align: center;
     font-size: 14px;
-    color: #666;
-    margin-bottom: 28px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
 }
 
-/* FORMULARIO */
 .form-group {
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 label {
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
-    color: #444;
+    color: #34495e;
+    font-size: 14px;
 }
 
-/* SELECTS */
 select {
     width: 100%;
-    padding: 11px;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #ced6e0;
     font-size: 14px;
-    transition: border 0.3s, box-shadow 0.3s;
+    transition: 0.3s;
+    background-color: #fdfefe;
+    box-sizing: border-box;
 }
 
 select:focus {
     outline: none;
-    border-color: rgb(152,72,7);
-    box-shadow: 0 0 0 2px rgba(152,72,7,0.2);
+    border-color: #984807;
+    box-shadow: 0 0 0 2px rgba(152, 72, 7, 0.15);
 }
 
-/* INFO BOX */
 .info-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #f9f4e3;
-    border-left: 4px solid rgb(152,72,7);
-    padding: 10px 12px;
-    border-radius: 8px;
+    background: #fdf5e6;
+    border-left: 4px solid #f39c12;
+    padding: 12px 15px;
+    border-radius: 6px;
     font-size: 13px;
-    color: #555;
-    margin-bottom: 22px;
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    line-height: 1.4;
 }
 
-/* BOTON */
-/* Corregido: de .btn-assign a .btn-submit para coincidir con tu HTML */
 .btn-submit {
     width: 100%;
-    padding: 13px;
-    background: rgb(152,72,7);
+    padding: 14px;
+    background: #984807;
     border: none;
     color: #fff;
     font-size: 15px;
     font-weight: bold;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
+    transition: 0.3s ease;
 }
 
 .btn-submit:hover {
-    background: #9c4b08;
+    background: #7a3a05;
     transform: translateY(-2px);
-}
-
-.btn-submit:active {
-    transform: scale(0.97);
 }

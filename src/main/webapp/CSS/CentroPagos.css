@@ -1,98 +1,90 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 2 abr 2026, 4:56:57 p.m.
-    Author     : Benja
-*/
 /* =========================================
    ESTILOS PARA EL CENTRO DE PAGOS
    ========================================= */
 
+.dashboard {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 /* --- Títulos de Sección --- */
 .section-title {
-    color: #984807; /* Color corporativo */
-    border-bottom: 2px solid #eee;
+    color: var(--primary-color);
+    border-bottom: 2px solid #eaeaea;
     padding-bottom: 10px;
-    margin-top: 40px;
-    font-size: 22px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.section-title:first-child {
+    margin-top: 0;
 }
 
 /* --- Cuadrícula de Botones de Acción --- */
 .action-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columnas por defecto */
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
-    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
-/* --- Tarjetas de Acción (Botones grandes) --- */
+.auth-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+/* --- Tarjetas de Acción --- */
 .action-card {
-    background: white;
-    border-radius: 12px;
+    background: var(--white);
+    border-radius: 14px;
     padding: 30px 20px;
     text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    transition: all 0.3s ease;
-    border-top: 4px solid #f1e1a7; /* Borde superior base */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    transition: all 0.2s ease;
+    border: 1px solid #eaeaea;
+    border-top: 5px solid var(--primary-light); 
     text-decoration: none;
-    color: #2c3e50;
     display: block;
 }
 
 .action-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    border-top-color: #984807; /* Al pasar el mouse cambia al color corporativo */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+    border-top-color: var(--primary-color); 
 }
 
-/* --- Elementos internos de la Tarjeta --- */
 .action-icon {
-    font-size: 50px;
+    font-size: 45px;
     margin-bottom: 15px;
     display: block;
 }
 
 .action-card h3 { 
     margin: 0 0 10px 0; 
-    font-size: 20px; 
-    color: #2c3e50;
+    font-size: 18px; 
+    color: var(--text-main);
 }
 
 .action-card p { 
     margin: 0; 
-    color: #7f8c8d; 
+    color: var(--text-muted); 
     font-size: 14px; 
-    line-height: 1.5;
+    line-height: 1.4;
 }
 
-/* --- Colores Especiales para Tarjetas de Autorización/Historial --- */
-.autorizacion-card {
-    border-top-color: #3498db; /* Azul para aprobación */
-}
+/* --- Colores Especiales para Tarjetas --- */
+.autorizacion-card { border-top-color: #d6eaf8; }
+.autorizacion-card:hover { border-top-color: #3498db; }
 
-.autorizacion-card:hover {
-    border-top-color: #2980b9; 
-}
-
-.historial-card {
-    border-top-color: #2ecc71; /* Verde para historial */
-}
-
-.historial-card:hover {
-    border-top-color: #27ae60;
-}
+.historial-card { border-top-color: #d5f5e3; }
+.historial-card:hover { border-top-color: #2ecc71; }
 
 /* --- Ajuste Responsivo --- */
-@media (max-width: 768px) {
-    .action-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* Pasa a 2 columnas en tablets */
-    }
+@media (max-width: 900px) {
+    .action-grid { grid-template-columns: repeat(2, 1fr); }
+    .auth-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 480px) {
-    .action-grid {
-        grid-template-columns: 1fr !important; /* Pasa a 1 columna en celulares */
-    }
+@media (max-width: 600px) {
+    .action-grid, .auth-grid { grid-template-columns: 1fr; }
 }

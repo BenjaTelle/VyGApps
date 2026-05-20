@@ -15,13 +15,13 @@ import java.util.List;
 import model.trabajadores;
 
 /**
- *
  * @author Benja
  */
 public class TrabajadoresDAO {
 
     public void registrarTrabajador(trabajadores t) {
-        String sql = "INSERT into trabajadores(cedula,full_name,edad,puesto,salario_quincenal,origen,id_supervisor,id_proyect) VALUES(?,?,?,?,?,?,?,?)";
+        // ACTUALIZADO: Se agregan telefono, numero_emergencia y direccion
+        String sql = "INSERT into trabajadores(cedula,full_name,edad,puesto,salario_quincenal,origen,id_supervisor,id_proyect, telefono, numero_emergencia, direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         Connection con = ConectarBD.conectar();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -34,7 +34,11 @@ public class TrabajadoresDAO {
                 ps.setString(6, t.getOrigen());
                 ps.setInt(7, t.getId_supervisor());
                 ps.setInt(8, t.getId_proyect());
-
+                
+                // NUEVOS CAMPOS
+                ps.setString(9, t.getTelefono());
+                ps.setString(10, t.getNumero_emergencia());
+                ps.setString(11, t.getDireccion());
             }
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -63,6 +67,11 @@ public class TrabajadoresDAO {
                 t.setOrigen(rs.getString("origen"));
                 t.setId_supervisor(rs.getInt("id_supervisor"));
                 t.setId_proyect(rs.getInt("id_proyect"));
+                
+                // NUEVOS CAMPOS
+                t.setTelefono(rs.getString("telefono"));
+                t.setNumero_emergencia(rs.getString("numero_emergencia"));
+                t.setDireccion(rs.getString("direccion"));
 
                 ListaT.add(t);
             }
@@ -95,6 +104,11 @@ public class TrabajadoresDAO {
                 t.setOrigen(rs.getString("origen"));
                 t.setId_supervisor(rs.getInt("id_supervisor"));
                 t.setId_proyect(rs.getInt("id_proyect"));
+                
+                // NUEVOS CAMPOS
+                t.setTelefono(rs.getString("telefono"));
+                t.setNumero_emergencia(rs.getString("numero_emergencia"));
+                t.setDireccion(rs.getString("direccion"));
 
                 ListaT.add(t);
             }
@@ -106,7 +120,7 @@ public class TrabajadoresDAO {
         return ListaT;
     }
 
-    //trabajadores que no  tiene puesto supervisor
+    //trabajadores que si tienen puesto supervisor
     public List<trabajadores> ListarTrabajadoresSuperv() throws SQLException {
         String sql = "SELECT * FROM trabajadores \n"
                 + "WHERE puesto IN ('Supervisor de obra', 'Ingeniero residente', 'Arquitecto') \n"
@@ -129,6 +143,11 @@ public class TrabajadoresDAO {
                 t.setOrigen(rs.getString("origen"));
                 t.setId_supervisor(rs.getInt("id_supervisor"));
                 t.setId_proyect(rs.getInt("id_proyect"));
+                
+                // NUEVOS CAMPOS
+                t.setTelefono(rs.getString("telefono"));
+                t.setNumero_emergencia(rs.getString("numero_emergencia"));
+                t.setDireccion(rs.getString("direccion"));
 
                 ListaT.add(t);
             }
@@ -160,6 +179,11 @@ public class TrabajadoresDAO {
                 t.setOrigen(rs.getString("origen"));
                 t.setId_supervisor(rs.getInt("id_supervisor"));
                 t.setId_proyect(rs.getInt("id_proyect"));
+                
+                // NUEVOS CAMPOS
+                t.setTelefono(rs.getString("telefono"));
+                t.setNumero_emergencia(rs.getString("numero_emergencia"));
+                t.setDireccion(rs.getString("direccion"));
 
                 ListaT.add(t);
             }
@@ -187,7 +211,8 @@ public class TrabajadoresDAO {
     }
 
     public void ActualizarTrabajador(trabajadores t) throws SQLException {
-        String sql = "UPDATE trabajadores SET  cedula=?, full_name= ?, edad =?, puesto=?, salario_quincenal=?, origen=?, id_supervisor=?, id_proyect=? WHERE id_trabajador=?";
+        // ACTUALIZADO: Se agregan telefono, numero_emergencia y direccion
+        String sql = "UPDATE trabajadores SET  cedula=?, full_name= ?, edad =?, puesto=?, salario_quincenal=?, origen=?, id_supervisor=?, id_proyect=?, telefono=?, numero_emergencia=?, direccion=? WHERE id_trabajador=?";
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setString(1, t.getCedula());
@@ -198,7 +223,14 @@ public class TrabajadoresDAO {
         ps.setString(6, t.getOrigen());
         ps.setInt(7, t.getId_supervisor());
         ps.setInt(8, t.getId_proyect());
-        ps.setInt(9, t.getId_trabajador());
+        
+        // NUEVOS CAMPOS
+        ps.setString(9, t.getTelefono());
+        ps.setString(10, t.getNumero_emergencia());
+        ps.setString(11, t.getDireccion());
+        
+        // El ID pasa a ser el parámetro 12
+        ps.setInt(12, t.getId_trabajador());
 
         ps.executeLargeUpdate();
 

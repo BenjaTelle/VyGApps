@@ -1,109 +1,115 @@
-<%-- 
-    Document   : AsignSup
-    Created on : 10 feb 2026, 7:19:44?p.m.
-    Author     : Benja
---%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Repository.TrabajadoresDAO"%>
+<%@page import="model.trabajadores"%>
+<%@page import="java.util.List"%>
+<%@page import="Repository.ProyectoDAO"%>
+<%@page import="model.proyectos"%>
 <%@page import="model.Usuarios"%>
-<%
-    //  Recuperar la sesi�n (false significa: no crees una nueva si no existe)
-    HttpSession sessionActual = request.getSession(false);
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-    //  Recuperar el usuario
+<%
+    HttpSession sessionActual = request.getSession(false);
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACI�N DE SEGURIDAD
     if (usuarioLogeado == null) {
-        //  No se ha logueado, vuelve al login 
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecuci�n del resto de la p�gina
+        return;
     } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  S� est� logueado, pero es empleado intentando entrar a zona admin
         response.sendRedirect("AccDen.jsp");
         return;
     }
 %>
-<%@page import="Repository.TrabajadoresDAO"%>
-<%@page import="model.trabajadores"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.proyectos"%>
-<%@page import="java.util.List"%>
-<%@page import="Repository.ProyectoDAO"%>
+
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Asignar Supervisor</title>
-        <link rel="stylesheet" href="CSS/AsignSupervisor.css">
-         <link rel="icon" href="images/vyg.svg" type="image/png">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asignar Supervisor | VyGApps</title>
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
+    <link rel="stylesheet" href="CSS/AsignSupervisor.css">
+    <script src="JS/menu-movil.js" defer></script>
+    <link rel="icon" href="images/vyg.svg" type="image/png">
+</head>
+<body>
 
-        <main class="container">
+<div class="admin-container">
+    <div class="overlay" id="sidebarOverlay"></div>
 
-            <section class="card">
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
+            </div>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="AdminPage.jsp" class="nav-item"><span>Dashboard Maestro</span></a>
+            <a href="ListarProyectosSv" class="nav-item active" style="background-color: #2c3e50;"><span>Gestión de Proyectos</span></a>
+            <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
+        </nav>
+    </aside>
 
-                <h2>Asignaci�n de Supervisor</h2>
-                <p class="subtitle">
-                    Selecciona un trabajador y as�gnalo como supervisor de una obra
-                </p>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= usuarioLogeado.getUser_name() %></span>
+                    <span class="profile-role">Administrador</span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
 
-                <form action="AsignSup" method="POST">
+        <section class="dashboard">
+            <div class="form-container">
+                <div class="form-card">
+                    <h2>Asignar Supervisor</h2>
+                    <p class="subtitle">Promueva a un trabajador como responsable de obra</p>
 
-                    <!-- TRABAJADOR -->
-                    <div class="form-group">
-                        <label>Trabajador</label>
-                        <select name="id_trabajador" required>
-                            <option value="">Seleccione un trabajador</option>
-                            <% TrabajadoresDAO tDAO = new TrabajadoresDAO();
+                    <form action="AsignSup" method="POST">
+                        <div class="form-group">
+                            <label>Seleccionar Trabajador</label>
+                            <select name="id_trabajador" required>
+                                <option value="">-- Elija un trabajador --</option>
+                                <% 
+                                    TrabajadoresDAO tDAO = new TrabajadoresDAO();
+                                    List<trabajadores> ListaT = tDAO.ListarTrabajadoresSinSuperv();
+                                    for (trabajadores t : ListaT) { 
+                                %>
+                                <option value="<%=t.getId_trabajador()%>"><%=t.getFull_name()%></option>
+                                <% } %>
+                            </select>
+                        </div>
 
-                                List<trabajadores> ListaT = tDAO.ListarTrabajadoresSinSuperv();
+                        <div class="form-group">
+                            <label>Proyecto / Obra Destino</label>
+                            <select name="id_proyecto" required>
+                                <option value="">-- Elija un proyecto --</option>
+                                <%
+                                    ProyectoDAO proyect = new ProyectoDAO();
+                                    List<proyectos> Listap = proyect.ListarProyectos();
+                                    for (proyectos p : Listap) {
+                                %>
+                                <option value="<%=p.getProyecto_id()%>"><%=p.getNombre_proyecto()%></option>
+                                <% } %>
+                            </select>
+                        </div>
 
-                                for (trabajadores t : ListaT) {
+                        <div class="info-box">
+                            El perfil seleccionado adquirirá los permisos para gestionar cuadrillas en este proyecto.
+                        </div>
 
-                            %>
+                        <button type="submit" class="btn-submit">Confirmar Asignación</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
 
-                            <option value="<%=t.getId_trabajador()%>"><%=t.getFull_name()%></option>
-                            <%}%>
-                        </select>
-                    </div>
-
-                    <!-- PROYECTO -->
-                    <div class="form-group">
-                        <label>Proyecto / Obra</label>
-                        <select name="id_proyecto" required>
-                            <option value="">Seleccione un proyecto</option>
-                            <%
-                                ProyectoDAO proyect = new ProyectoDAO();
-                                List<proyectos> Listap = proyect.ListarProyectos();
-
-                                for (proyectos p : Listap) {
-
-
-                            %>
-
-                            <option value="<%=p.getProyecto_id()%>"><%=p.getNombre_proyecto()%></option>
-
-                            <%}%>
-                        </select>
-                    </div>
-
-                    <!-- MENSAJE VISUAL -->
-                    <div class="info-box">
-                        <span>!</span>
-                        Este trabajador quedar� asignado como supervisor del proyecto seleccionado.
-                    </div>
-
-                    <!-- BOT�N -->
-                    <button type="submit" class="btn-submit">
-                        Asignar Supervisor
-                    </button>
-
-                </form>
-
-            </section>
-
-        </main>
-
-    </body>
+</body>
 </html>

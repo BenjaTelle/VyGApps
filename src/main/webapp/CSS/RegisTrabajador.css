@@ -1,61 +1,53 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 8 feb 2026, 5:19:44 p.m.
-    Author     : Benja
-*/
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
 }
 
 body {
-    background: #f4f6f8;
+    background: linear-gradient(135deg, #f2de96, #f7e8b5);
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-/* ===== CONTENEDOR ===== */
-.form-container {
-    width: 100%;
     padding: 30px 15px;
 }
 
-/* ===== CARD ===== */
-.form-card {
-    max-width: 520px;
-    margin: auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+.form-container {
+    width: 100%;
+    max-width: 750px; /* Más ancho para que quepan las dos columnas */
 }
 
-.form-card h2 {
-    font-size: 18px;
+.form-card {
+    background: #ffffff;
+    padding: 35px 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border-top: 6px solid #f57c00; /* Naranja corporativo */
+}
+
+h2 {
+    text-align: center;
     color: #f57c00;
-    font-weight: 700;
+    font-size: 22px;
     margin-bottom: 5px;
 }
 
 .subtitle {
-    font-size: 13px;
-    color: #777;
-    margin-bottom: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
 }
 
-/* ===== FORM ===== */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+/* ============================
+   GRID DE FORMULARIO (LA MAGIA)
+   ============================ */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas iguales */
+    gap: 16px 20px; /* Espacio vertical y horizontal */
 }
 
 .form-group {
@@ -63,54 +55,89 @@ form {
     flex-direction: column;
 }
 
+/* Campos que ocupan toda la fila (Nombre, Dirección) */
+.full-width {
+    grid-column: 1 / -1;
+}
+
 label {
-    font-size: 13px;
-    color: #555;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #444;
     margin-bottom: 6px;
 }
 
-/* INPUTS */
-input,
-select {
-    height: 42px;
-    padding: 0 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 14px;
-    outline: none;
-    transition: border 0.2s, box-shadow 0.2s;
-}
-
-input:focus,
-select:focus {
-    border-color: #f57c00;
-    box-shadow: 0 0 0 2px rgba(245, 124, 0, 0.15);
-}
-
-/* ===== BOTÓN ===== */
-.btn-submit {
-    margin-top: 10px;
-    height: 45px;
-    border: none;
+input, select, textarea {
+    padding: 10px 12px;
     border-radius: 8px;
-    background: #f2f2f2;
-    color: #333;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+textarea {
+    resize: vertical;
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: #f57c00;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.15);
+}
+
+/* ESTILOS DE ERROR (Para la validación) */
+.error-text {
+    color: #dc3545;
+    font-size: 12px;
+    margin-top: 4px;
+    display: none; /* Oculto por defecto */
+}
+.input-error {
+    border-color: #dc3545 !important;
+    background-color: #fff8f8 !important;
+}
+
+/* Select especial de Actualizar */
+.highlight-select select {
+    background-color: #fff3e0;
+    border: 2px solid #f57c00;
+    font-weight: 600;
+    color: #d84315;
+}
+
+/* ============================
+   BOTÓN
+   ============================ */
+.btn-submit {
+    margin-top: 25px;
+    width: 100%;
+    background-color: #f57c00;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-weight: bold;
     font-size: 15px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, font-weight 0.2s, transform 0.2s;
+    transition: all 0.3s ease;
 }
 
-/* 🔥 HOVER UNIFICADO */
 .btn-submit:hover {
-    background-color: #fff3e0;
-    color: #f57c00;
-    font-weight: 600;
+    background-color: #e65100;
     transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(245, 124, 0, 0.2);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 480px) {
-    .form-card {
-        padding: 25px 20px;
+/* ============================
+   RESPONSIVO (MÓVILES)
+   ============================ */
+@media (max-width: 600px) {
+    .form-card { padding: 25px 20px; }
+    
+    /* En celulares, todo pasa a 1 sola columna */
+    .form-grid {
+        grid-template-columns: 1fr;
     }
 }

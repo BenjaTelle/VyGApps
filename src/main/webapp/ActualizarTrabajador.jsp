@@ -1,175 +1,162 @@
 <%-- 
     Document   : ActualizarTrabajador
-    Created on : 18 feb 2026, 5:02:10?p.m.
+    Created on : 18 feb 2026
     Author     : Benja
 --%>
 <%@page import="model.Usuarios"%>
+<%@page import="model.proyectos"%>
+<%@page import="model.trabajadores"%>
+<%@page import="java.util.List"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    //  Recuperar la sesiÛn (false significa: no crees una nueva si no existe)
     HttpSession sessionActual = request.getSession(false);
-
-    //  Recuperar el usuario
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACI”N DE SEGURIDAD
     if (usuarioLogeado == null) {
-        //  No se ha logueado -> Patada al login
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecuciÛn del resto de la p·gina
+        return; 
     } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  SÌ est· logueado, pero es empleado intentando entrar a zona admin
         response.sendRedirect("AccDen.jsp");
         return;
     }
 %>
-<%@page import="model.proyectos"%>
-<%@page import="model.trabajadores"%>
-<%@page import="java.util.List"%>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Actualizar Trabajador</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Trabajador | VyGApps</title>
     <link rel="stylesheet" href="CSS/ActualizarTrabajadores.css">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
-<main class="form-container">
+    <main class="form-container">
+        <section class="form-card">
+            <h2>Gesti√≥n de Trabajadores</h2>
+            <p class="subtitle">Actualizar datos de un empleado existente</p>
 
-<section class="form-card">
+            <form action="ActualizarTrabajadores" method="POST" id="formTrabajador">
+                
+                <div class="form-group full-width highlight-select">
+                    <label>üîç Seleccionar Trabajador a Editar</label>
+                    <select name="id_trabajador" id="selectTrabajador" required>
+                        <option value="">Seleccione un trabajador de la lista</option>
+                        <%
+                            List<trabajadores> listaTrab = (List<trabajadores>) request.getAttribute("ListaTrabajadores");
+                            if (listaTrab != null) {
+                                for (trabajadores t : listaTrab) {
+                        %>
+                        <option value="<%=t.getId_trabajador()%>"
+                                data-cedula="<%= (t.getCedula() != null) ? t.getCedula() : "" %>"
+                                data-fullname="<%= (t.getFull_name() != null) ? t.getFull_name() : "" %>"
+                                data-edad="<%= t.getEdad() %>"
+                                data-telefono="<%= (t.getTelefono() != null) ? t.getTelefono() : "" %>"
+                                data-emergencia="<%= (t.getNumero_emergencia() != null) ? t.getNumero_emergencia() : "" %>"
+                                data-direccion="<%= (t.getDireccion() != null) ? t.getDireccion() : "" %>"
+                                data-salario="<%= t.getSalario_quincenal() %>"
+                                data-origen="<%= (t.getOrigen() != null) ? t.getOrigen() : "" %>"
+                                data-puesto="<%= (t.getPuesto() != null) ? t.getPuesto() : "" %>"
+                                data-idsupervisor="<%= t.getId_supervisor() %>"
+                                data-idproyecto="<%= t.getId_proyect() %>">
+                            <%=t.getFull_name()%>
+                        </option>
+                        <%
+                                }
+                            }
+                        %>
+                    </select>
+                </div>
 
-    <h2>GestiÛn de Trabajadores</h2>
-    <p class="subtitle">Actualizar datos del trabajador</p>
+                <div class="form-grid">
+                    <div class="form-group full-width">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="in_fullname" name="full_name" required>
+                    </div>
 
-   
-    
+                    <div class="form-group">
+                        <label>C√©dula de Identidad</label>
+                        <input type="text" id="cedula" name="cedula" maxlength="16" required>
+                        <small id="errorCedula" class="error-text">Formato inv√°lido.</small>
+                    </div>
 
-    <!-- ? FORM ACTUALIZAR -->
-    <form action="ActualizarTrabajadores" method="POST">
- <!-- ? SELECT PARA ELEGIR TRABAJADOR -->
-    <div class="form-group">
-        <label>Seleccionar Trabajador a Editar</label>
-        <select name="id_trabajador">
-            <option value="">Seleccione un trabajador</option>
+                    <div class="form-group">
+                        <label>Edad</label>
+                        <input type="number" id="in_edad" name="edad" min="18" required>
+                    </div>
 
-            <%
-                List<trabajadores> listaTrab =
-                        (List<trabajadores>) request.getAttribute("ListaTrabajadores");
-                       
-                if (listaTrab != null) {
-                    for (trabajadores t : listaTrab) {
-                    System.out.println("\n"+t.getId_trabajador());
-            %>
-            <option value="<%=t.getId_trabajador()%>">
-                <%=t.getFull_name()%>
-            </option>
-            <%
-                    }
-                }
-            %>
-        </select>
-    </div>
-        <!-- C…DULA -->
-        <div class="form-group">
-            <label>CÈdula</label>
-            <input type="text" name="cedula">
-        </div>
+                    <div class="form-group">
+                        <label>Tel√©fono Personal</label>
+                        <input type="text" id="in_telefono" name="telefono" maxlength="8" pattern="\d{8}" required>
+                    </div>
 
-        <!-- NOMBRE -->
-        <div class="form-group">
-            <label>Nombre completo</label>
-            <input type="text" name="full_name">
-        </div>
+                    <div class="form-group">
+                        <label>N√∫mero de Emergencia</label>
+                        <input type="text" id="in_emergencia" name="numero_emergencia" maxlength="8" pattern="\d{8}" required>
+                    </div>
 
-        <!-- EDAD -->
-        <div class="form-group">
-            <label>Edad</label>
-            <input type="number" name="edad" min="18">
-        </div>
+                    <div class="form-group full-width">
+                        <label>Direcci√≥n Domiciliar</label>
+                        <textarea id="in_direccion" name="direccion" rows="2" required></textarea>
+                    </div>
 
-        <!-- PUESTO -->
-        <div class="form-group">
-            <label>Puesto</label>
-            <select name="puesto">
-                <option value="">Seleccione un puesto</option>
-                <option value="Gerente de proyecto">Gerente de proyecto</option>
-                <option value="Ingeniero residente">Ingeniero/a residente</option>
-                <option value="Arquitecto">Arquitecto/a</option>
-                <option value="Supervisor de obra">Supervisor de obra</option>
-                <option value="Capataz">Capataz</option>
-                <option value="Tecnico operativo">TÈcnico operativo</option>
-                <option value="Obrero">Obrero / Operativo</option>
-            </select>
-        </div>
+                    <div class="form-group">
+                        <label>Salario Quincenal</label>
+                        <input type="number" id="in_salario" name="salario_quincenal" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Origen</label>
+                        <input type="text" id="in_origen" name="origen" required>
+                    </div>
 
-        <!-- SALARIO -->
-        <div class="form-group">
-            <label>Salario quincenal</label>
-            <input type="number" name="salario_quincenal">
-        </div>
+                    <div class="form-group full-width">
+                        <label>Puesto</label>
+                        <select id="in_puesto" name="puesto" required>
+                            <option value="">Seleccione un puesto</option>
+                            <option value="Gerente de proyecto">Gerente de proyecto</option>
+                            <option value="Ingeniero residente">Ingeniero/a residente</option>
+                            <option value="Arquitecto">Arquitecto/a</option>
+                            <option value="Supervisor de obra">Supervisor de obra</option>
+                            <option value="Capataz">Capataz</option>
+                            <option value="Tecnico operativo">T√©cnico operativo</option>
+                            <option value="Obrero">Obrero / Operativo</option>
+                        </select>
+                    </div>
 
-        <!-- ORIGEN -->
-        <div class="form-group">
-            <label>Origen</label>
-            <input type="text" name="origen">
-        </div>
+                    <div class="form-group">
+                        <label>Supervisor</label>
+                        <select id="in_supervisor" name="id_supervisor">
+                            <option value="0">Sin Supervisor / N/A</option>
+                            <%
+                                List<trabajadores> listaSupervAct = (List<trabajadores>) request.getAttribute("ListaSuperv");
+                                if (listaSupervAct != null) {
+                                    for (trabajadores sv : listaSupervAct) {
+                            %>
+                            <option value="<%=sv.getId_trabajador()%>"><%=sv.getFull_name()%></option>
+                            <% }} %>
+                        </select>
+                    </div>
 
-        <!-- SUPERVISOR -->
-        <div class="form-group">
-            <label>Supervisor</label>
-            <select name="id_supervisor">
-                <option value="">Seleccione un supervisor</option>
+                    <div class="form-group">
+                        <label>Proyecto asociado</label>
+                        <select id="in_proyecto" name="proyecto">
+                            <option value="0">Sin Proyecto Asignado</option>
+                            <%
+                                List<proyectos> listaPAct = (List<proyectos>) request.getAttribute("ListarProyectos");
+                                if (listaPAct != null) {
+                                    for (proyectos p : listaPAct) {
+                            %>
+                            <option value="<%=p.getProyecto_id()%>"><%=p.getNombre_proyecto()%></option>
+                            <% }} %>
+                        </select>
+                    </div>
+                </div>
 
-                <%
-                    List<trabajadores> listaSuperv =
-                        (List<trabajadores>) request.getAttribute("ListaSuperv");
+                <button type="submit" class="btn-submit">üîÑ Actualizar Trabajador</button>
+            </form>
+        </section>
+    </main>
 
-                    if (listaSuperv != null) {
-                        for (trabajadores sv : listaSuperv) {
-                %>
-                <option value="<%=sv.getId_trabajador()%>">
-                    <%=sv.getFull_name()%>
-                </option>
-                <%
-                        }
-                    }
-                %>
-            </select>
-        </div>
-
-        <!-- PROYECTO -->
-        <div class="form-group">
-            <label>Proyecto asociado</label>
-            <select name="proyecto">
-                <option value="">Seleccione un proyecto</option>
-
-                <%
-                    List<proyectos> listaP =
-                        (List<proyectos>) request.getAttribute("ListarProyectos");
-
-                    if (listaP != null) {
-                        for (proyectos p : listaP) {
-                %>
-                <option value="<%=p.getProyecto_id()%>">
-                    <%=p.getNombre_proyecto()%>
-                </option>
-                <%
-                        }
-                    }
-                %>
-            </select>
-        </div>
-
-        <!-- BOT”N -->
-        <button type="submit" class="btn-submit">
-            Actualizar trabajador
-        </button>
-
-    </form>
-
-</section>
-
-</main>
-
+    <script src="JS/ValidarTrabajador.js"></script>
 </body>
 </html>
