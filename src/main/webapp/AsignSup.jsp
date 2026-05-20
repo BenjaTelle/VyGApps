@@ -3,22 +3,22 @@
     Created on : 10 feb 2026, 7:19:44?p.m.
     Author     : Benja
 --%>
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Usuarios"%>
 <%
-    //  Recuperar la sesión (false significa: no crees una nueva si no existe)
+    //  Recuperar la sesiï¿½n (false significa: no crees una nueva si no existe)
     HttpSession sessionActual = request.getSession(false);
 
     //  Recuperar el usuario
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACIÓN DE SEGURIDAD
+    //  VALIDACIï¿½N DE SEGURIDAD
     if (usuarioLogeado == null) {
         //  No se ha logueado, vuelve al login 
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecución del resto de la página
+        return; // Importante para detener la ejecuciï¿½n del resto de la pï¿½gina
     } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  Sí está logueado, pero es empleado intentando entrar a zona admin
+        //  Sï¿½ estï¿½ logueado, pero es empleado intentando entrar a zona admin
         response.sendRedirect("AccDen.jsp");
         return;
     }
@@ -43,9 +43,9 @@
 
             <section class="card">
 
-                <h2>Asignación de Supervisor</h2>
+                <h2>Asignaciï¿½n de Supervisor</h2>
                 <p class="subtitle">
-                    Selecciona un trabajador y asígnalo como supervisor de una obra
+                    Selecciona un trabajador y asï¿½gnalo como supervisor de una obra
                 </p>
 
                 <form action="AsignSup" method="POST">
@@ -91,10 +91,10 @@
                     <!-- MENSAJE VISUAL -->
                     <div class="info-box">
                         <span>!</span>
-                        Este trabajador quedará asignado como supervisor del proyecto seleccionado.
+                        Este trabajador quedarï¿½ asignado como supervisor del proyecto seleccionado.
                     </div>
 
-                    <!-- BOTÓN -->
+                    <!-- BOTï¿½N -->
                     <button type="submit" class="btn-submit">
                         Asignar Supervisor
                     </button>

@@ -1,4 +1,7 @@
-    <%@page import="DTO.UsuarioDetalle"%>
+    
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@page import="DTO.UsuarioDetalle"%>
 <%@page import="model.Usuarios"%>
 <%
     HttpSession sessionActual = request.getSession(false);
@@ -9,7 +12,7 @@
         return;
     }
     
-    // Validar Rol (Asegúrate que coincida con tu BD)
+    // Validar Rol (Asegï¿½rate que coincida con tu BD)
     if (!user.getRol().equalsIgnoreCase("Supervisor")) {
         response.sendRedirect("AccDen.jsp");
         return;
@@ -44,7 +47,7 @@
             <div class="welcome">
                 <% UsuarioDetalle ud = (UsuarioDetalle) request.getAttribute("usuarioLogueadoDetalle");%>
                 <h1>Bienvenido, <%= ud.getTrabajadorAsign() %></h1>
-                <span>Gestión general de supervisión</span>
+                <span>Gestiï¿½n general de supervisiï¿½n</span>
             </div>
 
             <div class="profile">
@@ -60,13 +63,13 @@
                 <h3 style="color: #27ae60;">Control de Accesos</h3>
                 <p>Genera claves seguras para la asistencia diaria del personal.</p>
                 <div class="actions">
-                    <a href="GenerarCodigoSv" style="background-color: #27ae60; color: white; border: none; font-weight: bold;">Generar Código</a>
+                    <a href="GenerarCodigoSv" style="background-color: #27ae60; color: white; border: none; font-weight: bold;">Generar Cï¿½digo</a>
                 </div>
             </div>
 
             <div class="card">
                 <h3>Proyectos</h3>
-                <p>Gestión y seguimiento de obras asignadas.</p>
+                <p>Gestiï¿½n y seguimiento de obras asignadas.</p>
                 <div class="actions">
                     <a href="ListarProyectos">Ver proyectos</a>
                     <a href="VerDetalleProyecto">Detalle proyecto</a>
@@ -75,7 +78,7 @@
 
             <div class="card">
                 <h3>Pagos</h3>
-                <p>Revisión y autorización de pagos del personal.</p>
+                <p>Revisiï¿½n y autorizaciï¿½n de pagos del personal.</p>
                 <div class="actions">
                     <a href="CentroPagos">Autorizar pagos</a>
                     <a href="HistorialPagosSupSv">Historial de pagos</a>
