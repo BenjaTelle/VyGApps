@@ -1,97 +1,89 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 31 mar 2026, 7:38:58 p.m.
-    Author     : Benja
-*/
-
 /* =========================================
    ESTILOS PARA DETALLE DE TRABAJADOR Y KPIs
    ========================================= */
 
 /* --- Cabecera del Perfil (Header) --- */
 .worker-profile-header {
-    background-color: white;
+    background-color: var(--white);
     border-radius: 12px;
     padding: 25px 30px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-left: 5px solid #984807; /* Borde grueso corporativo VyGApps */
+    border-left: 5px solid var(--primary-color);
+    border: 1px solid #eaeaea;
+    border-left-width: 5px;
 }
 
-.profile-info h2 {
+.profile-info-text h2 {
     margin: 0 0 10px 0;
-    color: #2c3e50;
-    font-size: 24px;
+    color: var(--text-main);
+    font-size: 22px;
 }
 
-.profile-info p {
+.profile-info-text p {
     margin: 5px 0;
-    color: #555;
-    font-size: 15px;
+    color: var(--text-muted);
+    font-size: 14px;
 }
 
-/* --- Cuadrícula de KPIs (Dashboard) --- */
+/* --- Cuadrícula de KPIs --- */
 .kpi-grid {
     display: grid;
-    /* Divide el espacio en 4 columnas iguales */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; /* Espacio entre cada tarjeta */
+    gap: 20px;
     margin-bottom: 25px;
 }
 
-/* --- Diseño de cada Tarjeta KPI --- */
 .kpi-card {
-    background-color: white;
+    background-color: var(--white);
     border-radius: 12px;
     padding: 20px;
     display: flex;
-    align-items: center; /* Centra el icono y el texto verticalmente */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    border: 1px solid #eaeaea;
     transition: transform 0.2s ease-in-out;
 }
 
 .kpi-card:hover {
-    transform: translateY(-5px); /* Pequeño efecto de elevación al pasar el mouse */
-    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
 }
 
 .kpi-icon {
-    font-size: 35px;
+    font-size: 30px;
     margin-right: 15px;
-    background-color: #f1f2f6; /* Fondo gris claro circular para el icono */
-    padding: 12px;
+    background-color: #f1f2f6;
+    padding: 10px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 40px;
-    text-align: center;
+    min-width: 50px;
+    height: 50px;
 }
 
 .kpi-data h3 {
     margin: 0;
-    font-size: 24px;
-    color: #2c3e50;
+    font-size: 22px;
+    color: var(--text-main);
 }
 
 .kpi-data p {
     margin: 4px 0 0 0;
-    font-size: 12px;
-    color: #7f8c8d;
+    font-size: 11px;
+    color: var(--text-muted);
     text-transform: uppercase;
     font-weight: bold;
     letter-spacing: 0.5px;
 }
 
-/* --- Botón de Imprimir Reporte --- */
+/* --- Botón de Imprimir --- */
 .btn-print {
-    background-color: #984807;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -102,58 +94,104 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     transition: 0.2s background-color;
     display: flex;
     align-items: center;
-    gap: 8px; /* Espacio entre el emoji y el texto */
+    gap: 8px;
 }
 
 .btn-print:hover {
-    background-color: #7a3a05; /* Tono más oscuro al pasar el mouse */
+    background-color: var(--primary-dark);
 }
 
-/* --- Modo Impresión (Para cuando el usuario presiona Imprimir) --- */
-@media print {
-    body { 
-        background-color: white; 
-        padding: 0;
-    }
-    
-    .page-wrapper {
-        max-width: 100%;
-        margin: 0;
-    }
-
-    /* Ocultamos cosas que no deben salir en papel */
-    .btn-print, 
-    .btn-back, 
-    .search-container { 
-        display: none !important; 
-    }
-    
-    /* Quitamos las sombras y ponemos bordes sólidos para ahorrar tinta */
-    .kpi-card, 
-    .worker-profile-header, 
-    .card { 
-        border: 1px solid #ccc; 
-        box-shadow: none; 
-    }
-    
-    /* Aseguramos que los KPIs se mantengan en fila y no se rompan */
-    .kpi-grid {
-        display: flex;
-        justify-content: space-between;
-    }
-    
-    .kpi-card {
-        width: 22%;
-        padding: 10px;
-    }
+/* --- Tabla de Historial --- */
+.attendance-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    border: 1px solid #eaeaea;
+    overflow: hidden;
+    margin-top: 10px;
 }
 
-/* --- Ajuste Responsivo para pantallas pequeñas --- */
-@media (max-width: 768px) {
-    .kpi-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablets */
-    }
-    
+.table-responsive {
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 15px 30px;
+    background-color: #f9f9f9;
+    color: var(--text-main);
+    font-size: 13px;
+    border-bottom: 1px solid #eaeaea;
+    text-transform: uppercase;
+}
+
+.vyg-table td {
+    padding: 15px 30px;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 14px;
+    vertical-align: middle;
+    color: var(--text-main);
+}
+
+.vyg-table tbody tr:hover {
+    background-color: #fdfefe;
+}
+
+.time-in { color: #27ae60; font-weight: bold; }
+.time-out { color: #c0392b; font-weight: bold; }
+
+.badge-warning {
+    background-color: #fcf3cf;
+    color: #d35400;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.badge-ok {
+    background-color: #e8f8f5;
+    color: #1abc9c;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.card-footer {
+    padding: 20px 30px;
+    background-color: #fafafa;
+    border-top: 1px solid #eaeaea;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: var(--text-main);
+    background-color: var(--white);
+    border: 1px solid #dcdde1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.btn-back:hover {
+    background-color: #f1f2f6;
+}
+
+/* =========================================
+   RESPONSIVE Y MÓVIL
+   ========================================= */
+@media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
     .worker-profile-header {
         flex-direction: column;
         align-items: flex-start;
@@ -162,7 +200,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 }
 
 @media (max-width: 480px) {
-    .kpi-grid {
-        grid-template-columns: 1fr; /* 1 sola columna en celulares */
+    .kpi-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .vyg-table thead { display: none; }
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td {
+        display: block;
+        width: 100%;
     }
+    .vyg-table tr {
+        margin-bottom: 15px;
+        border-bottom: 4px solid #eaeaea;
+        background-color: #fff;
+    }
+    .vyg-table td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 20px;
+    }
+    .vyg-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--text-muted);
+        text-align: left;
+        font-size: 13px;
+    }
+    .empty-cell { display: block !important; }
+}
+
+/* --- Modo Impresión --- */
+@media print {
+    .sidebar, .topbar, .btn-print, .btn-back { display: none !important; }
+    .admin-container, .main-content { height: auto; padding: 0; margin: 0; overflow: visible; }
+    .kpi-grid { display: flex; justify-content: space-between; }
+    .kpi-card { width: 22%; border: 1px solid #000; box-shadow: none; padding: 10px; }
+    .vyg-table { border: 1px solid #000; }
+    .vyg-table th, .vyg-table td { border: 1px solid #000; padding: 8px; }
 }
