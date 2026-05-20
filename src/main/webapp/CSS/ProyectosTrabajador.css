@@ -1,60 +1,18 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 20 mar 2026, 8:38:06 p.m.
-    Author     : Benja
-*/
-
 /* =========================================
    ESTILOS PARA MIS PROYECTOS (TRABAJADOR)
    ========================================= */
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f7;
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-}
-
-.page-wrapper {
-    width: 100%;
-    max-width: 1000px; /* Un poco más ancho para que quepa bien el nombre del proyecto */
-}
-
-/* --- TARJETAS --- */
-.card {
+.attendance-card {
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     overflow: hidden;
+    margin-top: 10px;
 }
 
-.card-header {
-    padding: 25px 30px;
-    background-color: #fcfbf7;
-    border-bottom: 2px solid #f1e1a7;
-}
-
-.card-header h2 {
-    margin: 0;
-    color: #984807; /* El color naranja corporativo que usas */
-    font-size: 24px;
-}
-
-.card-header p {
-    margin: 5px 0 0 0;
-    color: #7f8c8d;
-    font-size: 14px;
-}
-
-/* --- TABLA VYG --- */
 .table-responsive {
-    padding: 20px 30px;
-    overflow-x: auto;
+    padding: 0;
+    overflow-x: hidden; /* Se restringe el scroll horizontal */
 }
 
 .vyg-table {
@@ -64,7 +22,7 @@ body {
 
 .vyg-table th {
     text-align: left;
-    padding: 12px 15px;
+    padding: 15px;
     background-color: #f9f9f9;
     color: #34495e;
     font-size: 14px;
@@ -119,26 +77,61 @@ body {
     border: 1px solid #f39c12;
 }
 
-/* --- PIE DE PÁGINA Y BOTONES --- */
-.card-footer {
-    padding: 20px 30px;
-    background-color: #fafafa;
-    border-top: 1px solid #eee;
-}
+/* =========================================
+   TABLA RESPONSIVA (MÓVIL) - VISTA TARJETA
+   ========================================= */
+@media (max-width: 768px) {
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td {
+        display: block;
+        width: 100%;
+    }
 
-.btn-back {
-    text-decoration: none;
-    color: #444;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.2s;
-    display: inline-block;
-}
+    /* Ocultar encabezados de tabla de escritorio */
+    .vyg-table thead {
+        display: none;
+    }
 
-.btn-back:hover {
-    background-color: #f1f1f1;
-    color: #222;
+    .vyg-table tr {
+        margin-bottom: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 5px;
+    }
+
+    /* Evitar borde en mensaje vacío */
+    .vyg-table tr:has(.empty-cell) {
+        border: none;
+        background-color: transparent;
+    }
+
+    .vyg-table td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 10px;
+        border-bottom: 1px solid #f5f5f5;
+    }
+
+    .vyg-table td[data-label]:last-child {
+        border-bottom: none;
+    }
+
+    /* Insertar el título desde el atributo data-label */
+    .vyg-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #7f8c8d;
+        text-align: left;
+        font-size: 13px;
+        padding-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .empty-cell {
+        display: block !important;
+        text-align: center;
+        padding: 20px 10px !important;
+    }
 }
