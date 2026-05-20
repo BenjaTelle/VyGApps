@@ -6,67 +6,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : 11 feb 2026, 7:06:39 p.m.
     Author     : Benja
 */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", Tahoma, sans-serif;
-}
-
-body {
-    background: #f4f6f8;
-    color: #2e2e2e;
-    min-height: 100vh;
+.dashboard {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
 }
 
 .form-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 20px;
 }
 
 .form-card {
     background: #ffffff;
-    width: 460px;
+    width: 100%;
+    max-width: 460px;
     padding: 40px;
     border-radius: 12px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
     position: relative;
+    border-top: 6px solid #f57c00;
 }
 
-.form-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 6px;
-    width: 100%;
-    background: #f57c00;
-    border-radius: 12px 12px 0 0;
-}
-
-.card-icon {
-    text-align: center;
-    font-size: 42px;
-    color: #f57c00;
-    margin-bottom: 10px;
-}
-
-h2 {
+.form-card h2 {
     text-align: center;
     color: #f57c00;
     margin-bottom: 5px;
+    font-size: 24px;
 }
 
 .subtitle {
     text-align: center;
     font-size: 14px;
-    color: #777;
+    color: #7f8c8d;
     margin-bottom: 30px;
 }
 
@@ -78,54 +52,44 @@ label {
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
-    color: #444;
+    color: #34495e;
     font-size: 14px;
 }
 
 input, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #ced6e0;
     font-size: 14px;
-    transition: all 0.2s ease;
+    transition: 0.3s;
+    background-color: #fcfbf7;
+    box-sizing: border-box;
 }
 
 input:focus, select:focus {
     outline: none;
     border-color: #f57c00;
     box-shadow: 0 0 0 2px rgba(245,124,0,0.15);
+    background-color: white;
 }
 
-/* COLORES POR ROL */
-.admin-color {
-    border-color: #c62828 !important;
-    color: #c62828;
-    font-weight: 600;
-}
-
-.supervisor-color {
-    border-color: #ef6c00 !important;
-    color: #ef6c00;
-    font-weight: 600;
-}
-
-.trabajador-color {
-    border-color: #2e7d32 !important;
-    color: #2e7d32;
-    font-weight: 600;
-}
+.admin-color { border-color: #c62828 !important; color: #c62828; font-weight: 600; }
+.supervisor-color { border-color: #ef6c00 !important; color: #ef6c00; font-weight: 600; }
+.trabajador-color { border-color: #2e7d32 !important; color: #2e7d32; font-weight: 600; }
 
 .btn-submit {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background: #f57c00;
     border: none;
     color: #ffffff;
-    font-weight: 600;
-    border-radius: 25px;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: 0.2s ease;
+    font-size: 15px;
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
