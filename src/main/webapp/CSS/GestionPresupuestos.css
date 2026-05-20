@@ -1,47 +1,37 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 2 abr 2026, 6:30:31 p.m.
-    Author     : Benja
-*/
-
 /* =========================================
-   AJUSTE DE CABECERA (Sobrescribe heredados)
+   ESTILOS ORIGINALES: GESTIÓN DE PRESUPUESTOS
    ========================================= */
-.admin-header {
+
+/* --- AJUSTE DE CABECERA OSCURA ORIGINAL --- */
+.admin-header-banner {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 25px 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: #34495e; /* Fondo oscuro por si lo pierde */
+    background-color: #34495e; /* Tu fondo oscuro */
     color: white;
 }
 
-.profile-info {
+.admin-header-info {
     text-align: center;
     width: 100%;
     margin: 0;
     padding: 0;
 }
 
-.profile-info h2 {
+.admin-header-info h2 {
     margin: 0 0 8px 0;
     color: white !important;
 }
 
-.profile-info p {
+.admin-header-info p {
     margin: 0;
     color: #ecf0f1 !important;
 }
-/* =========================================
-   ESTILOS: GESTIÓN DE PRESUPUESTOS
-   ========================================= */
 
-/* Contenedor principal dividido */
+/* --- Contenedor principal dividido --- */
 .budget-container {
     display: grid;
     grid-template-columns: 1fr 1.5fr; /* El formulario ocupa menos espacio que la tabla */
@@ -133,9 +123,87 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     box-shadow: 0 6px 12px rgba(39, 174, 96, 0.3);
 }
 
-/* Responsivo */
+/* --- ESTILOS DE TABLA FALTANTES --- */
+.table-responsive {
+    padding: 0;
+}
+
+.vyg-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vyg-table th {
+    text-align: left;
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    color: #34495e;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+    white-space: nowrap;
+}
+
+.vyg-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.vyg-table tbody tr:hover {
+    background-color: #fcfcfc;
+}
+
+.btn-back {
+    text-decoration: none;
+    color: #444;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.btn-back:hover {
+    background-color: #f1f1f1;
+}
+
+/* =========================================
+   RESPONSIVO (MÓVILES)
+   ========================================= */
 @media (max-width: 768px) {
     .budget-container {
         grid-template-columns: 1fr; /* Una sola columna en móviles */
+    }
+
+    /* Colapso de la tabla para que no rompa la pantalla */
+    .vyg-table thead { display: none; }
+    
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .vyg-table tr {
+        margin-bottom: 15px;
+        border-bottom: 4px solid #eaeaea;
+    }
+    
+    .vyg-table td[data-label] {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 20px;
+    }
+    
+    .vyg-table td[data-label]::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #7f8c8d;
+        font-size: 13px;
+        text-align: left;
     }
 }
