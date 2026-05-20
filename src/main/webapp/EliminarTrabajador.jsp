@@ -3,80 +3,107 @@
     Created on : 18 feb 2026, 6:47:06 p.m.
     Author     : Benja
 --%>
-
 <%@page import="model.trabajadores"%>
 <%@page import="java.util.List"%>
-<%@page import="Repository.UsuarioDAO"%>
 <%@page import="model.Usuarios"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    //  Recuperar la sesión (false significa: no crees una nueva si no existe)
     HttpSession sessionActual = request.getSession(false);
-
-    //  Recuperar el usuario
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
-    //  VALIDACIÓN DE SEGURIDAD
     if (usuarioLogeado == null) {
-        //  No se ha logueado, vuelve al login 
         response.sendRedirect("login.jsp");
-        return; // Importante para detener la ejecución del resto de la página
+        return;
     } else if (!usuarioLogeado.getRol().equals("Administrador")) {
-        //  Sí está logueado, pero es empleado intentando entrar a zona admin
         response.sendRedirect("AccDen.jsp");
         return;
     }
 %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Eliminar Usuario</title>
-        <link rel="stylesheet" href="CSS/EliminarTrabajadores.css">
-         <link rel="icon" href="images/vyg.svg" type="image/png">
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Trabajador | VyGApps</title>
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
+    <link rel="stylesheet" href="CSS/EliminarTrabajadores.css">
+    <script src="JS/menu-movil.js" defer></script>
+    <link rel="icon" href="images/vyg.svg" type="image/png">
+</head>
+<body>
 
-        <div class="delete-container">
-            <h2>Eliminar Trabajadores</h2>
+<div class="admin-container">
+    <div class="overlay" id="sidebarOverlay"></div>
 
-            <p class="warning-text">Esta acción es permanente y no se puede deshacer.</p>
-
-            <%
-                String mensaje = (String) request.getAttribute("mensaje");
-                String tipo = (String) request.getAttribute("tipo");
-
-                if (mensaje != null) {
-            %>
-            <div class="alert <%= tipo%>">
-                <%= mensaje%>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
             </div>
-            <% } %>
-            <form action="EliminarTrabajadores" method="post">
+        </div>
+        <nav class="sidebar-nav">
+            <a href="AdminPage.jsp" class="nav-item"><span>Dashboard Maestro</span></a>
+            <a href="ReporteTrabajadoresSv" class="nav-item active" style="background-color: #2c3e50;"><span>Reporte Trabajadores</span></a>
+            <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
+        </nav>
+    </aside>
 
-                <label for="trabajador">Seleccionar Trabajador</label>
-                <select name="id_trabajador" id="usuario" required>
-                    <option value="">-- Seleccione un trabajador --</option>
+    <main class="main-content">
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= usuarioLogeado.getUser_name() %></span>
+                    <span class="profile-role">Administrador</span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
+
+        <section class="dashboard">
+            <div class="form-container">
+                <div class="delete-container">
+                    <h2>Eliminar Trabajador</h2>
+                    <p class="warning-text">Esta acción es permanente y no se puede deshacer.</p>
 
                     <%
-                        List<trabajadores> ListaU = (List<trabajadores>) request.getAttribute("ListaT");
-
-                        for (trabajadores u : ListaU) {
-
-
+                        String mensaje = (String) request.getAttribute("mensaje");
+                        String tipo = (String) request.getAttribute("tipo");
+                        if (mensaje != null) {
                     %>
-                    <option value="<%=u.getId_trabajador()%>"><%=u.getFull_name()%></option>
+                    <div class="alert <%= tipo%>">
+                        <%= mensaje%>
+                    </div>
+                    <% } %>
 
-                    <%}%>
-                </select>
+                    <form action="EliminarTrabajadores" method="post">
+                        <label for="trabajador">Seleccionar Trabajador</label>
+                        <select name="id_trabajador" id="trabajador" required>
+                            <option value="">-- Seleccione un trabajador --</option>
+                            <%
+                                List<trabajadores> listaTrabajadores = (List<trabajadores>) request.getAttribute("ListaT");
+                                if(listaTrabajadores != null) {
+                                    for (trabajadores t : listaTrabajadores) {
+                            %>
+                            <option value="<%=t.getId_trabajador()%>"><%=t.getFull_name()%></option>
+                            <%      }
+                                } 
+                            %>
+                        </select>
 
+                        <button type="submit" class="btn-delete" onclick="return confirm('¿Confirma la eliminación definitiva de este trabajador?');">
+                            Eliminar Trabajador
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
 
-                <button type="submit" class="btn-delete">
-                    Eliminar Usuario
-                </button>
-
-            </form>
-        </div>
-
-    </body>
+</body>
 </html>
