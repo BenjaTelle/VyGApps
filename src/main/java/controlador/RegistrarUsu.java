@@ -87,17 +87,23 @@ public class RegistrarUsu extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-            String cedula = request.getParameter("cedula");
-            String full_name = request.getParameter("full_name");
-            int edad = Integer.parseInt(request.getParameter("edad"));
-            String puesto = request.getParameter("puesto");
-            double salario_quincenal = Double.parseDouble(request.getParameter("salario_quincenal"));
-            String origen = request.getParameter("origen");
+          // 1. Capturar los parámetros originales
+        String cedula = request.getParameter("cedula");
+        String full_name = request.getParameter("full_name");
+        int edad = Integer.parseInt(request.getParameter("edad"));
+        String puesto = request.getParameter("puesto");
+        double salario_quincenal = Double.parseDouble(request.getParameter("salario_quincenal"));
+        String origen = request.getParameter("origen");
 
-            String supervisorStr = request.getParameter("supervisor");
-            String proyectoStr = request.getParameter("proyecto");
+        String supervisorStr = request.getParameter("supervisor");
+        String proyectoStr = request.getParameter("proyecto");
 
-            Integer id_supervisor = null;
+        // 2. Capturar los NUEVOS parámetros del HTML
+        String telefono = request.getParameter("telefono");
+        String numero_emergencia = request.getParameter("numero_emergencia");
+        String direccion = request.getParameter("direccion");
+
+        Integer id_supervisor = null;
         Integer id_proyecto = null;
 
         if (supervisorStr != null && !supervisorStr.isEmpty()) {
@@ -108,14 +114,20 @@ public class RegistrarUsu extends HttpServlet {
             id_proyecto = Integer.parseInt(proyectoStr);
         }
 
-        //guardamos la informacion en un objeto 
+        // 3. Guardamos la información en el objeto (usando tu constructor actual)
         trabajadores trabajador = new trabajadores(cedula, full_name, edad, puesto, salario_quincenal, origen, id_supervisor, id_proyecto);
-        //mandamos a llamar el metodo que nos permite registrar el trabajador
+        
+        // 4. Inyectamos los nuevos datos usando los Setters
+        trabajador.setTelefono(telefono);
+        trabajador.setNumero_emergencia(numero_emergencia);
+        trabajador.setDireccion(direccion);
+
+        // 5. Mandamos a llamar el método que nos permite registrar el trabajador
         TrabajadoresDAO trabajadorDAO = new TrabajadoresDAO();
-
         trabajadorDAO.registrarTrabajador(trabajador);
+        
+        // 6. Redirigimos
         response.sendRedirect("AdminPage.jsp");
-
     }
 
     /**
