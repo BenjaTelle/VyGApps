@@ -1,174 +1,140 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 30 mar 2026, 4:56:29 p.m.
-    Author     : Benja
-*/
-
 /* =========================================
    ESTILOS PARA LA FICHA TÉCNICA (DOCUMENTO)
    ========================================= */
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f7;
+.dashboard {
     display: flex;
     justify-content: center;
-    padding: 40px 20px;
 }
 
 .page-wrapper {
     width: 100%;
-    max-width: 850px; /* Ancho estándar de un documento A4 */
+    max-width: 850px; 
 }
 
-/* --- DISEÑO DEL DOCUMENTO (TARJETA) --- */
+/* --- DISEÑO DEL DOCUMENTO --- */
 .document-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-    padding: 50px 60px;
-    margin-bottom: 30px;
+    background-color: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 40px 50px;
+    margin-bottom: 25px;
+    border: 1px solid #eaeaea;
+    border-top: 6px solid var(--primary-color);
 }
 
 /* --- ENCABEZADO --- */
 .doc-header {
     display: flex;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .header-logo img {
-    width: 80px;
+    width: 70px;
     height: auto;
-    margin-right: 30px;
+    margin-right: 25px;
 }
 
 .header-titles h2 {
     margin: 0;
-    color: #7f8c8d;
-    font-size: 14px;
+    color: var(--text-muted);
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .header-titles h1 {
     margin: 5px 0;
-    color: #984807; /* Color corporativo VyG */
-    font-size: 28px;
+    color: var(--primary-color);
+    font-size: 26px;
 }
 
 .doc-id {
     display: inline-block;
     background-color: #f1f2f6;
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: #576574;
-    font-size: 13px;
+    padding: 5px 12px;
+    border-radius: 6px;
+    color: var(--text-main);
+    font-size: 12px;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 8px;
+    font-family: monospace;
 }
 
 .divider {
     border: none;
-    border-top: 2px solid #f1e1a7;
-    margin: 30px 0;
+    border-top: 2px dashed #eaeaea;
+    margin: 25px 0;
 }
 
 /* --- CUERPO Y CUADRÍCULA DE DATOS --- */
 .data-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 25px;
 }
 
 .data-box {
-    background-color: #fcfbf7;
-    border: 1px solid #f0f0f0;
+    background-color: #fafafa;
+    border: 1px solid #f1f1f1;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
 }
 
 .data-label {
     display: block;
-    color: #7f8c8d;
-    font-size: 13px;
+    color: var(--text-muted);
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
-    font-weight: bold;
-}
-
-.data-value {
-    font-size: 18px;
-    color: #2c3e50;
-}
-
-.highlight-text {
+    margin-bottom: 8px;
     font-weight: 600;
 }
 
-.number-value {
-    font-size: 24px;
-    font-weight: bold;
+.data-value {
+    font-size: 16px;
+    color: var(--text-main);
 }
 
-.unit {
-    font-size: 14px;
-    color: #95a5a6;
-    font-weight: normal;
-}
+.highlight-text { font-weight: 600; }
+.number-value { font-size: 22px; font-weight: bold; }
+.unit { font-size: 13px; color: var(--text-muted); font-weight: normal; }
 
-/* --- COLORES Y ESTADOS --- */
-.text-blue { color: #2980b9; }
+.text-blue { color: #3498db; }
 .text-green { color: #27ae60; }
 
 .status-badge {
     padding: 6px 14px;
     border-radius: 20px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
     display: inline-block;
 }
 
-.status-active {
-    background-color: #e8f8f5;
-    color: #27ae60;
-    border: 1px solid #2ecc71;
-}
-
-.status-inactive {
-    background-color: #f2f3f4;
-    color: #7f8c8d;
-    border: 1px solid #bdc3c7;
-}
+.status-active { background-color: #e8f8f5; color: #27ae60; border: 1px solid #2ecc71; }
+.status-inactive { background-color: #fdf2e9; color: #e67e22; border: 1px solid #e67e22; }
 
 /* --- PIE DEL DOCUMENTO --- */
 .doc-footer {
     text-align: center;
     color: #bdc3c7;
     font-size: 12px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
-
-.doc-footer p {
-    margin: 3px 0;
-}
+.doc-footer p { margin: 4px 0; }
 
 /* --- BOTONES DE ACCIÓN --- */
 .action-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .btn {
     padding: 12px 25px;
-    border-radius: 6px;
-    font-size: 15px;
+    border-radius: 8px;
+    font-size: 14px;
     font-weight: bold;
     text-decoration: none;
     cursor: pointer;
@@ -176,38 +142,35 @@ body {
     transition: 0.2s;
 }
 
-.btn-back {
-    background-color: #ffffff;
-    color: #2c3e50;
-    border: 1px solid #cbd4c2;
-}
-
+.btn-back { background-color: var(--white); color: var(--text-main); border: 1px solid #dcdde1; }
 .btn-back:hover { background-color: #f1f2f6; }
 
-.btn-print {
-    background-color: #984807;
-    color: white;
-    box-shadow: 0 4px 10px rgba(152, 72, 7, 0.3);
-}
+.btn-print { background-color: var(--primary-color); color: white; }
+.btn-print:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
-.btn-print:hover {
-    background-color: #7a3a05;
-    transform: translateY(-2px);
+
+/* =========================================
+   RESPONSIVO
+   ========================================= */
+@media (max-width: 600px) {
+    .document-card { padding: 30px 25px; }
+    .doc-header { flex-direction: column; text-align: center; }
+    .header-logo img { margin-right: 0; margin-bottom: 15px; width: 60px; }
+    .data-grid { grid-template-columns: 1fr; gap: 15px; }
+    .action-buttons { flex-direction: column; }
+    .btn { width: 100%; text-align: center; }
 }
 
 /* =========================================
-   REGLAS DE IMPRESIÓN (MAGIA CSS)
+   REGLAS DE IMPRESIÓN
    ========================================= */
 @media print {
-    body {
-        background-color: #ffffff;
-        padding: 0;
-    }
+    body { background-color: #fff; }
+    .sidebar, .topbar, .action-buttons { display: none !important; }
     
-    .page-wrapper {
-        max-width: 100%;
-    }
-
+    .admin-container { display: block; height: auto; }
+    .main-content { padding: 0; overflow: visible; height: auto; }
+    
     .document-card {
         box-shadow: none;
         border: none;
@@ -216,13 +179,11 @@ body {
     }
 
     .data-box {
-        background-color: transparent;
-        border: 1px solid #000;
-        break-inside: avoid; /* Evita que el cuadro se parta a la mitad de la hoja */
+        background-color: transparent !important;
+        border: 1px solid #000 !important;
+        break-inside: avoid;
     }
 
-    /* Ocultar botones para no gastar tinta inútil */
-    .action-buttons {
-        display: none !important;
-    }
+    .status-badge { border: 1px solid #000; color: #000; background: transparent; }
+    .text-blue, .text-green { color: #000; }
 }
