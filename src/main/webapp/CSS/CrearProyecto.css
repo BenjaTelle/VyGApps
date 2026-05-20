@@ -6,103 +6,87 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     Created on : 17 feb 2026, 6:35:42 p.m.
     Author     : Benja
 */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-    background: linear-gradient(135deg, #f2de96, #f7e8b5);
-    height: 100vh;
+.dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
 }
 
-.container {
+.form-container {
     width: 100%;
-    max-width: 450px;
+    display: flex;
+    justify-content: center;
 }
 
-.card {
+.form-card {
     background: white;
-    padding: 35px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 480px;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-top: 6px solid #984807;
 }
 
-.card h2 {
+.form-card h2 {
     text-align: center;
     margin-bottom: 5px;
     color: #984807;
+    font-size: 24px;
 }
 
 .subtitle {
     text-align: center;
     font-size: 14px;
-    color: #666;
-    margin-bottom: 25px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
+.form-group {
+    margin-bottom: 20px;
 }
 
 label {
-    margin-bottom: 5px;
+    display: block;
+    margin-bottom: 6px;
     font-weight: 600;
-    color: #444;
+    color: #34495e;
+    font-size: 14px;
 }
 
 input, select {
-    padding: 10px;
+    width: 100%;
+    padding: 12px;
     border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    transition: 0.3s;
+    border: 1px solid #ced6e0;
     font-size: 14px;
+    transition: 0.3s;
+    background-color: #fdfefe;
+    box-sizing: border-box;
 }
 
 input:focus, select:focus {
     border-color: #984807;
     outline: none;
-    box-shadow: 0 0 5px rgba(152, 72, 7, 0.4);
+    box-shadow: 0 0 0 2px rgba(152, 72, 7, 0.15);
 }
 
 .btn-submit {
+    width: 100%;
     background-color: #984807;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 15px;
     transition: 0.3s;
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
-    background-color: #b55d0c;
-}
-
-/* Alertas bonitas */
-.alert {
-    padding: 12px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    text-align: center;
-}
-
-.success {
-    background-color: #d4edda;
-    color: #155724;
-}
-
-.error {
-    background-color: #f8d7da;
-    color: #721c24;
+    background-color: #7a3a05;
+    transform: translateY(-2px);
 }
