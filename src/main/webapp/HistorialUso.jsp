@@ -9,14 +9,16 @@
 <%@page import="model.Usuarios"%>
 
 <%
-    // Validación de sesión
+    /* Validación de sesión y seguridad para el rol Supervisor */
     HttpSession sessionActual = request.getSession(false);
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
     if (usuarioLogeado == null) {
         response.sendRedirect("login.jsp");
         return;
-    } else if (!usuarioLogeado.getRol().equals("Supervisor")) {
+    } 
+
+    if (!usuarioLogeado.getRol().equals("Supervisor")) {
         response.sendRedirect("AccDen.jsp");
         return;
     }
@@ -26,89 +28,126 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Historial de Uso de Maquinaria</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Uso de Maquinaria | VyGApps</title>
+    
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/HistorialUso.css">
+    <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
-    <div class="table-wrapper">
-        <div class="card table-card">
-            
-            <div class="table-header">
-                <div>
-                    <h2>🚜 Historial de Uso de Maquinaria</h2>
-                    <p>Consulta todos los registros operativos y costos totales calculados.</p>
-                </div>
-                <div class="toolbar">
-                    <input type="text" id="buscador" placeholder="Buscar registro..." class="search-input">
-                    <a href="RegistrarUso" class="btn-main">➕ Registrar Nuevo Uso</a>
-                </div>
-            </div>
+<div class="admin-container">
+    <div class="overlay" id="sidebarOverlay"></div>
 
-            <div class="table-responsive">
-                <table class="vyg-table">
-                    <thead>
-                        <tr>
-                            <th>ID Registro</th>
-                            <th>Fecha</th>
-                            <th>Horario (Inicio - Fin)</th>
-                            <th>Proyecto</th>
-                            <th>Máquina</th>
-                            <th>Operador</th>
-                            <th>Costo/Hora (C$)</th>
-                            <th>Combustible (Gal)</th>
-                            <th>Costo Total (C$)</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                            // Se asume que el Servlet pasa la lista con este nombre de atributo
-                            List<HistorialUsoDTO> listaUsos = (List<HistorialUsoDTO>) request.getAttribute("ListaHistorial");
-                            
-                            if(listaUsos != null && !listaUsos.isEmpty()) {
-                                for(HistorialUsoDTO uso : listaUsos) {
-                        %>
-                        <tr>
-                            <td><strong>#<%= uso.getIdUso() %></strong></td>
-                            <td><%= uso.getFecha() %></td>
-                            <td><%= uso.getHoraInicio() %> a <%= uso.getHoraFin() %></td>
-                            
-                            <td><%= uso.getNombreProyecto() %></td>
-                            <td><%= uso.getNombreMaquina() %></td>
-                            <td><%= uso.getNombreTrabajador() %></td>
-                            
-                            <td style="color: #e67e22; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoPorHora()) %></td>
-                            <td><%= uso.getGalonesCombustible() %> Gal.</td>
-                            <td class="text-financial" style="color: #27ae60; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoTotal()) %></td>
-                            
-                            <td>
-                                <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle">👁️</a>
-                            </td>
-                        </tr>
-                        <%
-                                }
-                            } else {
-                        %>
-                        <tr>
-                            <td colspan="10" style="text-align: center; color: #7f8c8d; padding: 30px;">
-                                No hay registros de uso de maquinaria en el historial.
-                            </td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;">Supervisor</span>
             </div>
-
-            <div class="table-footer">
-                <a href="SupervisorPage" class="btn-cancel">⬅️ Volver al Panel</a>
-            </div>
-
         </div>
-    </div>
+        <nav class="sidebar-nav">
+            <a href="SupervisorPage" class="nav-item"><span>Dashboard Operativo</span></a>
+            <a href="RegistrarUso" class="nav-item"><span>Registrar Maquinaria</span></a>
+            <a href="HistorialUso" class="nav-item active"><span>Historial de Uso</span></a>
+            <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= usuarioLogeado.getUser_name() %></span>
+                    <span class="profile-role">Supervisor</span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
+
+        <section class="dashboard">
+            <div class="table-wrapper">
+                <div class="card table-card">
+                    
+                    <div class="table-header">
+                        <div>
+                            <h2>🚜 Historial de Uso de Maquinaria</h2>
+                            <p>Consulta todos los registros operativos y costos totales calculados.</p>
+                        </div>
+                        <div class="toolbar">
+                            <input type="text" id="buscador" placeholder="Buscar registro..." class="search-input">
+                            <a href="RegistrarUso" class="btn-main">➕ Registrar Nuevo Uso</a>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="vyg-table">
+                            <thead>
+                                <tr>
+                                    <th>ID Registro</th>
+                                    <th>Fecha</th>
+                                    <th>Horario (Inicio - Fin)</th>
+                                    <th>Proyecto</th>
+                                    <th>Máquina</th>
+                                    <th>Operador</th>
+                                    <th>Costo/Hora (C$)</th>
+                                    <th>Combustible (Gal)</th>
+                                    <th>Costo Total (C$)</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%
+                                    List<HistorialUsoDTO> listaUsos = (List<HistorialUsoDTO>) request.getAttribute("ListaHistorial");
+                                    
+                                    if (listaUsos != null && !listaUsos.isEmpty()) {
+                                        for (HistorialUsoDTO uso : listaUsos) {
+                                %>
+                                <tr>
+                                    <td data-label="ID Registro"><strong>#<%= uso.getIdUso() %></strong></td>
+                                    <td data-label="Fecha"><%= uso.getFecha() %></td>
+                                    <td data-label="Horario (Inicio - Fin)"><%= uso.getHoraInicio() %> a <%= uso.getHoraFin() %></td>
+                                    <td data-label="Proyecto"><%= uso.getNombreProyecto() %></td>
+                                    <td data-label="Máquina"><%= uso.getNombreMaquina() %></td>
+                                    <td data-label="Operador"><%= uso.getNombreTrabajador() %></td>
+                                    <td data-label="Costo/Hora (C$)" style="color: #e67e22; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoPorHora()) %></td>
+                                    <td data-label="Combustible (Gal)"><%= uso.getGalonesCombustible() %> Gal.</td>
+                                    <td data-label="Costo Total (C$)" class="text-financial" style="color: #27ae60; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoTotal()) %></td>
+                                    <td data-label="Acciones">
+                                        <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle">👁️</a>
+                                    </td>
+                                </tr>
+                                <%
+                                        }
+                                    } else {
+                                %>
+                                <tr>
+                                    <td colspan="10" class="empty-message">
+                                        No hay registros de uso de maquinaria en el historial.
+                                    </td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-footer">
+                        <a href="SupervisorPage" class="btn-cancel">⬅️ Volver al Panel</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
 
 </body>
 </html>
