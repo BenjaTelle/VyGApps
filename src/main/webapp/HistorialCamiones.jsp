@@ -11,7 +11,7 @@
 <%@page import="model.Usuarios"%>
 
 <%
-    // Validación de seguridad para la sesión
+    /* Validación de sesión y restricción de acceso para el rol Supervisor */
     HttpSession sessionActual = request.getSession(false);
     Usuarios usuarioLogeado = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
 
@@ -28,101 +28,144 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Historial de Camiones</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Camiones | VyGApps</title>
+    
+    <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/HistorialCamiones.css">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+    
+    <script src="JS/menu-movil.js" defer></script>
+    <script src="JS/buscadorCamiones.js" defer></script>
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 
-    <div class="table-wrapper">
-        <div class="card table-card">
-            
-            <div class="table-header">
-                <div>
-                    <h2>&#128666; Historial de Camiones</h2>
-                    <p>Consulta todos los viajes de acarreo, materiales y fletes registrados.</p>
-                </div>
-                <div class="toolbar">
-                    <input type="text" id="buscador" placeholder="Buscar viaje..." class="search-input">
-                    <a href="HistorialCamiones?accion=nuevoViaje" class="btn-main">&#10133; Registrar Viaje</a>
-                </div>
-            </div>
+<div class="admin-container">
+    <div class="overlay" id="sidebarOverlay"></div>
 
-            <div class="table-responsive">
-                <table class="vyg-table">
-                    <thead>
-                        <tr>
-                            <th>Viaje y Fecha</th>
-                            <th>Contexto Operativo</th>
-                            <th>Carga</th>
-                            <th>Ruta</th>
-                            <th>Horario</th>
-                            <th>Costo Flete</th>
-                            <th>Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% 
-                            List<HistorialCamionesDTO> listaCamiones = (List<HistorialCamionesDTO>) request.getAttribute("ListaHC");
-                            if(listaCamiones != null && !listaCamiones.isEmpty()) {
-                                for(HistorialCamionesDTO camion : listaCamiones) {
-                        %>
-                        <tr>
-                            <td>
-                                <strong>#<%= camion.getId_ruta() %></strong><br>
-                                <small class="text-muted">&#128197; <%= camion.getFecha() %></small>
-                            </td>
-                            
-                            <td>
-                                <strong><%= camion.getNombre_proyecto() %></strong><br>
-                                <small class="text-muted">&#128668; <%= camion.getTipo_maquina() %></small>
-                            </td>
-                            
-                            <td>
-                                <%= camion.getNombre_material() %><br>
-                                <small class="text-muted"><%= camion.getCantidad_cargada() %> unidades</small>
-                            </td>
-                            
-                            <td>
-                                <%= camion.getOrigen() %><br>
-                                <small class="text-muted">&#10145; <%= camion.getDestino() %></small>
-                            </td>
-                            
-                            <td>
-                                <%= camion.getHora_salida() %><br>
-                                <small class="text-muted">a <%= camion.getHora_entrada() %></small>
-                            </td>
-                            
-                            <td class="text-financial">
-                                C$ <%= camion.getCosto_flete() %>
-                            </td>
-                            
-                            <td>
-                                <a href="HistorialCamiones?accion=verDetalle&id=<%= camion.getId_ruta() %>" class="btn-icon" title="Ver Detalle">&#128065;</a>
-                            </td>
-                        </tr>
-                        <%
-                                }
-                            } else {
-                        %>
-                        <tr>
-                            <td colspan="7" style="text-align: center; color: #7f8c8d; padding: 25px;">
-                                No hay viajes de camiones registrados en el historial.
-                            </td>
-                        </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <div class="brand-text">
+                <h2>VyGApps</h2>
+                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;">Supervisor</span>
             </div>
-
-            <div class="table-footer">
-                <a href="SupervisorPage" class="btn-cancel">&#11013; Volver al Panel</a>
-            </div>
-
         </div>
-    </div>
+        <nav class="sidebar-nav">
+            <a href="SupervisorPage" class="nav-item"><span>Dashboard Operativo</span></a>
+            <a href="RegistrarCamionesSv" class="nav-item"><span>Registrar Camiones</span></a>
+            <a href="HistorialCamiones" class="nav-item active"><span>Historial de Viajes</span></a>
+            <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="topbar">
+            <div class="header-left">
+                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+            </div>
+            <div class="profile-menu">
+                <div class="profile-info">
+                    <span class="profile-name"><%= usuarioLogeado.getUser_name() %></span>
+                    <span class="profile-role">Supervisor</span>
+                </div>
+                <img src="images/usuario.png" class="profile-img" alt="Perfil">
+            </div>
+        </header>
+
+        <section class="dashboard">
+            <div class="table-wrapper">
+                <div class="card table-card">
+                    
+                    <div class="table-header">
+                        <div>
+                            <h2>Historial de Camiones</h2>
+                            <p>Consulta todos los viajes de acarreo, materiales y fletes registrados.</p>
+                        </div>
+                        <div class="toolbar">
+                            <input type="text" id="buscador" placeholder="Buscar viaje..." class="search-input">
+                            <a href="RegistrarCamionesSv" class="btn-main">Registrar Viaje</a>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="vyg-table" id="tablaCamiones">
+                            <thead>
+                                <tr>
+                                    <th>Viaje y Fecha</th>
+                                    <th>Contexto Operativo</th>
+                                    <th>Carga</th>
+                                    <th>Ruta</th>
+                                    <th>Horario</th>
+                                    <th>Costo Flete</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% 
+                                    List<HistorialCamionesDTO> listaCamiones = (List<HistorialCamionesDTO>) request.getAttribute("ListaHC");
+                                    if(listaCamiones != null && !listaCamiones.isEmpty()) {
+                                        for(HistorialCamionesDTO camion : listaCamiones) {
+                                %>
+                                <tr class="fila-dato">
+                                    <td data-label="Viaje y Fecha">
+                                        <strong>#<%= camion.getId_ruta() %></strong><br>
+                                        <small class="text-muted">Fecha: <%= camion.getFecha() %></small>
+                                    </td>
+                                    
+                                    <td data-label="Contexto Operativo">
+                                        <strong><%= camion.getNombre_proyecto() %></strong><br>
+                                        <small class="text-muted">Equipo: <%= camion.getTipo_maquina() %></small>
+                                    </td>
+                                    
+                                    <td data-label="Carga">
+                                        <%= camion.getNombre_material() %><br>
+                                        <small class="text-muted"><%= camion.getCantidad_cargada() %> m³</small>
+                                    </td>
+                                    
+                                    <td data-label="Ruta">
+                                        <%= camion.getOrigen() %><br>
+                                        <small class="text-muted">Destino: <%= camion.getDestino() %></small>
+                                    </td>
+                                    
+                                    <td data-label="Horario">
+                                        <%= camion.getHora_salida() %><br>
+                                        <small class="text-muted">Llegada: <%= camion.getHora_entrada() %></small>
+                                    </td>
+                                    
+                                    <td data-label="Costo Flete" class="text-financial">
+                                        C$ <%= String.format("%,.2f", camion.getCosto_flete()) %>
+                                    </td>
+                                    
+                                    <td data-label="Acciones">
+                                        <a href="HistorialCamiones?accion=verDetalle&id=<%= camion.getId_ruta() %>" class="btn-icon" title="Ver Detalle">👁️</a>
+                                    </td>
+                                </tr>
+                                <%
+                                        }
+                                    } else {
+                                %>
+                                <tr>
+                                    <td colspan="7" class="empty-message">
+                                        No hay viajes de camiones registrados en el historial.
+                                    </td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-footer">
+                        <a href="SupervisorPage" class="btn-cancel">Volver al Panel</a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
 
 </body>
 </html>
