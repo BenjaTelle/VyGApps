@@ -1,40 +1,43 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 4 mar 2026, 5:21:22 p.m.
+/* Created on : 4 mar 2026, 5:21:22 p.m.
     Author     : Benja
 */
+
 /* =========================
-   1. ESTRUCTURA BASE
+   ESTILOS DE MENÚ LATERAL (FIX HOVER)
 ========================= */
-body {
-    margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #f2de96; /* Fondo principal cálido */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+.sidebar-nav .nav-item.active {
+    background-color: #2c3e50 !important;
+    color: #ffffff !important;
 }
 
-/* Wrapper más ancho para la tabla (1100px en lugar de 800px) */
+.sidebar-nav .nav-item.active:hover {
+    background-color: #1a252f !important;
+    color: #ffffff !important;
+}
+
+.sidebar-nav .nav-item.active span {
+    color: #ffffff !important;
+}
+
+/* =========================
+   ESTRUCTURA BASE
+========================= */
+.dashboard {
+    padding: 30px 20px;
+}
+
 .table-wrapper {
     width: 100%;
     max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* =========================
-   2. TARJETA Y CABECERA
-========================= */
 .table-card {
     background-color: white;
     border-radius: 12px;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    border: 1px solid #eaeaea;
 }
 
 .table-header {
@@ -51,25 +54,25 @@ body {
 .table-header h2 {
     margin: 0;
     color: #984807;
-    font-size: 26px;
+    font-size: 24px;
 }
 
 .table-header p {
     margin: 5px 0 0 0;
-    color: #666;
+    color: #64748b;
     font-size: 14px;
 }
 
-/* Barra de herramientas */
 .toolbar {
     display: flex;
     gap: 15px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .search-input {
     padding: 10px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 14px;
     outline: none;
@@ -78,66 +81,70 @@ body {
 
 .search-input:focus {
     border-color: #984807;
-    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
+    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.15);
 }
 
-/* =========================
-   3. ESTILOS DE LA TABLA
-========================= */
 .table-responsive {
     width: 100%;
-    overflow-x: auto; /* Permite scroll horizontal en celulares */
+    overflow-x: auto;
     border-radius: 8px;
-    border: 1px solid #eee;
+    border: 1px solid #f1f5f9;
 }
 
 .vyg-table {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    min-width: 900px; /* Evita que las columnas se aplasten demasiado */
+    min-width: 900px;
 }
 
 .vyg-table thead {
-    background-color: #f1e1a7; /* Fondo de cabecera en la paleta VyG */
+    background-color: #f1e1a7;
 }
 
 .vyg-table th {
     color: #984807;
     font-weight: 600;
     padding: 15px;
-    font-size: 14px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border-bottom: 2px solid #e2e8f0;
 }
 
 .vyg-table td {
     padding: 15px;
-    border-bottom: 1px solid #f5f5f5;
+    border-bottom: 1px solid #f8fafc;
     font-size: 14px;
-    color: #444;
+    color: #334155;
     vertical-align: middle;
 }
 
-/* Filas cebra y hover */
+.vyg-table tbody tr {
+    transition: background-color 0.2s;
+}
+
 .vyg-table tbody tr:nth-child(even) {
-    background-color: #fafafa;
+    background-color: #fcfcfc;
 }
 
 .vyg-table tbody tr:hover {
-    background-color: #fcfbf7; /* Iluminación suave al pasar el mouse */
+    background-color: #fffdf5;
 }
 
-/* Resaltado de costos */
 .text-financial {
     color: #27ae60;
     font-weight: bold;
+    font-size: 14px;
+}
+
+.empty-message {
+    text-align: center;
+    color: #64748b;
+    padding: 40px !important;
     font-size: 15px;
 }
 
-/* =========================
-   4. BOTONES Y FOOTER
-========================= */
 .btn-main {
     background-color: #984807;
     color: white;
@@ -147,24 +154,27 @@ body {
     font-size: 14px;
     font-weight: bold;
     transition: 0.2s;
+    white-space: nowrap;
 }
 
 .btn-main:hover {
     background-color: #7a3a05;
+    transform: translateY(-1px);
 }
 
 .btn-icon {
     text-decoration: none;
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    padding: 6px 10px;
-    border-radius: 4px;
+    background-color: #f1f5f9;
+    color: #1e293b;
+    padding: 8px 12px;
+    border-radius: 6px;
     transition: 0.2s;
-    font-size: 16px;
+    font-size: 14px;
+    display: inline-block;
 }
 
 .btn-icon:hover {
-    background-color: #bdc3c7;
+    background-color: #cbd5e1;
 }
 
 .table-footer {
@@ -174,8 +184,8 @@ body {
 }
 
 .btn-cancel {
-    background-color: #ecf0f1;
-    color: #7f8c8d;
+    background-color: #f1f5f9;
+    color: #475569;
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 6px;
@@ -185,6 +195,38 @@ body {
 }
 
 .btn-cancel:hover {
-    background-color: #bdc3c7;
-    color: #2c3e50;
+    background-color: #cbd5e1;
+    color: #1e293b;
+}
+
+/* Soporte responsivo para móviles */
+@media (max-width: 900px) {
+    .vyg-table thead { display: none; }
+    .vyg-table, .vyg-table tbody, .vyg-table tr, .vyg-table td { display: block; width: 100%; min-width: auto; }
+    .vyg-table tr { margin-bottom: 15px; border-bottom: 4px solid #eaeaea; background-color: #fff; }
+    .vyg-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: right;
+        padding: 12px 15px;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    .vyg-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #64748b;
+        font-size: 12px;
+        text-transform: uppercase;
+        text-align: left;
+        margin-right: 10px;
+    }
+    .toolbar {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btn-main {
+        text-align: center;
+    }
 }
