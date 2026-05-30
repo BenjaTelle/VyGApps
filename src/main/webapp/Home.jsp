@@ -1,6 +1,6 @@
 <%-- 
     Document   : Home
-    Created on : 2 feb 2026, 9:08:54 p.m.
+    Created on : 2 feb 2026, 9:08:54 p.m.
     Author     : Benja
 --%>
 
@@ -55,18 +55,22 @@
                 <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
                 <h2>VyGApps</h2>
             </div>
-            <nav>
+            <nav class="sidebar-nav">
                 <a href="Home.jsp" class="menu-item active">
-                    <span class="menu-icon">👤</span> Mi Perfil
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    <span>Mi Perfil</span>
                 </a>
                 <a href="HistorialAsistenciaSv" class="menu-item">
-                    <span class="menu-icon">📅</span> Asistencia
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <span>Asistencia</span>
                 </a>
                 <a href="MisPagosSv" class="menu-item">
-                    <span class="menu-icon">💰</span> Mis Pagos
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <span>Mis Pagos</span>
                 </a>
                 <a href="ProyectosTrabajador" class="menu-item">
-                    <span class="menu-icon">📂</span> Proyectos
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Proyectos</span>
                 </a>
             </nav>
         </aside>
@@ -74,8 +78,10 @@
         <main class="main-content">
             
             <header class="header">
-                <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
-                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <div class="header-left">
+                    <button id="menu-toggle" class="mobile-menu-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
                     
                     <div class="header-title">
                         <h1>Hola, <%= nombreTrabajador %></h1>
@@ -95,7 +101,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Mi Información</h3>
-                        <span>✏️</span>
+                        <div class="header-icon icon-orange">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                        </div>
                     </div>
                     <div class="card-content">
                         <div class="info-row">
@@ -112,7 +120,7 @@
                         </div>
                         <div class="info-row">
                             <span class="info-label">Estado:</span>
-                            <span style="color: #27ae60; font-weight:bold;">● Activo</span>
+                            <span class="status-active">● Activo</span>
                         </div>
                     </div>
                 </div>
@@ -120,11 +128,13 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Registrar Asistencia</h3>
-                        <span>⏱️</span>
+                        <div class="header-icon icon-green">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </div>
                     </div>
                     <div class="attendance-box">
-                        <p style="margin-bottom: 10px; color:#666; font-size:13px;">Hora actual del servidor</p>
-                        <div class="time-display" style="font-size: 24px; font-weight: bold; margin-bottom: 15px; color: #2c3e50;">
+                        <p class="time-label">Hora actual del servidor</p>
+                        <div class="time-display">
                             <%= new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date()) %>
                         </div>
                         
@@ -135,22 +145,21 @@
                         <form action="AsistenciaSv" method="POST">
                             <input type="hidden" name="accion" value="marcar_entrada">
                             
-                            <div style="margin-bottom: 15px;">
-                                <input type="text" name="codigo_supervisor" placeholder="Ingrese código de obra" 
-                                       required style="width: 100%; padding: 10px; border: 1px solid #bdc3c7; border-radius: 6px; text-transform: uppercase; font-weight: bold; text-align: center; letter-spacing: 2px;">
+                            <div class="input-group">
+                                <input type="text" name="codigo_supervisor" class="input-obra" placeholder="Ingrese código de obra" required>
                             </div>
 
-                            <button type="submit" class="btn-check-in" style="background-color: #27ae60; color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer;">
+                            <button type="submit" class="btn-check-in">
                                 Marcar Entrada
                             </button>
                         </form>
                         <% } else { %>
-                        <div class="entry-info" style="background-color: #e8f8f5; padding: 10px; border-radius: 6px; border-left: 4px solid #1abc9c; margin-bottom: 15px; font-size: 14px;">
-                            <span>Entraste hoy a las: <strong style="color: #16a085;"><%= horaEntradaRegistrada %></strong></span>
+                        <div class="entry-info">
+                            <span>Entraste hoy a las: <strong><%= horaEntradaRegistrada %></strong></span>
                         </div>
                         <form action="AsistenciaSv" method="POST">
                             <input type="hidden" name="accion" value="marcar_salida">
-                            <button type="submit" class="btn-check-out" style="background-color: #e74c3c; color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; font-weight: bold; cursor: pointer;">
+                            <button type="submit" class="btn-check-out">
                                 Marcar Salida
                             </button>
                         </form>
@@ -161,14 +170,16 @@
                 <div class="card">
                     <div class="card-header">
                         <h3>Últimos Pagos (Nóminas)</h3>
-                        <span>💳</span>
+                        <div class="header-icon icon-blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        </div>
                     </div>
-                    <table class="table-container" style="width: 100%; text-align: left; border-collapse: collapse; margin-top: 15px;">
+                    <table class="table-container">
                         <thead>
-                            <tr style="border-bottom: 2px solid #eee;">
-                                <th style="padding: 10px 5px;">Periodo</th>
-                                <th style="padding: 10px 5px;">Monto</th>
-                                <th style="padding: 10px 5px;">Estado</th>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -176,18 +187,14 @@
                                 if (listaPagos != null && !listaPagos.isEmpty()) {
                                     for (PagoDTO pago : listaPagos) {
                             %>
-                            <tr style="border-bottom: 1px solid #eee;">
-                                <td style="padding: 10px 5px;">
-                                    <%= pago.getPeriodoInicio() %> al <%= pago.getPeriodoFin() %>
-                                </td>
-                                <td style="padding: 10px 5px; font-weight: bold;">
-                                    C$ <%= String.format("%,.2f", pago.getMonto()) %>
-                                </td>
-                                <td style="padding: 10px 5px;">
+                            <tr>
+                                <td><%= pago.getPeriodoInicio() %> al <%= pago.getPeriodoFin() %></td>
+                                <td class="monto-bold">C$ <%= String.format("%,.2f", pago.getMonto()) %></td>
+                                <td>
                                     <% if (pago.getEstado().equalsIgnoreCase("Autorizado")) { %>
-                                        <span style="color:#27ae60; background:#e8f8f5; padding: 3px 8px; border-radius: 12px; font-size: 12px;">Pagado</span>
+                                        <span class="badge-pagado">Pagado</span>
                                     <% } else { %>
-                                        <span style="color:#e67e22; background:#fdf2e9; padding: 3px 8px; border-radius: 12px; font-size: 12px;">Pendiente</span>
+                                        <span class="badge-pendiente">Pendiente</span>
                                     <% } %>
                                 </td>
                             </tr>
@@ -196,7 +203,7 @@
                                 } else { 
                             %>
                             <tr>
-                                <td colspan="3" style="padding: 20px; text-align: center; color: #999; font-size: 13px;">
+                                <td colspan="3" class="empty-table">
                                     No hay nóminas registradas para este periodo.
                                 </td>
                             </tr>

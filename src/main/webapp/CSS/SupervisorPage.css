@@ -240,17 +240,26 @@ body {
     border-color: var(--primary-light);
 }
 
+/* =========================
+   ESTILOS DE ICONOS (Remplaza tu .card-icon anterior)
+========================= */
 .card-icon {
-    font-size: 30px;
-    background-color: var(--primary-light);
-    width: 55px;
-    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 55px;
+    height: 55px;
     border-radius: 12px;
     margin-bottom: 15px;
 }
+
+/* Colores de contraste para las tarjetas */
+.icon-orange { background-color: #ffedd5; color: #ea580c; }
+.icon-blue   { background-color: #e0f2fe; color: #2563eb; }
+.icon-purple { background-color: #f3e8ff; color: #9333ea; }
+.icon-green  { background-color: #dcfce7; color: #16a34a; }
+.icon-dark   { background-color: #f1f5f9; color: #475569; }
+.icon-teal   { background-color: #ccfbf1; color: #0d9488; }
 
 .module-card h3 {
     color: var(--text-main);
