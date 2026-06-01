@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.asistencia;
 
+
 /**
  *
  * @author Benja
@@ -38,45 +39,81 @@ public class AsistenciaDAO {
         
     }
     
-    
-    public int MarcarSalida(int id, Time salida) throws SQLException
-    {
-        String sql = "UPDATE asistencia SET hora_salida=? where id_trabajador=?";
+     // --- NUEVO MÉTODO PARA OBTENER REGLAS DEL PROYECTO ---
+    public Time obtenerHoraSalidaOficial(int idTrabajador) throws SQLException {
+        String sql = "SELECT p.hora_salida_oficial FROM proyectos p " +
+                     "INNER JOIN trabajadores t ON p.id_proyecto = t.id_proyect " +
+                     "WHERE t.id_trabajador = ?";
+        
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
-        ps.setTime(1, salida);
-        ps.setInt(2, id);
-     
+        ps.setInt(1, idTrabajador);
         
-       int filasAfectadas = ps.executeUpdate();
-        return filasAfectadas;
-        
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getTime("hora_salida_oficial");
+        }
+        return null; // Si no tiene proyecto asignado
     }
+
+    // --- MÉTODO MarcarSalida CORREGIDO Y ACTUALIZADO ---
+    public int MarcarSalida(int id, Time salida, int horasExtras, int marcaAnomala, Date fecha) throws SQLException {
+        // CORRECCIÓN CRÍTICA: Se añadió "AND fecha=?" para no sobreescribir el historial del mes
+        String sql = "UPDATE asistencia SET hora_salida=?, horas_extras=?, marca_anomala=? WHERE id_trabajador=? AND fecha=?";
+        Connection con = ConectarBD.conectar();
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setTime(1, salida);
+        ps.setInt(2, horasExtras);
+        ps.setInt(3, marcaAnomala);
+        ps.setInt(4, id);
+        ps.setDate(5, fecha);
+        
+        int filasAfectadas = ps.executeUpdate();
+        return filasAfectadas;
+    }
+   
     
-    public List<asistencia> ListarAsistencia(int id) throws SQLException
-    {
-        String sql = "SELECT * FROM asistencia where id_trabajador=?";
+ 
+    public List<AsistenciaDTO> ListarAsistenciaTrabajador(int id) throws SQLException {
+        
+        //  consulta ajustada para traer extras y anomalías
+        String sql = "SELECT t.full_name, a.fecha, a.hora_entrada, a.hora_salida, a.horas_extras, a.marca_anomala, "
+                   + "CASE WHEN a.hora_entrada > p.hora_entrada_oficial THEN 'Llegada Tardía' ELSE 'A Tiempo' END as estado_turno "
+                   + "FROM asistencia as a "
+                   + "INNER JOIN trabajadores as t ON t.id_trabajador = a.id_trabajador "
+                   + "INNER JOIN proyectos as p ON t.id_proyect = p.id_proyecto "
+                   + "WHERE t.id_trabajador = ? ORDER BY a.fecha DESC";
+        
         Connection con = ConectarBD.conectar();
         PreparedStatement ps = con.prepareStatement(sql);
         ps.setInt(1, id);
-        List<asistencia> ListaAsistencia = new ArrayList<>();
-        ResultSet rs = ps.executeQuery();
-        while(rs.next())
-        {
-            
-         asistencia a =   new asistencia();
-           a.setFecha(rs.getDate("fecha"));
-           a.setHora_entrada(rs.getTime("hora_entrada"));
-           a.setHora_salida(rs.getTime("hora_salida"));
-            a.setId_trabajador(rs.getInt("id_trabajador"));
-            
-            ListaAsistencia.add(a);
+       
+        List<AsistenciaDTO> lista = new ArrayList<>();
+        
+        try {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                AsistenciaDTO a = new AsistenciaDTO();
+                a.setNombreTrabajador(rs.getString("full_name"));
+                a.setFecha(rs.getDate("fecha"));
+                a.setHoraEntrada(rs.getTime("hora_entrada"));
+                a.setHoraSalida(rs.getTime("hora_salida"));
+                a.setEstado_turno(rs.getString("estado_turno"));
+                a.setHorasExtras(rs.getInt("horas_extras")); // NUEVO
+                a.setMarcaAnomala(rs.getInt("marca_anomala")); // NUEVO
+                a.setIdTrabajador(id);
+                lista.add(a);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (ps != null) ps.close();
+            if (con != null) con.close();
         }
         
-        return ListaAsistencia;
-        
+        return lista;
     }
-    
     
     public List<AsistenciaDTO> ListarAsistenciaGlobal() throws SQLException
     {
