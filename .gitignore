@@ -1,0 +1,7 @@
+# Ignore Maven and compiled files
+target/
+*.war
+*.jar
+*.class
+*.log
+

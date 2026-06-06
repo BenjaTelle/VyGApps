@@ -57,7 +57,7 @@ public class DetalleAsistenciaTrabajador extends HttpServlet {
         try{
             AsistenciaDAO aDAO = new AsistenciaDAO();
             request.setAttribute("DetalleAsistencia", aDAO.obtenerResumenTrabajador(idTrabajador));
-            request.setAttribute("HistorialAsistencia", aDAO.ListarAsistenciaTrabajdor(idTrabajador));
+            request.setAttribute("HistorialAsistencia", aDAO.ListarAsistenciaTrabajador(idTrabajador));
         }catch(SQLException e)
         {
             e.printStackTrace();

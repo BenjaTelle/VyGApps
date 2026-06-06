@@ -19,8 +19,28 @@ public class AsistenciaDTO {
     private Time horaSalida;
     private Date fecha;
     private String estado_turno;
+    private int horasExtras;
+    private int marcaAnomala;
+
     
+        
     public AsistenciaDTO() {
+    }
+
+    public int getHorasExtras() {
+        return horasExtras;
+    }
+
+    public void setHorasExtras(int horasExtras) {
+        this.horasExtras = horasExtras;
+    }
+
+    public int getMarcaAnomala() {
+        return marcaAnomala;
+    }
+
+    public void setMarcaAnomala(int marcaAnomala) {
+        this.marcaAnomala = marcaAnomala;
     }
 
     public int getIdTrabajador() {

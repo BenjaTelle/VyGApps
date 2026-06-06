@@ -5,6 +5,7 @@
 package controlador;
 
 import Repository.AsistenciaDAO;
+import Repository.ProyectoDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -48,17 +49,29 @@ public class AsistenciaGlobal extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        try{
+         try {
+            // 1. Capturar los filtros enviados desde la vista (pueden ser null si es la primera vez que entra)
+            String fechaFiltro = request.getParameter("fecha");
+            String idProyectoFiltro = request.getParameter("id_proyecto");
+
+            // 2. Instanciar repositorios
             AsistenciaDAO aDAO = new AsistenciaDAO();
-            request.setAttribute("ListaAsistenciaGlobal", aDAO.ListarAsistenciaGlobal());
+            ProyectoDAO pDAO = new ProyectoDAO();
+
+            // 3. Obtener la lista de proyectos activos para llenar el combo box (Select)
+            request.setAttribute("ListaProyectos", pDAO.VerProyectosActivos());
+
+            // 4. Obtener la lista de asistencias aplicando los filtros dinámicos
+            request.setAttribute("ListaAsistenciaGlobal", aDAO.ListarAsistenciaGlobalFiltrada(fechaFiltro, idProyectoFiltro));
             
-            
-            
-        }catch(SQLException e)
-        {
+        } catch(SQLException e) {
+            System.out.println("Error al cargar la asistencia global: " + e.getMessage());
             e.printStackTrace();
         }
+        
+        // 5. Redirigir a la vista
         request.getRequestDispatcher("AsistenciaGlobal.jsp").forward(request, response);
+    
     }
 
     /**

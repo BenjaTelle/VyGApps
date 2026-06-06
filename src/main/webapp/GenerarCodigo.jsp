@@ -46,15 +46,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon">📊</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                 <span>Dashboard</span>
             </a>
             <a href="GenerarCodigoSv" class="nav-item active">
-                <span class="icon">🔑</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg></span>
                 <span>Generar Código</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon">🚪</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -88,7 +88,7 @@
                 if (codigoGenerado != null) { 
             %>
                 <div class="codigo-result-card">
-                    <h3>¡Código Generado Exitosamente! ✅</h3>
+                    <h3>¡Código Generado Exitosamente! <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></h3>
                     <p>Comparte este código con tu cuadrilla para que marquen su entrada:</p>
                     <div class="codigo-gigante"><%= codigoGenerado %></div>
                     <p class="codigo-info">⏳ Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
@@ -133,7 +133,7 @@
                         </select>
                     </div>
 
-                    <button type="submit" class="btn-generar">Generar Nuevo Código 🔑</button>
+                    <button type="submit" class="btn-generar">Generar Nuevo Código <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg></button>
                 </form>
             </div>
 

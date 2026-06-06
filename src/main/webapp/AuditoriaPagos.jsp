@@ -50,19 +50,19 @@
 
                 <nav class="sidebar-nav">
                     <a href="AdminPage.jsp" class="nav-item">
-                        <span class="icon">📊</span>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                         <span>Dashboard Maestro</span>
                     </a>
                     <a href="AdminFinanzas" class="nav-item">
-                        <span class="icon">💰</span>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
                         <span>Control Financiero</span>
                     </a>
                     <a href="AuditoriaPagosSv" class="nav-item active" style="background-color: #2c3e50;">
-                        <span class="icon">🗂️</span>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>️</span>
                         <span>Historial Maestro</span>
                     </a>
                     <a href="LogoutSv" class="nav-item logout-link">
-                        <span class="icon">🚪</span>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
                         <span>Cerrar Sesión</span>
                     </a>
                 </nav>
@@ -87,7 +87,7 @@
 
                     <div class="admin-header-banner" style="background: linear-gradient(135deg, #34495e, #2c3e50);">
                         <div class="admin-header-info">
-                            <h2>🗂️ Historial Maestro de Pagos</h2>
+                            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>️ Historial Maestro de Pagos</h2>
                             <p>Buscador global de nóminas y uso de maquinaria. Busque por concepto o nombre del proyecto.</p>
                         </div>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="card search-card">
                         <form action="AuditoriaPagosSv" method="GET" class="search-form">
                             <input type="text" name="criterio" placeholder="Ej. Carlos Mendoza, Caterpillar o Reparación KM45..." value="<%= busquedaAnterior%>" required>
-                            <button type="submit" class="btn-buscar">🔍 Buscar Recibos</button>
+                            <button type="submit" class="btn-buscar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Buscar Recibos</button>
                         </form>
                     </div>
 
@@ -107,7 +107,7 @@
                             </div>
                             <% if (listaResultados != null && !listaResultados.isEmpty()) {%>
                             <a href="ReporteAuditoriaSv?criterio=<%= busquedaAnterior%>" target="_blank" class="btn-pdf" style="text-decoration: none; display: inline-block; text-align: center;">
-                                📄 Exportar Informe Oficial
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Exportar Informe Oficial
                             </a>
                             <% } %>
                         </div>
@@ -163,7 +163,7 @@
                     </div>
 
                     <div style="margin-top: 25px; padding-bottom: 20px;">
-                        <a href="AdminFinanzas" class="btn-back">⬅️ Volver al Panel Financiero</a>
+                        <a href="AdminFinanzas" class="btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel Financiero</a>
                     </div>
 
                 </section>

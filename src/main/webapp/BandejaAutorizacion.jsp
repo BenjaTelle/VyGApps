@@ -43,7 +43,7 @@
             <header class="page-header">
                 <div class="header-overlay">
                     <div class="header-content">
-                        <h2><span class="emoji-title">💼</span> Bandeja de Autorización</h2>
+                        <h2><span class="emoji-title"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span> Bandeja de Autorización</h2>
                         <p>Revisa, valida y aprueba los pagos generados. Verifica la disponibilidad del presupuesto de la obra antes de proceder.</p>
                     </div>
                 </div>
@@ -57,13 +57,13 @@
             </div>
             <% } else if ("sin_fondos".equals(mensaje)) { %>
             <div class="alert-box alert-danger" id="alertBox">
-                <span class="alert-icon">❌</span>
+                <span class="alert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></span>
                 <p><strong>Fondos Insuficientes:</strong> El proyecto no cuenta con fondos disponibles para cubrir esta planilla.</p>
                 <button type="button" class="close-alert" onclick="dismissAlert()">✕</button>
             </div>
             <% } else if ("error".equals(mensaje)) { %>
             <div class="alert-box alert-warning" id="alertBox">
-                <span class="alert-icon">⚠️</span>
+                <span class="alert-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                 <p><strong>Error técnico:</strong> Ocurrió un problema al procesar la solicitud. Intenta de nuevo.</p>
                 <button type="button" class="close-alert" onclick="dismissAlert()">✕</button>
             </div>
@@ -71,7 +71,7 @@
 
             <section class="table-card card-payroll">
                 <div class="card-header">
-                    <h3><span class="header-icon icon-payroll">👥</span> Nóminas de Personal Pendientes</h3>
+                    <h3><span class="header-icon icon-payroll"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span> Nóminas de Personal Pendientes</h3>
                 </div>
 
                 <div class="table-responsive">
@@ -112,7 +112,7 @@
                             <tr>
                                 <td colspan="6" class="empty-row">
                                     <div class="empty-container">
-                                        <span>📭</span>
+                                        <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path></svg></span>
                                         <p>No hay nóminas de personal esperando aprobación.</p>
                                     </div>
                                 </td>
@@ -125,7 +125,7 @@
 
             <section class="table-card card-machinery">
                 <div class="card-header">
-                    <h3><span class="header-icon icon-machinery">🚜</span> Pagos de Maquinaria y Fletes Pendientes</h3>
+                    <h3><span class="header-icon icon-machinery"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span> Pagos de Maquinaria y Fletes Pendientes</h3>
                 </div>
 
                 <div class="table-responsive">
@@ -164,7 +164,7 @@
                             <tr>
                                 <td colspan="5" class="empty-row">
                                     <div class="empty-container">
-                                        <span>🚜</span>
+                                        <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
                                         <p>No hay órdenes de maquinaria o fletes pendientes.</p>
                                     </div>
                                 </td>
@@ -177,9 +177,9 @@
 
             <footer class="footer-navigation">
                 <% if (user.getRol().equalsIgnoreCase("Administrador")) { %>
-                <a href="AdminFinanzas" class="btn-return">⬅️ Volver al Panel Financiero</a>
+                <a href="AdminFinanzas" class="btn-return"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel Financiero</a>
                 <% } else { %>
-                <a href="SupervisorPage" class="btn-return">⬅️ Volver a mi Panel de Control</a>
+                <a href="SupervisorPage" class="btn-return"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver a mi Panel de Control</a>
                 <% }%>
             </footer>
 

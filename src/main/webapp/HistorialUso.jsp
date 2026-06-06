@@ -77,7 +77,7 @@
                     
                     <div class="table-header">
                         <div>
-                            <h2>🚜 Historial de Uso de Maquinaria</h2>
+                            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Historial de Uso de Maquinaria</h2>
                             <p>Consulta todos los registros operativos y costos totales calculados.</p>
                         </div>
                         <div class="toolbar">
@@ -120,7 +120,7 @@
                                     <td data-label="Combustible (Gal)"><%= uso.getGalonesCombustible() %> Gal.</td>
                                     <td data-label="Costo Total (C$)" class="text-financial" style="color: #27ae60; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoTotal()) %></td>
                                     <td data-label="Acciones">
-                                        <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle">👁️</a>
+                                        <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>
                                     </td>
                                 </tr>
                                 <%
@@ -140,7 +140,7 @@
                     </div>
 
                     <div class="table-footer">
-                        <a href="SupervisorPage" class="btn-cancel">⬅️ Volver al Panel</a>
+                        <a href="SupervisorPage" class="btn-cancel"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel</a>
                     </div>
 
                 </div>

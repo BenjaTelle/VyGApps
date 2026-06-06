@@ -1,6 +1,6 @@
 <%-- 
     Document   : Home
-    Created on : 2 feb 2026, 9:08:54 p.m.
+    Created on : 2 feb 2026
     Author     : Benja
 --%>
 
@@ -11,7 +11,7 @@
 <%@page import="model.Usuarios"%>
 
 <%
-    // --- LÓGICA DE SEGURIDAD ---
+    // Control de sesión y roles
     HttpSession sessionActual = request.getSession(false);
     Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
     
@@ -20,17 +20,17 @@
         return;
     }
     
-    // Validar Rol
     if (!user.getRol().equalsIgnoreCase("Trabajador")) {
         response.sendRedirect("AccDen.jsp");
         return;
     }
 
-    // --- RECUPERACIÓN DE DATOS DINÁMICOS DEL SERVLET ---
+    // Carga de datos dinámicos
     UsuarioDetalle ud = (UsuarioDetalle) request.getAttribute("usuarioLogueadoDetalle");
     List<PagoDTO> listaPagos = (List<PagoDTO>) request.getAttribute("ListaPagos");
     
     String nombreTrabajador = (ud != null && ud.getTrabajadorAsign() != null) ? ud.getTrabajadorAsign() : user.getUser_name();
+    String errorAsistencia = (String) sessionActual.getAttribute("errorAsistencia");
 %>
 
 <!DOCTYPE html>
@@ -38,11 +38,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Usuario | VyGApps</title>
+    <title>Panel de Control | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/Empleados.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -52,25 +52,29 @@
         
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
+                <img src="images/vyg.svg" alt="Logotipo VyG" class="logo-img">
                 <h2>VyGApps</h2>
             </div>
             <nav class="sidebar-nav">
-                <a href="Home.jsp" class="menu-item active">
+                <a href="Home" class="menu-item active">
                     <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-                    <span>Mi Perfil</span>
+                    <span>Panel de Control</span>
                 </a>
                 <a href="HistorialAsistenciaSv" class="menu-item">
                     <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                    <span>Asistencia</span>
+                    <span>Registro de Asistencia</span>
                 </a>
                 <a href="MisPagosSv" class="menu-item">
                     <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                    <span>Mis Pagos</span>
+                    <span>Historial de Nómina</span>
                 </a>
                 <a href="ProyectosTrabajador" class="menu-item">
                     <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-                    <span>Proyectos</span>
+                    <span>Proyectos Asignados</span>
+                </a>
+                <a href="Configuracion.jsp" class="menu-item">
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                    <span>Configuración de Perfil</span>
                 </a>
             </nav>
         </aside>
@@ -85,14 +89,14 @@
                     
                     <div class="header-title">
                         <h1>Hola, <%= nombreTrabajador %></h1>
-                        <span>Bienvenido a tu panel de control</span>
+                        <span>Resumen operativo y asistencia diaria</span>
                     </div>
                 </div>
 
                 <div class="user-profile">
-                    <img src="images/usuario.png" alt="Perfil" class="user-avatar">
+                    <img src="images/usuario.png" alt="Foto de perfil" class="user-avatar">
                     <span class="user-info-text"><%= user.getUser_name() %></span>
-                    <a href="LogoutSv" class="btn-logout">Salir</a>
+                    <a href="LogoutSv" class="btn-logout">Cerrar Sesión</a>
                 </div>
             </header>
 
@@ -100,39 +104,62 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Mi Información</h3>
+                        <h3>Perfil Operativo</h3>
                         <div class="header-icon icon-orange">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                         </div>
                     </div>
                     <div class="card-content">
                         <div class="info-row">
-                            <span class="info-label">ID Usuario:</span>
+                            <span class="info-label">Identificador:</span>
                             <span>#<%= user.getId_user()%></span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label">Nombre:</span>
+                            <span class="info-label">Nombre Completo:</span>
                             <span><%= nombreTrabajador %></span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label">Rol:</span>
+                            <span class="info-label">Nivel de Acceso:</span>
                             <span><%= user.getRol() %></span>
                         </div>
                         <div class="info-row">
-                            <span class="info-label">Estado:</span>
-                            <span class="status-active">● Activo</span>
+                            <span class="info-label">Estado Actual:</span>
+                            <span class="status-active">Activo</span>
                         </div>
                     </div>
                 </div>
                      
                 <div class="card">
                     <div class="card-header">
-                        <h3>Registrar Asistencia</h3>
+                        <h3>Control de Asistencia</h3>
                         <div class="header-icon icon-green">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
                         </div>
                     </div>
+                    
                     <div class="attendance-box">
+                        
+                        <% if (errorAsistencia != null) { %>
+                            <div class="alert-box">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink: 0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                <div>
+                                    <strong>Notificación:</strong> <%= errorAsistencia %>
+                                    
+                                    <% if (errorAsistencia.contains("autorización") || errorAsistencia.contains("antes de la hora")) { %>
+                                        <div style="margin-top: 8px;">
+                                            <button type="button" class="btn-autorizar-salida" onclick="document.getElementById('modalSalidaTemprana').classList.add('active')">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                                Autorizar Salida
+                                            </button>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        <% 
+                                sessionActual.removeAttribute("errorAsistencia");
+                            } 
+                        %>
+
                         <p class="time-label">Hora actual del servidor</p>
                         <div class="time-display">
                             <%= new java.text.SimpleDateFormat("HH:mm").format(new java.util.Date()) %>
@@ -146,21 +173,21 @@
                             <input type="hidden" name="accion" value="marcar_entrada">
                             
                             <div class="input-group">
-                                <input type="text" name="codigo_supervisor" class="input-obra" placeholder="Ingrese código de obra" required>
+                                <input type="text" name="codigo_supervisor" class="input-obra" placeholder="Ingrese código asignado" required autocomplete="off">
                             </div>
 
                             <button type="submit" class="btn-check-in">
-                                Marcar Entrada
+                                Registrar Entrada
                             </button>
                         </form>
                         <% } else { %>
                         <div class="entry-info">
-                            <span>Entraste hoy a las: <strong><%= horaEntradaRegistrada %></strong></span>
+                            <span>Ingreso validado a las: <strong><%= horaEntradaRegistrada %></strong></span>
                         </div>
                         <form action="AsistenciaSv" method="POST">
                             <input type="hidden" name="accion" value="marcar_salida">
                             <button type="submit" class="btn-check-out">
-                                Marcar Salida
+                                Registrar Salida
                             </button>
                         </form>
                         <% } %>
@@ -169,7 +196,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3>Últimos Pagos (Nóminas)</h3>
+                        <h3>Últimas Nóminas</h3>
                         <div class="header-icon icon-blue">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
                         </div>
@@ -177,7 +204,7 @@
                     <table class="table-container">
                         <thead>
                             <tr>
-                                <th>Periodo</th>
+                                <th>Periodo Registrado</th>
                                 <th>Monto</th>
                                 <th>Estado</th>
                             </tr>
@@ -192,9 +219,9 @@
                                 <td class="monto-bold">C$ <%= String.format("%,.2f", pago.getMonto()) %></td>
                                 <td>
                                     <% if (pago.getEstado().equalsIgnoreCase("Autorizado")) { %>
-                                        <span class="badge-pagado">Pagado</span>
+                                        <span class="badge-pagado">Procesado</span>
                                     <% } else { %>
-                                        <span class="badge-pendiente">Pendiente</span>
+                                        <span class="badge-pendiente">En Proceso</span>
                                     <% } %>
                                 </td>
                             </tr>
@@ -204,7 +231,7 @@
                             %>
                             <tr>
                                 <td colspan="3" class="empty-table">
-                                    No hay nóminas registradas para este periodo.
+                                    No se encontraron registros de nómina recientes.
                                 </td>
                             </tr>
                             <% } %>
@@ -214,6 +241,28 @@
 
             </div> 
         </main>
+    </div>
+
+    <div id="modalSalidaTemprana" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Autorización de Supervisor</h3>
+                <button type="button" class="close-modal" onclick="document.getElementById('modalSalidaTemprana').classList.remove('active')">&times;</button>
+            </div>
+            <form action="AsistenciaSv" method="POST" class="vyg-form">
+                <input type="hidden" name="accion" value="marcar_salida">
+                
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label for="codigo_supervisor_modal">Código Maestro de la Obra:</label>
+                    <input type="password" id="codigo_supervisor_modal" name="codigo_supervisor" class="input-modal" required placeholder="Código de validación">
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn-cancelar" onclick="document.getElementById('modalSalidaTemprana').classList.remove('active')">Cancelar</button>
+                    <button type="submit" class="btn-generar">Validar Salida</button>
+                </div>
+            </form>
+        </div>
     </div>
 
 </body>

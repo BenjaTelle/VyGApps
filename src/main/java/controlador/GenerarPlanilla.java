@@ -4,10 +4,12 @@
  */
 package controlador;
 
+import DTO.CicloPlanillaDTO;
 import Repository.NominaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +51,35 @@ public class GenerarPlanilla extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {   
-        response.sendRedirect("GenerarPlanilla.jsp");
+        HttpSession sessionActual = request.getSession(false);
+        Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
+        
+        if (user == null || !user.getRol().equalsIgnoreCase("Administrador")) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        NominaDAO dao = new NominaDAO();
+        
+        // 1. Cargar estado de los ciclos (Tarjetas)
+        List<CicloPlanillaDTO> ciclos = dao.obtenerEstadoCiclos();
+        for (CicloPlanillaDTO ciclo : ciclos) {
+            if (ciclo.getTipoNomina().equals("Administrativa")) {
+                request.setAttribute("cicloAdmin", ciclo);
+            } else if (ciclo.getTipoNomina().equals("Operativa")) {
+                request.setAttribute("cicloOperativo", ciclo);
+            }
+        }
+
+        // 2. Cargar el Historial de Pagos
+        List<DTO.PagoNominaDTO> historialAdmin = dao.obtenerHistorialPagos("Administrativa");
+        List<DTO.PagoNominaDTO> historialOperativo = dao.obtenerHistorialPagos("Operativa");
+        
+        request.setAttribute("historialAdmin", historialAdmin);
+        request.setAttribute("historialOperativo", historialOperativo);
+
+        request.getRequestDispatcher("GenerarPlanilla.jsp").forward(request, response);
+    
            }
 
     /**
@@ -64,44 +94,35 @@ public class GenerarPlanilla extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        // 1. Verificación de Seguridad
-        HttpSession session = request.getSession(false);
-        Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
+    HttpSession sessionActual = request.getSession(false);
+        Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
         
         if (user == null || !user.getRol().equalsIgnoreCase("Administrador")) {
             response.sendRedirect("login.jsp");
             return;
         }
-
-        // 2. Capturar los datos del formulario (GenerarPlanilla.jsp)
-        String fechaInicio = request.getParameter("fecha_inicio");
-        String fechaFin = request.getParameter("fecha_fin");
         
-        // Obtenemos el ID del administrador que está logueado para que quede en la auditoría
-        int idAdmin = user.getId_user(); 
+        int idAdmin = user.getId_user();
 
-        // 3. Ejecutar la lógica de Base de Datos
+        String tipoNomina = request.getParameter("tipo_nomina");
+        String ultimaEjecucionStr = request.getParameter("ultima_ejecucion");
+        String fechaProximoPagoStr = request.getParameter("proximo_pago");    
+        String diasCicloStr = request.getParameter("dias_ciclo");             
+
         try {
-            NominaDAO dao = new NominaDAO();
-            boolean exito = dao.generarPlanillaMasiva(fechaInicio, fechaFin, idAdmin);
-            
-            if (exito) {
-                // Si todo salió bien, lo mandamos de vuelta al Dashboard principal
-                // Le pasamos un parámetro en la URL para poder mostrarle un mensaje de éxito si queremos
-                response.sendRedirect("AdminFinanzas?msg=nomina_generada");
-            } else {
-                // Si no se insertó nada (ej. no hay trabajadores o no hay asistencias)
-                request.setAttribute("error", "No se encontraron trabajadores con asistencias en este periodo.");
-                request.getRequestDispatcher("GenerarPlanilla.jsp").forward(request, response);
+            if (tipoNomina != null && fechaProximoPagoStr != null && ultimaEjecucionStr != null && diasCicloStr != null) {
+                
+                int diasCiclo = Integer.parseInt(diasCicloStr);
+                NominaDAO dao = new NominaDAO();
+                
+                dao.generarPlanillaAutomatizada(tipoNomina, diasCiclo, ultimaEjecucionStr, fechaProximoPagoStr, idAdmin);
             }
-            
-        } catch (SQLException e) {
-            System.out.println("Error al generar la planilla: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println(">> ERROR en Servlet GenerarPlanilla: " + e.getMessage());
             e.printStackTrace();
-            request.setAttribute("error", "Error interno de la base de datos.");
-            request.getRequestDispatcher("GenerarPlanilla.jsp").forward(request, response);
         }
+        
+        response.sendRedirect("GenerarPlanilla");
     
     }
 

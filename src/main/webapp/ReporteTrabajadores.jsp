@@ -62,15 +62,15 @@
 
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <span class="icon">📊</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="ReporteTrabajadoresSv" class="nav-item active" style="background-color: #2c3e50;">
-                <span class="icon">👷‍♂️</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
                 <span>Reporte Trabajadores</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon">🚪</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -102,21 +102,21 @@
 
             <div class="kpi-container" id="kpi-section">
                 <div class="kpi-card">
-                    <div class="kpi-icon blue-icon">👥</div>
+                    <div class="kpi-icon blue-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
                     <div class="kpi-data">
                         <p>Total Registrados</p>
                         <h3><%= totalTrabajadores %></h3>
                     </div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-icon green-icon">✅</div>
+                    <div class="kpi-icon green-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
                     <div class="kpi-data">
                         <p>Fuerza Laboral Activa</p>
                         <h3><%= totalActivos %></h3>
                     </div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-icon orange-icon">💰</div>
+                    <div class="kpi-icon orange-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
                     <div class="kpi-data">
                         <p>Nómina Base (Activos)</p>
                         <h3>C$ <%= String.format("%,.2f", nominaEstimada) %></h3>
@@ -144,7 +144,7 @@
                             <option value="Inactivo">Solo Inactivos</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn-filtrar">🔍 Aplicar Filtro</button>
+                    <button type="submit" class="btn-filtrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Aplicar Filtro</button>
                 </form>
             </div>
 
@@ -154,7 +154,7 @@
                         <h3>Directorio del Personal</h3>
                     </div>
                     <% if(listaTrabajadores != null && !listaTrabajadores.isEmpty()) { %>
-                        <button onclick="descargarPDF()" class="btn-pdf">📄 Exportar a PDF</button>
+                        <button onclick="descargarPDF()" class="btn-pdf"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg> Exportar a PDF</button>
                     <% } %>
                 </div>
                 
@@ -201,7 +201,7 @@
             </div>
 
             <div style="margin-top: 25px; text-align: left; padding-bottom: 30px;">
-                <a href="AdminPage.jsp" class="btn-back">⬅️ Volver al Panel de Control</a>
+                <a href="AdminPage.jsp" class="btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel de Control</a>
             </div>
 
         </section>
