@@ -4,7 +4,6 @@
     Author     : Benja
 --%>
 <%@page import="java.sql.Time"%>
-<%@page import="model.asistencia"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.AsistenciaDTO"%> 
@@ -30,7 +29,7 @@
     <link rel="stylesheet" href="CSS/Empleados.css">
     <link rel="stylesheet" href="CSS/HistorialAsistencia.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -45,16 +44,20 @@
             </div>
             <nav>
                 <a href="Home" class="menu-item"> 
-                    <span class="menu-icon">👤</span> Mi Perfil
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    Mi Perfil
                 </a>
                 <a href="HistorialAsistenciaSv" class="menu-item active">
-                    <span class="menu-icon">📅</span> Asistencia
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Asistencia
                 </a>
                 <a href="MisPagosSv" class="menu-item">
-                    <span class="menu-icon">💰</span> Mis Pagos
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    Mis Pagos
                 </a>
                 <a href="ProyectosTrabajador" class="menu-item">
-                    <span class="menu-icon">📂</span> Proyectos
+                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    Proyectos
                 </a>
             </nav>
         </aside>
@@ -63,7 +66,9 @@
             
             <header class="header">
                 <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
-                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                    <button id="menu-toggle" class="mobile-menu-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    </button>
                     <div class="header-title">
                         <h1>Registro de Asistencia</h1>
                         <span>Historial de tus entradas y salidas en el sistema.</span>
@@ -86,30 +91,53 @@
                             </thead>
                             <tbody>
                                 <%
-                                    List<asistencia> listaAsistencia = (List<asistencia>) request.getAttribute("ListaAsistencia");
+                                    // Cambiamos el casteo a AsistenciaDTO para poder usar los datos avanzados
+                                    List<AsistenciaDTO> listaAsistencia = (List<AsistenciaDTO>) request.getAttribute("ListaAsistencia");
 
                                     if (listaAsistencia != null && !listaAsistencia.isEmpty()) {
-                                        for (asistencia a : listaAsistencia) {
-                                            
-                                            boolean llegadaTardia = false;
-                                            Time horaEntrada=  a.getHora_entrada(); 
-                                            if (horaEntrada != null && horaEntrada.toString().compareTo("08:00:00") > 0) {
-                                                llegadaTardia = true;
-                                            }
+                                        for (AsistenciaDTO a : listaAsistencia) {
                                 %>
                                 <tr>
                                     <td><strong><%= a.getFecha() != null ? a.getFecha() : "Sin fecha" %></strong></td>
+                                    
                                     <td class="time-in">
-                                        &#128308; <%= a.getHora_entrada() != null ? a.getHora_entrada() : "--:--" %>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <%= a.getHoraEntrada() != null ? a.getHoraEntrada() : "--:--" %>
                                     </td>
+                                    
                                     <td class="time-out">
-                                        &#128308; <%= a.getHora_salida() != null ? a.getHora_salida() : "<span style='color:#7f8c8d; font-size:12px;'>En turno</span>" %>
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                                        <%= a.getHoraSalida() != null ? a.getHoraSalida() : "<span style='color:#7f8c8d; font-size:12px; font-weight:normal;'>En turno</span>" %>
                                     </td>
-                                    <td>
-                                        <% if(llegadaTardia) { %>
-                                            <span class="badge-warning">⚠️ Llegada Tardía</span>
+                                    
+                                    <td class="observation-cell">
+                                        <!-- 1. Etiqueta de Llegada -->
+                                        <% if(a.getEstado_turno() != null && a.getEstado_turno().equals("Llegada Tardía")) { %>
+                                            <span class="status-badge badge-warning">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                                Llegada Tardía
+                                            </span>
                                         <% } else { %>
-                                            <span class="badge-ok">✔️ A tiempo</span>
+                                            <span class="status-badge badge-success">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                                                A Tiempo
+                                            </span>
+                                        <% } %>
+
+                                        <!-- 2. Etiqueta de Horas Extras -->
+                                        <% if(a.getHorasExtras() > 0) { %>
+                                            <span class="status-badge badge-info">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                                <%= a.getHorasExtras() %> Hrs Extras
+                                            </span>
+                                        <% } %>
+
+                                        <!-- 3. Etiqueta de Salida Temprana / Anómala -->
+                                        <% if(a.getMarcaAnomala() == 1) { %>
+                                            <span class="status-badge badge-danger">
+                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                                                Salida Temprana
+                                            </span>
                                         <% } %>
                                     </td>
                                 </tr>

@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -69,8 +72,8 @@ public class AsistenciaSv extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-      // 1. Recuperamos la sesión del trabajador
+       
+        // 1. Recuperamos la sesión del trabajador
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuarioLogeado") == null) {
             response.sendRedirect("login.jsp");
@@ -83,17 +86,17 @@ public class AsistenciaSv extends HttpServlet {
 
         // 2. Atrapamos la acción y el código que vienen del formulario
         String accion = request.getParameter("accion");
-        String codigoSupervisor = request.getParameter("codigo_supervisor"); // NUEVO
+        String codigoSupervisor = request.getParameter("codigo_supervisor");
 
         if (accion != null) {
             switch (accion) {
                 case "marcar_entrada":
                     try {
-                        // A. Validar el código ingresado antes de hacer cualquier cosa
+                        // A. Validar el código ingresado
                         boolean codigoValido = aDAO.validarCodigoObra(codigoSupervisor, idTrabajador);
 
                         if (codigoValido) {
-                            // B. Si es válido, guardamos la entrada en la BD
+                            // B. Registro de entrada exitoso
                             String horaActual = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
                             Time entrada = Time.valueOf(horaActual);
                             
@@ -102,43 +105,87 @@ public class AsistenciaSv extends HttpServlet {
                             
                             aDAO.MarcarEntrada(idTrabajador, entrada, fecha);
                             
-                            // C. Actualizamos la sesión
+                            // C. Actualización de estado en sesión
                             session.setAttribute("horaEntradaRegistrada", horaActual);
-                            session.removeAttribute("errorAsistencia"); // Limpiamos errores si los hubo
+                            session.removeAttribute("errorAsistencia"); 
                             
                         } else {
-                            // D. Si es inválido, mandamos un mensaje de error
-                            session.setAttribute("errorAsistencia", "❌ El código ingresado es inválido o ha expirado.");
+                            session.setAttribute("errorAsistencia", "El código ingresado es inválido o ha expirado.");
                         }
                     } catch (SQLException ex) {
                         ex.printStackTrace();
-                        session.setAttribute("errorAsistencia", "❌ Error de conexión al validar el código.");
+                        session.setAttribute("errorAsistencia", "Error de conexión al validar el código de asistencia.");
                     }
                     
-                    // Redirigimos al Servlet Home para que recargue los datos correctamente
                     response.sendRedirect("Home");
                     break;
 
                 case "marcar_salida":
                     try {
-                        // A. Actualizamos el registro en la BD para poner la hora de salida
-                        String horaSalida = new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date());
-                        Time salida = Time.valueOf(horaSalida);
+                        // A. Capturar hora y fecha real del servidor mediante java.time
+                        LocalTime horaActualLT = LocalTime.now();
+                        Time salida = Time.valueOf(horaActualLT);
+                        Date fechaHoy = Date.valueOf(LocalDate.now());
                         
-                        aDAO.MarcarSalida(idTrabajador, salida);
+                        // B. Extraer las reglas operativas del proyecto del trabajador
+                        Time horaOficialTime = aDAO.obtenerHoraSalidaOficial(idTrabajador);
+                        
+                        if (horaOficialTime == null) {
+                            session.setAttribute("errorAsistencia", "No tienes un proyecto asignado con horario definido. Contacta a recursos humanos.");
+                            response.sendRedirect("Home");
+                            return;
+                        }
+                        
+                        LocalTime horaOficialLT = horaOficialTime.toLocalTime();
+                        int horasExtras = 0;
+                        int marcaAnomala = 0;
+                        
+                        // C. MOTOR DE CÁLCULO DE TIEMPO
+                        if (horaActualLT.isBefore(horaOficialLT)) {
+                            // Escenario: Intento de Salida Temprana
+                            if (codigoSupervisor != null && !codigoSupervisor.trim().isEmpty()) {
+                                boolean codigoValido = aDAO.validarCodigoObra(codigoSupervisor, idTrabajador);
+                                if (codigoValido) {
+                                    marcaAnomala = 1; // Salida temprana autorizada por el supervisor
+                                } else {
+                                    session.setAttribute("errorAsistencia", "Código de supervisor inválido para autorizar salida temprana.");
+                                    response.sendRedirect("Home");
+                                    return; // Se detiene el proceso, no marca salida
+                                }
+                            } else {
+                                session.setAttribute("errorAsistencia", "Estás intentando salir antes de la hora oficial (" + horaOficialLT + "). Se requiere código de autorización del supervisor.");
+                                response.sendRedirect("Home");
+                                return; // Se detiene el proceso, no marca salida
+                            }
+                        } else {
+                            // Escenario: Salida Normal o con Horas Extras
+                            Duration duracion = Duration.between(horaOficialLT, horaActualLT);
+                            long minutosExtra = duracion.toMinutes();
+                            
+                            // Cálculo exclusivo de horas cumplidas (60 minutos = 1 hora)
+                            if (minutosExtra >= 60) {
+                                horasExtras = (int) (minutosExtra / 60); 
+                            }
+                        }
+                        
+                        // D. Persistencia en la Base de Datos
+                        aDAO.MarcarSalida(idTrabajador, salida, horasExtras, marcaAnomala, fechaHoy);
+                        
+                        // E. Limpieza de estado en sesión
+                        session.removeAttribute("horaEntradaRegistrada");
+                        session.removeAttribute("errorAsistencia");
                         
                     } catch (SQLException ex) {
                         ex.printStackTrace();
+                        session.setAttribute("errorAsistencia", "Error en el servidor al procesar el cierre de turno.");
                     }
-                    
-                    // B. Limpiamos la variable de sesión
-                    session.removeAttribute("horaEntradaRegistrada");
-                    session.removeAttribute("errorAsistencia");
                     
                     response.sendRedirect("Home");
                     break;
             }
         }
+        
+        
     }
 
     /**

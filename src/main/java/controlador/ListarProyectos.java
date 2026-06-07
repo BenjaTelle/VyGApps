@@ -52,35 +52,33 @@ public class ListarProyectos extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
      
-      try{
+       try {
             ProyectoDAO pDAO = new ProyectoDAO();
             request.setAttribute("ListaP", pDAO.VerProyectosActivos());
-        }catch(SQLException e)
-        {
+        } catch(SQLException e) {
+            System.out.println("Error al obtener listado de proyectos: " + e.getMessage());
             e.printStackTrace();
         }
         
         String idProyectoSTR = request.getParameter("id_proyecto");
         
-        // Si el usuario quiere ver UNA ficha en específico
-        if(idProyectoSTR != null){
+        // Vista Detalle: Si el usuario solicitó la ficha técnica de un proyecto
+        if(idProyectoSTR != null) {
             int idProyecto = Integer.parseInt(idProyectoSTR);
             FichaTecnicaDTO ficha = new FichaTecnicaDTO();
+            
             try {
-              request.setAttribute("ficha",  ficha.traerFicha(idProyecto));
-                
+                request.setAttribute("ficha", ficha.traerFicha(idProyecto));
             } catch (SQLException ex) {
+                System.out.println("Error al generar la ficha técnica: " + ex.getMessage());
                 ex.printStackTrace();
             }
             
-            // 1. Mandamos a la Ficha
             request.getRequestDispatcher("FichaTecnicaProyecto.jsp").forward(request, response);
-            
-            // 2. ¡EL FRENO DE MANO! Detiene la ejecución del doGet
-            return; 
+            return; // Freno de mano para no cargar la lista general
         }
        
-        // Si no pidió ninguna ficha (idProyectoSTR es null), el código llega hasta aquí sin problemas
+        // Vista General: Si no hay ID, cargar la lista de proyectos
         request.getRequestDispatcher("ListarProyectos.jsp").forward(request, response);
          
         

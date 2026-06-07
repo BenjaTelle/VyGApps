@@ -4,10 +4,12 @@
  */
 package controlador;
 
+import DTO.AsistenciaDTO;
 import Repository.AsistenciaDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,21 +52,33 @@ public class HistorialAsistenciaSv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
-              Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogeado");
-        try{
-                
+        // 1. Validar sesión estrictamente para el rol de Trabajador
+        HttpSession sessionActual = request.getSession(false);
+        Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
         
-        // Obtenemos el ID del trabajador (asumiendo que tu tabla usuarios tiene id_trabajador)
-        int idTrabajador = usuario.getId_trabajador(); 
-
-            AsistenciaDAO aDAO = new AsistenciaDAO();
-            request.setAttribute("ListaAsistencia", aDAO.ListarAsistencia(idTrabajador));
-        }catch(SQLException e)
-        {
-            e.printStackTrace();
+        if (user == null || !user.getRol().equalsIgnoreCase("Trabajador")) {
+            response.sendRedirect("login.jsp");
+            return;
         }
-        
+
+        // 2. Extraer el historial de la Base de Datos usando el DTO actualizado
+        AsistenciaDAO asistenciaDAO = new AsistenciaDAO();
+        try {
+            int idTrabajador = user.getId_trabajador();
+            
+            // Llamamos al método que ahora devuelve List<AsistenciaDTO> con horas extras y anomalías
+            List<AsistenciaDTO> listaHistorial = asistenciaDAO.ListarAsistenciaTrabajador(idTrabajador);
+            
+            // 3. Enviar los datos al JSP
+            request.setAttribute("ListaAsistencia", listaHistorial);
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al cargar historial de asistencia del trabajador: " + ex.getMessage());
+            ex.printStackTrace();
+            request.setAttribute("error", "No se pudo cargar el historial debido a un error en el servidor.");
+        }
+
+        // 4. Redirigir a la vista
         request.getRequestDispatcher("HistorialAsistencia.jsp").forward(request, response);
     }
 

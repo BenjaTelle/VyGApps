@@ -39,7 +39,7 @@
             <form action="ActualizarTrabajadores" method="POST" id="formTrabajador">
                 
                 <div class="form-group full-width highlight-select">
-                    <label>🔍 Seleccionar Trabajador a Editar</label>
+                    <label><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Seleccionar Trabajador a Editar</label>
                     <select name="id_trabajador" id="selectTrabajador" required>
                         <option value="">Seleccione un trabajador de la lista</option>
                         <%
@@ -71,47 +71,47 @@
                 <div class="form-grid">
                     <div class="form-group full-width">
                         <label>Nombre Completo</label>
-                        <input type="text" id="in_fullname" name="full_name" required>
+                        <input type="text" id="in_fullname" name="full_name" required disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Cédula de Identidad</label>
-                        <input type="text" id="cedula" name="cedula" maxlength="16" required>
+                        <input type="text" id="cedula" name="cedula" maxlength="16" required disabled>
                         <small id="errorCedula" class="error-text">Formato inválido.</small>
                     </div>
 
                     <div class="form-group">
                         <label>Edad</label>
-                        <input type="number" id="in_edad" name="edad" min="18" required>
+                        <input type="number" id="in_edad" name="edad" min="18" required disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Teléfono Personal</label>
-                        <input type="text" id="in_telefono" name="telefono" maxlength="8" pattern="\d{8}" required>
+                        <input type="text" id="in_telefono" name="telefono" maxlength="8" pattern="\d{8}" required disabled>
                     </div>
 
                     <div class="form-group">
                         <label>Número de Emergencia</label>
-                        <input type="text" id="in_emergencia" name="numero_emergencia" maxlength="8" pattern="\d{8}" required>
+                        <input type="text" id="in_emergencia" name="numero_emergencia" maxlength="8" pattern="\d{8}" required disabled>
                     </div>
 
                     <div class="form-group full-width">
                         <label>Dirección Domiciliar</label>
-                        <textarea id="in_direccion" name="direccion" rows="2" required></textarea>
+                        <textarea id="in_direccion" name="direccion" rows="2" required disabled></textarea>
                     </div>
 
                     <div class="form-group">
                         <label>Salario Quincenal</label>
-                        <input type="number" id="in_salario" name="salario_quincenal" step="0.01" required>
+                        <input type="number" id="in_salario" name="salario_quincenal" step="0.01" required disabled>
                     </div>
                     <div class="form-group">
                         <label>Origen</label>
-                        <input type="text" id="in_origen" name="origen" required>
+                        <input type="text" id="in_origen" name="origen" required disabled>
                     </div>
 
                     <div class="form-group full-width">
                         <label>Puesto</label>
-                        <select id="in_puesto" name="puesto" required>
+                        <select id="in_puesto" name="puesto" required disabled>
                             <option value="">Seleccione un puesto</option>
                             <option value="Gerente de proyecto">Gerente de proyecto</option>
                             <option value="Ingeniero residente">Ingeniero/a residente</option>
@@ -125,7 +125,7 @@
 
                     <div class="form-group">
                         <label>Supervisor</label>
-                        <select id="in_supervisor" name="id_supervisor">
+                        <select id="in_supervisor" name="id_supervisor" disabled>
                             <option value="0">Sin Supervisor / N/A</option>
                             <%
                                 List<trabajadores> listaSupervAct = (List<trabajadores>) request.getAttribute("ListaSuperv");
@@ -139,7 +139,7 @@
 
                     <div class="form-group">
                         <label>Proyecto asociado</label>
-                        <select id="in_proyecto" name="proyecto">
+                        <select id="in_proyecto" name="proyecto" disabled>
                             <option value="0">Sin Proyecto Asignado</option>
                             <%
                                 List<proyectos> listaPAct = (List<proyectos>) request.getAttribute("ListarProyectos");
@@ -152,7 +152,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn-submit">🔄 Actualizar Trabajador</button>
+                <button type="submit" class="btn-submit" id="btn-submit-trabajador" disabled style="opacity: 0.6; cursor: not-allowed;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg> Actualizar Trabajador</button>
             </form>
         </section>
     </main>

@@ -1,14 +1,5 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
-*/
-/* 
-    Created on : 17 may 2026, 9:34:55 p.m.
-    Author     : Benja
-*/
-
 /* =========================================
-   ESTILOS: FORMULARIOS DE GENERACIÓN (NÓMINA Y MAQUINARIA)
+   ESTILOS: MÓDULOS DE GENERACIÓN (PLANILLAS Y MAQUINARIA)
    ========================================= */
 
 .dashboard {
@@ -18,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 .generator-wrapper {
     width: 100%;
-    max-width: 750px;
+    max-width: 900px;
 }
 
 /* --- CABECERAS TEMÁTICAS --- */
@@ -27,6 +18,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     padding: 30px;
     color: white;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .bg-nomina {
@@ -50,7 +44,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     opacity: 0.9;
 }
 
-/* --- TARJETA DEL FORMULARIO --- */
+/* Botón de configuración (Tuerca de Planillas) */
+.btn-settings {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-settings:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+}
+
+/* --- TARJETA PRINCIPAL --- */
 .form-card {
     background-color: white;
     border-radius: 0 0 12px 12px;
@@ -68,17 +82,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 .form-header h3 {
     margin: 0 0 5px 0;
-    color: var(--text-main);
+    color: #1e293b;
     font-size: 18px;
 }
 
 .form-header p {
     margin: 0;
-    color: var(--text-muted);
+    color: #475569;
     font-size: 13px;
 }
 
-/* --- CAMPOS DEL FORMULARIO --- */
+/* --- CAMPOS DE FORMULARIO (MAQUINARIA Y MODALES) --- */
 .vyg-form .form-row {
     display: flex;
     gap: 20px;
@@ -93,33 +107,37 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 
 .vyg-form label {
     font-weight: 600;
-    color: var(--text-main);
+    color: #334155;
     margin-bottom: 8px;
     font-size: 13px;
 }
 
-.vyg-form input[type="date"] {
+.vyg-form input[type="date"],
+.vyg-form input[type="number"],
+.vyg-form select {
     padding: 12px 15px;
-    border: 1px solid #dcdde1;
+    border: 1px solid #cbd5e1;
     border-radius: 6px;
     font-size: 14px;
     font-family: inherit;
-    color: var(--text-main);
+    color: #1e293b;
     transition: all 0.3s ease;
-    background-color: #fdfdfd;
+    background-color: #f8fafc;
+    outline: none;
 }
 
-.vyg-form input[type="date"]:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
+.vyg-form input[type="date"]:focus,
+.vyg-form input[type="number"]:focus,
+.vyg-form select:focus {
+    border-color: #3498db;
     background-color: white;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
 /* --- CAJAS DE INFORMACIÓN --- */
 .info-box {
     padding: 15px 20px;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     align-items: flex-start;
     margin-bottom: 30px;
@@ -129,17 +147,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     background-color: #ebf5fb;
     border-left: 4px solid #3498db;
 }
-.info-blue .info-text { color: #2980b9; }
+.info-blue .info-icon, .info-blue .info-text { color: #2980b9; }
 
 .info-orange {
     background-color: #fdf2e9;
     border-left: 4px solid #e67e22;
 }
-.info-orange .info-text { color: #d35400; }
+.info-orange .info-icon, .info-orange .info-text { color: #d35400; }
 
 .info-icon {
-    font-size: 24px;
+    flex-shrink: 0;
     margin-right: 15px;
+    margin-top: 2px;
 }
 
 .info-text {
@@ -153,6 +172,95 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     margin-bottom: 5px;
 }
 
+/* --- CUADRÍCULA DE CICLOS (PLANILLAS AUTOMATIZADAS) --- */
+.cycle-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.cycle-card {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cycle-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    border-color: #cbd5e1;
+}
+
+.cycle-icon {
+    width: 45px;
+    height: 45px;
+    background-color: #e0f2fe;
+    color: #0284c7;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.icon-operativo {
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.cycle-details h3 {
+    margin: 0 0 10px 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.badge-14 { background-color: #e0e7ff; color: #4338ca; }
+.badge-15 { background-color: #e2e8f0; color: #334155; }
+
+.cycle-dates {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.date-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #475569;
+    margin-bottom: 10px;
+}
+
+.date-row:last-child {
+    margin-bottom: 0;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.date-row strong {
+    color: #0f172a;
+}
+
+.highlight span { font-weight: 600; color: #0284c7; }
+.highlight strong { color: #0284c7; }
+
 /* --- BOTONES DE ACCIÓN --- */
 .form-actions {
     display: flex;
@@ -163,42 +271,128 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     padding-top: 20px;
 }
 
-.btn-cancelar {
-    text-decoration: none;
-    color: var(--text-main);
-    background-color: var(--white);
-    border: 1px solid #dcdde1;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: 0.2s;
-}
-
-.btn-cancelar:hover {
-    background-color: #f1f2f6;
-}
-
 .btn-generar {
+    width: 100%;
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 12px;
     border-radius: 6px;
     font-size: 14px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajuste para el botón generar en formularios tradicionales donde no ocupa el 100% */
+.vyg-form .btn-generar {
+    width: auto;
+    padding: 12px 25px;
 }
 
 .btn-nomina { background-color: #34495e; }
-.btn-nomina:hover { background-color: #2c3e50; transform: translateY(-2px); }
+.btn-nomina:hover:not(:disabled) { background-color: #2c3e50; }
 
 .btn-maquinaria { background-color: #e67e22; }
-.btn-maquinaria:hover { background-color: #d35400; transform: translateY(-2px); }
+.btn-maquinaria:hover:not(:disabled) { background-color: #d35400; transform: translateY(-2px); }
+
+.btn-generar:disabled {
+    background-color: #cbd5e1;
+    cursor: not-allowed;
+    color: #94a3b8;
+}
+
+.btn-cancelar {
+    text-decoration: none;
+    color: #475569;
+    background-color: white;
+    border: 1px solid #cbd5e1;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #f1f5f9;
+}
+
+/* =========================================
+   ESTILOS: MODAL DE CONFIGURACIÓN (PLANILLAS)
+   ========================================= */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.6);
+    z-index: 1000;
+    align-items: center; 
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 18px;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    color: #94a3b8;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #0f172a;
+}
 
 /* =========================================
    RESPONSIVO MÓVIL
    ========================================= */
 @media (max-width: 600px) {
+    .cycle-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .vyg-form .form-row {
         flex-direction: column;
         gap: 15px;
@@ -208,7 +402,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
         flex-direction: column-reverse;
     }
     
-    .btn-cancelar, .btn-generar {
+    .vyg-form .btn-cancelar, 
+    .vyg-form .btn-generar {
         width: 100%;
         text-align: center;
     }

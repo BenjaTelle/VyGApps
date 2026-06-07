@@ -50,15 +50,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon">📊</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                 <span>Dashboard</span>
             </a>
             <a href="ListarProyectos" class="nav-item">
-                <span class="icon">🏗️</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
                 <span>Proyectos Activos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon">🚪</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -88,7 +88,7 @@
 
             <div class="form-card">
                 <div class="card-header">
-                    <h2>💸 Formulario de Registro de Gastos</h2>
+                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Formulario de Registro de Gastos</h2>
                     <p>Completa la información detallada del gasto. Quedará en estado "Pendiente" hasta ser aprobado por administración.</p>
                 </div>
 
@@ -127,11 +127,11 @@
                             <label>Categoría <span class="required">*</span></label>
                             <select name="categoria" required>
                                 <option value="" disabled selected>-- Seleccione una --</option>
-                                <option value="Materiales">🧱 Materiales e Insumos</option>
+                                <option value="Materiales"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Materiales e Insumos</option>
                                 <option value="Combustible">⛽ Combustible / Transporte</option>
-                                <option value="Alimentacion">🍲 Alimentación / Viáticos</option>
-                                <option value="Mantenimiento">🔧 Repuestos y Mantenimiento</option>
-                                <option value="Otros">📦 Otros Gastos</option>
+                                <option value="Alimentacion"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Alimentación / Viáticos</option>
+                                <option value="Mantenimiento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Repuestos y Mantenimiento</option>
+                                <option value="Otros"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Otros Gastos</option>
                             </select>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
 
                     <div class="form-actions">
                         <a href="javascript:history.back()" class="btn-cancel">Cancelar</a>
-                        <button type="submit" class="btn-submit">✅ Registrar Gasto</button>
+                        <button type="submit" class="btn-submit"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Registrar Gasto</button>
                     </div>
 
                 </form>

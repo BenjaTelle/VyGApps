@@ -58,9 +58,9 @@
             </div>
         </div>
         <nav class="sidebar-nav">
-            <a href="AdminPage.jsp" class="nav-item"><span class="icon">📊</span><span>Dashboard Maestro</span></a>
-            <a href="ReporteAsistenciaSv" class="nav-item active" style="background-color: #2c3e50;"><span class="icon">🕒</span><span>Auditoría Asistencia</span></a>
-            <a href="LogoutSv" class="nav-item logout-link"><span class="icon">🚪</span><span>Cerrar Sesión</span></a>
+            <a href="AdminPage.jsp" class="nav-item"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span><span>Dashboard Maestro</span></a>
+            <a href="ReporteAsistenciaSv" class="nav-item active" style="background-color: #2c3e50;"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span>Auditoría Asistencia</span></a>
+            <a href="LogoutSv" class="nav-item logout-link"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span><span>Cerrar Sesión</span></a>
         </nav>
     </aside>
 
@@ -88,21 +88,21 @@
 
             <div class="kpi-container" id="kpi-section">
                 <div class="kpi-card">
-                    <div class="kpi-icon blue-icon">📋</div>
+                    <div class="kpi-icon blue-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg></div>
                     <div class="kpi-data">
                         <p>Registros en el periodo</p>
                         <h3><%= totalRegistros %></h3>
                     </div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-icon green-icon">✅</div>
+                    <div class="kpi-icon green-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
                     <div class="kpi-data">
                         <p>Asistencias (Inc. Tardanzas)</p>
                         <h3><%= totalPresentes %></h3>
                     </div>
                 </div>
                 <div class="kpi-card">
-                    <div class="kpi-icon orange-icon">❌</div>
+                    <div class="kpi-icon orange-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg></div>
                     <div class="kpi-data">
                         <p>Ausencias Marcadas</p>
                         <h3 style="color: #e74c3c;"><%= totalAusencias %></h3>

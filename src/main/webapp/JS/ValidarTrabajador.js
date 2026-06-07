@@ -53,14 +53,35 @@ document.addEventListener("DOMContentLoaded", function() {
        2. AUTOCOMPLETADO DE DATOS (Solo aplica en ActualizarTrabajador.jsp)
        ====================================================================== */
     if (selectTrabajador) {
+        const toggleFields = (disabled) => {
+            const elements = form.querySelectorAll('.form-grid input, .form-grid select, .form-grid textarea, #btn-submit-trabajador');
+            elements.forEach(el => {
+                el.disabled = disabled;
+            });
+            const btn = document.getElementById('btn-submit-trabajador');
+            if (btn) {
+                if (disabled) {
+                    btn.style.opacity = '0.6';
+                    btn.style.cursor = 'not-allowed';
+                } else {
+                    btn.style.opacity = '1';
+                    btn.style.cursor = 'pointer';
+                }
+            }
+        };
+
         selectTrabajador.addEventListener('change', function() {
             const selectedOption = this.options[this.selectedIndex];
             
             // Si elige "Seleccione un trabajador", limpiamos el formulario
             if(!selectedOption.value) {
                 form.reset();
+                toggleFields(true);
                 return; 
             }
+
+            // Habilitar campos
+            toggleFields(false);
 
             // Capturamos el paquete de datos ocultos (data-*)
             const data = selectedOption.dataset;
