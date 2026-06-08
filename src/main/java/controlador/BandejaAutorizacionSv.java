@@ -51,7 +51,7 @@ public class BandejaAutorizacionSv extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      // 1. Seguridad en el Backend
+        // Validación de sesión y roles permitidos
         HttpSession session = request.getSession(false);
         Usuarios user = (session != null) ? (Usuarios) session.getAttribute("usuarioLogeado") : null;
         
@@ -63,15 +63,15 @@ public class BandejaAutorizacionSv extends HttpServlet {
         try {
             AutorizacionDAO dao = new AutorizacionDAO();
             
-            // 2. Traer lista de nóminas (Humanos)
+            // Obtener nóminas de trabajadores pendientes de autorización
             List<PlanillaPendienteDTO> listaNominas = dao.listarPendientes();
             request.setAttribute("ListaPlanillas", listaNominas);
             
-            // 3. Traer lista de maquinarias y fletes (¡NUEVO!)
+            // Obtener pagos de maquinaria pendientes de autorización
             List<PlanillaPendienteDTO> listaMaquinarias = dao.listarMaquinariaPendiente();
             request.setAttribute("ListaMaquinarias", listaMaquinarias);
             
-            // 4. Enviar todo al JSP
+            // Despachar listas hacia la vista JSP correspondiente
             request.getRequestDispatcher("BandejaAutorizacion.jsp").forward(request, response);
             
         } catch (Exception e) {

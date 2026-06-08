@@ -19,6 +19,11 @@ import model.trabajadores;
  */
 public class TrabajadoresDAO {
 
+    /**
+     * Registra un nuevo trabajador en el sistema.
+     * 
+     * @param t Objeto trabajador con los datos personales y de asignación.
+     */
     public void registrarTrabajador(trabajadores t) {
         String sql = "INSERT into trabajadores(cedula,full_name,edad,puesto,salario_quincenal,origen,id_supervisor,id_proyect, telefono, numero_emergencia, direccion) VALUES(?,?,?,?,?,?,?,?,?,?,?)";
         
@@ -44,6 +49,12 @@ public class TrabajadoresDAO {
         }
     }
 
+    /**
+     * Obtiene el listado completo de trabajadores de la base de datos.
+     * 
+     * @return Lista de todos los trabajadores registrados.
+     * @throws SQLException Si ocurre un error de acceso a la base de datos.
+     */
     public List<trabajadores> ListarTrabajadores() throws SQLException {
         String sql = "Select * from trabajadores";
         List<trabajadores> ListaT = new ArrayList<>();
@@ -166,6 +177,14 @@ public class TrabajadoresDAO {
         return ListaT;
     }
 
+    /**
+     * Asigna un trabajador a un proyecto específico.
+     * 
+     * @param id_proyect Identificador del proyecto destino.
+     * @param id_trabajador Identificador del trabajador a asignar.
+     * @return true si la actualización fue exitosa, false de lo contrario.
+     * @throws SQLException Si ocurre un error en la actualización.
+     */
     public boolean AsignarProyecto(int id_proyect, int id_trabajador) throws SQLException {
         String sql = "UPDATE trabajadores set id_proyect=?  WHERE  id_trabajador=?";
         try (Connection con = ConectarBD.conectar();
@@ -177,6 +196,12 @@ public class TrabajadoresDAO {
         }
     }
 
+    /**
+     * Actualiza la información integral de un trabajador existente.
+     * 
+     * @param t Objeto trabajador con los datos modificados.
+     * @throws SQLException Si la actualización de los registros falla.
+     */
     public void ActualizarTrabajador(trabajadores t) throws SQLException {
         String sql = "UPDATE trabajadores SET  cedula=?, full_name= ?, edad =?, puesto=?, salario_quincenal=?, origen=?, id_supervisor=?, id_proyect=?, telefono=?, numero_emergencia=?, direccion=? WHERE id_trabajador=?";
         try (Connection con = ConectarBD.conectar();
@@ -198,6 +223,12 @@ public class TrabajadoresDAO {
         }
     }
 
+    /**
+     * Elimina permanentemente a un trabajador del sistema.
+     * 
+     * @param id Identificador único del trabajador.
+     * @throws SQLException Si la transacción de borrado no puede ejecutarse.
+     */
     public void EliminarTrabajador(int id) throws SQLException {
         String sql = "DELETE FROM trabajadores WHERE id_trabajador=?";
         try (Connection con = ConectarBD.conectar();

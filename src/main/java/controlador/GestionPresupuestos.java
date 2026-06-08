@@ -101,8 +101,7 @@ public class GestionPresupuestos extends HttpServlet {
             ProyectoDAO dao = new ProyectoDAO();
             boolean exito = dao.inyectarPresupuesto(idProyecto, montoAdicional);
             
-            // Si salió bien, volvemos a cargar la página llamando al GET 
-            // (así se actualiza la tabla de la derecha mágicamente)
+            // Recargar la vista invocando el método GET para reflejar las actualizaciones en la tabla
             if(exito) {
                 response.sendRedirect("GestionPresupuestos?msg=exito");
             } else {

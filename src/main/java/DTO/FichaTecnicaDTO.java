@@ -75,18 +75,18 @@ public class FichaTecnicaDTO {
     }
 
     public FichaTecnicaDTO traerFicha(int id) throws SQLException {
-        // Usamos subconsultas limpias apoyándonos en la tabla intermedia proyecto_supervisor
+        // Construcción de la consulta con métricas agregadas desde tablas intermedias
         String sql = "SELECT "
                 + "p.id_proyecto, "
                 + "p.name_proyect, "
                 + "p.estado, "
                 + "p.presupuesto_total, "
-                + "-- Subconsulta para traer TODOS los supervisores concatenados por coma \n"
+                + "-- Concatenación de supervisores asignados \n"
                 + "(SELECT GROUP_CONCAT(t_sup.full_name SEPARATOR ', ') "
                 + " FROM proyecto_supervisor ps "
                 + " JOIN trabajadores t_sup ON ps.id_trabajador = t_sup.id_trabajador "
                 + " WHERE ps.id_proyecto = p.id_proyecto) AS nombre_supervisor, "
-                + "-- Subconsulta para contar a todos los trabajadores del proyecto \n"
+                + "-- Conteo del personal asignado al proyecto \n"
                 + "(SELECT COUNT(id_trabajador) "
                 + " FROM trabajadores "
                 + " WHERE id_proyect = p.id_proyecto) AS total_trabajadores "
@@ -106,7 +106,7 @@ public class FichaTecnicaDTO {
                 ficha.setNombre_proyecto(rs.getString("name_proyect"));
                 ficha.setEstado( rs.getString("estado"));
                 
-                // Si no hay supervisor, la BD devuelve NULL, lo manejamos con una validación rápida
+                // Validación y asignación de valores nulos para supervisores
                 String supervisores = rs.getString("nombre_supervisor");
                 ficha.setNombre_supervisor(supervisores != null ? supervisores : "Sin asignar");
                 

@@ -83,13 +83,14 @@ public class GastosDAO {
     }
 
     /**
-     * Actualiza el estado de un gasto específico (Aprobado o Rechazado)
-     * Registra el ID del administrador que tomó la acción, el momento exacto y una observación.
-     */
-   /**
-     * Actualiza el estado de un gasto específico (Aprobado o Rechazado).Si el gasto es 'Aprobado', automáticamente descuenta el monto del presupuesto_total de la obra.
-     * Utiliza transacciones seguras para evitar errores de saldos parciales.
-     * @param idGasto
+     * Actualiza el estado de un gasto específico (Aprobado o Rechazado).
+     * Si el gasto es 'Aprobado', automáticamente descuenta el monto del presupuesto_total de la obra.
+     * Utiliza transacciones para asegurar la integridad de los datos y evitar saldos parciales inconsistentes.
+     * 
+     * @param idGasto Identificador único del gasto a resolver.
+     * @param nuevoEstado Estado al que pasará el gasto ("Aprobado" o "Rechazado").
+     * @param idUserAutoriza Identificador del administrador que autoriza el movimiento.
+     * @param observaciones Notas adicionales sobre la resolución.
      */
     public void resolverGasto(int idGasto, String nuevoEstado, int idUserAutoriza, String observaciones) {
         Connection con = ConectarBD.conectar();
@@ -102,7 +103,7 @@ public class GastosDAO {
             // Desactivamos el autocommit para manejar la transacción manualmente
             con.setAutoCommit(false);
 
-            // 1. Si es APROBADO, primero necesitamos saber el id_proyecto y el monto de ese gasto
+            // Iniciar transacción
             if ("Aprobado".equalsIgnoreCase(nuevoEstado)) {
                 String sqlBuscar = "SELECT id_proyecto, monto FROM gastos_proyectos WHERE id_gasto = ?";
                 psBuscarGasto = con.prepareStatement(sqlBuscar);
@@ -113,7 +114,7 @@ public class GastosDAO {
                     int idProyecto = rs.getInt("id_proyecto");
                     double montoGasto = rs.getDouble("monto");
 
-                    // 2. Restamos el monto del presupuesto_total en la tabla proyectos
+                    // Descontar monto del presupuesto del proyecto
                     String sqlUpdateProyecto = "UPDATE proyectos SET presupuesto_total = presupuesto_total - ? WHERE id_proyecto = ?";
                     psProyecto = con.prepareStatement(sqlUpdateProyecto);
                     psProyecto.setDouble(1, montoGasto);
@@ -122,7 +123,7 @@ public class GastosDAO {
                 }
             }
 
-            // 3. Actualizamos el estado del gasto (Aprobado o Rechazado) con la información del administrador
+            // Actualizar estado del gasto y registrar datos de auditoría
             String sqlUpdateGasto = "UPDATE gastos_proyectos SET estado = ?, id_user_autoriza = ?, fecha_autorizacion = CURRENT_TIMESTAMP, observaciones = ? WHERE id_gasto = ?";
             psGasto = con.prepareStatement(sqlUpdateGasto);
             psGasto.setString(1, nuevoEstado);
@@ -131,11 +132,11 @@ public class GastosDAO {
             psGasto.setInt(4, idGasto);
             psGasto.executeUpdate();
 
-            // Si todo se ejecutó sin errores, guardamos los cambios de forma definitiva
+            // Confirmar transacción
             con.commit();
             
         } catch (SQLException e) {
-            // Si algo falla, hacemos un rollback para revertir cualquier cambio incompleto
+            // Revertir transacción en caso de error
             try {
                 if (con != null) {
                     con.rollback();
@@ -145,7 +146,7 @@ public class GastosDAO {
             }
             e.printStackTrace();
         } finally {
-            // Cerramos todos los recursos de manera ordenada
+            // Liberar recursos
             try {
                 if (rs != null) rs.close();
                 if (psBuscarGasto != null) psBuscarGasto.close();

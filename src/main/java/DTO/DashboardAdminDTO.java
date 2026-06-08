@@ -11,16 +11,14 @@ import java.util.List;
  * @author Benja
  */
 public class DashboardAdminDTO {
-    // Métricas Financieras (KPIs)
-    private String totalPagadoMes;        // Ej. "C$ 145,000.00"
-    private String totalPendiente;        // Ej. "C$ 42,500.00"
-    private int planillasPendientes;      // Ej. 12
-    private String presupuestoGlobal;     // Ej. "C$ 1,200,000.00"
+    // Métricas Financieras
+    private String totalPagadoMes;
+    private String totalPendiente;
+    private int planillasPendientes;
+    private String presupuestoGlobal;
     
-    // Lista de Alertas (Para iterar si hay supervisores atrasados)
+    // Alertas del sistema para seguimiento operativo
     private List<String> alertas;
-
-    // --- Getters y Setters ---
     public String getTotalPagadoMes() { return totalPagadoMes; }
     public void setTotalPagadoMes(String totalPagadoMes) { this.totalPagadoMes = totalPagadoMes; }
 

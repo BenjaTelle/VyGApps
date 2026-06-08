@@ -23,9 +23,12 @@ import model.proyectos;
   
    
 public class ReporteTrabajadoresDAO {
-      // --------------------------------------------------------
-    // 1. OBTENER PROYECTOS PARA EL SELECT
-    // --------------------------------------------------------
+    /**
+     * Obtiene la lista de proyectos activos disponibles en el sistema.
+     * 
+     * @return Lista de proyectos con estado activo.
+     * @throws SQLException Si ocurre un error de acceso a datos.
+     */
     public List<proyectos> obtenerProyectosActivos() throws SQLException {
         String sql = "SELECT id_proyecto, name_proyect  FROM proyectos WHERE estado = 'Activo'";
         Connection con = ConectarBD.conectar();
@@ -48,9 +51,14 @@ public class ReporteTrabajadoresDAO {
         return lista;
     }
 
-    // --------------------------------------------------------
-    // 2. REPORTE DINÁMICO DE TRABAJADORES
-    // --------------------------------------------------------
+    /**
+     * Genera un reporte detallado de trabajadores filtrado por proyecto y estado.
+     * 
+     * @param idProyecto ID del proyecto para filtrar (0 para incluir todos).
+     * @param estadoFiltro Estado del trabajador para filtrar ("Todos" para omitir este filtro).
+     * @return Lista de ReporteTrabajadorDTO con los datos solicitados.
+     * @throws SQLException Si ocurre un error durante la ejecución de la consulta.
+     */
     public List<ReporteTrabajadorDTO> reporteDinamicoTrabajadores(int idProyecto, String estadoFiltro) throws SQLException {
         StringBuilder sqlBuilder = new StringBuilder(
             "SELECT t.id_trabajador, t.full_name, p.name_proyect, t.salario_quincenal, t.estado " +
@@ -107,7 +115,7 @@ public class ReporteTrabajadoresDAO {
         List<ReporteAsistenciaDTO> lista = new ArrayList<>();
         Connection con = ConectarBD.conectar();
         
-        // Construimos la consulta dinámicamente según los filtros
+        // TODO: Refactorizar generación de consulta para utilizar Criteria API o un ORM en lugar de concatenación manual.
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT a.fecha, t.full_name, p.name_proyect, a.hora_entrada, a.hora_salida ");
         sql.append("FROM asistencia a ");
