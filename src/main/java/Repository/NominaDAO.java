@@ -45,7 +45,8 @@ public class NominaDAO {
 
     public boolean generarPlanillaAutomatizada(String tipoNomina, int diasCiclo, String fechaInicio, String fechaFin, int idAdmin) throws SQLException {
         
-        // 1. SÚPER CONSULTA AJUSTADA A TU ESQUEMA REAL
+        // TODO: Refactorizar consulta para mejorar el rendimiento del cálculo de nóminas.
+        // Consulta SQL para calcular el pago proporcional, horas extras y descuentos.
         String sqlInsert = "INSERT INTO pago_nomina (fecha_generacion, periodo_inicio, periodo_fin, dias_trabajados, monto_pagado, estado, id_trabajador, id_user_genera, monto_horas_extras, dias_justificados) " +
                      "SELECT " +
                      "   CURDATE(), " +
@@ -53,10 +54,10 @@ public class NominaDAO {
                      "   ?, " +  
                      "   COUNT(DISTINCT a.fecha) AS dias, " + 
                      "   ( " +
-                     "       ((t.salario_quincenal / ?) * COUNT(DISTINCT a.fecha)) " + // Pago Proporcional
-                     "       + SUM(IFNULL(a.horas_extras, 0) * IFNULL(p.tarifa_hora_extra, 0)) " + // + Horas Extras
+                     "       ((t.salario_quincenal / ?) * COUNT(DISTINCT a.fecha)) " +
+                     "       + SUM(IFNULL(a.horas_extras, 0) * IFNULL(p.tarifa_hora_extra, 0)) " +
                      "       - ( " + 
-                     "           ((t.salario_quincenal / ?) * " + // - Descuentos
+                     "           ((t.salario_quincenal / ?) * " +
                      "           SUM(CASE " +
                      "               WHEN a.marca_anomala = 1 THEN " +
                      "                   CASE WHEN j.estado = 'Aprobada' THEN 0 ELSE 1 END " +
@@ -67,11 +68,11 @@ public class NominaDAO {
                      "   'Pendiente', " +
                      "   t.id_trabajador, " +
                      "   ?, " +   
-                     "   SUM(IFNULL(a.horas_extras, 0) * IFNULL(p.tarifa_hora_extra, 0)) AS total_extras, " + // Guarda extras en su propia columna
-                     "   SUM(CASE WHEN a.marca_anomala = 1 AND j.estado = 'Aprobada' THEN 1 ELSE 0 END) AS justificados " + // Guarda cuántos días se perdonaron
+                     "   SUM(IFNULL(a.horas_extras, 0) * IFNULL(p.tarifa_hora_extra, 0)) AS total_extras, " +
+                     "   SUM(CASE WHEN a.marca_anomala = 1 AND j.estado = 'Aprobada' THEN 1 ELSE 0 END) AS justificados " +
                      "FROM trabajadores t " +
                      "LEFT JOIN asistencia a ON t.id_trabajador = a.id_trabajador AND a.fecha > ? AND a.fecha <= ? " + 
-                     "LEFT JOIN proyectos p ON t.id_proyect = p.id_proyecto " + // <-- EL JOIN CORREGIDO
+                     "LEFT JOIN proyectos p ON t.id_proyect = p.id_proyecto " +
                      "LEFT JOIN justificaciones j ON a.id_trabajador = j.id_trabajador AND DATE(a.fecha) = DATE(j.fecha_incidencia) " +
                      "WHERE t.id_proyect IS NOT NULL AND t.tipo_nomina = ? " + 
                      "GROUP BY t.id_trabajador, t.salario_quincenal, p.tarifa_hora_extra " +

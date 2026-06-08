@@ -15,10 +15,15 @@ import java.util.List;
  */
 public class UsoDAO {
 
+    /**
+     * Recupera todos los registros de uso de maquinaria de forma detallada.
+     * 
+     * @return Lista de historial de uso con costos calculados.
+     */
     public List<HistorialUsoDTO> ListarRegistrosDetallados() {
         List<HistorialUsoDTO> lista = new ArrayList<>();
         
-        // Query corregida con parche de medianoche (+1440 minutos) para evitar totales negativos
+        // TODO: Refactorizar consulta para aislar el manejo de compensación de medianoche en una vista o función almacenada.
         String query = 
             "SELECT " +
             "   u.id_uso, u.fecha, u.hora_inicio, u.hora_fin, u.costo_por_hora, " +
@@ -63,10 +68,16 @@ public class UsoDAO {
         return lista;
     }
 
+    /**
+     * Obtiene el detalle específico de un registro de uso de maquinaria.
+     * 
+     * @param idUso Identificador único del registro de uso.
+     * @return DTO con la información desglosada del uso, o null si no se encuentra.
+     */
     public HistorialUsoDTO obtenerDetalleUso(int idUso) {
         HistorialUsoDTO dto = null;
         
-        // Query de detalle con el cálculo de horas y costos corregido para trasnoches
+        // TODO: Refactorizar cálculos de tiempo y costo utilizando lógica centralizada de persistencia.
         String query = 
             "SELECT " +
             "   u.id_uso, u.fecha, u.hora_inicio, u.hora_fin, u.costo_por_hora, " +

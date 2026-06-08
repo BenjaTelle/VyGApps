@@ -33,8 +33,8 @@ public class PagosDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     PagoDTO dto = new PagoDTO();
-                    String inicioFormateado = formatearFechaElegante(rs.getString("periodo_inicio"));
-                    String finFormateado = formatearFechaElegante(rs.getString("periodo_fin"));
+                    String inicioFormateado = formatoFechaLocal(rs.getString("periodo_inicio"));
+                    String finFormateado = formatoFechaLocal(rs.getString("periodo_fin"));
                     
                     dto.setPeriodoInicio(inicioFormateado);
                     dto.setPeriodoFin(finFormateado);
@@ -51,7 +51,13 @@ public class PagosDAO {
         return listaP;
     }
     
-    private String formatearFechaElegante(String fechaSQL) {
+    /**
+     * Convierte una fecha en formato SQL a un formato legible localizado.
+     * 
+     * @param fechaSQL Fecha en formato yyyy-MM-dd.
+     * @return Fecha formateada (ej. '01 Ene 2023') o 'N/D' si es nula.
+     */
+    private String formatoFechaLocal(String fechaSQL) {
         if (fechaSQL == null || fechaSQL.isEmpty()) return "N/D";
         try {
             LocalDate fecha = LocalDate.parse(fechaSQL);

@@ -56,22 +56,30 @@ public class MaquinasDAO {
     
    public boolean liquidarUsoMaquinaria(String fechaInicio, String fechaFin, int idAdmin) throws SQLException {
     
-    /* EXPLICACIÓN DE LA SÚPER CONSULTA ACTUALIZADA:
-       1. Maneja turnos que cruzan la medianoche sumando 1440 minutos si es necesario.
-       2. Multiplica las horas por el costo guardado en 'uso_registro' para evitar el 0.00 de la tabla maestra.
-       3. Suma el combustible y genera el estado 'Pendiente'.
-       4. Cierra la conexión automáticamente para evitar fugas de memoria.
-    */
+    /**
+     * Calcula y registra los pagos de maquinaria en un periodo especificado.
+     * 
+     * Notas de implementación:
+     * - Ajusta el cálculo de horas para turnos que cruzan la medianoche añadiendo 1440 minutos.
+     * - Utiliza el costo histórico guardado en 'uso_registro' para mantener la integridad financiera.
+     * - Calcula el pago total sumando el costo por horas y el costo de combustible.
+     *
+     * @param fechaInicio Fecha de inicio del periodo.
+     * @param fechaFin Fecha de fin del periodo.
+     * @param idAdmin Identificador del administrador que genera la liquidación.
+     * @return true si se insertaron registros, false en caso contrario.
+     * @throws SQLException Si ocurre un error de base de datos.
+     */
     String sql = "INSERT INTO pago_maquinaria (fecha_generacion, monto_horas, monto_combustible, total_pagado, estado, id_uso, id_user_genera) " +
                  "SELECT " +
                  "   CURRENT_DATE(), " +
-                 // Cálculo de horas con parche de medianoche y uso del costo snapshot
+                 // Calcula el costo de horas trabajadas manejando cruces de medianoche
                  "   (CASE WHEN u.hora_fin < u.hora_inicio " +
                  "         THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
                  "         ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
                  "    END / 60.0) * u.costo_por_hora AS monto_horas, " +
                  "   u.costo_combustible_total AS monto_combustible, " +
-                 // Cálculo del total pagado (Horas + Combustible)
+                 // Calcula el monto total a pagar (Horas + Combustible)
                  "   ((CASE WHEN u.hora_fin < u.hora_inicio " +
                  "          THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
                  "          ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
@@ -86,7 +94,7 @@ public class MaquinasDAO {
                  "   SELECT 1 FROM pago_maquinaria pm WHERE pm.id_uso = u.id_uso" +
                  ")";
 
-    // Usamos try-with-resources para asegurar el cierre de la conexión y el Statement
+    // Try-with-resources para el manejo automático de conexiones
     try (Connection con = ConectarBD.conectar();
          PreparedStatement ps = con.prepareStatement(sql)) {
         

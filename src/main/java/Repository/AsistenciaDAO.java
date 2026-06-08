@@ -23,6 +23,15 @@ import model.asistencia;
  */
 public class AsistenciaDAO {
     
+    /**
+     * Registra la entrada diaria de un trabajador.
+     * 
+     * @param id Identificador del trabajador.
+     * @param entrada Hora de entrada registrada.
+     * @param fecha Fecha de la asistencia.
+     * @return El número de filas afectadas (1 si fue exitoso).
+     * @throws SQLException Si ocurre un error de acceso a la base de datos.
+     */
     public int MarcarEntrada(int id, Time entrada, Date fecha) throws SQLException {
         String sql = "INSERT INTO asistencia(hora_entrada, id_trabajador, fecha) VALUES(?,?,?)";
         try (Connection con = ConectarBD.conectar();
@@ -50,6 +59,17 @@ public class AsistenciaDAO {
         return null; 
     }
 
+    /**
+     * Registra la hora de salida de un trabajador, calculando anomalías y horas extras.
+     * 
+     * @param id Identificador del trabajador.
+     * @param salida Hora de salida registrada.
+     * @param horasExtras Cantidad de horas extras precalculadas.
+     * @param marcaAnomala Indicador de salida temprana (1 para anómala, 0 para normal).
+     * @param fecha Fecha de la asistencia a actualizar.
+     * @return El número de filas afectadas.
+     * @throws SQLException Si ocurre un error de actualización en la base de datos.
+     */
     public int MarcarSalida(int id, Time salida, int horasExtras, int marcaAnomala, Date fecha) throws SQLException {
         String sql = "UPDATE asistencia SET hora_salida=?, horas_extras=?, marca_anomala=? WHERE id_trabajador=? AND fecha=?";
         try (Connection con = ConectarBD.conectar();
@@ -122,6 +142,15 @@ public class AsistenciaDAO {
         return AsistenciaGlobal;
     }
     
+    /**
+     * Genera un resumen estadístico de la asistencia del trabajador.
+     * Calcula los promedios de horas trabajadas y porcentajes de puntualidad 
+     * de forma agrupada en el servidor de base de datos para optimizar recursos.
+     * 
+     * @param idTrabajador Identificador del trabajador.
+     * @return Objeto ResumenAsistenciaDTO con la agregación de métricas.
+     * @throws SQLException Si ocurre un error durante el cálculo de la consulta agrupada.
+     */
     public ResumenAsistenciaDTO obtenerResumenTrabajador(int idTrabajador) throws SQLException {
         String sql = "SELECT " +
                      "t.full_name, t.cedula, t.puesto, p.name_proyect, " +
@@ -173,6 +202,14 @@ public class AsistenciaDAO {
         return resumen;
     }
   
+    /**
+     * Valida la legitimidad de un código de autorización temporal para marcas de asistencia especiales.
+     * 
+     * @param codigo Código de autorización provisto por el supervisor.
+     * @param idTrabajador Identificador del trabajador que intenta usar el código.
+     * @return true si el código es válido, está activo y pertenece al proyecto del trabajador, false de lo contrario.
+     * @throws SQLException Si ocurre un error validando las restricciones del código.
+     */
     public boolean validarCodigoObra(String codigo, int idTrabajador) throws SQLException {
         String sql = "SELECT c.id_codigo FROM codigos_asistencia c " +
                      "INNER JOIN trabajadores t ON c.id_proyecto = t.id_proyect " +

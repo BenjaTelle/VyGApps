@@ -20,7 +20,12 @@ import java.util.List;
  */
 public class ProyectoReporteDAO {
 
-// funcion proyectos activos 
+    /**
+     * Calcula la cantidad de proyectos activos en la base de datos.
+     * 
+     * @return El número total de proyectos con estado activo.
+     * @throws SQLException Si ocurre un error de acceso a datos.
+     */
     private int ProyectosAct() throws SQLException {
 
         String sql = "SELECT COUNT(id_proyecto) as ProyectosActivos FROM proyectos where estado='activo' ";
@@ -37,7 +42,12 @@ public class ProyectoReporteDAO {
 
     }
 
-    //numero total de proyectos
+    /**
+     * Calcula la cantidad total de proyectos registrados.
+     * 
+     * @return El número total de proyectos.
+     * @throws SQLException Si ocurre un error de acceso a datos.
+     */
     private int TotalProy() throws SQLException {
 
         String sql = "SELECT COUNT(id_proyecto) as TotalProyectos FROM proyectos";
@@ -58,8 +68,8 @@ public class ProyectoReporteDAO {
 
         ReporteProyectoResumenDTO resumenPDTO = new ReporteProyectoResumenDTO();
 
-        resumenPDTO.setProyectosActivos(ProyectosAct()); //seteamos los proyectos activos 
-        resumenPDTO.setTotalProyectos(TotalProy()); //seteamos totalproyectos
+        resumenPDTO.setProyectosActivos(ProyectosAct());
+        resumenPDTO.setTotalProyectos(TotalProy());
 
         return resumenPDTO;
 
@@ -67,7 +77,7 @@ public class ProyectoReporteDAO {
 
     public List<ProyectoReporteDTO> listaReporteProyectos() throws SQLException {
 
-        // Aquí metemos la consulta avanzada que suma las nóminas y la maquinaria
+        // Calcula el presupuesto consolidado integrando gastos de nómina y maquinaria por proyecto
         String sql = "SELECT "
                 + "p.id_proyecto, "
                 + "p.name_proyect AS nombre_proyecto, "
@@ -112,7 +122,7 @@ public class ProyectoReporteDAO {
 
                 ProyectoReporteDTO PR = new ProyectoReporteDTO();
 
-                // Fíjate que aquí los nombres coinciden con los "AS" de la consulta SQL
+                // Mapeo de resultados a DTO
                 PR.setNombreProyecto(rs.getString("nombre_proyecto"));
 
                 PR.setSupervisor(rs.getString("supervisor"));

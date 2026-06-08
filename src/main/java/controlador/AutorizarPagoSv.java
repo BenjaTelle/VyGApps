@@ -57,22 +57,22 @@ public class AutorizarPagoSv extends HttpServlet {
             int idPago = Integer.parseInt(request.getParameter("id_pago"));
             int idProyecto = Integer.parseInt(request.getParameter("id_proyecto"));
             double monto = Double.parseDouble(request.getParameter("monto"));
-            String tipo = request.getParameter("tipo"); // ¡El parámetro clave!
+            String tipo = request.getParameter("tipo"); // Determina si el pago corresponde a nómina o maquinaria
             int idUsuario = user.getId_user();
 
             AutorizacionDAO dao = new AutorizacionDAO();
             String resultado = "";
 
-            // 2. El Enrutador de Pagos (La magia ocurre aquí)
+            // Delegar autorización al DAO correspondiente según el tipo de gasto
             if (tipo != null && tipo.equals("maquinaria")) {
-                // Si viene de la tabla naranja, descontamos el pago de la maquinaria
+                // Autoriza el pago de maquinaria descontando del presupuesto
                 resultado = dao.autorizarPagoMaquinaria(idPago, idProyecto, monto, idUsuario);
             } else {
-                // Si es "nomina" o cualquier otra cosa, descontamos el pago de los humanos
+                // Autoriza el pago de nómina estándar descontando del presupuesto
                 resultado = dao.autorizarPago(idPago, idProyecto, monto, idUsuario);
             }
 
-            // 3. Redirigimos de vuelta a la bandeja con el mensaje de éxito o error
+            // Redirigir a bandeja principal con estado de la operación
             response.sendRedirect("BandejaAutorizacionSv?msg=" + resultado);
             
         } catch (Exception e) {
