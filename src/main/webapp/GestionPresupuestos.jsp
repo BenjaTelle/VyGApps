@@ -43,11 +43,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
+        <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
             </div>
         </div>
 
@@ -97,7 +97,7 @@
                 
                 <div class="budget-form-card">
                     <div class="card-header">
-                        <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px; margin-top:-2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>Inyectar Capital</h3>
+                        <h3>➕ Inyectar Capital</h3>
                         <p>Suma fondos al presupuesto actual de un proyecto.</p>
                     </div>
                     

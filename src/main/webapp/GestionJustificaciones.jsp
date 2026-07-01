@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Sistema de Gestión Operativa - VyGApps
     Document   : GestionJustificaciones
     Created on : 31 may 2026, 7:54:46 p.m.
@@ -39,11 +39,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
+        <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
 

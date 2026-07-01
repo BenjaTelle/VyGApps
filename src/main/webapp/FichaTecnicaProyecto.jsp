@@ -44,11 +44,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
+        <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -123,7 +123,7 @@
                                 <div class="data-value highlight-text">
                                     <%= (f.getNombre_supervisor() != null && !f.getNombre_supervisor().trim().isEmpty() && !f.getNombre_supervisor().equalsIgnoreCase("null")) 
                                         ? f.getNombre_supervisor() 
-                                        : "<span style='color:#e74c3c; font-weight:normal; font-size:14px;'><svg width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'></path><line x1='12' y1='9' x2='12' y2='13'></line><line x1='12' y1='17' x2='12.01' y2='17'></line></svg> Sin asignar</span>" %>
+                                        : "<span style='color:#e74c3c; font-weight:normal; font-size:14px;'><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Sin asignar</span>" %>
                                 </div>
                             </div>
 

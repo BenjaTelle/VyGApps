@@ -36,11 +36,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-                <div class="sidebar-header">
+        <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                <span class="panel-badge">Supervisor</span>
             </div>
         </div>
 
@@ -91,7 +91,7 @@
                     <h3>¡Código Generado Exitosamente! <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></h3>
                     <p>Comparte este código con tu cuadrilla para que marquen su entrada:</p>
                     <div class="codigo-gigante"><%= codigoGenerado %></div>
-                    <p class="codigo-info"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px; margin-top:-2px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
+                    <p class="codigo-info">⏳ Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
                 </div>
             <% } %>
 

@@ -40,29 +40,29 @@
             <div class="overlay" id="sidebarOverlay"></div>
 
             <aside class="sidebar" id="sidebar">
-                                <div class="sidebar-header">
+                <div class="sidebar-header">
                     <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
                     <div class="brand-text">
                         <h2>VyGApps</h2>
-                        <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                        <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
                     </div>
                 </div>
 
                 <nav class="sidebar-nav">
                     <a href="AdminPage.jsp" class="nav-item">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                         <span>Dashboard Maestro</span>
                     </a>
                     <a href="AdminFinanzas" class="nav-item">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
                         <span>Control Financiero</span>
                     </a>
                     <a href="AuditoriaPagosSv" class="nav-item active" style="background-color: #2c3e50;">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>️</span>
                         <span>Historial Maestro</span>
                     </a>
                     <a href="LogoutSv" class="nav-item logout-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
                         <span>Cerrar Sesión</span>
                     </a>
                 </nav>
@@ -87,7 +87,7 @@
 
                     <div class="admin-header-banner" style="background: linear-gradient(135deg, #34495e, #2c3e50);">
                         <div class="admin-header-info">
-                            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg> Historial Maestro de Pagos</h2>
+                            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>️ Historial Maestro de Pagos</h2>
                             <p>Buscador global de nóminas y uso de maquinaria. Busque por concepto o nombre del proyecto.</p>
                         </div>
                     </div>
@@ -138,7 +138,7 @@
                                         <td data-label="Concepto"><strong><%= p.getConcepto()%></strong></td>
                                         <td data-label="Proyecto"><%= p.getNombreProyecto()%></td>
                                         <td data-label="Generado"><%= p.getGeneradoPor()%></td>
-                                        <td data-label="Autorizado" style="color: #27ae60; font-weight: bold;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px; margin-top:-2px;"><polyline points="20 6 9 17 4 12"></polyline></svg><%= p.getAutorizadoPor()%></td>
+                                        <td data-label="Autorizado" style="color: #27ae60; font-weight: bold;">✔️ <%= p.getAutorizadoPor()%></td>
                                         <td data-label="Fecha"><%= p.getFechaPago()%></td>
                                         <td data-label="Monto" class="monto">C$ <%= String.format("%,.2f", p.getMontoPagado())%></td>
                                     </tr>
