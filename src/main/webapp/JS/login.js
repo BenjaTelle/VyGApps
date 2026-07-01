@@ -40,3 +40,21 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// Registro de Service Worker para soporte offline
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('JS/sw.js')
+            .then(function(reg) {
+                console.log('Service Worker registrado con éxito para VyGApps (Login):', reg.scope);
+            })
+            .catch(function(err) {
+                console.warn('Error al registrar Service Worker en Login:', err);
+            });
+    });
+}
+
+// Redirección inmediata al perder conexión de red
+window.addEventListener('offline', function() {
+    window.location.href = 'offline.jsp';
+});

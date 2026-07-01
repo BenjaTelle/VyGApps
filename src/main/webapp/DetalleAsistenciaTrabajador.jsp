@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : DetalleAsistenciaTrabajador
     Created on : [Fecha Actual]
     Author     : Benja
@@ -50,7 +50,7 @@
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge">Supervisor</span>
+                <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
 
