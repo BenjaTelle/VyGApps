@@ -56,9 +56,12 @@
         <div class="overlay" id="sidebarOverlay"></div>
 
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
-                <h2>VyGApps</h2>
+                        <div class="sidebar-header">
+                <img src="images/vyg.svg" alt="Logotipo VyG" class="logo-img">
+                <div class="brand-text">
+                    <h2>VyGApps</h2>
+                    <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                </div>
             </div>
             <nav>
                 <a href="Home" class="menu-item"> 
@@ -97,7 +100,7 @@
                 </div>
                 
                 <div class="kpi-finance-card warning">
-                    <div class="finance-icon">⏳</div>
+                    <div class="finance-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="finance-data">
                         <p>Saldo Pendiente</p>
                         <h3>C$ <%= String.format("%,.2f", totalPendiente) %></h3>
@@ -137,7 +140,7 @@
                                 <% if (pago.getEstado().equalsIgnoreCase("Autorizado") || pago.getEstado().equalsIgnoreCase("Pagado")) { %>
                                     <span class="badge-estado badge-pagado"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Pagado</span>
                                 <% } else { %>
-                                    <span class="badge-estado badge-pendiente">⏳ Pendiente</span>
+                                    <span class="badge-estado badge-pendiente"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Pendiente</span>
                                 <% } %>
                             </td>
                             <td style="text-align: center;">

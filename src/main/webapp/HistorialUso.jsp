@@ -42,11 +42,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
+                <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;">Supervisor</span>
+                <span class="panel-badge" style="<%= (usuarioLogeado.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : usuarioLogeado.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
@@ -82,7 +82,7 @@
                         </div>
                         <div class="toolbar">
                             <input type="text" id="buscador" placeholder="Buscar registro..." class="search-input">
-                            <a href="RegistrarUso" class="btn-main">➕ Registrar Nuevo Uso</a>
+                            <a href="RegistrarUso" class="btn-main"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: middle;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Registrar Nuevo Uso</a>
                         </div>
                     </div>
 

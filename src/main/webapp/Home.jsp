@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : Home
     Created on : 2 feb 2026
     Author     : Benja
@@ -51,9 +51,12 @@
         <div class="overlay" id="sidebarOverlay"></div>
         
         <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
+                        <div class="sidebar-header">
                 <img src="images/vyg.svg" alt="Logotipo VyG" class="logo-img">
-                <h2>VyGApps</h2>
+                <div class="brand-text">
+                    <h2>VyGApps</h2>
+                    <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
+                </div>
             </div>
             <nav class="sidebar-nav">
                 <a href="Home" class="menu-item active">

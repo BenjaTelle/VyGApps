@@ -40,11 +40,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
+                <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
+                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -58,7 +58,7 @@
                 <span>Control Financiero</span>
             </a>
             <a href="AutorizarGastosSv" class="nav-item active" style="background-color: #2c3e50;">
-                <span class="icon">🧾</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1-2-1z"></path><path d="M16 8H8V6h8v2zM16 12H8v-2h8v2zM12 16H8v-2h4v2z"></path></svg></span>
                 <span>Bandeja de Gastos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">

@@ -10,6 +10,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
    ESTILOS: REPORTE DE DETALLE DE USO
    ========================================= */
 
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    color: #334155;
+    margin: 0;
+    padding: 0;
+}
+
 .report-card { 
     max-width: 800px; 
     margin: 30px auto; 
@@ -138,3 +146,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     .kpi-section { flex-direction: column; }
     .report-header { flex-direction: column; gap: 15px; text-align: center; }
 }
+
+/* Alineación de iconos SVG */
+.info-box span svg {
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-top: -3px;
+    display: inline-block;
+    color: #5a738e;
+}
+
+.math-row span svg {
+    vertical-align: middle;
+    margin-right: 8px;
+    margin-top: -2px;
+    display: inline-block;
+    color: #5a738e;
+}
+
+.btn-back svg {
+    vertical-align: middle;
+    margin-right: 6px;
+    margin-top: -2px;
+    display: inline-block;
+}
+

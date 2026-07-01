@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : AsignProyect
     Created on : 9 feb 2026, 5:24:22 p.m.
     Author     : Benja
@@ -39,11 +39,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
+                <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;">Administrador</span>
+                <span class="panel-badge" style="<%= (usuarioLogeado.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : usuarioLogeado.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">

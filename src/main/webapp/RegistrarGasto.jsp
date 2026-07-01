@@ -40,11 +40,11 @@
     <div class="overlay" id="sidebarOverlay"></div>
 
     <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
+                <div class="sidebar-header">
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge"><%= user.getRol() %></span>
+                <span class="panel-badge" style="<%= (user.getRol().equalsIgnoreCase("Administrador") ? "background:#fceceb; color:#c0392b;" : user.getRol().equalsIgnoreCase("Supervisor") ? "background:#eafaf1; color:#27ae60;" : "background:#e8f0fe; color:#1a73e8;") %>"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -127,11 +127,11 @@
                             <label>Categoría <span class="required">*</span></label>
                             <select name="categoria" required>
                                 <option value="" disabled selected>-- Seleccione una --</option>
-                                <option value="Materiales"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Materiales e Insumos</option>
-                                <option value="Combustible">⛽ Combustible / Transporte</option>
-                                <option value="Alimentacion"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Alimentación / Viáticos</option>
-                                <option value="Mantenimiento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Repuestos y Mantenimiento</option>
-                                <option value="Otros"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Otros Gastos</option>
+                                <option value="Materiales">Materiales e Insumos</option>
+                                <option value="Combustible">Combustible / Transporte</option>
+                                <option value="Alimentacion">Alimentación / Viáticos</option>
+                                <option value="Mantenimiento">Repuestos y Mantenimiento</option>
+                                <option value="Otros">Otros Gastos</option>
                             </select>
                         </div>
                     </div>
