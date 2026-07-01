@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : RegistrarCamiones
     Created on : 2 mar 2026, 6:09:32 p.m.
     Author     : Benja
@@ -51,7 +51,7 @@
             <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;">Supervisor</span>
+                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
@@ -70,7 +70,7 @@
             <div class="profile-menu">
                 <div class="profile-info">
                     <span class="profile-name"><%= usuarioLogeado.getUser_name() %></span>
-                    <span class="profile-role">Supervisor</span>
+                    <span class="profile-role"><%= usuarioLogeado.getRol() %></span>
                 </div>
                 <img src="images/usuario.png" class="profile-img" alt="Perfil">
             </div>

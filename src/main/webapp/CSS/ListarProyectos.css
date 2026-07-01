@@ -353,3 +353,41 @@
         gap: 10px;
     }
 }
+
+/* =========================================
+   ESTILOS DE MAQUETACIÓN EXTRAÍDOS (REFACTORIZACIÓN)
+   ========================================= */
+.nav-item.active.admin-active {
+    background-color: #2c3e50 !important;
+}
+
+.card-status-wrapper {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-expense svg {
+    margin-right: 4px;
+}
+
+.empty-message svg {
+    margin-bottom: 10px;
+    color: #94a3b8;
+}
+
+.mb-25 {
+    margin-bottom: 25px;
+}
+
+.modal-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #eaeaea;
+    padding-top: 15px;
+}
+
+.btn-width-auto {
+    width: auto;
+}

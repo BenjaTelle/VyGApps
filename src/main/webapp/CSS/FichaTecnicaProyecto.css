@@ -149,6 +149,19 @@
 .btn-print:hover { background-color: var(--primary-dark); transform: translateY(-2px); }
 
 
+.no-supervisor {
+    color: #e74c3c;
+    font-weight: normal;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.no-supervisor svg {
+    margin-right: 2px;
+}
+
+
 /* =========================================
    RESPONSIVO
    ========================================= */
