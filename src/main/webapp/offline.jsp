@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -48,7 +48,7 @@
 
         <!-- SECCIÓN DE MINIJUEGO INTERACTIVO -->
         <div class="game-section">
-            <h2 class="game-title">VyG Constructor Runner 🚚</h2>
+            <h2 class="game-title">VyG Constructor Runner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left:6px;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></h2>
             <div class="game-canvas-container">
                 <canvas id="gameCanvas" width="560" height="180"></canvas>
             </div>

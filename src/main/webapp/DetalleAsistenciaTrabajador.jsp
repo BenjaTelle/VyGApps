@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : DetalleAsistenciaTrabajador
     Created on : [Fecha Actual]
     Author     : Benja
@@ -74,7 +74,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Detalle de Asistencia</h1>
                     <span>Reporte individual del trabajador.</span>
@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="kpi-card">
-                <span class="kpi-icon">⭐</span>
+                <span class="kpi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></span>
                 <div class="kpi-data">
                     <h3 style="color: #27ae60;"><%= resumen.getPorcentajePuntualidad() %>%</h3>
                     <p>Nivel de Puntualidad</p>
@@ -158,7 +158,7 @@
                                 <% if(a.getEstado_turno()!= null && a.getEstado_turno().equals("Llegada Tardía")) { %>
                                     <span class="badge-warning"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Llegada Tardía</span>
                                 <% } else { %>
-                                    <span class="badge-ok">✔️ A tiempo</span>
+                                    <span class="badge-ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg>A tiempo</span>
                                 <% } %>
                                 
                                 <% if(a.getMarcaAnomala() == 1) { %>

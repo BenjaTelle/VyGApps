@@ -72,7 +72,7 @@
 
                 <header class="topbar">
                     <div class="header-left">
-                        <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                        <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                     </div>
                     <div class="profile-menu">
                         <div class="profile-info">
@@ -138,7 +138,7 @@
                                         <td data-label="Concepto"><strong><%= p.getConcepto()%></strong></td>
                                         <td data-label="Proyecto"><%= p.getNombreProyecto()%></td>
                                         <td data-label="Generado"><%= p.getGeneradoPor()%></td>
-                                        <td data-label="Autorizado" style="color: #27ae60; font-weight: bold;">✔️ <%= p.getAutorizadoPor()%></td>
+                                        <td data-label="Autorizado" style="color: #27ae60; font-weight: bold;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polyline points="20 6 9 17 4 12"></polyline></svg><%= p.getAutorizadoPor()%></td>
                                         <td data-label="Fecha"><%= p.getFechaPago()%></td>
                                         <td data-label="Monto" class="monto">C$ <%= String.format("%,.2f", p.getMontoPagado())%></td>
                                     </tr>

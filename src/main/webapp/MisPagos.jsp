@@ -79,7 +79,7 @@
         <main class="main-content">
             <header class="header">
                 <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
-                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                    <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                     <div class="header-title">
                         <h1>Historial de Nóminas</h1>
                         <span>Detalle completo de tus ingresos y retribuciones.</span>
@@ -97,7 +97,7 @@
                 </div>
                 
                 <div class="kpi-finance-card warning">
-                    <div class="finance-icon">⏳</div>
+                    <div class="finance-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
                     <div class="finance-data">
                         <p>Saldo Pendiente</p>
                         <h3>C$ <%= String.format("%,.2f", totalPendiente) %></h3>
@@ -137,7 +137,7 @@
                                 <% if (pago.getEstado().equalsIgnoreCase("Autorizado") || pago.getEstado().equalsIgnoreCase("Pagado")) { %>
                                     <span class="badge-estado badge-pagado"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Pagado</span>
                                 <% } else { %>
-                                    <span class="badge-estado badge-pendiente">⏳ Pendiente</span>
+                                    <span class="badge-estado badge-pendiente"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Pendiente</span>
                                 <% } %>
                             </td>
                             <td style="text-align: center;">

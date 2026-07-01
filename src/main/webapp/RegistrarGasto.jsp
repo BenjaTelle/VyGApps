@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : RegistrarGasto
     Created on : 16 may 2026, 8:02:20 p.m.
     Author     : Benja
@@ -68,7 +68,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Registrar Gasto de Proyecto</h1>
                     <span>Sube facturas, viáticos o compras de caja chica para auditoría.</span>
@@ -128,7 +128,7 @@
                             <select name="categoria" required>
                                 <option value="" disabled selected>-- Seleccione una --</option>
                                 <option value="Materiales"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Materiales e Insumos</option>
-                                <option value="Combustible">⛽ Combustible / Transporte</option>
+                                <option value="Combustible">Combustible / Transporte</option>
                                 <option value="Alimentacion"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Alimentación / Viáticos</option>
                                 <option value="Mantenimiento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Repuestos y Mantenimiento</option>
                                 <option value="Otros"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Otros Gastos</option>

@@ -75,7 +75,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Inyección de Presupuestos</h1>
                     <span>Asigna fondos a los proyectos para cubrir nóminas y gastos.</span>
@@ -97,7 +97,7 @@
                 
                 <div class="budget-form-card">
                     <div class="card-header">
-                        <h3>➕ Inyectar Capital</h3>
+                        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Inyectar Capital</h3>
                         <p>Suma fondos al presupuesto actual de un proyecto.</p>
                     </div>
                     

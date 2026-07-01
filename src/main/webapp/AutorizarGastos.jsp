@@ -58,7 +58,7 @@
                 <span>Control Financiero</span>
             </a>
             <a href="AutorizarGastosSv" class="nav-item active" style="background-color: #2c3e50;">
-                <span class="icon">🧾</span>
+                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1z"></path><path d="M16 8H8"></path><path d="M16 12H8"></path><path d="M12 16H8"></path></svg></span>
                 <span>Bandeja de Gastos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
@@ -72,7 +72,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Bandeja de Gastos Pendientes</h1>
                     <span>Audita, aprueba o rechaza los egresos menores reportados por los supervisores.</span>

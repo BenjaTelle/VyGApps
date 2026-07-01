@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : DetalleUso
     Created on : 3 abr 2026, 7:18:57 p.m.
     Author     : Benja
@@ -55,7 +55,7 @@
                 <span>C$ <%= String.format("%,.2f", costoUsoMaquina) %></span>
             </div>
             <div class="math-row">
-                <span>⛽ Combustible Consumido (<%= d.getGalonesCombustible() %> Galones)</span>
+                <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M3 22V2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v20"></path><path d="M4 9h12"></path><path d="M14 22V14a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v8"></path><path d="M19 12a4 4 0 0 1 4 4v5"></path></svg> Combustible Consumido (<%= d.getGalonesCombustible() %> Galones)</span>
                 <span>C$ <%= String.format("%,.2f", costoCombustible) %></span>
             </div>
             <div class="math-row total">

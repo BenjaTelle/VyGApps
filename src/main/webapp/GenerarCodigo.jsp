@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : GenerarCodigo
     Created on : 11 abr 2026
     Author     : Benja
@@ -64,7 +64,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Generar Código de Asistencia</h1>
                     <span>Crea claves temporales para el registro del personal.</span>
@@ -91,7 +91,7 @@
                     <h3>¡Código Generado Exitosamente! <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></h3>
                     <p>Comparte este código con tu cuadrilla para que marquen su entrada:</p>
                     <div class="codigo-gigante"><%= codigoGenerado %></div>
-                    <p class="codigo-info">⏳ Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
+                    <p class="codigo-info"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
                 </div>
             <% } %>
 

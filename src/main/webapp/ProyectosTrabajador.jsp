@@ -61,7 +61,7 @@
             
             <header class="header">
                 <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
-                    <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                    <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                     <div class="header-title">
                         <h1>Mis Proyectos Asignados</h1>
                         <span>Listado de las obras en las que estás registrado actualmente.</span>
@@ -114,7 +114,7 @@
                                 <tr>
                                     <td colspan="4" class="empty-cell">
                                         <div class="empty-state-container" style="text-align: center; padding: 40px; color: #7f8c8d;">
-                                            <span class="empty-icon" style="font-size: 40px; display: block; margin-bottom: 10px;">&#128679;</span>
+                                            <span class="empty-icon" style="display: block; margin-bottom: 10px; color: #94a3b8;"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                                             <h3>Sin asignaciones activas</h3>
                                             <p style="margin-top: 10px;">
                                                 Actualmente no tienes ningún proyecto u obra asignada en el sistema. <br>

@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : HistorialPagosSup
     Created on : 3 abr 2026
     Author     : Benja
@@ -77,7 +77,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
                 <div class="welcome">
                     <h1>Historial de Pagos</h1>
                     <span>Registro de nóminas y usos de maquinaria aprobados.</span>

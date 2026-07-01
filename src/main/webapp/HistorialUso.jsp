@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : HistorialUso
     Created on : 4 mar 2026
     Author     : Benja
@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/HistorialUso.css">
     <script src="JS/menu-movil.js" defer></script>
+    <script src="JS/buscadorUso.js" defer></script>
     <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
@@ -60,7 +61,7 @@
     <main class="main-content">
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn">☰</button>
+                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
             </div>
             <div class="profile-menu">
                 <div class="profile-info">
@@ -81,13 +82,13 @@
                             <p>Consulta todos los registros operativos y costos totales calculados.</p>
                         </div>
                         <div class="toolbar">
-                            <input type="text" id="buscador" placeholder="Buscar registro..." class="search-input">
-                            <a href="RegistrarUso" class="btn-main">➕ Registrar Nuevo Uso</a>
+                            <input type="text" id="buscador" placeholder="Ej. CAT 320, Obra Central, Juan..." class="search-input">
+                            <a href="RegistrarUso" class="btn-main"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Registrar Nuevo Uso</a>
                         </div>
                     </div>
 
                     <div class="table-responsive">
-                        <table class="vyg-table">
+                        <table class="vyg-table" id="tablaUso">
                             <thead>
                                 <tr>
                                     <th>ID Registro</th>
@@ -109,7 +110,7 @@
                                     if (listaUsos != null && !listaUsos.isEmpty()) {
                                         for (HistorialUsoDTO uso : listaUsos) {
                                 %>
-                                <tr>
+                                <tr class="fila-dato">
                                     <td data-label="ID Registro"><strong>#<%= uso.getIdUso() %></strong></td>
                                     <td data-label="Fecha"><%= uso.getFecha() %></td>
                                     <td data-label="Horario (Inicio - Fin)"><%= uso.getHoraInicio() %> a <%= uso.getHoraFin() %></td>
