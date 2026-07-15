@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : MisPagos
     Created on : 11 abr 2026
     Author     : Benja
@@ -42,12 +42,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Pagos | VyGApps</title>
+    <title>Mis Pagos | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/Empleados.css">
     <link rel="stylesheet" href="CSS/MisPagos.css"> 
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 
@@ -57,8 +57,8 @@
 
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="images/vyg.svg" alt="Logo VyG" class="logo-img">
-                <h2>VyGApps</h2>
+                <img src="images/KronosIndustrial.svg" alt="Logo Kronos Industrial" class="logo-img">
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
             </div>
             <nav>
                 <a href="Home" class="menu-item"> 
@@ -132,7 +132,7 @@
                         <tr>
                             <td><strong>#<%= String.format("%04d", pago.getIdPago()) %></strong></td>
                             <td>Del <strong><%= pago.getPeriodoInicio() %></strong> al <strong><%= pago.getPeriodoFin() %></strong></td>
-                            <td style="font-weight: bold; color: #2c3e50;">C$ <%= String.format("%,.2f", pago.getMonto()) %></td>
+                            <td style="font-weight: bold; color: #121216;">C$ <%= String.format("%,.2f", pago.getMonto()) %></td>
                             <td>
                                 <% if (pago.getEstado().equalsIgnoreCase("Autorizado") || pago.getEstado().equalsIgnoreCase("Pagado")) { %>
                                     <span class="badge-estado badge-pagado"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg> Pagado</span>
@@ -142,7 +142,7 @@
                             </td>
                             <td style="text-align: center;">
                                 <a href="GenerarReciboPDF?id_pago=<%= pago.getIdPago() %>" target="_blank" class="btn-recibo-pdf">
-                                    <img src="images/vyg.svg" alt="Icono" class="pdf-icon-logo">
+                                    <img src="images/KronosIndustrial.svg" alt="Icono" class="pdf-icon-logo">
                                     <span>Ver Recibo</span>
                                 </a>
                             </td>

@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : ReciboPago
     Created on : 22 abr 2026
     Author     : Benja
@@ -30,18 +30,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Recibo de Pago #<%= String.format("%04d", pago.getIdPago()) %> | VyGApps</title>
+    <title>Recibo de Pago #<%= String.format("%04d", pago.getIdPago()) %> | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/ReciboPago.css">
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 
     <div class="receipt-container">
         <header class="receipt-header">
             <div class="company-brand">
-                <img src="images/vyg.svg" alt="Logo VyG" class="receipt-logo">
+                <img src="images/KronosIndustrial.svg" alt="Logo Kronos Industrial" class="receipt-logo">
                 <div class="company-info">
-                    <h1>VyG Construcciones S.A.</h1>
+                    <h1>Kronos Industrial S.A.</h1>
                     <p>Gestión de Proyectos e Infraestructura</p>
                     <p>Managua, Nicaragua</p>
                 </div>
@@ -112,7 +112,7 @@
                 <p>Sello y Firma Autorizada</p>
             </div>
             <div class="legal-notice">
-                <p>Este documento es un comprobante oficial generado por el sistema VyGApps. 
+                <p>Este documento es un comprobante oficial generado por el sistema Kronos Industrial. 
                    La falsificación de este recibo es un delito penado por la ley.</p>
             </div>
         </footer>

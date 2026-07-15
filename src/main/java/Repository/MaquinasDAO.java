@@ -70,29 +70,29 @@ public class MaquinasDAO {
      * @return true si se insertaron registros, false en caso contrario.
      * @throws SQLException Si ocurre un error de base de datos.
      */
-    String sql = "INSERT INTO pago_maquinaria (fecha_generacion, monto_horas, monto_combustible, total_pagado, estado, id_uso, id_user_genera) " +
-                 "SELECT " +
-                 "   CURRENT_DATE(), " +
-                 // Calcula el costo de horas trabajadas manejando cruces de medianoche
-                 "   (CASE WHEN u.hora_fin < u.hora_inicio " +
-                 "         THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
-                 "         ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
-                 "    END / 60.0) * u.costo_por_hora AS monto_horas, " +
-                 "   u.costo_combustible_total AS monto_combustible, " +
-                 // Calcula el monto total a pagar (Horas + Combustible)
-                 "   ((CASE WHEN u.hora_fin < u.hora_inicio " +
-                 "          THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
-                 "          ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
-                 "     END / 60.0) * u.costo_por_hora) + u.costo_combustible_total AS total_pagado, " +
-                 "   'Pendiente', " +
-                 "   u.id_uso, " +
-                 "   ? " + 
-                 "FROM uso_registro u " +
-                 "INNER JOIN maquinas m ON u.id_maquinaria = m.id_maquina " +
-                 "WHERE u.fecha >= ? AND u.fecha <= ? " + 
-                 "AND NOT EXISTS (" +
-                 "   SELECT 1 FROM pago_maquinaria pm WHERE pm.id_uso = u.id_uso" +
-                 ")";
+     String sql = "INSERT INTO pago_maquinaria (fecha_generacion, monto_horas, monto_combustible, total_pagado, estado, id_uso, id_user_genera) " +
+                  "SELECT " +
+                  "   CURRENT_DATE(), " +
+                  // Calcula el costo de horas trabajadas manejando cruces de medianoche
+                  "   (CASE WHEN u.hora_fin < u.hora_inicio " +
+                  "         THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
+                  "         ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
+                  "    END / 60.0) * u.costo_por_hora AS monto_horas, " +
+                  "   u.costo_combustible_total AS monto_combustible, " +
+                  // Calcula el monto total a pagar (Horas + Combustible + Flete)
+                  "   ((CASE WHEN u.hora_fin < u.hora_inicio " +
+                  "          THEN (TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) + 1440) " +
+                  "          ELSE TIMESTAMPDIFF(MINUTE, u.hora_inicio, u.hora_fin) " +
+                  "     END / 60.0) * u.costo_por_hora) + u.costo_combustible_total + COALESCE((SELECT SUM(rc.costo_flete) FROM registro_camiones rc WHERE rc.id_uso = u.id_uso), 0.00) AS total_pagado, " +
+                  "   'Pendiente', " +
+                  "   u.id_uso, " +
+                  "   ? " + 
+                  "FROM uso_registro u " +
+                  "INNER JOIN maquinas m ON u.id_maquinaria = m.id_maquina " +
+                  "WHERE u.fecha >= ? AND u.fecha <= ? " + 
+                  "AND NOT EXISTS (" +
+                  "   SELECT 1 FROM pago_maquinaria pm WHERE pm.id_uso = u.id_uso" +
+                  ")";
 
     // Try-with-resources para el manejo automático de conexiones
     try (Connection con = ConectarBD.conectar();

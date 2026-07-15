@@ -1,4 +1,4 @@
-<%@page import="model.Usuarios"%>
+﻿<%@page import="model.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sessionActual = request.getSession(false);
@@ -22,9 +22,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración de Perfil | VyGApps</title>
+    <title>Configuración de Perfil | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
     <style>
         body {
             background-color: #f4f6f8;
@@ -49,7 +49,7 @@
         }
         .config-header h2 {
             margin: 0;
-            color: #2c3e50;
+            color: #121216;
             font-size: 24px;
         }
         .config-header p {
@@ -62,7 +62,7 @@
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            color: #34495e;
+            color: #1E1E24;
             font-weight: 600;
         }
         .form-group input {
@@ -130,7 +130,7 @@
         }
         .btn-cancel:hover {
             background: #bdc3c7;
-            color: #2c3e50;
+            color: #121216;
         }
         .password-container {
             position: relative;
@@ -148,7 +148,7 @@
             color: #7f8c8d;
         }
         .toggle-password:hover {
-            color: #34495e;
+            color: #1E1E24;
         }
     </style>
 </head>

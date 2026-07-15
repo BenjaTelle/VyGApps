@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS PARA LA FICHA TÉCNICA (DOCUMENTO)
    ========================================= */
 
@@ -113,7 +113,7 @@
 }
 
 .status-active { background-color: #e8f8f5; color: #27ae60; border: 1px solid #2ecc71; }
-.status-inactive { background-color: #fdf2e9; color: #e67e22; border: 1px solid #e67e22; }
+.status-inactive { background-color: #fdf2e9; color: #1B365D; border: 1px solid #1B365D; }
 
 /* --- PIE DEL DOCUMENTO --- */
 .doc-footer {

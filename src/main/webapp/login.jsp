@@ -9,10 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión Industrial | VyGApps</title>
+    <title>Sistema de Gestión Industrial | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/login.css">
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     <script src="JS/login.js" defer></script>
 </head>
 <body>
@@ -20,10 +20,10 @@
 <div class="login-container">
 
     <div class="logo">
-        <img src="images/vyg_logo.jpg" alt="Logo VyG Construcciones">
+        <img src="images/KronosIndustrial.svg" alt="Logo Kronos Industrial">
     </div>
 
-    <h2>SISTEMA DE GESTIÓN DE PROYECTOS</h2>
+    <h2>Control Operativo y Gestión de Proyectos</h2>
 
     <%-- NUEVA ALERTA PERSONALIZADA --%>
     <% 

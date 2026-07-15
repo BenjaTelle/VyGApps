@@ -1,4 +1,4 @@
-/* =========================
+﻿/* =========================
    RESET + BASE
 ========================= */
 * {
@@ -76,8 +76,8 @@ body {
 }
 
 .menu-item:hover, .menu-item.active {
-    background-color: #fff7ed; 
-    color: #ea580c;
+    background-color: #E6F7FF; 
+    color: #1B365D;
     font-weight: 600;
 }
 
@@ -138,7 +138,7 @@ body {
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #ea580c;
+    border: 2px solid #1B365D;
 }
 
 .user-info-text {
@@ -201,7 +201,7 @@ body {
     border-radius: 8px;
 }
 
-.icon-orange { background-color: #fff7ed; color: #ea580c; }
+.icon-orange { background-color: #E6F7FF; color: #1B365D; }
 .icon-green { background-color: #ecfdf5; color: #10b981; }
 .icon-blue { background-color: #eff6ff; color: #3b82f6; }
 
@@ -264,7 +264,7 @@ body {
 }
 
 .input-obra:focus {
-    border-color: #ea580c;
+    border-color: #1B365D;
     box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.1);
 }
 
@@ -339,7 +339,7 @@ body {
 }
 
 .btn-autorizar-salida:hover {
-    background-color: #ea580c;
+    background-color: #1B365D;
 }
 
 /* 3. TABLA PAGOS */
@@ -379,8 +379,8 @@ body {
 }
 
 .badge-pendiente {
-    color: #ea580c;
-    background: #fff7ed;
+    color: #1B365D;
+    background: #E6F7FF;
     padding: 4px 10px;
     border-radius: 12px;
     font-size: 12px;

@@ -28,13 +28,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Autorizaciones | VyGApps</title>
+    <title>Monitor de Autorizaciones | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/MonitorAutorizaciones.css">
     
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -44,10 +44,10 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= user.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -60,7 +60,7 @@
                 <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
                 <span>Control Financiero</span>
             </a>
-            <a href="MonitorAutorizaciones" class="nav-item active" style="background-color: #2c3e50;">
+            <a href="MonitorAutorizaciones" class="nav-item active" style="background-color: #121216;">
                 <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
                 <span>Monitor Autorizaciones</span>
             </a>
@@ -89,7 +89,7 @@
 
         <section class="dashboard" style="max-width: 1100px; margin: 0 auto;">
 
-            <div class="admin-header-banner" style="background: linear-gradient(135deg, #2c3e50, #2980b9);">
+            <div class="admin-header-banner" style="background: linear-gradient(135deg, #121216, #2980b9);">
                 <div class="admin-header-info">
                     <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Monitor de Autorizaciones Pendientes</h2>
                     <p>Seguimiento en tiempo real de planillas generadas que esperan aprobación de supervisores.</p>

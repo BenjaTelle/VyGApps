@@ -24,11 +24,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Usuario | VyGApps</title>
+    <title>Eliminar Usuario | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/EliminarUsu.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 
@@ -37,15 +37,15 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= usuarioLogeado.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item"><span>Dashboard Maestro</span></a>
-            <a href="VerUsuarios" class="nav-item active" style="background-color: #2c3e50;"><span>Gestión de Usuarios</span></a>
+            <a href="VerUsuarios" class="nav-item active" style="background-color: #121216;"><span>Gestión de Usuarios</span></a>
             <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
         </nav>
     </aside>

@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
 <%@page import="DTO.ResumenGastoDTO"%> 
 <%@page import="model.proyectos"%>
@@ -41,7 +41,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resumen Diario de Gastos | VyGApps</title>
+        <title>Resumen Diario de Gastos | Kronos Industrial</title>
 
         <link rel="stylesheet" href="CSS/AdminPage.css">
         <link rel="stylesheet" href="CSS/ResumenDiario.css">
@@ -49,7 +49,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="JS/menu-movil.js" defer></script>
         <script src="JS/resumen-gastos.js" defer></script>
-        <link rel="icon" href="images/vyg.svg" type="image/png">
+        <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     </head>
     <body>
 
@@ -58,9 +58,9 @@
 
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header">
-                    <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+                    <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
                     <div class="brand-text">
-                        <h2>VyGApps</h2>
+                        <h2 style="font-size: 18px;">Kronos Industrial</h2>
                         <span class="panel-badge"><%= usuarioLogeado.getRol() %></span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
                     <div class="kpi-container">
                         <div class="kpi-card">
                             <div class="kpi-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2c3e50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#121216" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                             </div>
                             <div class="kpi-data">
                                 <p>Transacciones</p>
@@ -236,9 +236,9 @@
         <div id="plantilla-oficial" class="plantilla-oculta">
             <div class="plantilla-header">
                 <div class="plantilla-brand">
-                    <img src="images/vyg_logo.jpg" alt="Logo">
+                    <img src="images/KronosIndustrial.svg" alt="Logo">
                     <div class="brand-text-print">
-                        <h1>VYG CONSTRUCCIONES S.A.</h1>
+                        <h1>KRONOS INDUSTRIAL S.A.</h1>
                         <p>Reporte Maestro de Auditoría y Egresos</p>
                         <p>Managua, Nicaragua | RUC: J0310000XXXXXX</p>
                     </div>

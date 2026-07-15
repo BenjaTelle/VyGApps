@@ -26,12 +26,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-top: 6px solid #984807;
+    border-top: 6px solid #1B365D;
 }
 
 .form-card h2 {
     text-align: center;
-    color: #984807;
+    color: #1B365D;
     margin-bottom: 5px;
     font-size: 24px;
 }
@@ -51,7 +51,7 @@ label {
     display: block;
     margin-bottom: 6px;
     font-weight: 600;
-    color: #34495e;
+    color: #1E1E24;
     font-size: 14px;
 }
 
@@ -68,13 +68,13 @@ select {
 
 select:focus {
     outline: none;
-    border-color: #984807;
-    box-shadow: 0 0 0 2px rgba(152, 72, 7, 0.15);
+    border-color: #1B365D;
+    box-shadow: 0 0 0 2px rgba(27, 54, 93, 0.15);
 }
 
 .info-box {
-    background: #fdf5e6;
-    border-left: 4px solid #f39c12;
+    background: #E6F7FF;
+    border-left: 4px solid #1B365D;
     padding: 12px 15px;
     border-radius: 6px;
     font-size: 13px;
@@ -86,7 +86,7 @@ select:focus {
 .btn-submit {
     width: 100%;
     padding: 14px;
-    background: #984807;
+    background: #1B365D;
     border: none;
     color: #fff;
     font-size: 15px;
@@ -97,6 +97,6 @@ select:focus {
 }
 
 .btn-submit:hover {
-    background: #7a3a05;
+    background: #122744;
     transform: translateY(-2px);
 }

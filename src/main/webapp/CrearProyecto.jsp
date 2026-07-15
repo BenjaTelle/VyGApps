@@ -27,11 +27,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Proyecto | VyGApps</title>
+    <title>Crear Proyecto | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/CrearProyecto.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -40,10 +40,10 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= usuarioLogeado.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
@@ -51,7 +51,7 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
                 <span>Dashboard Maestro</span>
             </a>
-            <a href="ListarProyectosSv" class="nav-item active" style="background-color: #2c3e50;">
+            <a href="ListarProyectosSv" class="nav-item active" style="background-color: #121216;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                 <span>Gestión de Proyectos</span>
             </a>

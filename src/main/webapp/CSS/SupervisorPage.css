@@ -2,11 +2,11 @@
    VARIABLES & RESET
 ========================= */
 :root {
-    --primary-color: #984807;
-    --primary-light: #f7eed7; /* Fondo sutil para tarjetas y hovers */
-    --primary-dark: #7a3a05;
+    --primary-color: #1B365D;
+    --primary-light: #E6F7FF; /* Fondo sutil para tarjetas y hovers */
+    --primary-dark: #122744;
     --bg-color: #f8f9fa;
-    --text-main: #2c3e50;
+    --text-main: #121216;
     --text-muted: #7f8c8d;
     --white: #ffffff;
     --success: #27ae60;
@@ -106,7 +106,7 @@ body {
     color: #e74c3c;
 }
 .logout-link:hover {
-    background-color: #fceceb;
+    background-color: #E6F7FF;
     color: #c0392b;
 }
 
@@ -191,7 +191,7 @@ body {
     align-items: center;
     margin-bottom: 30px;
     color: var(--white);
-    box-shadow: 0 10px 20px rgba(152, 72, 7, 0.2);
+    box-shadow: 0 10px 20px rgba(27, 54, 93, 0.2);
 }
 
 .highlight-info h3 {
@@ -254,7 +254,7 @@ body {
 }
 
 /* Colores de contraste para las tarjetas */
-.icon-orange { background-color: #ffedd5; color: #ea580c; }
+.icon-orange { background-color: #E6F7FF; color: #1B365D; }
 .icon-blue   { background-color: #e0f2fe; color: #2563eb; }
 .icon-purple { background-color: #f3e8ff; color: #9333ea; }
 .icon-green  { background-color: #dcfce7; color: #16a34a; }

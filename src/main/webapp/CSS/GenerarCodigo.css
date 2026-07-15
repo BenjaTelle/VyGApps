@@ -43,7 +43,7 @@
 .form-group select:focus {
     border-color: var(--primary-color);
     background-color: var(--white);
-    box-shadow: 0 0 0 3px rgba(152, 72, 7, 0.1);
+    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.1);
 }
 
 .btn-generar {

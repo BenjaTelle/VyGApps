@@ -1,4 +1,4 @@
-/*
+﻿/*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
@@ -98,7 +98,7 @@ body {
 .section-title {
     font-size: 14px;
     text-transform: uppercase;
-    color: #2c3e50;
+    color: #121216;
     border-bottom: 1px solid #eee;
     padding-bottom: 8px;
     margin-bottom: 15px;
@@ -122,7 +122,7 @@ body {
     margin: 0;
     font-size: 15px;
     font-weight: 500;
-    color: #34495e;
+    color: #1E1E24;
 }
 
 /* Tabla de Detalle */
@@ -169,7 +169,7 @@ body {
 }
 
 .signature-line {
-    border-top: 1px solid #2c3e50;
+    border-top: 1px solid #121216;
     margin-bottom: 10px;
 }
 
@@ -206,7 +206,7 @@ body {
 .btn-print { background-color: #1e3c72; color: white; }
 .btn-print:hover { background-color: #2a5298; }
 
-.btn-close { background-color: #dcdde1; color: #2c3e50; }
+.btn-close { background-color: #dcdde1; color: #121216; }
 
 /* REGLAS PARA IMPRESIÓN */
 @media print {

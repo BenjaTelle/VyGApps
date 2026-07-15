@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS: MÓDULOS DE GENERACIÓN (PLANILLAS Y MAQUINARIA)
    ========================================= */
 
@@ -24,12 +24,12 @@
 }
 
 .bg-nomina {
-    background: linear-gradient(135deg, #2c3e50, #34495e);
+    background: linear-gradient(135deg, #121216, #1E1E24);
     border-left: 5px solid #3498db;
 }
 
 .bg-maquinaria {
-    background: linear-gradient(135deg, #d35400, #e67e22);
+    background: linear-gradient(135deg, #122744, #1B365D);
     border-left: 5px solid #f1c40f;
 }
 
@@ -151,9 +151,9 @@
 
 .info-orange {
     background-color: #fdf2e9;
-    border-left: 4px solid #e67e22;
+    border-left: 4px solid #1B365D;
 }
-.info-orange .info-icon, .info-orange .info-text { color: #d35400; }
+.info-orange .info-icon, .info-orange .info-text { color: #122744; }
 
 .info-icon {
     flex-shrink: 0;
@@ -292,11 +292,11 @@
     padding: 12px 25px;
 }
 
-.btn-nomina { background-color: #34495e; }
-.btn-nomina:hover:not(:disabled) { background-color: #2c3e50; }
+.btn-nomina { background-color: #1E1E24; }
+.btn-nomina:hover:not(:disabled) { background-color: #121216; }
 
-.btn-maquinaria { background-color: #e67e22; }
-.btn-maquinaria:hover:not(:disabled) { background-color: #d35400; transform: translateY(-2px); }
+.btn-maquinaria { background-color: #1B365D; }
+.btn-maquinaria:hover:not(:disabled) { background-color: #122744; transform: translateY(-2px); }
 
 .btn-generar:disabled {
     background-color: #cbd5e1;

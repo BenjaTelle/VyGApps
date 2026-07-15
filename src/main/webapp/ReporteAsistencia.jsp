@@ -37,12 +37,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Asistencia | VyGApps</title>
+    <title>Reporte de Asistencia | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/ReporteTrabajadores.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -51,15 +51,15 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= user.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span><span>Dashboard Maestro</span></a>
-            <a href="ReporteAsistenciaSv" class="nav-item active" style="background-color: #2c3e50;"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span>Auditoría Asistencia</span></a>
+            <a href="ReporteAsistenciaSv" class="nav-item active" style="background-color: #121216;"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span><span>Auditoría Asistencia</span></a>
             <a href="LogoutSv" class="nav-item logout-link"><span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span><span>Cerrar Sesión</span></a>
         </nav>
     </aside>
@@ -79,7 +79,7 @@
         </header>
 
         <section class="dashboard">
-            <div class="admin-header-banner" style="background: linear-gradient(135deg, #34495e, #2c3e50);">
+            <div class="admin-header-banner" style="background: linear-gradient(135deg, #1E1E24, #121216);">
                 <div class="admin-header-info">
                     <h2>Auditoría de Asistencia</h2>
                     <p>Control de entradas, salidas y puntualidad de la fuerza laboral por rangos de fecha.</p>
@@ -224,7 +224,7 @@
 
         var opciones = {
             margin:       10,
-            filename:     'Auditoria_Asistencia_VyG.pdf',
+            filename:     'Auditoria_Asistencia_Kronos.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }

@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     <title>Acceso Denegado</title>
     <style>
     /* =========================
@@ -42,7 +42,7 @@
         width: 90%;
         
         /* Mantenemos el rojo aquí para indicar "ALTO", 
-           pero si prefieres naranja, cambia #e74c3c por #f57c00 */
+           pero si prefieres naranja, cambia #e74c3c por #1B365D */
         border-top: 5px solid #e74c3c; 
     }
 
@@ -88,13 +88,13 @@
 
     /* Botón Primario: COPIA EXACTA DE TU .profile-btn */
     .btn-primary {
-        background-color: #f57c00; /* Tu naranja */
+        background-color: #1B365D; /* Tu naranja */
         color: #ffffff;
     }
 
     .btn-primary:hover {
-        background-color: #e66f00;
-        box-shadow: 0 4px 10px rgba(245, 124, 0, 0.4); /* Tu efecto hover */
+        background-color: #122744;
+        box-shadow: 0 4px 10px rgba(27, 54, 93, 0.4); /* Tu efecto hover */
     }
 
     /* Botón Secundario: Neutro */

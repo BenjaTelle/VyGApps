@@ -1,8 +1,8 @@
-/* =========================
+﻿/* =========================
    VARIABLES LOCALES
 ========================= */
 :root {
-    --text-main: #2c3e50;
+    --text-main: #121216;
     --text-muted: #7f8c8d;
     --border-color: #e2e8f0;
     --bg-light: #f8fafc;
@@ -112,12 +112,12 @@
 .filter-group input:focus,
 .filter-group select:focus {
     outline: none;
-    border-color: #34495e;
+    border-color: #1E1E24;
     box-shadow: 0 0 0 2px rgba(52, 73, 94, 0.1);
 }
 
 .btn-primary {
-    background-color: #34495e;
+    background-color: #1E1E24;
     color: #ffffff;
     border: none;
     padding: 0 24px;
@@ -130,7 +130,7 @@
 }
 
 .btn-primary:hover {
-    background-color: #2c3e50;
+    background-color: #121216;
 }
 
 /* =========================

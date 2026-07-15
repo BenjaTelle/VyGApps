@@ -103,11 +103,15 @@ public class AsistenciaSv extends HttpServlet {
                             String fechaActual = new java.text.SimpleDateFormat("yyyy-MM-dd").format(new java.util.Date());
                             Date fecha = Date.valueOf(fechaActual);
                             
-                            aDAO.MarcarEntrada(idTrabajador, entrada, fecha);
+                            int result = aDAO.MarcarEntrada(idTrabajador, entrada, fecha);
                             
-                            // C. Actualización de estado en sesión
-                            session.setAttribute("horaEntradaRegistrada", horaActual);
-                            session.removeAttribute("errorAsistencia"); 
+                            if (result > 0) {
+                                // C. Actualización de estado en sesión
+                                session.setAttribute("horaEntradaRegistrada", horaActual);
+                                session.removeAttribute("errorAsistencia"); 
+                            } else {
+                                session.setAttribute("errorAsistencia", "Ya has registrado una entrada para el día de hoy.");
+                            }
                             
                         } else {
                             session.setAttribute("errorAsistencia", "El código ingresado es inválido o ha expirado.");
@@ -169,11 +173,15 @@ public class AsistenciaSv extends HttpServlet {
                         }
                         
                         // D. Persistencia en la Base de Datos
-                        aDAO.MarcarSalida(idTrabajador, salida, horasExtras, marcaAnomala, fechaHoy);
+                        int resultSalida = aDAO.MarcarSalida(idTrabajador, salida, horasExtras, marcaAnomala);
                         
                         // E. Limpieza de estado en sesión
-                        session.removeAttribute("horaEntradaRegistrada");
-                        session.removeAttribute("errorAsistencia");
+                        if (resultSalida > 0) {
+                            session.removeAttribute("horaEntradaRegistrada");
+                            session.removeAttribute("errorAsistencia");
+                        } else {
+                            session.setAttribute("errorAsistencia", "No se encontró una entrada abierta para el día de hoy.");
+                        }
                         
                     } catch (SQLException ex) {
                         ex.printStackTrace();

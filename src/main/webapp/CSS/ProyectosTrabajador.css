@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS PARA MIS PROYECTOS (TRABAJADOR)
    ========================================= */
 
@@ -24,7 +24,7 @@
     text-align: left;
     padding: 15px;
     background-color: #f9f9f9;
-    color: #34495e;
+    color: #1E1E24;
     font-size: 14px;
     border-bottom: 2px solid #eee;
     text-transform: uppercase;
@@ -36,7 +36,7 @@
     border-bottom: 1px solid #eee;
     font-size: 15px;
     vertical-align: middle;
-    color: #2c3e50;
+    color: #121216;
 }
 
 .vyg-table tbody tr:hover {
@@ -73,8 +73,8 @@
 
 .status-paused {
     background-color: #fcf3cf;
-    color: #d35400;
-    border: 1px solid #f39c12;
+    color: #122744;
+    border: 1px solid #1B365D;
 }
 
 /* =========================================

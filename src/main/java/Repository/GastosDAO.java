@@ -92,7 +92,7 @@ public class GastosDAO {
      * @param idUserAutoriza Identificador del administrador que autoriza el movimiento.
      * @param observaciones Notas adicionales sobre la resolución.
      */
-    public void resolverGasto(int idGasto, String nuevoEstado, int idUserAutoriza, String observaciones) {
+    public String resolverGasto(int idGasto, String nuevoEstado, int idUserAutoriza, String observaciones) {
         Connection con = ConectarBD.conectar();
         PreparedStatement psGasto = null;
         PreparedStatement psProyecto = null;
@@ -114,6 +114,24 @@ public class GastosDAO {
                     int idProyecto = rs.getInt("id_proyecto");
                     double montoGasto = rs.getDouble("monto");
 
+                    // 1. Verificar si hay fondos
+                    String sqlCheck = "SELECT presupuesto_total FROM proyectos WHERE id_proyecto = ?";
+                    try (PreparedStatement psCheck = con.prepareStatement(sqlCheck)) {
+                        psCheck.setInt(1, idProyecto);
+                        try (ResultSet rsCheck = psCheck.executeQuery()) {
+                            if (rsCheck.next()) {
+                                double presupuesto = rsCheck.getDouble("presupuesto_total");
+                                if (presupuesto < montoGasto) {
+                                    con.rollback();
+                                    return "sin_fondos";
+                                }
+                            } else {
+                                con.rollback();
+                                return "error";
+                            }
+                        }
+                    }
+
                     // Descontar monto del presupuesto del proyecto
                     String sqlUpdateProyecto = "UPDATE proyectos SET presupuesto_total = presupuesto_total - ? WHERE id_proyecto = ?";
                     psProyecto = con.prepareStatement(sqlUpdateProyecto);
@@ -134,6 +152,7 @@ public class GastosDAO {
 
             // Confirmar transacción
             con.commit();
+            return "exito";
             
         } catch (SQLException e) {
             // Revertir transacción en caso de error
@@ -145,6 +164,7 @@ public class GastosDAO {
                 ex.printStackTrace();
             }
             e.printStackTrace();
+            return "error";
         } finally {
             // Liberar recursos
             try {
@@ -154,6 +174,7 @@ public class GastosDAO {
                 if (psGasto != null) psGasto.close();
                 if (con != null) {
                     con.setAutoCommit(true); // Devolvemos el estado original a la conexión
+                    con.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

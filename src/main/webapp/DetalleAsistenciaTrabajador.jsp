@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : DetalleAsistenciaTrabajador
     Created on : [Fecha Actual]
     Author     : Benja
@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/DetalleAsistencia.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -47,9 +47,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
                 <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
@@ -110,7 +110,7 @@
             <div class="kpi-card">
                 <span class="kpi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>
                 <div class="kpi-data">
-                    <h3 style="color: #d35400;"><%= resumen.getTotalLlegadasTardias() %></h3>
+                    <h3 style="color: #122744;"><%= resumen.getTotalLlegadasTardias() %></h3>
                     <p>Llegadas Tardías</p>
                 </div>
             </div>

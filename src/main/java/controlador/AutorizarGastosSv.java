@@ -106,10 +106,15 @@ public class AutorizarGastosSv extends HttpServlet {
             }
             
             GastosDAO dao = new GastosDAO();
-            dao.resolverGasto(idGasto, nuevoEstado, user.getId_user(), observaciones);
+            String resultado = dao.resolverGasto(idGasto, nuevoEstado, user.getId_user(), observaciones);
             
-            // Añadimos una variable de sesión flash por si quieres pintar un alert de éxito
-            request.getSession().setAttribute("mensajeFinanzas", "El gasto #" + idGasto + " fue " + nuevoEstado.toLowerCase() + " correctamente.");
+            if ("sin_fondos".equals(resultado)) {
+                request.getSession().setAttribute("mensajeFinanzas", "Error: Fondos insuficientes en el proyecto para aprobar el gasto #" + idGasto + ".");
+            } else if ("error".equals(resultado)) {
+                request.getSession().setAttribute("mensajeFinanzas", "Error: No se pudo resolver el gasto #" + idGasto + ".");
+            } else {
+                request.getSession().setAttribute("mensajeFinanzas", "El gasto #" + idGasto + " fue " + nuevoEstado.toLowerCase() + " correctamente.");
+            }
             
             // Volvemos a cargar el flujo maestro de finanzas
             response.sendRedirect("AdminFinanzas");

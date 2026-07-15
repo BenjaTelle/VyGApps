@@ -28,7 +28,7 @@
     <meta charset="UTF-8">
     <title>Detalle de Operación #<%= d.getIdUso() %></title>
     <link rel="stylesheet" href="CSS/HistorialUso.css"> 
-    <link rel="stylesheet" href="CSS/DetalleUso.css"> <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="stylesheet" href="CSS/DetalleUso.css"> <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
     <div class="report-card">
@@ -49,7 +49,7 @@
         </div>
 
         <div class="math-section">
-            <h3 style="margin-top: 0; color: #2c3e50;">Desglose de Costos (Facturación)</h3>
+            <h3 style="margin-top: 0; color: #121216;">Desglose de Costos (Facturación)</h3>
             <div class="math-row">
                 <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Uso de Maquinaria (<%= String.format("%.2f", d.getHorasTrabajadas()) %> hrs a C$ <%= String.format("%,.2f", d.getCostoPorHora()) %>)</span>
                 <span>C$ <%= String.format("%,.2f", costoUsoMaquina) %></span>

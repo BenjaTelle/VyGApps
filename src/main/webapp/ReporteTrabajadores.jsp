@@ -36,14 +36,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Trabajadores | VyGApps</title>
+    <title>Reporte de Trabajadores | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/ReporteTrabajadores.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -53,10 +53,10 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= user.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -65,7 +65,7 @@
                 <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
                 <span>Dashboard Maestro</span>
             </a>
-            <a href="ReporteTrabajadoresSv" class="nav-item active" style="background-color: #2c3e50;">
+            <a href="ReporteTrabajadoresSv" class="nav-item active" style="background-color: #121216;">
                 <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
                 <span>Reporte Trabajadores</span>
             </a>
@@ -93,7 +93,7 @@
 
         <section class="dashboard">
 
-            <div class="admin-header-banner" style="background: linear-gradient(135deg, #34495e, #2c3e50);">
+            <div class="admin-header-banner" style="background: linear-gradient(135deg, #1E1E24, #121216);">
                 <div class="admin-header-info">
                     <h2> Reporte de Trabajadores</h2>
                     <p>Auditoría general del personal, asignación de proyectos y estimación de nómina.</p>
@@ -178,7 +178,7 @@
                                 <td data-label="ID"><strong>#<%= t.getIdTrabajador() %></strong></td>
                                 <td data-label="Nombre Completo"><%= t.getNombreCompleto() %></td>
                                 <td data-label="Proyecto Asignado"><%= t.getNombreProyecto() %></td>
-                                <td data-label="Salario Base (Q)" style="color: #2c3e50; font-weight: bold;">C$ <%= String.format("%,.2f", t.getSalarioBase()) %></td>
+                                <td data-label="Salario Base (Q)" style="color: #121216; font-weight: bold;">C$ <%= String.format("%,.2f", t.getSalarioBase()) %></td>
                                 <td data-label="Estado">
                                     <% if(t.getEstado().equalsIgnoreCase("Activo")) { %>
                                         <span class="badge badge-activo">Activo</span>
@@ -227,7 +227,7 @@
 
         var opciones = {
             margin:       10,
-            filename:     'Reporte_Fuerza_Laboral_VyG.pdf',
+            filename:     'Reporte_Fuerza_Laboral_Kronos.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { 
                 scale: 2, 

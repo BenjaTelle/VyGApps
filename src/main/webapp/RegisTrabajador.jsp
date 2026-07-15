@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : RegisTrabajador
     Created on : 8 feb 2026, 5:23:37 p.m.
     Author     : Benja
@@ -25,9 +25,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Trabajador | VyGApps</title>
+    <title>Registrar Trabajador | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/RegisTrabajador.css">
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 

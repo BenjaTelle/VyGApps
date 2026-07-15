@@ -43,32 +43,16 @@ CREATE TABLE `asistencia` (
 
 INSERT INTO `asistencia` (`id_asistencia`, `hora_entrada`, `hora_salida`, `id_trabajador`, `fecha`, `horas_extras`, `marca_anomala`) VALUES
 (1, '17:44:05', '19:46:14', 4, '2026-03-15', 0, 0),
-(2, '17:50:35', '19:46:14', 4, '2026-03-15', 0, 0),
 (3, '19:37:45', '19:46:14', 4, '2026-03-21', 0, 0),
 (4, '17:44:13', '17:44:14', 5, '2026-03-31', 0, 0),
 (5, '16:22:27', '19:46:14', 4, '2026-04-02', 0, 0),
 (6, '22:01:05', '19:46:14', 4, '2026-04-03', 0, 0),
 (7, '19:47:02', '19:46:14', 4, '2026-04-11', 0, 0),
-(8, '20:21:38', '19:46:14', 4, '2026-04-11', 0, 0),
-(9, '20:22:36', '19:46:14', 4, '2026-04-11', 0, 0),
-(10, '20:23:07', '19:46:14', 4, '2026-04-11', 0, 0),
 (11, '00:44:04', '19:46:14', 4, '2026-04-17', 0, 0),
 (12, '00:17:37', '19:46:14', 4, '2026-04-23', 0, 0),
 (13, '19:46:12', '19:46:14', 4, '2026-05-02', 0, 0),
 (14, '19:41:07', '19:41:09', 4, '2026-05-30', 2, 0),
 (15, '18:17:03', '21:12:23', 4, '2026-05-31', 1, 0),
-(16, '18:32:31', '21:11:30', 4, '2026-05-31', 1, 0),
-(17, '18:33:14', '21:11:30', 4, '2026-05-31', 1, 0),
-(18, '18:35:52', '21:11:30', 4, '2026-05-31', 1, 0),
-(19, '18:53:00', '21:11:30', 4, '2026-05-31', 1, 0),
-(20, '18:55:17', '21:11:30', 4, '2026-05-31', 1, 0),
-(21, '19:00:58', '21:11:30', 4, '2026-05-31', 1, 0),
-(22, '19:02:17', '21:11:30', 4, '2026-05-31', 1, 0),
-(23, '19:08:48', '21:11:30', 4, '2026-05-31', 1, 0),
-(24, '21:08:17', '21:11:30', 4, '2026-05-31', 1, 0),
-(25, '21:11:30', '21:11:30', 4, '2026-05-31', 1, 0),
-(26, '21:12:03', NULL, 4, '2026-05-31', 0, 0),
-(27, '21:12:23', NULL, 4, '2026-05-31', 0, 0),
 (28, '20:12:31', '20:12:33', 4, '2026-06-02', 0, 0);
 
 -- --------------------------------------------------------
@@ -241,16 +225,7 @@ INSERT INTO `materiales` (`id_material`, `nombre_material`, `unidad_medida`, `co
 -- Estructura de tabla para la tabla `pago`
 --
 
-CREATE TABLE `pago` (
-  `id_pago` int(11) NOT NULL,
-  `monto_presupuestado` double(10,2) NOT NULL,
-  `quincena_fecha` date NOT NULL,
-  `estado` varchar(20) NOT NULL,
-  `id_trabajador` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_jefe` int(11) NOT NULL,
-  `id_proyecto` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
 
 -- --------------------------------------------------------
 
@@ -558,7 +533,8 @@ INSERT INTO `usuarios` (`id_user`, `user_name`, `pass`, `rol`, `id_trabajador`) 
 --
 ALTER TABLE `asistencia`
   ADD PRIMARY KEY (`id_asistencia`),
-  ADD KEY `id_trabajador` (`id_trabajador`);
+  ADD KEY `id_trabajador` (`id_trabajador`),
+  ADD UNIQUE KEY `unique_trabajador_fecha` (`id_trabajador`, `fecha`);
 
 --
 -- Indices de la tabla `codigos_asistencia`
@@ -606,11 +582,7 @@ ALTER TABLE `materiales`
 --
 -- Indices de la tabla `pago`
 --
-ALTER TABLE `pago`
-  ADD PRIMARY KEY (`id_pago`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_trabajador` (`id_trabajador`),
-  ADD KEY `id_proyecto` (`id_proyecto`);
+
 
 --
 -- Indices de la tabla `pago_maquinaria`
@@ -724,8 +696,7 @@ ALTER TABLE `materiales`
 --
 -- AUTO_INCREMENT de la tabla `pago`
 --
-ALTER TABLE `pago`
-  MODIFY `id_pago` int(11) NOT NULL AUTO_INCREMENT;
+
 
 --
 -- AUTO_INCREMENT de la tabla `pago_maquinaria`
@@ -803,10 +774,7 @@ ALTER TABLE `justificaciones`
 --
 -- Filtros para la tabla `pago`
 --
-ALTER TABLE `pago`
-  ADD CONSTRAINT `pago_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `usuarios` (`id_user`),
-  ADD CONSTRAINT `pago_ibfk_2` FOREIGN KEY (`id_trabajador`) REFERENCES `trabajadores` (`id_trabajador`),
-  ADD CONSTRAINT `pago_ibfk_3` FOREIGN KEY (`id_proyecto`) REFERENCES `proyectos` (`id_proyecto`);
+
 
 --
 -- Filtros para la tabla `pago_maquinaria`

@@ -71,12 +71,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Planilla | VyGApps</title>
+    <title>Control de Planilla | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/FormulariosGeneracion.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -86,10 +86,10 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= user.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -105,7 +105,7 @@
             
             <div class="nav-section-title" style="color: #94a3b8; font-size: 12px; margin: 15px 0 5px 15px; text-transform: uppercase; font-weight: bold;">Nómina</div>
             
-            <a href="#" id="btnGenerarVista" class="nav-item active" style="background-color: #2c3e50;">
+            <a href="#" id="btnGenerarVista" class="nav-item active" style="background-color: #121216;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 <span>Generar Pagos</span>
             </a>
@@ -148,6 +148,30 @@
         <section class="dashboard">
 
             <div id="vistaGenerar" class="generator-wrapper">
+                
+            <%
+                String msgPlanilla = (String) sessionActual.getAttribute("mensajePlanilla");
+                if (msgPlanilla != null) {
+                    sessionActual.removeAttribute("mensajePlanilla");
+                    boolean isExito = "exito".equals(msgPlanilla);
+            %>
+            <div class="alert-box" style="<%= isExito ? "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;" : "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" %> padding: 15px; margin-bottom: 20px; border-radius: 4px; display: flex; align-items: center; gap: 10px;">
+                <span class="alert-icon">
+                    <% if (isExito) { %>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <% } else { %>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <% } %>
+                </span>
+                <p style="margin: 0;">
+                    <% if (isExito) { %>
+                        <strong>Operación exitosa:</strong> La planilla del periodo ha sido generada correctamente.
+                    <% } else { %>
+                        <strong>Atención:</strong> La planilla para este periodo y tipo de nómina ya ha sido generada o se produjo un error.
+                    <% } %>
+                </p>
+            </div>
+            <% } %>
                 
                 <div class="generator-header bg-nomina">
                     <div class="header-content">
@@ -394,7 +418,7 @@
             vistaGenerar.style.display = "block";
             vistaHistorial.style.display = "none";
             btnGenerar.classList.add("active");
-            btnGenerar.style.backgroundColor = "#2c3e50";
+            btnGenerar.style.backgroundColor = "#121216";
             btnHistorial.classList.remove("active");
             btnHistorial.style.backgroundColor = "transparent";
         });
@@ -404,7 +428,7 @@
             vistaGenerar.style.display = "none";
             vistaHistorial.style.display = "block";
             btnHistorial.classList.add("active");
-            btnHistorial.style.backgroundColor = "#2c3e50";
+            btnHistorial.style.backgroundColor = "#121216";
             btnGenerar.classList.remove("active");
             btnGenerar.style.backgroundColor = "transparent";
         });

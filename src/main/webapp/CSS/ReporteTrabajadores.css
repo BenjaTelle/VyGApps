@@ -1,4 +1,4 @@
-.dashboard {
+﻿.dashboard {
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -53,7 +53,7 @@
 
 .blue-icon { background-color: #ebf5fb; color: #3498db; }
 .green-icon { background-color: #eafaf1; color: #2ecc71; }
-.orange-icon { background-color: #fef5e7; color: #f39c12; }
+.orange-icon { background-color: #E6F7FF; color: #1B365D; }
 
 .kpi-data p {
     margin: 0;
@@ -65,7 +65,7 @@
 
 .kpi-data h3 {
     margin: 5px 0 0 0;
-    color: #2c3e50;
+    color: #121216;
     font-size: 24px;
 }
 
@@ -93,7 +93,7 @@
 
 .filter-group label {
     font-weight: bold;
-    color: #34495e;
+    color: #1E1E24;
     margin-bottom: 8px;
     font-size: 14px;
 }
@@ -104,7 +104,7 @@
     border: 2px solid #ecf0f1;
     border-radius: 6px;
     font-size: 14px;
-    color: #2c3e50;
+    color: #121216;
     background-color: #fdfefe;
     height: 45px;
     box-sizing: border-box;
@@ -146,7 +146,7 @@
     padding: 20px;
 }
 
-.card-header h3 { margin: 0; color: #2c3e50; font-size: 20px; }
+.card-header h3 { margin: 0; color: #121216; font-size: 20px; }
 
 .btn-pdf {
     background-color: #e74c3c;
@@ -186,7 +186,7 @@
     text-align: left;
     padding: 15px 20px;
     background-color: #f9f9f9;
-    color: #34495e;
+    color: #1E1E24;
     font-size: 13px;
     border-bottom: 1px solid #eee;
     white-space: nowrap;
@@ -208,7 +208,7 @@
 
 .btn-back {
     text-decoration: none;
-    color: #2c3e50;
+    color: #121216;
     background-color: #fff;
     border: 1px solid #dcdde1;
     padding: 10px 20px;

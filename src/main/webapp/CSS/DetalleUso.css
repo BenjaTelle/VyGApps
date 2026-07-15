@@ -1,4 +1,4 @@
-/*
+﻿/*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
 */
@@ -27,7 +27,7 @@ body {
     border-radius: 12px; 
     box-shadow: 0 5px 20px rgba(0,0,0,0.08); 
     padding: 30px; 
-    border-top: 5px solid #2c3e50; 
+    border-top: 5px solid #121216; 
 }
 
 .report-header { 
@@ -41,7 +41,7 @@ body {
 
 .report-header h2 { 
     margin: 0; 
-    color: #2c3e50; 
+    color: #121216; 
 }
 
 .badge { 
@@ -64,7 +64,7 @@ body {
     background: #f8f9f9; 
     padding: 15px; 
     border-radius: 8px; 
-    border-left: 4px solid #34495e; 
+    border-left: 4px solid #1E1E24; 
 }
 
 .info-box strong { 
@@ -76,7 +76,7 @@ body {
 }
 
 .info-box span {
-    color: #2c3e50;
+    color: #121216;
     line-height: 1.6;
 }
 
@@ -93,7 +93,7 @@ body {
     justify-content: space-between; 
     padding: 10px 0; 
     border-bottom: 1px dashed #bdc3c7; 
-    color: #34495e; 
+    color: #1E1E24; 
 }
 
 .math-row.total { 
@@ -123,7 +123,7 @@ body {
     display: block; 
     font-size: 24px; 
     margin-top: 5px; 
-    color: #2c3e50; 
+    color: #121216; 
 }
 
 .btn-back { 

@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS PARA ASISTENCIA GLOBAL
    ========================================= */
 
@@ -81,7 +81,7 @@
 }
 
 .btn-filter {
-    background-color: #2c3e50;
+    background-color: #121216;
     color: white;
     border: none;
     padding: 11px 20px;
@@ -154,7 +154,7 @@
 }
 
 .worker-name strong {
-    color: #2c3e50;
+    color: #121216;
 }
 
 /* Colores de Tiempos */
@@ -226,9 +226,9 @@
 }
 
 .page-btn.active {
-    background-color: #2c3e50; 
+    background-color: #121216; 
     color: white;
-    border-color: #2c3e50;
+    border-color: #121216;
 }
 
 .page-btn:disabled {

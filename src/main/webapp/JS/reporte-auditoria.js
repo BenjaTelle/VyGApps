@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
@@ -19,7 +19,7 @@ function descargarPDF_Reporte() {
     // Configuración estricta para evitar cortes de tabla
     const opciones = {
         margin:       [10, 10, 10, 10], // top, left, bottom, right (mm)
-        filename:     'Reporte_Oficial_Auditoria_VyGApps.pdf',
+        filename:     'Reporte_Oficial_Auditoria_Kronos.pdf',
         image:        { type: 'jpeg', quality: 1.0 },
         html2canvas:  { scale: 2, useCORS: true },
         jsPDF:        { unit: 'mm', format: 'letter', orientation: 'landscape' },

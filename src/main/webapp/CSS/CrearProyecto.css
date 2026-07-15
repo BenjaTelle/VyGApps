@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS: MÓDULO DE CREACIÓN DE PROYECTOS
    ========================================= */
 
@@ -22,7 +22,7 @@
     padding: 40px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    border-top: 5px solid #2c3e50; /* Color corporativo maestro */
+    border-top: 5px solid #121216; /* Color corporativo maestro */
 }
 
 .form-header {
@@ -33,7 +33,7 @@
 
 .form-header h2 {
     margin: 0 0 5px 0;
-    color: #2c3e50;
+    color: #121216;
     font-size: 24px;
 }
 
@@ -50,7 +50,7 @@
     gap: 8px;
     font-size: 15px;
     font-weight: bold;
-    color: #e67e22; /* Acento naranja */
+    color: #1B365D; /* Acento naranja */
     margin-bottom: 15px;
     padding-bottom: 5px;
     border-bottom: 1px dashed #e2e8f0;
@@ -71,7 +71,7 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #34495e;
+    color: #1E1E24;
     font-size: 13px;
 }
 
@@ -116,7 +116,7 @@ input:focus, select:focus {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background-color: #2c3e50;
+    background-color: #121216;
     color: white;
     border: none;
     padding: 12px 25px;

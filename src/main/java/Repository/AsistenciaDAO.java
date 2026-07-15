@@ -33,13 +33,61 @@ public class AsistenciaDAO {
      * @throws SQLException Si ocurre un error de acceso a la base de datos.
      */
     public int MarcarEntrada(int id, Time entrada, Date fecha) throws SQLException {
-        String sql = "INSERT INTO asistencia(hora_entrada, id_trabajador, fecha) VALUES(?,?,?)";
-        try (Connection con = ConectarBD.conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setTime(1, entrada);
-            ps.setInt(2, id);
-            ps.setDate(3, fecha);
-            return ps.executeUpdate();
+        String sqlCheck = "SELECT COUNT(*) FROM asistencia WHERE id_trabajador = ? AND fecha = ?";
+        String sqlHora = "SELECT p.hora_entrada_oficial FROM proyectos p " +
+                         "INNER JOIN trabajadores t ON p.id_proyecto = t.id_proyect " +
+                         "WHERE t.id_trabajador = ?";
+        String sqlInsert = "INSERT INTO asistencia(hora_entrada, id_trabajador, fecha, marca_anomala) VALUES(?,?,?,?)";
+        
+        try (Connection con = ConectarBD.conectar()) {
+            // 1. Validar duplicados
+            try (PreparedStatement psCheck = con.prepareStatement(sqlCheck)) {
+                psCheck.setInt(1, id);
+                psCheck.setDate(2, fecha);
+                try (ResultSet rs = psCheck.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        return 0; // Entrada ya registrada
+                    }
+                }
+            }
+            
+            // 2. Obtener hora de entrada oficial
+            Time horaEntradaOficial = null;
+            try (PreparedStatement psHora = con.prepareStatement(sqlHora)) {
+                psHora.setInt(1, id);
+                try (ResultSet rs = psHora.executeQuery()) {
+                    if (rs.next()) {
+                        horaEntradaOficial = rs.getTime("hora_entrada_oficial");
+                    }
+                }
+            }
+            
+            int marcaAnomala = 0;
+            if (horaEntradaOficial != null) {
+                java.time.LocalTime entradaLT = entrada.toLocalTime();
+                java.time.LocalTime oficialLT = horaEntradaOficial.toLocalTime();
+                java.time.LocalTime limiteLT = oficialLT.plusMinutes(15);
+                
+                // Manejo de cruce de medianoche en el límite
+                if (oficialLT.isBefore(java.time.LocalTime.of(23, 0)) && limiteLT.isBefore(oficialLT)) {
+                    if (entradaLT.isAfter(limiteLT) && entradaLT.isBefore(oficialLT)) {
+                        marcaAnomala = 1;
+                    }
+                } else {
+                    if (entradaLT.isAfter(limiteLT)) {
+                        marcaAnomala = 1;
+                    }
+                }
+            }
+            
+            // 3. Registrar entrada
+            try (PreparedStatement psInsert = con.prepareStatement(sqlInsert)) {
+                psInsert.setTime(1, entrada);
+                psInsert.setInt(2, id);
+                psInsert.setDate(3, fecha);
+                psInsert.setInt(4, marcaAnomala);
+                return psInsert.executeUpdate();
+            }
         }
     }
     
@@ -70,17 +118,33 @@ public class AsistenciaDAO {
      * @return El número de filas afectadas.
      * @throws SQLException Si ocurre un error de actualización en la base de datos.
      */
-    public int MarcarSalida(int id, Time salida, int horasExtras, int marcaAnomala, Date fecha) throws SQLException {
-        String sql = "UPDATE asistencia SET hora_salida=?, horas_extras=?, marca_anomala=? WHERE id_trabajador=? AND fecha=?";
-        try (Connection con = ConectarBD.conectar();
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setTime(1, salida);
-            ps.setInt(2, horasExtras);
-            ps.setInt(3, marcaAnomala);
-            ps.setInt(4, id);
-            ps.setDate(5, fecha);
-            return ps.executeUpdate();
+    public int MarcarSalida(int id, Time salida, int horasExtras, int marcaAnomala) throws SQLException {
+        String sqlSelect = "SELECT fecha FROM asistencia WHERE id_trabajador = ? AND hora_salida IS NULL ORDER BY fecha DESC LIMIT 1";
+        Date fechaEntrada = null;
+        
+        try (Connection con = ConectarBD.conectar()) {
+            try (PreparedStatement psSelect = con.prepareStatement(sqlSelect)) {
+                psSelect.setInt(1, id);
+                try (ResultSet rs = psSelect.executeQuery()) {
+                    if (rs.next()) {
+                        fechaEntrada = rs.getDate("fecha");
+                    }
+                }
+            }
+            
+            if (fechaEntrada != null) {
+                String sqlUpdate = "UPDATE asistencia SET hora_salida=?, horas_extras=?, marca_anomala = CASE WHEN marca_anomala = 1 THEN 1 ELSE ? END WHERE id_trabajador=? AND fecha=?";
+                try (PreparedStatement psUpdate = con.prepareStatement(sqlUpdate)) {
+                    psUpdate.setTime(1, salida);
+                    psUpdate.setInt(2, horasExtras);
+                    psUpdate.setInt(3, marcaAnomala);
+                    psUpdate.setInt(4, id);
+                    psUpdate.setDate(5, fechaEntrada);
+                    return psUpdate.executeUpdate();
+                }
+            }
         }
+        return 0; // No se encontró entrada abierta
     }
    
     public List<AsistenciaDTO> ListarAsistenciaTrabajador(int id) throws SQLException {

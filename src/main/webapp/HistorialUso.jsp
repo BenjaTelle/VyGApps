@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : HistorialUso
     Created on : 4 mar 2026
     Author     : Benja
@@ -29,13 +29,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Uso de Maquinaria | VyGApps</title>
+    <title>Historial de Uso de Maquinaria | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/HistorialUso.css">
     <script src="JS/menu-movil.js" defer></script>
     <script src="JS/buscadorUso.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 
@@ -44,9 +44,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
                 <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
@@ -117,7 +117,7 @@
                                     <td data-label="Proyecto"><%= uso.getNombreProyecto() %></td>
                                     <td data-label="Máquina"><%= uso.getNombreMaquina() %></td>
                                     <td data-label="Operador"><%= uso.getNombreTrabajador() %></td>
-                                    <td data-label="Costo/Hora (C$)" style="color: #e67e22; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoPorHora()) %></td>
+                                    <td data-label="Costo/Hora (C$)" style="color: #1B365D; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoPorHora()) %></td>
                                     <td data-label="Combustible (Gal)"><%= uso.getGalonesCombustible() %> Gal.</td>
                                     <td data-label="Costo Total (C$)" class="text-financial" style="color: #27ae60; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoTotal()) %></td>
                                     <td data-label="Acciones">

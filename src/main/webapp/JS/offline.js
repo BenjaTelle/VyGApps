@@ -1,4 +1,4 @@
-// =========================================
+﻿// =========================================
 // 1. GESTIÓN DE CONEXIÓN
 // =========================================
 const btnRetry = document.getElementById('btnRetry');
@@ -24,7 +24,7 @@ function redirectBack() {
     updateStatus('online', '¡Conexión exitosa! Redirigiendo...');
     titleText.innerText = "¡Conexión Restablecida!";
     titleText.style.color = "#2ecc71";
-    descText.innerText = "Estamos devolviéndote al sistema VyGApps. Por favor espera...";
+    descText.innerText = "Estamos devolviéndote al sistema Kronos Industrial. Por favor espera...";
 
     setTimeout(() => {
         if (document.referrer && !document.referrer.includes('offline.jsp') && document.referrer !== '') {
@@ -48,7 +48,7 @@ function checkRealConnectivity() {
     }
 
     // Si navigator.onLine es true, hacemos un fetch real
-    fetch('images/vyg.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
+    fetch('images/KronosIndustrial.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
         .then(response => {
             if (response.ok) {
                 redirectBack();
@@ -77,7 +77,7 @@ if (btnRetry) {
 
 
 
-// 2. MINIJUEGO: VYG RUNNER (TRUCK EDITION)
+// 2. MINIJUEGO: KRONOS RUNNER (TRUCK EDITION)
 
 const canvas = document.getElementById('gameCanvas');
 if (canvas) {
@@ -87,7 +87,7 @@ if (canvas) {
 
     // Configuración y records
     let score = 0;
-    let highScore = localStorage.getItem('vyg_offline_highscore') || 0;
+    let highScore = localStorage.getItem('kronos_offline_highscore') || 0;
     if (highScoreEl) highScoreEl.innerText = highScore;
 
     // Estado del juego
@@ -99,7 +99,7 @@ if (canvas) {
     let frameCount = 0;
     let gravity = 0.55;
 
-    // Personaje: Camión de VyG
+    // Personaje: Camión de Kronos
     const truck = {
         x: 50,
         y: 0,
@@ -113,8 +113,8 @@ if (canvas) {
             ctx.save();
             ctx.translate(this.x, this.y);
 
-            // 1. Cuerpo principal (Naranja corporativo VyG #f57c00)
-            ctx.fillStyle = '#f57c00';
+            // 1. Cuerpo principal (Naranja corporativo Kronos #1B365D)
+            ctx.fillStyle = '#1B365D';
             // Cabina
             ctx.beginPath();
             ctx.roundRect(24, 0, 18, 18, [4, 4, 0, 0]);
@@ -379,13 +379,13 @@ if (canvas) {
 
                 if (score > highScore) {
                     highScore = score;
-                    localStorage.setItem('vyg_offline_highscore', highScore);
+                    localStorage.setItem('kronos_offline_highscore', highScore);
                     if (highScoreEl) highScoreEl.innerText = highScore;
                 }
 
                 createDust(truck.x + truck.width / 2, truck.y + truck.height / 2, 12);
                 particles.forEach(p => {
-                    p.color = '#f57c00';
+                    p.color = '#1B365D';
                     p.vx = (Math.random() - 0.5) * 8;
                     p.vy = (Math.random() - 0.5) * 8;
                 });
@@ -401,7 +401,7 @@ if (canvas) {
             ctx.textAlign = 'center';
             ctx.fillText('¡MINIJUEGO OFFLINE!', canvas.width / 2, canvas.height / 2 - 10);
 
-            ctx.fillStyle = '#f57c00';
+            ctx.fillStyle = '#1B365D';
             ctx.font = 'bold 13px "Segoe UI", Tahoma, sans-serif';
             ctx.fillText('Haz clic aquí o presiona Espacio para iniciar', canvas.width / 2, canvas.height / 2 + 15);
         } else if (!gameActive) {
@@ -417,7 +417,7 @@ if (canvas) {
             ctx.font = '14px "Segoe UI", Tahoma, sans-serif';
             ctx.fillText('Puntuación lograda: ' + score, canvas.width / 2, canvas.height / 2 + 5);
 
-            ctx.fillStyle = '#f57c00';
+            ctx.fillStyle = '#1B365D';
             ctx.font = 'bold 13px "Segoe UI", Tahoma, sans-serif';
             ctx.fillText('Haz clic o presiona Espacio para Reintentar', canvas.width / 2, canvas.height / 2 + 30);
         }

@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS ORIGINALES: GESTIÓN DE PRESUPUESTOS
    ========================================= */
 
@@ -10,7 +10,7 @@
     padding: 25px 20px;
     border-radius: 10px;
     margin-bottom: 20px;
-    background-color: #34495e; /* Tu fondo oscuro */
+    background-color: #1E1E24; /* Tu fondo oscuro */
     color: white;
 }
 
@@ -55,7 +55,7 @@
 
 .card-header h3 {
     margin: 0 0 5px 0;
-    color: #2c3e50;
+    color: #121216;
     font-size: 18px;
 }
 
@@ -77,7 +77,7 @@
 .vyg-form label {
     display: block;
     font-weight: bold;
-    color: #34495e;
+    color: #1E1E24;
     margin-bottom: 8px;
     font-size: 14px;
 }
@@ -137,7 +137,7 @@
     text-align: left;
     padding: 15px 20px;
     background-color: #f9f9f9;
-    color: #34495e;
+    color: #1E1E24;
     font-size: 13px;
     border-bottom: 1px solid #eee;
     white-space: nowrap;

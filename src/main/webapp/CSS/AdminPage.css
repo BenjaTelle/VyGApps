@@ -1,12 +1,12 @@
-/* =========================
+﻿/* =========================
    VARIABLES & RESET
 ========================= */
 :root {
-    --primary-color: #34495e;
-    --primary-light: #fceceb;
-    --primary-dark: #2c3e50;
+    --primary-color: #1E1E24;
+    --primary-light: #E6F7FF;
+    --primary-dark: #121216;
     --bg-color: #f8f9fa;
-    --text-main: #2c3e50;
+    --text-main: #121216;
     --text-muted: #7f8c8d;
     --white: #ffffff;
     --danger: #e74c3c;
@@ -182,7 +182,7 @@ body {
 }
 
 .admin-header-banner {
-    background: linear-gradient(135deg, #2c3e50, #1a252f);
+    background: linear-gradient(135deg, #121216, #1a252f);
     padding: 35px 30px;
     border-radius: 12px;
     margin-bottom: 30px;
@@ -250,7 +250,7 @@ body {
 
 .icon-blue { background-color: #e0f2fe; color: #2563eb; }
 .icon-green { background-color: #dcfce7; color: #16a34a; }
-.icon-orange { background-color: #ffedd5; color: #ea580c; }
+.icon-orange { background-color: #E6F7FF; color: #1B365D; }
 .icon-purple { background-color: #f3e8ff; color: #9333ea; }
 
 .card-title h3 {

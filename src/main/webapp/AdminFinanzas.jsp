@@ -40,12 +40,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Financiero | VyGApps</title>
+    <title>Control Financiero | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css"> 
     <link rel="stylesheet" href="CSS/AdminFinanzas.css"> 
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
 </head>
 <body>
 
@@ -55,10 +55,10 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
-                <span class="panel-badge" style="background:#fceceb; color:#c0392b;"><%= user.getRol() %></span>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
 
@@ -67,7 +67,7 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
                 <span>Dashboard Maestro</span>
             </a>
-            <a href="AdminFinanzas" class="nav-item active" style="background-color: #2c3e50;">
+            <a href="AdminFinanzas" class="nav-item active" style="background-color: #121216;">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
                 <span>Control Financiero</span>
             </a>
@@ -144,6 +144,26 @@
                 </div>
             </div>
 
+            <%
+                String msgFinanzas = (String) sessionActual.getAttribute("mensajeFinanzas");
+                if (msgFinanzas != null) {
+                    sessionActual.removeAttribute("mensajeFinanzas");
+                    boolean isError = msgFinanzas.startsWith("Error");
+            %>
+            <div class="alert-box" style="<%= isError ? "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" : "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;" %> padding: 15px; margin-bottom: 20px; border-radius: 4px; display: flex; align-items: center; gap: 10px;">
+                <div class="alert-icon">
+                    <% if (isError) { %>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                    <% } else { %>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <% } %>
+                </div>
+                <div class="alert-text">
+                    <%= msgFinanzas %>
+                </div>
+            </div>
+            <% } %>
+
             <% 
                 List<String> alertas = dashboard.getAlertas();
                 if(alertas != null && !alertas.isEmpty()) { 
@@ -208,7 +228,7 @@
                     <p>Revisa el estatus de las planillas de cada supervisor.</p>
                 </a>
                 
-                <a href="AutorizarGastosSv" class="action-card bandeja-card" style="border-top-color: #e67e22;">
+                <a href="AutorizarGastosSv" class="action-card bandeja-card" style="border-top-color: #1B365D;">
                     <div class="action-icon icon-orange">
                         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                     </div>

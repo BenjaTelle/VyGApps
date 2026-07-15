@@ -1,11 +1,11 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sin Conexión | VyGApps</title>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <title>Sin Conexión | Kronos Industrial</title>
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     <link rel="stylesheet" href="CSS/offline.css">
     <script src="JS/offline.js" defer></script>
 </head>
@@ -27,7 +27,7 @@
 
         <h1 id="title-text">Conexión Interrumpida</h1>
         <p class="desc" id="desc-text">
-            No pudimos contactar con el servidor de VyGApps. Por favor, revisa tu conexión de red local, wifi o datos móviles.
+            No pudimos contactar con el servidor de Kronos Industrial. Por favor, revisa tu conexión de red local, wifi o datos móviles.
         </p>
 
         <div>
@@ -48,7 +48,7 @@
 
         <!-- SECCIÓN DE MINIJUEGO INTERACTIVO -->
         <div class="game-section">
-            <h2 class="game-title">VyG Constructor Runner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left:6px;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></h2>
+            <h2 class="game-title">Kronos Constructor Runner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left:6px;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></h2>
             <div class="game-canvas-container">
                 <canvas id="gameCanvas" width="560" height="180"></canvas>
             </div>

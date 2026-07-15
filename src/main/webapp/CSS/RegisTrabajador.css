@@ -24,12 +24,12 @@ body {
     padding: 35px 40px;
     border-radius: 18px;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    border-top: 6px solid #f57c00; /* Naranja corporativo */
+    border-top: 6px solid #1B365D; /* Naranja corporativo */
 }
 
 h2 {
     text-align: center;
-    color: #f57c00;
+    color: #1B365D;
     font-size: 22px;
     margin-bottom: 5px;
 }
@@ -82,9 +82,9 @@ textarea {
 }
 
 input:focus, select:focus, textarea:focus {
-    border-color: #f57c00;
+    border-color: #1B365D;
     background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(245, 124, 0, 0.15);
+    box-shadow: 0 0 0 3px rgba(27, 54, 93, 0.15);
 }
 
 /* ESTILOS DE ERROR (Para la validación) */
@@ -102,7 +102,7 @@ input:focus, select:focus, textarea:focus {
 /* Select especial de Actualizar */
 .highlight-select select {
     background-color: #fff3e0;
-    border: 2px solid #f57c00;
+    border: 2px solid #1B365D;
     font-weight: 600;
     color: #d84315;
 }
@@ -113,7 +113,7 @@ input:focus, select:focus, textarea:focus {
 .btn-submit {
     margin-top: 25px;
     width: 100%;
-    background-color: #f57c00;
+    background-color: #1B365D;
     color: white;
     border: none;
     padding: 14px;
@@ -125,9 +125,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 .btn-submit:hover {
-    background-color: #e65100;
+    background-color: #122744;
     transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(245, 124, 0, 0.2);
+    box-shadow: 0 8px 15px rgba(27, 54, 93, 0.2);
 }
 
 /* ============================

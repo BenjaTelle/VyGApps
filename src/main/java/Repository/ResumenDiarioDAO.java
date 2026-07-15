@@ -20,13 +20,11 @@ import java.util.List;
 public class ResumenDiarioDAO {
 
     public List<ResumenGastoDTO> obtenerResumenDiario(String fecha, int idProyecto, String categoria) throws SQLException {
-        
         List<ResumenGastoDTO> listaGastos = new ArrayList<>();
-        ResumenGastoDTO gasto = null;
-
-        String condFecha = (fecha != null && !fecha.isEmpty()) ? " = '" + fecha + "'" : " = CURDATE()";
+        List<Object> params = new ArrayList<>();
         StringBuilder sql = new StringBuilder();
         boolean requiereUnion = false;
+        boolean hasFecha = (fecha != null && !fecha.isEmpty());
 
         // 1. Consulta de Nómina
         if (categoria.equals("Todos") || categoria.equals("Nomina")) {
@@ -35,10 +33,17 @@ public class ResumenDiarioDAO {
                .append("FROM pago_nomina pn ")
                .append("INNER JOIN trabajadores t ON pn.id_trabajador = t.id_trabajador ")
                .append("INNER JOIN proyectos pr ON t.id_proyect = pr.id_proyecto ")
-               .append("WHERE pn.fecha_generacion ").append(condFecha);
+               .append("WHERE pn.fecha_generacion ");
+            if (hasFecha) {
+                sql.append("= ?");
+                params.add(fecha);
+            } else {
+                sql.append("= CURDATE()");
+            }
                
             if (idProyecto > 0) {
-                sql.append(" AND t.id_proyect = ").append(idProyecto);
+                sql.append(" AND t.id_proyect = ?");
+                params.add(idProyecto);
             }
             requiereUnion = true;
         }
@@ -53,10 +58,17 @@ public class ResumenDiarioDAO {
                .append("INNER JOIN uso_registro ur ON pm.id_uso = ur.id_uso ")
                .append("INNER JOIN maquinas mq ON ur.id_maquinaria = mq.id_maquina ")
                .append("INNER JOIN proyectos pr ON ur.id_proyect = pr.id_proyecto ")
-               .append("WHERE pm.fecha_generacion ").append(condFecha);
+               .append("WHERE pm.fecha_generacion ");
+            if (hasFecha) {
+                sql.append("= ?");
+                params.add(fecha);
+            } else {
+                sql.append("= CURDATE()");
+            }
                
             if (idProyecto > 0) {
-                sql.append(" AND ur.id_proyect = ").append(idProyecto);
+                sql.append(" AND ur.id_proyect = ?");
+                params.add(idProyecto);
             }
             requiereUnion = true;
         }
@@ -71,10 +83,17 @@ public class ResumenDiarioDAO {
                .append("INNER JOIN uso_registro ur ON rc.id_uso = ur.id_uso ")
                .append("INNER JOIN materiales mat ON rc.id_material = mat.id_material ")
                .append("INNER JOIN proyectos pr ON ur.id_proyect = pr.id_proyecto ")
-               .append("WHERE ur.fecha ").append(condFecha);
+               .append("WHERE ur.fecha ");
+            if (hasFecha) {
+                sql.append("= ?");
+                params.add(fecha);
+            } else {
+                sql.append("= CURDATE()");
+            }
                
             if (idProyecto > 0) {
-                sql.append(" AND ur.id_proyect = ").append(idProyecto);
+                sql.append(" AND ur.id_proyect = ?");
+                params.add(idProyecto);
             }
             requiereUnion = true;
         }
@@ -87,29 +106,44 @@ public class ResumenDiarioDAO {
                .append("gp.concepto AS concepto, gp.fecha_gasto AS fecha, gp.monto AS monto ")
                .append("FROM gastos_proyectos gp ")
                .append("INNER JOIN proyectos pr ON gp.id_proyecto = pr.id_proyecto ")
-               .append("WHERE gp.fecha_gasto ").append(condFecha);
+               .append("WHERE gp.fecha_gasto ");
+            if (hasFecha) {
+                sql.append("= ?");
+                params.add(fecha);
+            } else {
+                sql.append("= CURDATE()");
+            }
                
             if (idProyecto > 0) {
-                sql.append(" AND gp.id_proyecto = ").append(idProyecto);
+                sql.append(" AND gp.id_proyecto = ?");
+                params.add(idProyecto);
             }
         }
 
-        Connection con = ConectarBD.conectar();
-        PreparedStatement ps = con.prepareStatement(sql.toString());
+        try (Connection con = ConectarBD.conectar();
+             PreparedStatement ps = con.prepareStatement(sql.toString())) {
+             
+            for (int i = 0; i < params.size(); i++) {
+                Object p = params.get(i);
+                if (p instanceof String) {
+                    ps.setString(i + 1, (String) p);
+                } else if (p instanceof Integer) {
+                    ps.setInt(i + 1, (Integer) p);
+                }
+            }
 
-        try {
-            ResultSet rs = ps.executeQuery();
-            
-            while (rs.next()) {
-                gasto = new ResumenGastoDTO();
-                gasto.setIdReferencia(rs.getString("id_ref"));
-                gasto.setCategoria(rs.getString("categoria"));
-                gasto.setNombreProyecto(rs.getString("nombre_proyecto"));
-                gasto.setConcepto(rs.getString("concepto"));
-                gasto.setFechaOperacion(rs.getString("fecha"));
-                gasto.setMonto(rs.getDouble("monto"));
-                
-                listaGastos.add(gasto);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ResumenGastoDTO gasto = new ResumenGastoDTO();
+                    gasto.setIdReferencia(rs.getString("id_ref"));
+                    gasto.setCategoria(rs.getString("categoria"));
+                    gasto.setNombreProyecto(rs.getString("nombre_proyecto"));
+                    gasto.setConcepto(rs.getString("concepto"));
+                    gasto.setFechaOperacion(rs.getString("fecha"));
+                    gasto.setMonto(rs.getDouble("monto"));
+                    
+                    listaGastos.add(gasto);
+                }
             }
 
             return listaGastos;

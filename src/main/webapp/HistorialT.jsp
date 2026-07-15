@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : RegistroT
     Created on : 11 feb 2026, 5:51:17 p.m.
     Author     : Benja
@@ -30,7 +30,7 @@
     <meta charset="UTF-8">
     <title>Gestión de Trabajadores</title>
     <link rel="stylesheet" href="CSS/HistorialT.css">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 </head>
 <body>
 

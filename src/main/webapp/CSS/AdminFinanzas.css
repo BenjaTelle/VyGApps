@@ -1,4 +1,4 @@
-/* =========================================
+﻿/* =========================================
    ESTILOS EXCLUSIVOS: PANEL ADMIN FINANZAS
    ========================================= */
 
@@ -12,7 +12,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #2c3e50;
+    color: #121216;
     border-bottom: 2px solid #eaeaea;
     padding-bottom: 10px;
     margin-top: 40px;
@@ -68,26 +68,26 @@
 
 /* Colores para Tipografía e Iconos KPI */
 .text-success { color: #27ae60; }
-.text-warning { color: #f39c12; }
-.text-dark { color: #2c3e50; }
+.text-warning { color: #1B365D; }
+.text-dark { color: #121216; }
 
 .icon-success { background-color: #e8f8f5; color: #27ae60; }
-.icon-warning { background-color: #fdf2e9; color: #e67e22; }
+.icon-warning { background-color: #fdf2e9; color: #1B365D; }
 .icon-dark { background-color: #f1f5f9; color: #475569; }
 .icon-blue { background-color: #e0f2fe; color: #0284c7; }
 .icon-teal { background-color: #ccfbf1; color: #0d9488; }
 .icon-purple { background-color: #f3e8ff; color: #9333ea; }
-.icon-orange { background-color: #ffedd5; color: #ea580c; }
+.icon-orange { background-color: #E6F7FF; color: #1B365D; }
 
 /* --- CAJA DE ALERTAS --- */
 .alert-box {
     background-color: #fdf2e9;
-    border-left: 5px solid #e67e22;
+    border-left: 5px solid #1B365D;
     padding: 15px 20px;
     margin-bottom: 30px;
     border-radius: 6px;
     font-size: 14px;
-    color: #d35400;
+    color: #122744;
     display: flex;
     align-items: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.02);
@@ -97,7 +97,7 @@
     display: flex;
     align-items: center;
     margin-right: 15px;
-    color: #e67e22;
+    color: #1B365D;
 }
 
 .alert-text {
@@ -136,7 +136,7 @@
 .action-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.06);
-    border-top-color: #2c3e50; /* Hover color admin */
+    border-top-color: #121216; /* Hover color admin */
 }
 
 .action-icon {
@@ -163,8 +163,8 @@
 
 /* Colores de Borde Hover para tarjetas específicas */
 .monitor-card:hover { border-top-color: #8e44ad; }
-.bandeja-card:hover { border-top-color: #d35400; }
-.auditoria-card:hover { border-top-color: #2c3e50; }
+.bandeja-card:hover { border-top-color: #122744; }
+.auditoria-card:hover { border-top-color: #121216; }
 
 /* --- NAVEGACIÓN INFERIOR --- */
 .card-footer-nav {

@@ -45,8 +45,7 @@ public class NominaDAO {
 
     public boolean generarPlanillaAutomatizada(String tipoNomina, int diasCiclo, String fechaInicio, String fechaFin, int idAdmin) throws SQLException {
         
-        // TODO: Refactorizar consulta para mejorar el rendimiento del cálculo de nóminas.
-        // Consulta SQL para calcular el pago proporcional, horas extras y descuentos.
+        // Consulta SQL para calcular el pago proporcional, horas extras y descuentos proporcionales.
         String sqlInsert = "INSERT INTO pago_nomina (fecha_generacion, periodo_inicio, periodo_fin, dias_trabajados, monto_pagado, estado, id_trabajador, id_user_genera, monto_horas_extras, dias_justificados) " +
                      "SELECT " +
                      "   CURDATE(), " +
@@ -56,13 +55,14 @@ public class NominaDAO {
                      "   ( " +
                      "       ((t.salario_quincenal / ?) * COUNT(DISTINCT a.fecha)) " +
                      "       + SUM(IFNULL(a.horas_extras, 0) * IFNULL(p.tarifa_hora_extra, 0)) " +
-                     "       - ( " + 
-                     "           ((t.salario_quincenal / ?) * " +
-                     "           SUM(CASE " +
-                     "               WHEN a.marca_anomala = 1 THEN " +
-                     "                   CASE WHEN j.estado = 'Aprobada' THEN 0 ELSE 1 END " +
-                     "               ELSE 0 " +
-                     "           END)) " +
+                     "       - SUM( " +
+                     "           CASE WHEN a.marca_anomala = 1 AND (j.estado IS NULL OR j.estado != 'Aprobada') THEN " +
+                     "               (t.salario_quincenal / ?) * " +
+                     "               (" +
+                     "                   (CASE WHEN a.hora_entrada > p.hora_entrada_oficial THEN TIMESTAMPDIFF(MINUTE, p.hora_entrada_oficial, a.hora_entrada) ELSE 0 END) + " +
+                     "                   (CASE WHEN a.hora_salida < p.hora_salida_oficial THEN TIMESTAMPDIFF(MINUTE, a.hora_salida, p.hora_salida_oficial) ELSE 0 END)" +
+                     "               ) / COALESCE(NULLIF(TIMESTAMPDIFF(MINUTE, p.hora_entrada_oficial, p.hora_salida_oficial) + CASE WHEN p.hora_salida_oficial < p.hora_entrada_oficial THEN 1440 ELSE 0 END, 0), 480) " +
+                     "           ELSE 0 END " +
                      "       ) " +
                      "   ) AS pago_total, " +
                      "   'Pendiente', " +
@@ -90,6 +90,19 @@ public class NominaDAO {
 
             java.sql.Date sqlFechaInicio = java.sql.Date.valueOf(fechaInicio);
             java.sql.Date sqlFechaFin = java.sql.Date.valueOf(fechaFin);
+
+            // 1. Prevención de planillas duplicadas
+            String sqlCheck = "SELECT COUNT(*) FROM pago_nomina WHERE (periodo_inicio = ? AND periodo_fin = ?)";
+            try (PreparedStatement psCheck = con.prepareStatement(sqlCheck)) {
+                psCheck.setDate(1, sqlFechaInicio);
+                psCheck.setDate(2, sqlFechaFin);
+                try (ResultSet rs = psCheck.executeQuery()) {
+                    if (rs.next() && rs.getInt(1) > 0) {
+                        con.rollback();
+                        return false;
+                    }
+                }
+            }
 
             psInsert = con.prepareStatement(sqlInsert);
             psInsert.setDate(1, sqlFechaInicio);

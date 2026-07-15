@@ -1,4 +1,4 @@
-/* 
+﻿/* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 inputPass.type = "text";
                 btnMostrar.innerHTML = svgOjoAbierto;
                 // Usamos el color de tu tema cuando está activo
-                btnMostrar.style.color = "#f57c00"; 
+                btnMostrar.style.color = "#1B365D"; 
             } else {
                 inputPass.type = "password";
                 btnMostrar.innerHTML = svgOjoTachado;
@@ -46,7 +46,7 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('JS/sw.js')
             .then(function(reg) {
-                console.log('Service Worker registrado con éxito para VyGApps (Login):', reg.scope);
+                 console.log('Service Worker registrado con éxito para Kronos Industrial (Login):', reg.scope);
             })
             .catch(function(err) {
                 console.warn('Error al registrar Service Worker en Login:', err);

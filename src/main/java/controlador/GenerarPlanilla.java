@@ -115,11 +115,17 @@ public class GenerarPlanilla extends HttpServlet {
                 int diasCiclo = Integer.parseInt(diasCicloStr);
                 NominaDAO dao = new NominaDAO();
                 
-                dao.generarPlanillaAutomatizada(tipoNomina, diasCiclo, ultimaEjecucionStr, fechaProximoPagoStr, idAdmin);
+                boolean exito = dao.generarPlanillaAutomatizada(tipoNomina, diasCiclo, ultimaEjecucionStr, fechaProximoPagoStr, idAdmin);
+                if (exito) {
+                    sessionActual.setAttribute("mensajePlanilla", "exito");
+                } else {
+                    sessionActual.setAttribute("mensajePlanilla", "duplicado_o_error");
+                }
             }
         } catch (Exception e) {
             System.out.println(">> ERROR en Servlet GenerarPlanilla: " + e.getMessage());
             e.printStackTrace();
+            sessionActual.setAttribute("mensajePlanilla", "duplicado_o_error");
         }
         
         response.sendRedirect("GenerarPlanilla");

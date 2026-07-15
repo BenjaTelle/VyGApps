@@ -26,12 +26,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Uso de Maquinaria | VyGApps</title>
+    <title>Registrar Uso de Maquinaria | Kronos Industrial</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/UsoMaquinaria.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     
     <style>
         .hidden-section {
@@ -51,15 +51,15 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
+                <h2 style="font-size: 18px;">Kronos Industrial</h2>
                 <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= user.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item"><span>Dashboard Operativo</span></a>
-            <a href="RegistrarUso" class="nav-item active" style="background-color: #2c3e50;"><span>Registrar Maquinaria</span></a>
+            <a href="RegistrarUso" class="nav-item active" style="background-color: #121216;"><span>Registrar Maquinaria</span></a>
             <a href="HistorialUso" class="nav-item"><span>Historial de Uso</span></a>
             <a href="LogoutSv" class="nav-item logout-link"><span>Cerrar Sesión</span></a>
         </nav>
@@ -184,7 +184,7 @@
                         <!-- SECCIÓN DINÁMICA DE TRANSPORTE (OCULTA POR DEFECTO) -->
                         <div id="contenedor_opcional_viaje" style="display: none; margin-top: 20px;">
                             <div class="form-group" style="background: #eafaf1; padding: 15px; border-radius: 8px; border-left: 4px solid #27ae60;">
-                                <label style="display: flex; align-items: center; cursor: pointer; margin: 0; color: #2c3e50; font-weight: bold;">
+                                <label style="display: flex; align-items: center; cursor: pointer; margin: 0; color: #121216; font-weight: bold;">
                                     <input type="checkbox" name="incluir_viaje" id="incluir_viaje" onchange="toggleDetallesViaje()" style="width: 20px; height: 20px; margin-right: 10px;">
                                     ¿Registrar detalles de carga/viaje para este turno?
                                 </label>
