@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : ReciboPago
     Created on : 22 abr 2026
     Author     : Benja
@@ -33,6 +33,9 @@
     <title>Recibo de Pago #<%= String.format("%04d", pago.getIdPago()) %> | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/ReciboPago.css">
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -119,9 +122,14 @@
     </div>
 
     <div class="action-bar">
-        <button onclick="window.print()" class="btn-print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> Imprimir Recibo</button>
+        <button onclick="window.print()" class="btn-print"><i data-lucide="printer" style="width: 20px; height: 20px"></i> Imprimir Recibo</button>
         <button onclick="window.close()" class="btn-close">Cerrar Vista</button>
     </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

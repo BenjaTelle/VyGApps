@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : DetalleAsistenciaTrabajador
     Created on : [Fecha Actual]
     Author     : Benja
@@ -38,6 +38,9 @@
     <link rel="stylesheet" href="CSS/DetalleAsistencia.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -56,15 +59,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard</span>
             </a>
             <a href="AsistenciaGlobal" class="nav-item active">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+                <span class="icon"><i data-lucide="calendar" style="width: 20px; height: 20px"></i></span>
                 <span>Asistencias</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -74,7 +77,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Detalle de Asistencia</h1>
                     <span>Reporte individual del trabajador.</span>
@@ -94,14 +97,14 @@
             <div class="profile-info-text">
                 <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> <%= resumen.getNombreCompleto() %></h2>
                 <p><strong>Cédula:</strong> <%= resumen.getCedula() %> | <strong>Puesto:</strong> <%= resumen.getPuesto() %></p>
-                <p><strong>Proyecto Actual:</strong> <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> <%= resumen.getNombreProyecto() %></p>
+                <p><strong>Proyecto Actual:</strong> <i data-lucide="briefcase" style="width: 20px; height: 20px"></i> <%= resumen.getNombreProyecto() %></p>
             </div>
-            <button onclick="window.print()" class="btn-print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> Imprimir Reporte</button>
+            <button onclick="window.print()" class="btn-print"><i data-lucide="printer" style="width: 20px; height: 20px"></i> Imprimir Reporte</button>
         </div>
 
         <div class="kpi-grid">
             <div class="kpi-card">
-                <span class="kpi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+                <span class="kpi-icon"><i data-lucide="calendar" style="width: 20px; height: 20px"></i></span>
                 <div class="kpi-data">
                     <h3><%= resumen.getTotalDiasTrabajados() %></h3>
                     <p>Días Trabajados</p>
@@ -122,7 +125,7 @@
                 </div>
             </div>
             <div class="kpi-card">
-                <span class="kpi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></span>
+                <span class="kpi-icon"><i data-lucide="clock" style="width: 20px; height: 20px"></i></span>
                 <div class="kpi-data">
                     <h3><%= resumen.getHorasPromedioPorDia() != null ? resumen.getHorasPromedioPorDia() : "0h" %></h3>
                     <p>Promedio Diario</p>
@@ -187,12 +190,17 @@
             </div>
             
             <div class="card-footer">
-                <a href="BuscarDetalleAsis" class="btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al listado </a>
+                <a href="BuscarDetalleAsis" class="btn-back"><i data-lucide="arrow-left" style="width: 20px; height: 20px"></i> Volver al listado </a>
             </div>
         </div>
 
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

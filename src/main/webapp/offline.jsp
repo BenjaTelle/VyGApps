@@ -8,6 +8,9 @@
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     <link rel="stylesheet" href="CSS/offline.css">
     <script src="JS/offline.js" defer></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -48,7 +51,7 @@
 
         <!-- SECCIÓN DE MINIJUEGO INTERACTIVO -->
         <div class="game-section">
-            <h2 class="game-title">Kronos Constructor Runner <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-left:6px;"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg></h2>
+            <h2 class="game-title">Kronos Constructor Runner <i data-lucide="truck" style="display:inline-block; vertical-align:middle; margin-left:6px; width: 18px; height: 18px"></i></h2>
             <div class="game-canvas-container">
                 <canvas id="gameCanvas" width="560" height="180"></canvas>
             </div>
@@ -63,5 +66,10 @@
 
     </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

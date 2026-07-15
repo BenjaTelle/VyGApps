@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : HistorialAsistencia
     Created on : 15 mar 2026
     Author     : Benja
@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="CSS/HistorialAsistencia.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -48,11 +51,11 @@
                     Mi Perfil
                 </a>
                 <a href="HistorialAsistenciaSv" class="menu-item active">
-                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <i data-lucide="calendar" class="menu-icon" style="width: 20px; height: 20px"></i>
                     Asistencia
                 </a>
                 <a href="MisPagosSv" class="menu-item">
-                    <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                    <i data-lucide="dollar-sign" class="menu-icon" style="width: 20px; height: 20px"></i>
                     Mis Pagos
                 </a>
                 <a href="ProyectosTrabajador" class="menu-item">
@@ -67,7 +70,7 @@
             <header class="header">
                 <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
                     <button id="menu-toggle" class="mobile-menu-btn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                        <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                     </button>
                     <div class="header-title">
                         <h1>Registro de Asistencia</h1>
@@ -101,7 +104,7 @@
                                     <td><strong><%= a.getFecha() != null ? a.getFecha() : "Sin fecha" %></strong></td>
                                     
                                     <td class="time-in">
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 5px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <i data-lucide="clock" style="vertical-align: middle; margin-right: 5px; width: 14px; height: 14px"></i>
                                         <%= a.getHoraEntrada() != null ? a.getHoraEntrada() : "--:--" %>
                                     </td>
                                     
@@ -114,7 +117,7 @@
                                         <!-- 1. Etiqueta de Llegada -->
                                         <% if(a.getEstado_turno() != null && a.getEstado_turno().equals("Llegada Tardía")) { %>
                                             <span class="status-badge badge-warning">
-                                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                                                <i data-lucide="alert-circle" style="width: 12px; height: 12px"></i>
                                                 Llegada Tardía
                                             </span>
                                         <% } else { %>
@@ -160,5 +163,10 @@
         </main>
     </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

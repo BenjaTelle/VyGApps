@@ -1,4 +1,4 @@
-﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
 <%@page import="DTO.ResumenGastoDTO"%> 
 <%@page import="model.proyectos"%>
@@ -50,7 +50,10 @@
         <script src="JS/menu-movil.js" defer></script>
         <script src="JS/resumen-gastos.js" defer></script>
         <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
-    </head>
+    
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
     <body>
 
         <div class="admin-container no-print">
@@ -66,11 +69,11 @@
                 </div>
                 <nav class="sidebar-nav">
                     <a href="AdminPage.jsp" class="nav-item">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                        <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                         <span>Dashboard Maestro</span>
                     </a>
                     <a href="AdminFinanzas" class="nav-item">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                        <i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i>
                         <span>Control Financiero</span>
                     </a>
                     <a href="ResumenDiarioSv" class="nav-item active">
@@ -78,7 +81,7 @@
                         <span>Resumen Diario</span>
                     </a>
                     <a href="LogoutSv" class="nav-item logout-link">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                        <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                         <span>Cerrar Sesión</span>
                     </a>
                 </nav>
@@ -88,7 +91,7 @@
                 <header class="topbar">
                     <div class="header-left">
                         <button id="menu-toggle" class="mobile-menu-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                            <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                         </button>
                     </div>
                     <div class="profile-menu">
@@ -111,7 +114,7 @@
                     <div class="kpi-container">
                         <div class="kpi-card">
                             <div class="kpi-icon">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#121216" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                                <i data-lucide="briefcase" style="width: 28px; height: 28px"></i>
                             </div>
                             <div class="kpi-data">
                                 <p>Transacciones</p>
@@ -120,7 +123,7 @@
                         </div>
                         <div class="kpi-card">
                             <div class="kpi-icon icon-danger">
-                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                                <i data-lucide="dollar-sign" style="width: 28px; height: 28px"></i>
                             </div>
                             <div class="kpi-data">
                                 <p>Egresos Totales</p>
@@ -175,12 +178,12 @@
                             </div>
                             <div class="header-actions">
                                 <div class="search-box">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                                    <i data-lucide="search" style="width: 16px; height: 16px"></i>
                                     <input type="text" id="buscadorTabla" placeholder="Buscar...">
                                 </div>
                                 <% if (listaGastos != null && !listaGastos.isEmpty()) { %>
                                 <button onclick="imprimirNativo()" class="btn-print">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                                    <i data-lucide="printer" style="width: 16px; height: 16px"></i>
                                     Imprimir
                                 </button>
                                 <button onclick="descargarPDF()" class="btn-pdf">
@@ -302,5 +305,10 @@
             </div>
         </div>
 
-    </body>
+    
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
 </html>

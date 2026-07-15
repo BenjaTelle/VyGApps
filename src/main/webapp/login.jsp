@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="CSS/login.css">
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
     <script src="JS/login.js" defer></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -31,11 +34,7 @@
         if (error != null && !error.isEmpty()) {
     %>
         <div class="custom-alert">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="12" y1="8" x2="12" y2="12"></line>
-                <line x1="12" y1="16" x2="12.01" y2="16"></line>
-            </svg>
+            <i data-lucide="alert-circle" style="width: 20px; height: 20px"></i>
             <span><%= error %></span>
         </div>
     <%
@@ -69,5 +68,10 @@
 
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

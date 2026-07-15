@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : RegistrarGasto
     Created on : 16 may 2026, 8:02:20 p.m.
     Author     : Benja
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="CSS/RegistrarGasto.css"> 
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -50,15 +53,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard</span>
             </a>
             <a href="ListarProyectos" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
+                <span class="icon"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i></span>
                 <span>Proyectos Activos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -68,7 +71,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Registrar Gasto de Proyecto</h1>
                     <span>Sube facturas, viáticos o compras de caja chica para auditoría.</span>
@@ -88,7 +91,7 @@
 
             <div class="form-card">
                 <div class="card-header">
-                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Formulario de Registro de Gastos</h2>
+                    <h2><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i> Formulario de Registro de Gastos</h2>
                     <p>Completa la información detallada del gasto. Quedará en estado "Pendiente" hasta ser aprobado por administración.</p>
                 </div>
 
@@ -127,11 +130,11 @@
                             <label>Categoría <span class="required">*</span></label>
                             <select name="categoria" required>
                                 <option value="" disabled selected>-- Seleccione una --</option>
-                                <option value="Materiales"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Materiales e Insumos</option>
+                                <option value="Materiales"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Materiales e Insumos</option>
                                 <option value="Combustible">Combustible / Transporte</option>
-                                <option value="Alimentacion"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Alimentación / Viáticos</option>
-                                <option value="Mantenimiento"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Repuestos y Mantenimiento</option>
-                                <option value="Otros"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Otros Gastos</option>
+                                <option value="Alimentacion"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Alimentación / Viáticos</option>
+                                <option value="Mantenimiento"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Repuestos y Mantenimiento</option>
+                                <option value="Otros"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Otros Gastos</option>
                             </select>
                         </div>
                     </div>
@@ -171,5 +174,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

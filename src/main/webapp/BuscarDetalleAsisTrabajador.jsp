@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : BuscarDetalleAsisTrabajador
     Created on : 31 mar 2026
     Author     : Benja
@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="CSS/BuscarDetalleAsisTrabajador.css"> 
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -51,11 +54,11 @@
                 <span>Dashboard</span>
             </a>
             <a href="AsistenciaGlobal" class="nav-item active">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span>
+                <span class="icon"><i data-lucide="calendar" style="width: 20px; height: 20px"></i></span>
                 <span>Asistencias</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -65,7 +68,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Directorio del Personal</h1>
                     <span>Busca y selecciona un trabajador para ver su historial.</span>
@@ -86,7 +89,7 @@
             <div class="directory-card">
                 
                 <div class="search-container">
-                    <span class="search-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                    <span class="search-icon"><i data-lucide="search" style="width: 18px; height: 18px"></i></span>
                     <input type="text" id="buscador" placeholder="Buscar por nombre o puesto...">
                 </div>
 
@@ -110,7 +113,7 @@
                                 <td data-label="Puesto" class="puesto-text"><%= t.getPuesto()%></td>
                                 <td data-label="Acción" style="text-align: center;">
                                     <a href="DetalleAsistenciaTrabajador?id_trabajador=<%= t.getId_trabajador()%>" class="btn-view" title="Ver Detalle de Asistencia">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>Ver Detalle
+                                        <i data-lucide="settings" style="display:inline-block; vertical-align:middle; margin-right:4px; width: 16px; height: 16px"></i>Ver Detalle
                                     </a>
                                 </td>
                             </tr>
@@ -155,5 +158,10 @@
     });
 </script>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

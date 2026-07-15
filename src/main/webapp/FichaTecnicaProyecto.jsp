@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="CSS/FichaTecnicaProyecto.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -54,15 +57,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard</span>
             </a>
             <a href="ListarProyectos" class="nav-item active">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span>
+                <span class="icon"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i></span>
                 <span>Proyectos Activos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -72,7 +75,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Ficha Técnica</h1>
                     <span>Detalle operativo de la obra seleccionada.</span>
@@ -110,7 +113,7 @@
                         <div class="data-grid">
                             
                             <div class="data-box">
-                                <span class="data-label"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Estado Operativo</span>
+                                <span class="data-label"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Estado Operativo</span>
                                 <div class="data-value">
                                     <span class="status-badge <%= f.getEstado().equalsIgnoreCase("activo") ? "status-active" : "status-inactive" %>">
                                         <%= f.getEstado().toUpperCase() %>
@@ -119,7 +122,7 @@
                             </div>
 
                             <div class="data-box">
-                                <span class="data-label"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg> Supervisor a Cargo</span>
+                                <span class="data-label"><i data-lucide="users" style="width: 20px; height: 20px"></i> Supervisor a Cargo</span>
                                 <div class="data-value highlight-text">
                                     <% if (f.getNombre_supervisor() != null && !f.getNombre_supervisor().trim().isEmpty() && !f.getNombre_supervisor().equalsIgnoreCase("null")) { %>
                                         <%= f.getNombre_supervisor() %>
@@ -137,14 +140,14 @@
                             </div>
 
                             <div class="data-box">
-                                <span class="data-label"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Fuerza Laboral Activa</span>
+                                <span class="data-label"><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Fuerza Laboral Activa</span>
                                 <div class="data-value number-value text-blue">
                                     <%= f.getTotal_trabajadores() %> <span class="unit">Trabajadores</span>
                                 </div>
                             </div>
 
                             <div class="data-box">
-                                <span class="data-label"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Presupuesto Asignado</span>
+                                <span class="data-label"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i> Presupuesto Asignado</span>
                                 <div class="data-value number-value text-green">
                                     C$ <%= String.format("%,.2f", f.getPresupuesto()) %>
                                 </div>
@@ -162,8 +165,8 @@
                 </div>
 
                 <div class="action-buttons">
-                    <a href="javascript:history.back()" class="btn btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver Atrás</a>
-                    <button onclick="window.print()" class="btn btn-print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> Imprimir Ficha</button>
+                    <a href="javascript:history.back()" class="btn btn-back"><i data-lucide="arrow-left" style="width: 20px; height: 20px"></i> Volver Atrás</a>
+                    <button onclick="window.print()" class="btn btn-print"><i data-lucide="printer" style="width: 20px; height: 20px"></i> Imprimir Ficha</button>
                 </div>
 
             </div>
@@ -173,5 +176,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

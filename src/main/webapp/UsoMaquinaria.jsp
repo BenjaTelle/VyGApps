@@ -1,4 +1,4 @@
-﻿<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.List"%>
 <%@page import="model.trabajadores"%>
 <%@page import="model.proyectos"%>
@@ -43,6 +43,9 @@
             border-radius: 8px;
         }
     </style>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -68,7 +71,7 @@
     <main class="main-content">
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
             </div>
             <div class="profile-menu">
                 <div class="profile-info">
@@ -83,7 +86,7 @@
             <div class="form-wrapper">
                 <div class="card form-card">
                     <div class="form-header">
-                        <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Registrar Nuevo Uso</h2>
+                        <h2><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Registrar Nuevo Uso</h2>
                         <p>Completa los datos operativos de la máquina utilizada hoy.</p>
                     </div>
 
@@ -161,7 +164,7 @@
 
                         <div class="form-row">
                             <div class="form-group highlight-financial">
-                                <label for="costo_por_hora" class="financial-label"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Costo por Hora (C$):</label>
+                                <label for="costo_por_hora" class="financial-label"><i data-lucide="clock" style="width: 20px; height: 20px"></i> Costo por Hora (C$):</label>
                                 <input type="number" step="0.01" min="0" name="costo_por_hora" id="costo_por_hora" placeholder="Ej. 500.00" required>
                                 <small class="financial-hint">Tarifa operativa de la máquina por cada hora de uso.</small>
                             </div>
@@ -176,7 +179,7 @@
                             </div>
 
                             <div class="form-group highlight-financial">
-                                <label for="costo_combustible_total" class="financial-label-alt"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Costo Total del Combustible (C$):</label>
+                                <label for="costo_combustible_total" class="financial-label-alt"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i> Costo Total del Combustible (C$):</label>
                                 <input type="number" step="0.01" name="costo_combustible_total" id="costo_combustible_total" placeholder="Ej. 2500.00" required>
                             </div>
                         </div>
@@ -191,7 +194,7 @@
                             </div>
                             
                             <div id="seccion_transporte" class="hidden-section" style="margin-top: 10px;">
-                                <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Detalles de Carga / Viaje</h3>
+                                <h3><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Detalles de Carga / Viaje</h3>
                                 
                                 <div class="form-row">
                                     <div class="form-group" id="grupo_material">
@@ -334,5 +337,10 @@
     }
 </script>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : HistorialPagosSup
     Created on : 3 abr 2026
     Author     : Benja
@@ -41,6 +41,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -59,15 +62,15 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard</span>
             </a>
             <a href="CentroPagos" class="nav-item active">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+                <span class="icon"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i></span>
                 <span>Planillas y Pagos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -77,7 +80,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Historial de Pagos</h1>
                     <span>Registro de nóminas y usos de maquinaria aprobados.</span>
@@ -97,7 +100,7 @@
 
             <div class="kpi-container">
                 <div class="kpi-card">
-                    <span class="kpi-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+                    <span class="kpi-icon"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i></span>
                     <div class="kpi-data">
                         <p>Total Autorizado (Filtrado)</p>
                         <h3>C$ <%= String.format("%,.2f", totalGastado) %></h3>
@@ -182,5 +185,10 @@
     }
 </script>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

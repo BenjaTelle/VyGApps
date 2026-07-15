@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : ProyectosTrabajador
     Created on : 20 mar 2026
     Author     : Benja
@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="CSS/ProyectosTrabajador.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -46,10 +49,10 @@
                     <span class="menu-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span> Mi Perfil
                 </a>
                 <a href="HistorialAsistenciaSv" class="menu-item">
-                    <span class="menu-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></span> Asistencia
+                    <span class="menu-icon"><i data-lucide="calendar" style="width: 20px; height: 20px"></i></span> Asistencia
                 </a>
                 <a href="MisPagosSv" class="menu-item">
-                    <span class="menu-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span> Mis Pagos
+                    <span class="menu-icon"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i></span> Mis Pagos
                 </a>
                 <a href="ProyectosTrabajador" class="menu-item active">
                     <span class="menu-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg></span> Proyectos
@@ -61,7 +64,7 @@
             
             <header class="header">
                 <div class="header-left" style="display: flex; align-items: center; gap: 15px;">
-                    <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                    <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                     <div class="header-title">
                         <h1>Mis Proyectos Asignados</h1>
                         <span>Listado de las obras en las que estás registrado actualmente.</span>
@@ -136,5 +139,10 @@
         </main>
     </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

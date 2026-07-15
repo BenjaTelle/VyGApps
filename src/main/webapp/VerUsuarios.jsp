@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : VerUsuarios
     Created on : 20 feb 2026, 5:11:42 p.m.
     Author     : Benja
@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="CSS/VerUsuarios.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -45,15 +48,15 @@
         </div>
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="VerUsuarios" class="nav-item active" style="background-color: #121216;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                <i data-lucide="users" style="width: 20px; height: 20px"></i>
                 <span>Gestión de Usuarios</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link" style="margin-top: 15px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -63,7 +66,7 @@
         <header class="topbar">
             <div class="header-left">
                 <button id="menu-toggle" class="mobile-menu-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                 </button>
             </div>
             <div class="profile-menu">
@@ -128,15 +131,15 @@
             
             <div class="actions-footer">
                 <a href="RegistrarUsu" class="btn-action">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: middle;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                    <i data-lucide="plus" style="margin-right: 5px; vertical-align: middle; width: 18px; height: 18px"></i>
                     Crear Usuario
                 </a>
                 <a href="ActualizarUsuario" class="btn-action btn-outline">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: middle;"><polygon points="16 3 21 8 8 21 3 21 3 16 16 3"></polygon></svg>
+                    <i data-lucide="pencil" style="margin-right: 5px; vertical-align: middle; width: 18px; height: 18px"></i>
                     Editar Usuario
                 </a>
                 <a href="EliminarUsu" class="btn-action btn-danger">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 5px; vertical-align: middle;"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                    <i data-lucide="trash-2" style="margin-right: 5px; vertical-align: middle; width: 18px; height: 18px"></i>
                     Eliminar Usuario
                 </a>
             </div>
@@ -144,5 +147,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

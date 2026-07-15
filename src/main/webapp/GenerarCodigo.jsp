@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : GenerarCodigo
     Created on : 11 abr 2026
     Author     : Benja
@@ -28,6 +28,9 @@
     <link rel="stylesheet" href="CSS/GenerarCodigo.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -46,7 +49,7 @@
 
         <nav class="sidebar-nav">
             <a href="SupervisorPage" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard</span>
             </a>
             <a href="GenerarCodigoSv" class="nav-item active">
@@ -54,7 +57,7 @@
                 <span>Generar Código</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -64,7 +67,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
                 <div class="welcome">
                     <h1>Generar Código de Asistencia</h1>
                     <span>Crea claves temporales para el registro del personal.</span>
@@ -91,7 +94,7 @@
                     <h3>¡Código Generado Exitosamente! <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></h3>
                     <p>Comparte este código con tu cuadrilla para que marquen su entrada:</p>
                     <div class="codigo-gigante"><%= codigoGenerado %></div>
-                    <p class="codigo-info"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
+                    <p class="codigo-info"><i data-lucide="clock" style="display:inline-block; vertical-align:middle; margin-right:4px; width: 14px; height: 14px"></i> Este código será válido por los próximos <strong><%= request.getAttribute("Minutos") %> minutos</strong>.</p>
                 </div>
             <% } %>
 
@@ -141,5 +144,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

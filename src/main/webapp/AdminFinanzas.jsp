@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : AdminFinanzas
     Created on : 2 abr 2026
     Author     : Benja
@@ -46,6 +46,9 @@
     <link rel="stylesheet" href="CSS/AdminFinanzas.css"> 
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -64,15 +67,15 @@
 
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="AdminFinanzas" class="nav-item active" style="background-color: #121216;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i>
                 <span>Control Financiero</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -83,7 +86,7 @@
         <header class="topbar">
             <div class="header-left">
                 <button id="menu-toggle" class="mobile-menu-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                 </button>
                 <div class="welcome">
                     <h1>Finanzas y Nóminas</h1>
@@ -115,7 +118,7 @@
                 
                 <div class="kpi-card">
                     <div class="kpi-icon icon-warning">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <i data-lucide="clock" style="width: 24px; height: 24px"></i>
                     </div>
                     <div class="kpi-data">
                         <p>En espera de Autorización</p>
@@ -125,7 +128,7 @@
                 
                 <div class="kpi-card">
                     <div class="kpi-icon icon-dark">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        <i data-lucide="calendar" style="width: 24px; height: 24px"></i>
                     </div>
                     <div class="kpi-data">
                         <p>Planillas Pendientes</p>
@@ -135,7 +138,7 @@
                 
                 <div class="kpi-card">
                     <div class="kpi-icon icon-blue">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        <i data-lucide="briefcase" style="width: 24px; height: 24px"></i>
                     </div>
                     <div class="kpi-data">
                         <p>Presupuesto Global Disp.</p>
@@ -153,7 +156,7 @@
             <div class="alert-box" style="<%= isError ? "background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;" : "background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;" %> padding: 15px; margin-bottom: 20px; border-radius: 4px; display: flex; align-items: center; gap: 10px;">
                 <div class="alert-icon">
                     <% if (isError) { %>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                        <i data-lucide="alert-circle" style="width: 24px; height: 24px"></i>
                     <% } else { %>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
                     <% } %>
@@ -183,14 +186,14 @@
             %>
 
             <div class="section-header">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+                <i data-lucide="settings" style="width: 20px; height: 20px"></i>
                 <h3 class="section-title">Generación de Egresos</h3>
             </div>
             
             <div class="action-grid">
                 <a href="GenerarPlanilla" class="action-card">
                     <div class="action-icon icon-blue">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <i data-lucide="users" style="width: 28px; height: 28px"></i>
                     </div>
                     <h3>Nómina Quincenal</h3>
                     <p>Calcula días y genera pagos a trabajadores.</p>
@@ -198,7 +201,7 @@
                 
                 <a href="GenerarPagoMaquinaria" class="action-card">
                     <div class="action-icon icon-orange">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                        <i data-lucide="wrench" style="width: 28px; height: 28px"></i>
                     </div>
                     <h3>Liquidación Maquinaria</h3>
                     <p>Genera pagos por horas de alquiler y diésel.</p>
@@ -214,7 +217,7 @@
             </div>
 
             <div class="section-header">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <i data-lucide="search" style="width: 20px; height: 20px"></i>
                 <h3 class="section-title">Auditoría y Reportes</h3>
             </div>
             
@@ -222,7 +225,7 @@
                 
                 <a href="MonitorAutorizaciones" class="action-card monitor-card">
                     <div class="action-icon icon-purple">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                        <i data-lucide="settings" style="width: 28px; height: 28px"></i>
                     </div>
                     <h3>Monitor Autorizaciones</h3>
                     <p>Revisa el estatus de las planillas de cada supervisor.</p>
@@ -248,7 +251,7 @@
 
             <div class="card-footer-nav">
                 <a href="AdminPage.jsp" class="btn-back">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    <i data-lucide="arrow-left" style="width: 18px; height: 18px"></i>
                     Volver al Panel Principal
                 </a>
             </div>
@@ -258,5 +261,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

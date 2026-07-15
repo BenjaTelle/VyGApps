@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : CrearProyecto
     Created on : 17 feb 2026
     Author     : Benja
@@ -32,6 +32,9 @@
     <link rel="stylesheet" href="CSS/CrearProyecto.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -48,7 +51,7 @@
         </div>
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="ListarProyectosSv" class="nav-item active" style="background-color: #121216;">
@@ -56,7 +59,7 @@
                 <span>Gestión de Proyectos</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -66,7 +69,7 @@
         <header class="topbar">
             <div class="header-left">
                 <button id="menu-toggle" class="mobile-menu-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                 </button>
                 <div class="welcome">
                     <h1>Módulo de Proyectos</h1>
@@ -127,7 +130,7 @@
                         </div>
 
                         <div class="section-title" style="margin-top: 20px;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                            <i data-lucide="clock" style="width: 18px; height: 18px"></i>
                             Reglas de Asistencia y Planilla
                         </div>
 
@@ -162,5 +165,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

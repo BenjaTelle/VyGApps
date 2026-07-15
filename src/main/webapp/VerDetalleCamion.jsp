@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : VerDetalle
     Created on : 6 mar 2026, 4:26:49 p.m.
     Author     : Benja
@@ -36,6 +36,9 @@
     <title>Detalle de Viaje #<%= detalle.getId_ruta() %></title>
     <link rel="stylesheet" href="CSS/DetalleCamion.css">
      <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -44,7 +47,7 @@
             
             <div class="detail-header">
                 <div class="header-title">
-                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>Manifiesto de Viaje #<%= detalle.getId_ruta() %></h2>
+                    <h2><i data-lucide="clipboard" style="display:inline-block; vertical-align:middle; margin-right:6px; width: 20px; height: 20px"></i>Manifiesto de Viaje #<%= detalle.getId_ruta() %></h2>
                     <p>Ficha técnica del acarreo de materiales</p>
                 </div>
                 <div class="header-date">
@@ -55,7 +58,7 @@
 
             <div class="detail-body">
                 
-                <div class="section-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>Datos de Ruta y Proyecto</div>
+                <div class="section-title"><i data-lucide="flag" style="display:inline-block; vertical-align:middle; margin-right:6px; width: 18px; height: 18px"></i>Datos de Ruta y Proyecto</div>
                 <div class="detail-grid-full">
                     <div class="info-box border-brown">
                         <span class="info-label">Proyecto Asignado</span>
@@ -67,7 +70,7 @@
                             <span class="info-label">Punto de Origen</span>
                             <span class="info-value"><%= detalle.getOrigen() %></span>
                         </div>
-                        <div class="route-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin:0 8px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+                        <div class="route-arrow"><i data-lucide="arrow-right" style="display:inline-block; vertical-align:middle; margin:0 8px; width: 16px; height: 16px"></i></div>
                         <div class="route-point">
                             <span class="info-label">Punto de Destino</span>
                             <span class="info-value"><%= detalle.getDestino() %></span>
@@ -75,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="section-title" style="margin-top: 25px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><line x1="16.5" y1="9.4" x2="7.5" y2="4.21"></line><polygon points="12 22.08 12 12 3 6.92 3 17.08 12 22.08"></polygon><polygon points="12 22.08 12 12 21 6.92 21 17.08 12 22.08"></polygon><polygon points="12 12 3 6.92 12 1.84 21 6.92 12 12"></polygon></svg>Detalles de Carga y Horarios</div>
+                <div class="section-title" style="margin-top: 25px;"><i data-lucide="package" style="display:inline-block; vertical-align:middle; margin-right:6px; width: 18px; height: 18px"></i>Detalles de Carga y Horarios</div>
                 <div class="detail-grid-half">
                     <div class="info-box">
                         <span class="info-label">Material Transportado</span>
@@ -106,12 +109,17 @@
             </div>
 
             <div class="detail-footer">
-                <a href="HistorialCamiones?accion=ListarCamiones" class="btn-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Regresar al Historial</a>
-                <button class="btn-print" onclick="window.print()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:6px;"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>Imprimir Comprobante</button>
+                <a href="HistorialCamiones?accion=ListarCamiones" class="btn-back"><i data-lucide="arrow-left" style="display:inline-block; vertical-align:middle; margin-right:4px; width: 16px; height: 16px"></i>Regresar al Historial</a>
+                <button class="btn-print" onclick="window.print()"><i data-lucide="printer" style="display:inline-block; vertical-align:middle; margin-right:6px; width: 16px; height: 16px"></i>Imprimir Comprobante</button>
             </div>
 
         </div>
     </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

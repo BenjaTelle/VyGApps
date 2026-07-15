@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : GenerarPagoMaquinaria
     Created on : 2 abr 2026, 6:58:12 p.m.
     Author     : Benja
@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="CSS/FormulariosGeneracion.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -47,19 +50,19 @@
 
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"></rect><rect x="14" y="3" width="7" height="5"></rect><rect x="14" y="12" width="7" height="9"></rect><rect x="3" y="16" width="7" height="5"></rect></svg>
+                <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="AdminFinanzas" class="nav-item">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                <i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i>
                 <span>Control Financiero</span>
             </a>
             <a href="GenerarPagoMaquinaria.jsp" class="nav-item active" style="background-color: #121216;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                <i data-lucide="wrench" style="width: 20px; height: 20px"></i>
                 <span>Liquidación Maquinaria</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+                <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -70,7 +73,7 @@
         <header class="topbar">
             <div class="header-left">
                 <button id="menu-toggle" class="mobile-menu-btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                    <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                 </button>
                 <div class="welcome">
                     <h1>Liquidación de Maquinaria</h1>
@@ -94,7 +97,7 @@
                 <div class="generator-header bg-maquinaria">
                     <div class="header-content">
                         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                            <i data-lucide="wrench" style="width: 28px; height: 28px"></i>
                             <h2 style="margin: 0;">Órdenes de Pago por Uso</h2>
                         </div>
                         <p>Genera la pre-facturación del alquiler y diésel de maquinaria en los proyectos.</p>
@@ -145,5 +148,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

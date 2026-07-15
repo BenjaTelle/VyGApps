@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : MonitorAutorizaciones
     Created on : 2 abr 2026
     Author     : Benja
@@ -35,6 +35,9 @@
     
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -53,19 +56,19 @@
 
         <nav class="sidebar-nav">
             <a href="AdminPage.jsp" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></span>
+                <span class="icon"><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i></span>
                 <span>Dashboard Maestro</span>
             </a>
             <a href="AdminFinanzas" class="nav-item">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></span>
+                <span class="icon"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i></span>
                 <span>Control Financiero</span>
             </a>
             <a href="MonitorAutorizaciones" class="nav-item active" style="background-color: #121216;">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></span>
+                <span class="icon"><i data-lucide="settings" style="width: 20px; height: 20px"></i></span>
                 <span>Monitor Autorizaciones</span>
             </a>
             <a href="LogoutSv" class="nav-item logout-link">
-                <span class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg></span>
+                <span class="icon"><i data-lucide="log-out" style="width: 20px; height: 20px"></i></span>
                 <span>Cerrar Sesión</span>
             </a>
         </nav>
@@ -75,7 +78,7 @@
 
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
             </div>
 
             <div class="profile-menu">
@@ -91,14 +94,14 @@
 
             <div class="admin-header-banner" style="background: linear-gradient(135deg, #121216, #2980b9);">
                 <div class="admin-header-info">
-                    <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Monitor de Autorizaciones Pendientes</h2>
+                    <h2><i data-lucide="settings" style="width: 20px; height: 20px"></i> Monitor de Autorizaciones Pendientes</h2>
                     <p>Seguimiento en tiempo real de planillas generadas que esperan aprobación de supervisores.</p>
                 </div>
             </div>
 
             <div class="card monitor-card">
                 <div class="card-header">
-                    <h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Gestión de Pagos</h3>
+                    <h3><i data-lucide="clock" style="width: 20px; height: 20px"></i> Gestión de Pagos</h3>
                     <p>Los registros en rojo indican retrasos superiores a 48 horas.</p>
                 </div>
 
@@ -146,7 +149,7 @@
             </div>
 
             <div style="margin-top: 25px; padding-bottom: 30px;">
-                <a href="AdminFinanzas" class="btn-back"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel Financiero</a>
+                <a href="AdminFinanzas" class="btn-back"><i data-lucide="arrow-left" style="width: 20px; height: 20px"></i> Volver al Panel Financiero</a>
             </div>
 
         </section>
@@ -154,5 +157,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

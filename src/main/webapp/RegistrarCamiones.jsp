@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : RegistrarCamiones
     Created on : 2 mar 2026, 6:09:32 p.m.
     Author     : Benja
@@ -40,6 +40,9 @@
     <link rel="stylesheet" href="CSS/RegistrarCamiones.css">
     <script src="JS/menu-movil.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -65,7 +68,7 @@
     <main class="main-content">
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
             </div>
             <div class="profile-menu">
                 <div class="profile-info">
@@ -80,7 +83,7 @@
             <div class="form-wrapper">
                 <div class="card form-card">
                     <div class="form-header">
-                        <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Registrar Viaje de Camión</h2>
+                        <h2><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Registrar Viaje de Camión</h2>
                         <p>Controla el ingreso, salida y los costos de flete de los materiales en obra.</p>
                     </div>
 
@@ -165,7 +168,7 @@
 
                         <div class="form-row">
                             <div class="form-group highlight-financial">
-                                <label for="costo_flete"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> Costo del Flete / Transporte (C$):</label>
+                                <label for="costo_flete"><i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i> Costo del Flete / Transporte (C$):</label>
                                 <input type="number" step="0.01" name="costo_flete" id="costo_flete" placeholder="Ej. 850.00" required>
                                 <small>Costo del viaje para sumarlo a los gastos del proyecto.</small>
                             </div>
@@ -182,5 +185,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

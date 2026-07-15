@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : ActualizarTrabajador
     Created on : 18 feb 2026
     Author     : Benja
@@ -28,6 +28,9 @@
     <title>Actualizar Trabajador | Kronos Industrial</title>
     <link rel="stylesheet" href="CSS/ActualizarTrabajadores.css">
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -39,7 +42,7 @@
             <form action="ActualizarTrabajadores" method="POST" id="formTrabajador">
                 
                 <div class="form-group full-width highlight-select">
-                    <label><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg> Seleccionar Trabajador a Editar</label>
+                    <label><i data-lucide="search" style="width: 20px; height: 20px"></i> Seleccionar Trabajador a Editar</label>
                     <select name="id_trabajador" id="selectTrabajador" required>
                         <option value="">Seleccione un trabajador de la lista</option>
                         <%
@@ -158,5 +161,10 @@
     </main>
 
     <script src="JS/ValidarTrabajador.js"></script>
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

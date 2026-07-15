@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : ReporteProyectos
     Created on : 20 feb 2026, 7:53:54 p.m.
     Author     : Benja
@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="CSS/ReporteProyectos.css">
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
      <script src="JS/ReporteProyectos.js"></script>
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -23,11 +26,11 @@
         
         <header class="report-header">
             <div class="header-content">
-                <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg> Reporte General de Proyectos</h2>
+                <h2><i data-lucide="bar-chart-3" style="width: 20px; height: 20px"></i> Reporte General de Proyectos</h2>
                 <p class="subtitle">Vista global del estado y rendimiento financiero de las obras</p>
             </div>
             <div class="search-box">
-                <span class="search-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+                <span class="search-icon"><i data-lucide="search" style="width: 20px; height: 20px"></i></span>
                 <input type="text" id="inputBusqueda" placeholder="Buscar proyecto o supervisor...">
             </div>
         </header>
@@ -44,7 +47,7 @@
             </div>
 
             <div class="kpi-card">
-                <div class="kpi-icon active-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></div>
+                <div class="kpi-icon active-icon"><i data-lucide="settings" style="width: 20px; height: 20px"></i></div>
                 <div class="kpi-data">
                     <h4>Proyectos Activos</h4>
                     <span class="kpi-value" style="color: #2e7d32;">
@@ -110,5 +113,10 @@
     </div>
 
    
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>

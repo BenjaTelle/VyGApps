@@ -1,4 +1,4 @@
-﻿<%-- Document : ListarProyectos Created on : 18 feb 2026 Author : Benja --%>
+<%-- Document : ListarProyectos Created on : 18 feb 2026 Author : Benja --%>
     <%@page import="DTO.ListarProyectosDTO" %>
         <%@page contentType="text/html" pageEncoding="UTF-8" %>
             <%@page import="java.util.List" %>
@@ -28,7 +28,10 @@
                             <script src="JS/menu-movil.js" defer></script>
                             <script src="JS/BuscadorListaProyectos.js" defer></script>
                             <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
-                        </head>
+                        
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
 
                         <body>
 
@@ -49,14 +52,7 @@
 
                                     <nav class="sidebar-nav">
                                         <a href="<%= esAdmin ? " AdminPage.jsp" : "SupervisorPage" %>" class="nav-item">
-                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round">
-                                                <rect x="3" y="3" width="7" height="9"></rect>
-                                                <rect x="14" y="3" width="7" height="5"></rect>
-                                                <rect x="14" y="12" width="7" height="9"></rect>
-                                                <rect x="3" y="16" width="7" height="5"></rect>
-                                            </svg>
+                                            <i data-lucide="layout-dashboard" style="width: 20px; height: 20px"></i>
                                             <span>Dashboard Maestro</span>
                                         </a>
                                         <a href="ListarProyectos" class="nav-item active <%= esAdmin ? "admin-active" : "" %>">
@@ -71,23 +67,12 @@
                                         </a>
                                         <% if(!esAdmin) { %>
                                             <a href="RegistrarGastoSv" class="nav-item">
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <line x1="12" y1="1" x2="12" y2="23"></line>
-                                                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                                                </svg>
+                                                <i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i>
                                                 <span>Control de Gastos</span>
                                             </a>
                                             <% } %>
                                                 <a href="LogoutSv" class="nav-item logout-link">
-                                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round">
-                                                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
-                                                        <polyline points="16 17 21 12 16 7"></polyline>
-                                                        <line x1="21" y1="12" x2="9" y2="12"></line>
-                                                    </svg>
+                                                    <i data-lucide="log-out" style="width: 20px; height: 20px"></i>
                                                     <span>Cerrar Sesión</span>
                                                 </a>
                                     </nav>
@@ -98,13 +83,7 @@
                                     <header class="topbar">
                                         <div class="header-left">
                                             <button id="menu-toggle" class="mobile-menu-btn">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                                                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                                                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                                                </svg>
+                                                <i data-lucide="menu" style="width: 24px; height: 24px"></i>
                                             </button>
                                             <div class="welcome">
                                                 <h1>Proyectos Activos</h1>
@@ -129,12 +108,7 @@
 
                                         <div class="header-tools">
                                             <div class="search-box">
-                                                <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24"
-                                                    fill="none" stroke="currentColor" stroke-width="2"
-                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                    <circle cx="11" cy="11" r="8"></circle>
-                                                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                                                </svg>
+                                                <i data-lucide="search" class="search-icon" style="width: 18px; height: 18px"></i>
                                                 <input type="text" id="buscador"
                                                     placeholder="Buscar proyecto por nombre..." class="search-input">
                                             </div>
@@ -172,14 +146,7 @@
                                                                     <button type="button" class="btn-config"
                                                                         title="Configurar Reglas"
                                                                         onclick="abrirModalConfig('<%= p.getId() %>', '<%= p.getNombre_proyecto() %>')">
-                                                                        <svg width="16" height="16" viewBox="0 0 24 24"
-                                                                            fill="none" stroke="currentColor"
-                                                                            stroke-width="2">
-                                                                            <circle cx="12" cy="12" r="3"></circle>
-                                                                            <path
-                                                                                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                                                                            </path>
-                                                                        </svg>
+                                                                        <i data-lucide="settings" style="width: 16px; height: 16px"></i>
                                                                     </button>
                                                                     <% } %>
                                                             </div>
@@ -206,12 +173,7 @@
                                                                 class="btn-detail">Ficha Técnica</a>
                                                             <a href="RegistrarGastoSv?id_proyecto=<%= p.getId()%>"
                                                                 class="btn-expense">
-                                                                <svg width="14" height="14" viewBox="0 0 24 24"
-                                                                    fill="none" stroke="currentColor" stroke-width="2"
-                                                                    stroke-linecap="round" stroke-linejoin="round">
-                                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
-                                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                                                </svg>
+                                                                <i data-lucide="plus" style="width: 14px; height: 14px"></i>
                                                                 Agregar Gasto
                                                             </a>
                                                         </div>
@@ -289,6 +251,11 @@
                                 </script>
                                 <% } %>
 
-                        </body>
+                        
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
 
                         </html>

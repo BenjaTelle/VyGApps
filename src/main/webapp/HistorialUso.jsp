@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : HistorialUso
     Created on : 4 mar 2026
     Author     : Benja
@@ -36,6 +36,9 @@
     <script src="JS/menu-movil.js" defer></script>
     <script src="JS/buscadorUso.js" defer></script>
     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
@@ -61,7 +64,7 @@
     <main class="main-content">
         <header class="topbar">
             <div class="header-left">
-                <button id="menu-toggle" class="mobile-menu-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+                <button id="menu-toggle" class="mobile-menu-btn"><i data-lucide="menu" style="width: 24px; height: 24px"></i></button>
             </div>
             <div class="profile-menu">
                 <div class="profile-info">
@@ -78,12 +81,12 @@
                     
                     <div class="table-header">
                         <div>
-                            <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Historial de Uso de Maquinaria</h2>
+                            <h2><i data-lucide="briefcase" style="width: 20px; height: 20px"></i> Historial de Uso de Maquinaria</h2>
                             <p>Consulta todos los registros operativos y costos totales calculados.</p>
                         </div>
                         <div class="toolbar">
                             <input type="text" id="buscador" placeholder="Ej. CAT 320, Obra Central, Juan..." class="search-input">
-                            <a href="RegistrarUso" class="btn-main"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:middle; margin-right:4px;"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>Registrar Nuevo Uso</a>
+                            <a href="RegistrarUso" class="btn-main"><i data-lucide="plus" style="display:inline-block; vertical-align:middle; margin-right:4px; width: 14px; height: 14px"></i>Registrar Nuevo Uso</a>
                         </div>
                     </div>
 
@@ -121,7 +124,7 @@
                                     <td data-label="Combustible (Gal)"><%= uso.getGalonesCombustible() %> Gal.</td>
                                     <td data-label="Costo Total (C$)" class="text-financial" style="color: #27ae60; font-weight: bold;">C$ <%= String.format("%,.2f", uso.getCostoTotal()) %></td>
                                     <td data-label="Acciones">
-                                        <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></a>
+                                        <a href="DetalleUsoSv?id=<%= uso.getIdUso() %>" class="btn-icon" title="Ver Detalle"><i data-lucide="settings" style="width: 20px; height: 20px"></i></a>
                                     </td>
                                 </tr>
                                 <%
@@ -141,7 +144,7 @@
                     </div>
 
                     <div class="table-footer">
-                        <a href="SupervisorPage" class="btn-cancel"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Volver al Panel</a>
+                        <a href="SupervisorPage" class="btn-cancel"><i data-lucide="arrow-left" style="width: 20px; height: 20px"></i> Volver al Panel</a>
                     </div>
 
                 </div>
@@ -150,5 +153,10 @@
     </main>
 </div>
 
+
+    <!-- Inicializacion de Lucide Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 </html>
