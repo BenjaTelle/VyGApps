@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="CSS/DetalleUso.css"> <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="JS/lucide.min.js"></script>
 </head>
 <body>
     <div class="report-card">

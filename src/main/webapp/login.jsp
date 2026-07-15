@@ -16,7 +16,7 @@
     <script src="JS/login.js" defer></script>
 
     <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="JS/lucide.min.js"></script>
 </head>
 <body>
 

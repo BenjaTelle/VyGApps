@@ -34,7 +34,7 @@
         <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
     
     <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="JS/lucide.min.js"></script>
 </head>
     <body>
 
