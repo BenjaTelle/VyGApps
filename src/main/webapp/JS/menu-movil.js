@@ -6,7 +6,7 @@
 
 /**
  * Script para el manejo del Menú Lateral (Sidebar) Responsivo
- * Proyecto: VyGApps
+ * Proyecto: V&G Ingenieros
  * Autor: Benja
  */
 
@@ -62,7 +62,7 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('JS/sw.js')
             .then(function(reg) {
-                console.log('Service Worker registrado con éxito para VyGApps:', reg.scope);
+                console.log('Service Worker registrado con éxito para V&G Ingenieros:', reg.scope);
             })
             .catch(function(err) {
                 console.warn('Error al registrar Service Worker:', err);

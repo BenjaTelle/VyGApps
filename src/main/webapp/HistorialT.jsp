@@ -30,7 +30,7 @@
     <meta charset="UTF-8">
     <title>Gestión de Trabajadores</title>
     <link rel="stylesheet" href="CSS/HistorialT.css">
-     <link rel="icon" href="images/vyg.svg" type="image/png">
+     <link rel="icon" href="images/vygLogo.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>

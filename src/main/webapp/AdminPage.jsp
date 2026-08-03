@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : AdminPage
     Created on : 2 feb 2026, 9:08:44 p.m.
     Author     : Benja
@@ -27,11 +27,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Administrativo | VyGApps</title>
+    <title>Panel Administrativo | V&G Ingenieros</title>
     
     <link rel="stylesheet" href="CSS/AdminPage.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vygLogo.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -43,9 +43,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/vygLogo.svg" alt="V&G Ingenieros Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2>VyGApps</h2>
+                <h2>V&G Ingenieros</h2>
                 <span class="panel-badge"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>

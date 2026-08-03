@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : ReciboPago
     Created on : 22 abr 2026
     Author     : Benja
@@ -30,9 +30,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Recibo de Pago #<%= String.format("%04d", pago.getIdPago()) %> | VyGApps</title>
+    <title>Recibo de Pago #<%= String.format("%04d", pago.getIdPago()) %> | V&G Ingenieros</title>
     <link rel="stylesheet" href="CSS/ReciboPago.css">
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vygLogo.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -42,9 +42,9 @@
     <div class="receipt-container">
         <header class="receipt-header">
             <div class="company-brand">
-                <img src="images/vyg.svg" alt="Logo VyG Inversiones" class="receipt-logo">
+                <img src="images/vygLogo.svg" alt="Logo V&G Ingenieros" class="receipt-logo">
                 <div class="company-info">
-                    <h1>VYG INVERSIONES S.A.</h1>
+                    <h1>V&G INGENIEROS S.A.</h1>
                     <p>Gestión de Proyectos e Infraestructura</p>
                     <p>Managua, Nicaragua</p>
                 </div>
@@ -115,7 +115,7 @@
                 <p>Sello y Firma Autorizada</p>
             </div>
             <div class="legal-notice">
-                <p>Este documento es un comprobante oficial generado por el sistema VyGApps. 
+                <p>Este documento es un comprobante oficial generado por el sistema V&G Ingenieros. 
                    La falsificación de este recibo es un delito penado por la ley.</p>
             </div>
         </footer>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vygapps-offline-cache-v1';
+﻿const CACHE_NAME = 'V&G Ingenieros-offline-cache-v1';
 const OFFLINE_URL = '../offline.jsp';
 
 self.addEventListener('install', (event) => {
@@ -9,7 +9,7 @@ self.addEventListener('install', (event) => {
                 OFFLINE_URL,
                 '../CSS/offline.css',
                 'offline.js',
-                '../images/vyg.svg'
+                '../images/vygLogo.svg'
             ]);
         })
     );

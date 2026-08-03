@@ -1,5 +1,5 @@
 ﻿<%-- 
-    Sistema de Gestión Operativa - VyGApps
+    Sistema de Gestión Operativa - V&G Ingenieros
     Document   : GestionJustificaciones
     Created on : 31 may 2026, 7:54:46 p.m.
     Author     : Benja
@@ -25,12 +25,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Justificaciones | VyGApps</title>
+    <title>Gestión de Justificaciones | V&G Ingenieros</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/GestionJustificaciones.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vygLogo.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -43,9 +43,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/vygLogo.svg" alt="V&G Ingenieros Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">VyGApps</h2>
+                <h2 style="font-size: 18px;">V&G Ingenieros</h2>
                 <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>

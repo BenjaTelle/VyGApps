@@ -1,6 +1,6 @@
 ﻿<div align="center">
-  <img src="src/main/webapp/images/vyg.svg" alt="VyGApps Logo" width="150" height="150">
-  <h1>🏗️ VyGApps</h1>
+  <img src="src/main/webapp/images/vygLogo.svg" alt="V&G Ingenieros Logo" width="150" height="150">
+  <h1>🏗️ V&G Ingenieros</h1>
   <p><b>Sistema Integral de Gestión de Obras, Presupuestos y Logística</b></p>
 
   <!-- Badges -->
@@ -13,7 +13,7 @@
 
 <br>
 
-VyGApps es una plataforma desarrollada a medida en **Java EE (Jakarta EE)** diseñada para centralizar, monitorear y optimizar los recursos en proyectos de construcción. Proporciona herramientas avanzadas de control de asistencia, nóminas, gastos de obra, uso de maquinaria y logística de camiones de materiales.
+V&G Ingenieros es una plataforma desarrollada a medida en **Java EE (Jakarta EE)** diseñada para centralizar, monitorear y optimizar los recursos en proyectos de construcción. Proporciona herramientas avanzadas de control de asistencia, nóminas, gastos de obra, uso de maquinaria y logística de camiones de materiales.
 
 ---
 
@@ -67,8 +67,8 @@ Sigue estos pasos estrictamente para ejecutar el sistema en tu entorno local.
 El proyecto incluye un script oficial de la base de datos ubicado en la carpeta `SQL/`.
 1. Abre tu gestor de base de datos (ej. phpMyAdmin, DBeaver, MySQL Workbench).
 2. Ejecuta el script completo que se encuentra en: 
-   👉 `src/main/java/SQL/vygappsJunio.sql`
-3. Esto generará la base de datos `vygapps` con sus 16 tablas y los procedimientos almacenados correspondientes.
+   👉 `src/main/java/SQL/V&G IngenierosJunio.sql`
+3. Esto generará la base de datos `V&G Ingenieros` con sus 16 tablas y los procedimientos almacenados correspondientes.
 4. Si tu usuario y contraseña de MySQL no son los que están por defecto (`root` / sin clave), debes actualizarlos en el archivo de conexión `src/main/java/Conexion/ConectarBD.java`.
 
 ### 2. Levantar el Servidor
@@ -76,7 +76,7 @@ El proyecto incluye un script oficial de la base de datos ubicado en la carpeta 
 2. Abre el proyecto con Apache NetBeans.
 3. Haz un `Clean and Build` para que Maven descargue el driver JDBC de MySQL y las librerías Jakarta EE.
 4. Da clic derecho en el proyecto y selecciona `Run`.
-5. Accede desde tu navegador a: `http://localhost:8080/VyGapps/login.jsp`
+5. Accede desde tu navegador a: `http://localhost:8080/V&G Ingenieros/login.jsp`
 
 ---
 

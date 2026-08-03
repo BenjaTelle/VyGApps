@@ -12,9 +12,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Proyectos | VyGApps</title>
+    <title>Reporte de Proyectos | V&G Ingenieros</title>
     <link rel="stylesheet" href="CSS/ReporteProyectos.css">
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vygLogo.svg" type="image/png">
      <script src="JS/ReporteProyectos.js"></script>
 
     <!-- Lucide Icons CDN -->
