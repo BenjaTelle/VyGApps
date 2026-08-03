@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/DetalleAsistencia.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vygLogo.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -50,9 +50,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/vygLogo.svg" alt="V&G Ingenieros Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">VyGApps</h2>
+                <h2 style="font-size: 18px;">V&G Ingenieros</h2>
                 <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>

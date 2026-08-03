@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : ProyectosTrabajador
     Created on : 20 mar 2026
     Author     : Benja
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="CSS/Empleados.css">
     <link rel="stylesheet" href="CSS/ProyectosTrabajador.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vygLogo.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -41,8 +41,8 @@
 
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="images/vyg.svg" alt="Logo VyG Inversiones" class="logo-img">
-                <h2 style="font-size: 18px;">VyGApps</h2>
+                <img src="images/vygLogo.svg" alt="Logo V&G Ingenieros" class="logo-img">
+                <h2 style="font-size: 18px;">V&G Ingenieros</h2>
             </div>
             <nav>
                 <a href="Home" class="menu-item"> 

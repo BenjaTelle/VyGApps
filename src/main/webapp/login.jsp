@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : login.jsp
     Created on : 2 feb 2026
     Author     : Benja
@@ -9,10 +9,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Gestión Industrial | VyGApps</title>
+    <title>Sistema de Gestión Industrial | V&G Ingenieros</title>
     
     <link rel="stylesheet" href="CSS/login.css">
-    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vygLogo.svg" type="image/svg+xml">
     <script src="JS/login.js" defer></script>
 
     <!-- Lucide Icons CDN -->
@@ -23,7 +23,7 @@
 <div class="login-container">
 
     <div class="logo">
-        <img src="images/vyg_logo.jpg" alt="Logo VyG Inversiones">
+        <img src="images/vygLogo.svg" alt="Logo V&G Ingenieros">
     </div>
 
     <h2>SISTEMA DE GESTIÓN DE PROYECTOS</h2>

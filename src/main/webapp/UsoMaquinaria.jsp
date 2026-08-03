@@ -26,12 +26,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Uso de Maquinaria | VyGApps</title>
+    <title>Registrar Uso de Maquinaria | V&G Ingenieros</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/UsoMaquinaria.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/vyg.svg" type="image/png">
+    <link rel="icon" href="images/vygLogo.svg" type="image/png">
     
     <style>
         .hidden-section {
@@ -54,9 +54,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
+            <img src="images/vygLogo.svg" alt="V&G Ingenieros Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">VyGApps</h2>
+                <h2 style="font-size: 18px;">V&G Ingenieros</h2>
                 <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= user.getRol() %></span>
             </div>
         </div>

@@ -1,4 +1,4 @@
-// =========================================
+﻿// =========================================
 // 1. GESTIÓN DE CONEXIÓN
 // =========================================
 const btnRetry = document.getElementById('btnRetry');
@@ -24,7 +24,7 @@ function redirectBack() {
     updateStatus('online', '¡Conexión exitosa! Redirigiendo...');
     titleText.innerText = "¡Conexión Restablecida!";
     titleText.style.color = "#2ecc71";
-    descText.innerText = "Estamos devolviéndote al sistema VyGApps. Por favor espera...";
+    descText.innerText = "Estamos devolviéndote al sistema V&G Ingenieros. Por favor espera...";
 
     setTimeout(() => {
         if (document.referrer && !document.referrer.includes('offline.jsp') && document.referrer !== '') {
@@ -48,7 +48,7 @@ function checkRealConnectivity() {
     }
 
     // Si navigator.onLine es true, hacemos un fetch real
-    fetch('images/vyg.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
+    fetch('images/vygLogo.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
         .then(response => {
             if (response.ok) {
                 redirectBack();
