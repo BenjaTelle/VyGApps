@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : DetalleUso
     Created on : 3 abr 2026, 7:18:57 p.m.
     Author     : Benja
@@ -28,7 +28,7 @@
     <meta charset="UTF-8">
     <title>Detalle de Operación #<%= d.getIdUso() %></title>
     <link rel="stylesheet" href="CSS/HistorialUso.css"> 
-    <link rel="stylesheet" href="CSS/DetalleUso.css"> <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <link rel="stylesheet" href="CSS/DetalleUso.css"> <link rel="icon" href="images/vyg.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>

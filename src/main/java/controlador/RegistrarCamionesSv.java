@@ -77,15 +77,30 @@ public class RegistrarCamionesSv extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         int id_uso = Integer.parseInt(request.getParameter("id_uso"));
-        int id_material = Integer.parseInt(request.getParameter("id_material"));
-        double cantidad_cargada = Double.parseDouble(request.getParameter("cantidad_cargada"));
+        
+        String idMatStr = request.getParameter("id_material");
+        int id_material = 0;
+        if (idMatStr != null && !idMatStr.trim().isEmpty()) {
+            try {
+                id_material = Integer.parseInt(idMatStr);
+            } catch (NumberFormatException e) {
+                id_material = 0;
+            }
+        }
+
+        String cantStr = request.getParameter("cantidad_cargada");
+        double cantidad_cargada = (cantStr != null && !cantStr.trim().isEmpty()) ? Double.parseDouble(cantStr) : 0.0;
+
         String origen = request.getParameter("origen");
+        if (origen == null) origen = "";
+
         String destino = request.getParameter("destino");
+        if (destino == null) destino = "";
 
         String hInicioStr = request.getParameter("hora_llegada");
         String hFinStr = request.getParameter("hora_salida");
 
-// Le agregamos ":00" (segundos) si el navegador solo mandó horas y minutos (tamaño 5, ej: "14:30")
+        // Le agregamos ":00" (segundos) si el navegador solo mandó horas y minutos (tamaño 5, ej: "14:30")
         if (hInicioStr != null && hInicioStr.length() == 5) {
             hInicioStr += ":00";
         }
@@ -93,14 +108,16 @@ public class RegistrarCamionesSv extends HttpServlet {
             hFinStr += ":00";
         }
 
-        Time hora_salida = Time.valueOf(hFinStr);
-        Time hora_entrada = Time.valueOf(hInicioStr);
-        Double costo_flete = Double.parseDouble(request.getParameter("costo_flete"));
+        Time hora_salida = (hFinStr != null && !hFinStr.isEmpty()) ? Time.valueOf(hFinStr) : new Time(System.currentTimeMillis());
+        Time hora_entrada = (hInicioStr != null && !hInicioStr.isEmpty()) ? Time.valueOf(hInicioStr) : new Time(System.currentTimeMillis());
+        
+        String fleteStr = request.getParameter("costo_flete");
+        double costo_flete = (fleteStr != null && !fleteStr.trim().isEmpty()) ? Double.parseDouble(fleteStr) : 0.0;
 
-        //creamos el objeto
+        // creamos el objeto camiones
         camiones c = new camiones(hora_salida, hora_entrada, origen, destino, cantidad_cargada, id_uso, costo_flete, id_material);
 
-        CamionesDAO  cDAO = new CamionesDAO();
+        CamionesDAO cDAO = new CamionesDAO();
         cDAO.registrarCamion(c);
         
         response.sendRedirect("SupervisorPage");

@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : VerDetalle
     Created on : 6 mar 2026, 4:26:49 p.m.
     Author     : Benja
@@ -35,7 +35,7 @@
     <meta charset="UTF-8">
     <title>Detalle de Viaje #<%= detalle.getId_ruta() %></title>
     <link rel="stylesheet" href="CSS/DetalleCamion.css">
-     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>

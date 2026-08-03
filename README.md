@@ -1,5 +1,5 @@
 ﻿<div align="center">
-  <img src="src/main/webapp/images/KronosIndustrial.svg" alt="VyGApps Logo" width="150" height="150">
+  <img src="src/main/webapp/images/vyg.svg" alt="VyGApps Logo" width="150" height="150">
   <h1>🏗️ VyGApps</h1>
   <p><b>Sistema Integral de Gestión de Obras, Presupuestos y Logística</b></p>
 

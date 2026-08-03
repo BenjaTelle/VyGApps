@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : AccDen
     Created on : 4 feb 2026, 5:18:20 p.m.
     Author     : Benja
@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+     <link rel="icon" href="images/vyg.svg" type="image/png">
     <title>Acceso Denegado</title>
     <style>
     /* =========================

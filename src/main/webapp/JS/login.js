@@ -46,7 +46,7 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function() {
         navigator.serviceWorker.register('JS/sw.js')
             .then(function(reg) {
-                 console.log('Service Worker registrado con éxito para Kronos Industrial (Login):', reg.scope);
+                 console.log('Service Worker registrado con éxito para VyGApps (Login):', reg.scope);
             })
             .catch(function(err) {
                 console.warn('Error al registrar Service Worker en Login:', err);

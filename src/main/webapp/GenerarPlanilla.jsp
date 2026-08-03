@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : GenerarPlanilla
     Author     : Benja
 --%>
@@ -71,12 +71,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Planilla | Kronos Industrial</title>
+    <title>Control de Planilla | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/FormulariosGeneracion.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -89,9 +89,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <h2 style="font-size: 18px;">VyGApps</h2>
                 <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>

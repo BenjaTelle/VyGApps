@@ -34,12 +34,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Viaje de Camión | Kronos Industrial</title>
+    <title>Registrar Viaje de Camión | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/RegistrarCamiones.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -51,9 +51,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <h2 style="font-size: 18px;">VyGApps</h2>
                 <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= usuarioLogeado.getRol() %></span>
             </div>
         </div>
@@ -100,14 +100,14 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="id_uso">Registro de Maquinaria Asociado:</label>
-                                <select name="id_uso" id="id_uso" required>
-                                    <option value="" disabled selected>Seleccione el registro de maquinaria asociado...</option>
+                                <select name="id_uso" id="id_uso" required onchange="adaptarFormularioCamiones()">
+                                    <option value="" data-tipo="" disabled selected>Seleccione el registro de maquinaria asociado...</option>
                                     <%
                                         List<HistorialUsoDTO> ListaR = (List<HistorialUsoDTO>) request.getAttribute("ListaUso");
                                         if (ListaR != null) {
                                             for (HistorialUsoDTO uso : ListaR) {
                                     %>
-                                    <option value="<%= uso.getIdUso() %>"> 
+                                    <option value="<%= uso.getIdUso() %>" data-tipo="<%= uso.getNombreMaquina() %>"> 
                                         Registro #<%= uso.getIdUso() %> | Fecha: <%= uso.getFecha() %> | Máquina: <%= uso.getNombreMaquina() %> (<%= uso.getHoraInicio() %> a <%= uso.getHoraFin() %>)
                                     </option>
                                     <% 
@@ -118,8 +118,10 @@
                             </div>
                         </div>
 
+                        <div id="aviso_maquinaria" style="display: none; background: #eafaf1; padding: 12px 16px; border-left: 4px solid #27ae60; border-radius: 6px; margin-bottom: 20px; font-weight: 600; color: #1e293b;"></div>
+
                         <div class="form-row">
-                            <div class="form-group">
+                            <div class="form-group" id="grupo_material">
                                 <label for="id_material">Material Cargado:</label>
                                 <select name="id_material" id="id_material" required>
                                     <option value="" disabled selected>Seleccione el material...</option>
@@ -137,18 +139,18 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="cantidad_cargada">Cantidad Cargada (m3):</label>
+                                <label for="cantidad_cargada" id="lbl_cantidad">Cantidad Cargada (m3):</label>
                                 <input type="number" step="0.1" name="cantidad_cargada" id="cantidad_cargada" placeholder="Ej. 12.5" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="origen">Origen:</label>
+                                <label for="origen" id="lbl_origen">Origen:</label>
                                 <input type="text" name="origen" id="origen" placeholder="Ej. Plantel Central / Proveedor" required>
                             </div>
                             <div class="form-group">
-                                <label for="destino">Destino:</label>
+                                <label for="destino" id="lbl_destino">Destino:</label>
                                 <input type="text" name="destino" id="destino" placeholder="Ej. Proyecto Km 45" required>
                             </div>
                         </div>
@@ -185,6 +187,58 @@
     </main>
 </div>
 
+<script>
+    function adaptarFormularioCamiones() {
+        const selectUso = document.getElementById('id_uso');
+        if (!selectUso || selectUso.selectedIndex < 0) return;
+        
+        const opcionSeleccionada = selectUso.options[selectUso.selectedIndex];
+        const tipoMaquina = (opcionSeleccionada.getAttribute('data-tipo') || '').toLowerCase();
+        
+        const grupoMaterial = document.getElementById('grupo_material');
+        const selectMaterial = document.getElementById('id_material');
+        const lblCantidad = document.getElementById('lbl_cantidad');
+        const lblOrigen = document.getElementById('lbl_origen');
+        const lblDestino = document.getElementById('lbl_destino');
+        const infoAviso = document.getElementById('aviso_maquinaria');
+
+        if (tipoMaquina.includes('pipa') || tipoMaquina.includes('agua') || tipoMaquina.includes('cisterna')) {
+            if (grupoMaterial) grupoMaterial.style.display = 'none';
+            if (selectMaterial) {
+                selectMaterial.required = false;
+                selectMaterial.value = "0"; // Valor por defecto para no romper el backend
+            }
+            if (lblCantidad) lblCantidad.innerText = 'Capacidad de Agua (Metros Cúbicos - m3):';
+            if (lblOrigen) lblOrigen.innerText = 'Punto de Toma de Agua:';
+            if (lblDestino) lblDestino.innerText = 'Punto de Descarga:';
+            if (infoAviso) {
+                infoAviso.style.display = 'block';
+                infoAviso.innerText = 'ℹ️ Modo Pipa/Cisterna: Se registran los viajes de agua sin solicitar tipo de material sólido.';
+            }
+        } else if (tipoMaquina.includes('retro') || tipoMaquina.includes('excavadora') || tipoMaquina.includes('cargador') || tipoMaquina.includes('tractor') || tipoMaquina.includes('compactador')) {
+            if (grupoMaterial) grupoMaterial.style.display = 'none';
+            if (selectMaterial) {
+                selectMaterial.required = false;
+                selectMaterial.value = "0"; // Valor por defecto
+            }
+            if (lblCantidad) lblCantidad.innerText = 'Volumen / Horas Mover (Estimado):';
+            if (lblOrigen) lblOrigen.innerText = 'Ubicación / Sector de Trabajo:';
+            if (lblDestino) lblDestino.innerText = 'Punto de Depósito / Disposición:';
+            if (infoAviso) {
+                infoAviso.style.display = 'block';
+                infoAviso.innerText = 'ℹ️ Modo Maquinaria Operativa (Retroexcavadora/Excavadora): No requiere seleccionar un tipo de material transportado.';
+            }
+        } else {
+            // Volquetes, Camiones de Carga, Fletes
+            if (grupoMaterial) grupoMaterial.style.display = 'block';
+            if (selectMaterial) selectMaterial.required = true;
+            if (lblCantidad) lblCantidad.innerText = 'Cantidad Cargada (m3 / unidades):';
+            if (lblOrigen) lblOrigen.innerText = 'Origen:';
+            if (lblDestino) lblDestino.innerText = 'Destino:';
+            if (infoAviso) infoAviso.style.display = 'none';
+        }
+    }
+</script>
 
     <!-- Inicializacion de Lucide Icons -->
     <script>

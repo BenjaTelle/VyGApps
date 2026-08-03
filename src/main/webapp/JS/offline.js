@@ -1,4 +1,4 @@
-﻿// =========================================
+// =========================================
 // 1. GESTIÓN DE CONEXIÓN
 // =========================================
 const btnRetry = document.getElementById('btnRetry');
@@ -24,7 +24,7 @@ function redirectBack() {
     updateStatus('online', '¡Conexión exitosa! Redirigiendo...');
     titleText.innerText = "¡Conexión Restablecida!";
     titleText.style.color = "#2ecc71";
-    descText.innerText = "Estamos devolviéndote al sistema Kronos Industrial. Por favor espera...";
+    descText.innerText = "Estamos devolviéndote al sistema VyGApps. Por favor espera...";
 
     setTimeout(() => {
         if (document.referrer && !document.referrer.includes('offline.jsp') && document.referrer !== '') {
@@ -48,7 +48,7 @@ function checkRealConnectivity() {
     }
 
     // Si navigator.onLine es true, hacemos un fetch real
-    fetch('images/KronosIndustrial.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
+    fetch('images/vyg.svg?t=' + Date.now(), { method: 'HEAD', cache: 'no-store' })
         .then(response => {
             if (response.ok) {
                 redirectBack();
@@ -77,7 +77,7 @@ if (btnRetry) {
 
 
 
-// 2. MINIJUEGO: KRONOS RUNNER (TRUCK EDITION)
+// 2. MINIJUEGO: VYG RUNNER (TRUCK EDITION)
 
 const canvas = document.getElementById('gameCanvas');
 if (canvas) {
@@ -87,7 +87,7 @@ if (canvas) {
 
     // Configuración y records
     let score = 0;
-    let highScore = localStorage.getItem('kronos_offline_highscore') || 0;
+    let highScore = localStorage.getItem('vyg_offline_highscore') || localStorage.getItem('kronos_offline_highscore') || 0;
     if (highScoreEl) highScoreEl.innerText = highScore;
 
     // Estado del juego
@@ -99,7 +99,7 @@ if (canvas) {
     let frameCount = 0;
     let gravity = 0.55;
 
-    // Personaje: Camión de Kronos
+    // Personaje: Camión de VyG
     const truck = {
         x: 50,
         y: 0,
@@ -113,7 +113,7 @@ if (canvas) {
             ctx.save();
             ctx.translate(this.x, this.y);
 
-            // 1. Cuerpo principal (Naranja corporativo Kronos #1B365D)
+            // 1. Cuerpo principal (Azul corporativo VyG #1B365D)
             ctx.fillStyle = '#1B365D';
             // Cabina
             ctx.beginPath();
@@ -379,7 +379,7 @@ if (canvas) {
 
                 if (score > highScore) {
                     highScore = score;
-                    localStorage.setItem('kronos_offline_highscore', highScore);
+                    localStorage.setItem('vyg_offline_highscore', highScore);
                     if (highScoreEl) highScoreEl.innerText = highScore;
                 }
 
