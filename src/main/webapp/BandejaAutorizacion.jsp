@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : BandejaAutorizacion
     Created on : 2 abr 2026, 7:35:58 p.m.
     Author     : Benja
@@ -31,9 +31,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Bandeja de Autorización | Kronos Industrial</title>
+        <title>Bandeja de Autorización | VyGApps</title>
         <link rel="stylesheet" href="CSS/BandejaAutorizacion.css">
-        <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+        <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
         <script src="JS/BandejaAutorizacion.js"></script>
     
     <!-- Lucide Icons CDN -->

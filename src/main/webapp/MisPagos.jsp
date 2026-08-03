@@ -42,12 +42,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mis Pagos | Kronos Industrial</title>
+    <title>Mis Pagos | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/Empleados.css">
     <link rel="stylesheet" href="CSS/MisPagos.css"> 
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -60,8 +60,8 @@
 
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="images/KronosIndustrial.svg" alt="Logo Kronos Industrial" class="logo-img">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <img src="images/vyg.svg" alt="Logo VyG Inversiones" class="logo-img">
+                <h2 style="font-size: 18px;">VyGApps</h2>
             </div>
             <nav>
                 <a href="Home" class="menu-item"> 
@@ -145,7 +145,7 @@
                             </td>
                             <td style="text-align: center;">
                                 <a href="GenerarReciboPDF?id_pago=<%= pago.getIdPago() %>" target="_blank" class="btn-recibo-pdf">
-                                    <img src="images/KronosIndustrial.svg" alt="Icono" class="pdf-icon-logo">
+                                    <img src="images/vyg.svg" alt="Icono" class="pdf-icon-logo">
                                     <span>Ver Recibo</span>
                                 </a>
                             </td>

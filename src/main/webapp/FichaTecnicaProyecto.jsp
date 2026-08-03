@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : FichaTecnicaProyecto
     Created on : 30 mar 2026
     Author     : Benja
@@ -35,7 +35,7 @@
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/FichaTecnicaProyecto.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -48,9 +48,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <h2 style="font-size: 18px;">VyGApps</h2>
                 <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
@@ -98,7 +98,7 @@
                     
                     <div class="doc-header">
                         <div class="header-logo">
-                            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo">
+                            <img src="images/vyg.svg" alt="VyG Logo">
                         </div>
                         <div class="header-titles">
                             <h2>FICHA TÉCNICA DE OBRA</h2>
@@ -159,7 +159,7 @@
                     <hr class="divider">
 
                     <div class="doc-footer">
-                        <p>Documento generado por el Sistema Kronos Industrial.</p>
+                        <p>Documento generado por el Sistema VyGApps.</p>
                         <p>Fecha de emisión: <%= new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format(new java.util.Date()) %></p>
                     </div>
                 </div>

@@ -25,9 +25,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Trabajador | Kronos Industrial</title>
+    <title>Registrar Trabajador | VyGApps</title>
     <link rel="stylesheet" href="CSS/RegisTrabajador.css">
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 </head>
 <body>
 

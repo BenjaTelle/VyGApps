@@ -41,7 +41,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Resumen Diario de Gastos | Kronos Industrial</title>
+        <title>Resumen Diario de Gastos | VyGApps</title>
 
         <link rel="stylesheet" href="CSS/AdminPage.css">
         <link rel="stylesheet" href="CSS/ResumenDiario.css">
@@ -49,7 +49,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
         <script src="JS/menu-movil.js" defer></script>
         <script src="JS/resumen-gastos.js" defer></script>
-        <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+        <link rel="icon" href="images/vyg.svg" type="image/png">
     
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -61,9 +61,9 @@
 
             <aside class="sidebar" id="sidebar">
                 <div class="sidebar-header">
-                    <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
+                    <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
                     <div class="brand-text">
-                        <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                        <h2 style="font-size: 18px;">VyGApps</h2>
                         <span class="panel-badge"><%= usuarioLogeado.getRol() %></span>
                     </div>
                 </div>
@@ -239,9 +239,9 @@
         <div id="plantilla-oficial" class="plantilla-oculta">
             <div class="plantilla-header">
                 <div class="plantilla-brand">
-                    <img src="images/KronosIndustrial.svg" alt="Logo">
+                    <img src="images/vyg.svg" alt="Logo">
                     <div class="brand-text-print">
-                        <h1>KRONOS INDUSTRIAL S.A.</h1>
+                        <h1>VYG INVERSIONES S.A.</h1>
                         <p>Reporte Maestro de Auditoría y Egresos</p>
                         <p>Managua, Nicaragua | RUC: J0310000XXXXXX</p>
                     </div>

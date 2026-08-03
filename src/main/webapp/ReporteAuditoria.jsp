@@ -38,7 +38,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Informe Oficial de Auditoría | Kronos Industrial</title>
+    <title>Informe Oficial de Auditoría | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/ReporteAuditoria.css">
     
@@ -65,9 +65,9 @@
         
         <header class="doc-header">
             <div class="doc-brand">
-                <img src="images/KronosIndustrial.svg" alt="Logo Kronos Industrial" class="doc-logo">
+                <img src="images/vyg.svg" alt="Logo VyG Inversiones" class="doc-logo">
                 <div class="doc-company">
-                    <h1>Kronos Industrial S.A.</h1>
+                    <h1>VYG INVERSIONES S.A.</h1>
                     <p>Reporte Maestro de Auditoría y Egresos</p>
                     <p>Managua, Nicaragua | RUC: J0310000XXXXXX</p>
                 </div>
@@ -141,7 +141,7 @@
                 </div>
             </div>
             <div class="legal-text">
-                Documento de carácter oficial e interno de Kronos Industrial S.A. Representa un extracto contable validado por el sistema Kronos Industrial. La alteración de las cifras aquí expresadas constituye una violación a las políticas de la empresa.
+                Documento de carácter oficial e interno de VYG INVERSIONES S.A. Representa un extracto contable validado por el sistema VyGApps. La alteración de las cifras aquí expresadas constituye una violación a las políticas de la empresa.
             </div>
         </footer>
 

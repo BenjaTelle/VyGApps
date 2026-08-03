@@ -19,7 +19,7 @@ function descargarPDF_Reporte() {
     // Configuración estricta para evitar cortes de tabla
     const opciones = {
         margin:       [10, 10, 10, 10], // top, left, bottom, right (mm)
-        filename:     'Reporte_Oficial_Auditoria_Kronos.pdf',
+        filename:     'Reporte_Oficial_Auditoria_VyG.pdf',
         image:        { type: 'jpeg', quality: 1.0 },
         html2canvas:  { scale: 2, useCORS: true },
         jsPDF:        { unit: 'mm', format: 'letter', orientation: 'landscape' },

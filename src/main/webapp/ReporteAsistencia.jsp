@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+﻿<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="DTO.ReporteAsistenciaDTO"%> 
 <%@page import="model.Usuarios"%>
@@ -37,12 +37,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reporte de Asistencia | Kronos Industrial</title>
+    <title>Reporte de Asistencia | VyGApps</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
     <link rel="stylesheet" href="CSS/ReporteTrabajadores.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -54,9 +54,9 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/KronosIndustrial.svg" alt="Kronos Industrial Logo" class="sidebar-logo">
+            <img src="images/vyg.svg" alt="VyG Logo" class="sidebar-logo">
             <div class="brand-text">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <h2 style="font-size: 18px;">VyGApps</h2>
                 <span class="panel-badge" style="background: #FDE8E8; color: #991B1B;"><%= user.getRol() %></span>
             </div>
         </div>
@@ -227,7 +227,7 @@
 
         var opciones = {
             margin:       10,
-            filename:     'Auditoria_Asistencia_Kronos.pdf',
+            filename:     'Auditoria_Asistencia_VyG.pdf',
             image:        { type: 'jpeg', quality: 0.98 },
             html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
             jsPDF:        { unit: 'mm', format: 'a4', orientation: 'landscape' }

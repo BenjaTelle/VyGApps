@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : Home
     Created on : 2 feb 2026
     Author     : Benja
@@ -38,11 +38,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control | Kronos Industrial</title>
+    <title>Panel de Control | VyGApps</title>
     
     <link rel="stylesheet" href="CSS/Empleados.css">
     <script src="JS/menu-movil.js" defer></script>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>
@@ -55,8 +55,8 @@
         
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <img src="images/KronosIndustrial.svg" alt="Logotipo Kronos Industrial" class="logo-img">
-                <h2 style="font-size: 18px;">Kronos Industrial</h2>
+                <img src="images/vyg.svg" alt="Logotipo VyGApps" class="logo-img">
+                <h2 style="font-size: 18px;">VyGApps</h2>
             </div>
             <nav class="sidebar-nav">
                 <a href="Home" class="menu-item active">

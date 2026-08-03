@@ -1,4 +1,4 @@
-<%@page import="model.Usuarios"%>
+﻿<%@page import="model.Usuarios"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     HttpSession sessionActual = request.getSession(false);
@@ -22,9 +22,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configuración de Perfil | Kronos Industrial</title>
+    <title>Configuración de Perfil | VyGApps</title>
     <link rel="stylesheet" href="CSS/SupervisorPage.css">
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/svg+xml">
+    <link rel="icon" href="images/vyg.svg" type="image/svg+xml">
     <style>
         body {
             background-color: #f4f6f8;

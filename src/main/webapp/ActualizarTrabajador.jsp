@@ -1,4 +1,4 @@
-<%-- 
+﻿<%-- 
     Document   : ActualizarTrabajador
     Created on : 18 feb 2026
     Author     : Benja
@@ -25,9 +25,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actualizar Trabajador | Kronos Industrial</title>
+    <title>Actualizar Trabajador | VyGApps</title>
     <link rel="stylesheet" href="CSS/ActualizarTrabajadores.css">
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <link rel="icon" href="images/vyg.svg" type="image/png">
 
     <!-- Lucide Icons CDN -->
     <script src="JS/lucide.min.js"></script>

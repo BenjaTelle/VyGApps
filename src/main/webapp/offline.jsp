@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sin Conexión | Kronos Industrial</title>
-    <link rel="icon" href="images/KronosIndustrial.svg" type="image/png">
+    <title>Sin Conexión | VyGApps</title>
+    <link rel="icon" href="images/vyg.svg" type="image/png">
     <link rel="stylesheet" href="CSS/offline.css">
     <script src="JS/offline.js" defer></script>
 
@@ -30,7 +30,7 @@
 
         <h1 id="title-text">Conexión Interrumpida</h1>
         <p class="desc" id="desc-text">
-            No pudimos contactar con el servidor de Kronos Industrial. Por favor, revisa tu conexión de red local, wifi o datos móviles.
+            No pudimos contactar con el servidor de VyGApps. Por favor, revisa tu conexión de red local, wifi o datos móviles.
         </p>
 
         <div>
@@ -51,7 +51,7 @@
 
         <!-- SECCIÓN DE MINIJUEGO INTERACTIVO -->
         <div class="game-section">
-            <h2 class="game-title">Kronos Constructor Runner <i data-lucide="truck" style="display:inline-block; vertical-align:middle; margin-left:6px; width: 18px; height: 18px"></i></h2>
+            <h2 class="game-title">VyG Constructor Runner <i data-lucide="truck" style="display:inline-block; vertical-align:middle; margin-left:6px; width: 18px; height: 18px"></i></h2>
             <div class="game-canvas-container">
                 <canvas id="gameCanvas" width="560" height="180"></canvas>
             </div>
