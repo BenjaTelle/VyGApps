@@ -1,4 +1,4 @@
-﻿/* 
+/* 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
  */
@@ -55,7 +55,25 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     }
+
+    // 2. Estilizador de badges y roles bajo foto de perfil
+    aplicarEstilosRoles();
 });
+
+// Función global para aplicar clases de roles armónicos
+function aplicarEstilosRoles() {
+    document.querySelectorAll('.panel-badge, .profile-role').forEach(function(el) {
+        el.removeAttribute('style');
+        var text = (el.innerText || '').trim().toLowerCase();
+        if (text.includes('admin')) {
+            el.classList.add('badge-administrador', 'role-administrador');
+        } else if (text.includes('superv')) {
+            el.classList.add('badge-supervisor', 'role-supervisor');
+        } else if (text.includes('trabajad') || text.includes('emplead') || text.includes('operad')) {
+            el.classList.add('badge-trabajador', 'role-trabajador');
+        }
+    });
+}
 
 // Registro de Service Worker para soporte offline
 if ('serviceWorker' in navigator) {

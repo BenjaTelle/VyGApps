@@ -62,13 +62,40 @@ body {
 }
 
 .panel-badge {
-    background-color: var(--primary-light);
-    color: var(--primary-dark);
     font-size: 11px;
     font-weight: 700;
-    padding: 3px 8px;
+    padding: 3px 10px;
     border-radius: 12px;
     text-transform: uppercase;
+    display: inline-block;
+    letter-spacing: 0.5px;
+    border: 1px solid transparent;
+}
+
+/* Rol: Administrador (Índigo elegante) */
+.badge-administrador,
+.badge-admin,
+.role-administrador,
+.role-admin {
+    background-color: #EEF2FF !important;
+    color: #3730A3 !important;
+    border-color: #C7D2FE !important;
+}
+
+/* Rol: Supervisor (Celeste/Azul corporativo) */
+.badge-supervisor,
+.role-supervisor {
+    background-color: #E0F2FE !important;
+    color: #0369A1 !important;
+    border-color: #BAE6FD !important;
+}
+
+/* Rol: Trabajador (Verde suave) */
+.badge-trabajador,
+.role-trabajador {
+    background-color: #DCFCE7 !important;
+    color: #15803D !important;
+    border-color: #BBF7D0 !important;
 }
 
 .sidebar-nav {
@@ -167,8 +194,13 @@ body {
 
 .profile-role {
     font-size: 11px;
-    color: var(--primary-color);
-    font-weight: bold;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-top: 2px;
+    letter-spacing: 0.3px;
+    border: 1px solid transparent;
 }
 
 .profile-img {
