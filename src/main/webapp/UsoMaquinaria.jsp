@@ -57,7 +57,7 @@
             <img src="images/vygLogo.svg" alt="V&G Ingenieros Logo" class="sidebar-logo">
             <div class="brand-text">
                 <h2 style="font-size: 18px;">V&G Ingenieros</h2>
-                <span class="panel-badge" style="background:#eafaf1; color:#27ae60;"><%= user.getRol() %></span>
+                <span class="panel-badge"><%= user.getRol() %></span>
             </div>
         </div>
         <nav class="sidebar-nav">
