@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : DetalleUso
     Created on : 3 abr 2026, 7:18:57 p.m.
     Author     : Benja
@@ -67,7 +67,13 @@
             </div>
         </div>
 
-        <div class="kpi-section">
+        <div class="kpi-section" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-bottom: 20px;">
+            <div class="kpi-card highlight-kpi-hours" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #ffffff; padding: 18px; border-radius: 10px; border-left: 5px solid #2563eb; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                <div style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; opacity: 0.9; margin-bottom: 6px; color: #94a3b8;">
+                    <i data-lucide="clock" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 4px; color: #60a5fa;"></i> Horas Totales Usadas
+                </div>
+                <span style="font-size: 32px; font-weight: 800; color: #60a5fa; display: block;"><%= String.format("%.2f", d.getHorasTrabajadas()) %> <small style="font-size: 16px; font-weight: 600; color: #93c5fd;">Hrs</small></span>
+            </div>
             <div class="kpi-card">
                 Eficiencia de Combustible
                 <span><%= String.format("%.1f", galonesPorHora) %> Gal/Hr</span>

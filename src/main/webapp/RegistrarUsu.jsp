@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : RegistrarUsu
     Created on : 11 feb 2026, 7:06:09 p.m.
     Author     : Benja
@@ -122,7 +122,7 @@
                         <div class="form-group">
                             <label>Asignar a trabajador (Opcional)</label>
                             <select name="id_trabajador">
-                                <option value="">Sin asignar</option>
+                                <option value="">Sin trabajador</option>
                                 <%
                                     List<trabajadores> listaTrab = (List<trabajadores>) request.getAttribute("ListaT");
                                     if (listaTrab != null) {

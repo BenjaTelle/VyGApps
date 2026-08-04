@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : AdminPage
     Created on : 2 feb 2026, 9:08:44 p.m.
     Author     : Benja
@@ -66,6 +66,10 @@
             <a href="AdminFinanzas" class="nav-item">
                 <i data-lucide="dollar-sign" style="width: 20px; height: 20px"></i>
                 <span>Control Financiero</span>
+            </a>
+            <a href="Deducciones" class="nav-item">
+                <i data-lucide="minus-circle" style="width: 20px; height: 20px"></i>
+                <span>Deducciones</span>
             </a>
             <a href="Configuracion.jsp" class="nav-item">
                 <i data-lucide="settings" style="width: 20px; height: 20px"></i>
