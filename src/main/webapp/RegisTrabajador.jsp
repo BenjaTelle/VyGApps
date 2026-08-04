@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : RegisTrabajador
     Created on : 8 feb 2026, 5:23:37 p.m.
     Author     : Benja
@@ -45,8 +45,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Cédula de Identidad</label>
-                        <input type="text" id="cedula" name="cedula" required
+                        <label>Cédula de Identidad (Opcional)</label>
+                        <input type="text" id="cedula" name="cedula"
                                placeholder="Ej: 001-131105-1013R" 
                                maxlength="16"
                                title="Formato: 3 dígitos, guion, 6 dígitos, guion, 4 dígitos y una letra mayúscula">

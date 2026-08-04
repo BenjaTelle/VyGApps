@@ -89,6 +89,9 @@ public class RegistrarUsu extends HttpServlet {
 
           // 1. Capturar los parámetros originales
         String cedula = request.getParameter("cedula");
+        if (cedula == null) {
+            cedula = "";
+        }
         String full_name = request.getParameter("full_name");
         int edad = Integer.parseInt(request.getParameter("edad"));
         String puesto = request.getParameter("puesto");

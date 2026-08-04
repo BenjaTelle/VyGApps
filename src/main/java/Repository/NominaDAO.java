@@ -64,6 +64,7 @@ public class NominaDAO {
                      "               ) / COALESCE(NULLIF(TIMESTAMPDIFF(MINUTE, p.hora_entrada_oficial, p.hora_salida_oficial) + CASE WHEN p.hora_salida_oficial < p.hora_entrada_oficial THEN 1440 ELSE 0 END, 0), 480) " +
                      "           ELSE 0 END " +
                      "       ) " +
+                     "       - IFNULL((SELECT SUM(d.monto) FROM deducciones d WHERE d.id_trabajador = t.id_trabajador AND d.estado = 'Pendiente'), 0) " +
                      "   ) AS pago_total, " +
                      "   'Pendiente', " +
                      "   t.id_trabajador, " +
@@ -79,10 +80,12 @@ public class NominaDAO {
                      "HAVING dias > 0";
 
         String sqlUpdateCiclo = "UPDATE control_planillas SET ultima_ejecucion = ? WHERE tipo_nomina = ?";
+        String sqlUpdateDeducciones = "UPDATE deducciones SET estado = 'Aplicada' WHERE estado = 'Pendiente' AND id_trabajador IN (SELECT p.id_trabajador FROM pago_nomina p WHERE p.periodo_inicio = ? AND p.periodo_fin = ?)";
 
         Connection con = null;
         PreparedStatement psInsert = null;
         PreparedStatement psUpdate = null;
+        PreparedStatement psDed = null;
         
         try {
             con = ConectarBD.conectar();
@@ -121,6 +124,15 @@ public class NominaDAO {
             psUpdate.setString(2, tipoNomina);
             psUpdate.executeUpdate();
 
+            try {
+                psDed = con.prepareStatement(sqlUpdateDeducciones);
+                psDed.setDate(1, sqlFechaInicio);
+                psDed.setDate(2, sqlFechaFin);
+                psDed.executeUpdate();
+            } catch (SQLException eDed) {
+                System.out.println(">> Aviso al actualizar deducciones: " + eDed.getMessage());
+            }
+
             con.commit();
             
             return filasInsertadas > 0;
@@ -132,6 +144,7 @@ public class NominaDAO {
         } finally {
             if (psInsert != null) psInsert.close();
             if (psUpdate != null) psUpdate.close();
+            if (psDed != null) psDed.close();
             if (con != null) {
                 con.setAutoCommit(true); 
                 con.close();

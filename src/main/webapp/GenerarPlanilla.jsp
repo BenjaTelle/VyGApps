@@ -1,4 +1,4 @@
-﻿<%-- 
+<%-- 
     Document   : GenerarPlanilla
     Author     : Benja
 --%>
@@ -203,7 +203,7 @@
                             </div>
                             <div class="cycle-details">
                                 <h3>Planilla Administrativa</h3>
-                                <span class="badge badge-14">Ciclo: 14 Días</span>
+                                <span class="badge badge-15">Ciclo: 15 Días</span>
                                 
                                 <div class="cycle-dates">
                                     <div class="date-row">
@@ -235,7 +235,7 @@
                             </div>
                             <div class="cycle-details">
                                 <h3>Planilla Operativa</h3>
-                                <span class="badge badge-15">Ciclo: 15 Días</span>
+                                <span class="badge badge-14">Ciclo: 14 Días</span>
                                 
                                 <div class="cycle-dates">
                                     <div class="date-row">
