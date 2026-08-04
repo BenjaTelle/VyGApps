@@ -61,7 +61,7 @@ public class MisPagosSv extends HttpServlet {
             return;
         }
 
-        int idT = user.getId_trabajador();
+        int idT = (user.getId_trabajador() != null) ? user.getId_trabajador() : 0;
 
         try {
             // 2. Instanciar DAO y buscar historial completo

@@ -64,7 +64,7 @@ public class HistorialAsistenciaSv extends HttpServlet {
         // 2. Extraer el historial de la Base de Datos usando el DTO actualizado
         AsistenciaDAO asistenciaDAO = new AsistenciaDAO();
         try {
-            int idTrabajador = user.getId_trabajador();
+            int idTrabajador = (user.getId_trabajador() != null) ? user.getId_trabajador() : 0;
             
             // Llamamos al método que ahora devuelve List<AsistenciaDTO> con horas extras y anomalías
             List<AsistenciaDTO> listaHistorial = asistenciaDAO.ListarAsistenciaTrabajador(idTrabajador);

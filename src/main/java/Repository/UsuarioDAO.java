@@ -37,7 +37,7 @@ public class UsuarioDAO {
                     usu.setPass(rs.getString("pass"));
                     usu.setRol(rs.getString("rol"));
                     usu.setId_user(Integer.parseInt(rs.getString("id_user")));
-                    usu.setId_trabajador(rs.getInt("id_trabajador"));
+                    usu.setId_trabajador(rs.getObject("id_trabajador") != null ? rs.getInt("id_trabajador") : null);
                     System.out.println("usuario encontrado:  " + usu.getUser_name() + "" + usu.getPass());
                 }
             }
