@@ -82,7 +82,7 @@ public class AsistenciaSv extends HttpServlet {
         
         AsistenciaDAO aDAO = new AsistenciaDAO();
         Usuarios usuario = (Usuarios) session.getAttribute("usuarioLogeado");
-        int idTrabajador = usuario.getId_trabajador(); 
+        int idTrabajador = (usuario != null && usuario.getId_trabajador() != null) ? usuario.getId_trabajador() : 0; 
 
         // 2. Atrapamos la acción y el código que vienen del formulario
         String accion = request.getParameter("accion");

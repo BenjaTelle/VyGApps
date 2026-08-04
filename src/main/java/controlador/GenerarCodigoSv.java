@@ -103,7 +103,7 @@ public class GenerarCodigoSv extends HttpServlet {
             return;
         }
 
-        int idSupervisor = user.getId_trabajador();
+        int idSupervisor = (user.getId_trabajador() != null) ? user.getId_trabajador() : 0;
         
         // B. Recibir parámetros del formulario
         int idProyecto = Integer.parseInt(request.getParameter("id_proyecto"));

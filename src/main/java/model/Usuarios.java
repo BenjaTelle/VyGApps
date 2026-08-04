@@ -59,11 +59,11 @@ public class Usuarios {
         this.rol = rol;
     }
 
-    public int getId_trabajador() {
+    public Integer getId_trabajador() {
         return id_trabajador;
     }
 
-    public void setId_trabajador(int id_trabajador) {
+    public void setId_trabajador(Integer id_trabajador) {
         this.id_trabajador = id_trabajador;
     }
 

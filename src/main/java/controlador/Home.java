@@ -69,7 +69,7 @@ public class Home extends HttpServlet {
             return;
         }
 
-        int idT = user.getId_trabajador();
+        int idT = (user.getId_trabajador() != null) ? user.getId_trabajador() : 0;
 
         try {
             // 3. Buscar Detalles del Usuario (Lo que ya tenías)

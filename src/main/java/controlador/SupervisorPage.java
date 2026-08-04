@@ -52,7 +52,7 @@ public class SupervisorPage extends HttpServlet {
             throws ServletException, IOException {
               HttpSession sessionActual = request.getSession(false);
         Usuarios user = (sessionActual != null) ? (Usuarios) sessionActual.getAttribute("usuarioLogeado") : null;
-        int idT = user.getId_trabajador();
+        int idT = (user != null && user.getId_trabajador() != null) ? user.getId_trabajador() : 0;
 
         try {
             UsuarioDetalleDAO udDAO = new UsuarioDetalleDAO();
